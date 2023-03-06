@@ -18,7 +18,7 @@ function Routing() {
     <BrowserRouter>
         <Routes>
             <Route path="/" element={<Navbar/>}>
-                <Route index element={<Facilities/>}/>
+                <Route index element={<Profile/>}/>
                 <Route path="/facilities" element={<Facilities/>}/>
                 <Route path="login" element={<Login/>}/>
                 <Route path="register" element={<Register/>}>
