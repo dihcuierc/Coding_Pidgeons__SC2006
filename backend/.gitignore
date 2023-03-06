@@ -8,3 +8,6 @@ package-lock.json
 # Node Modules
 node_modules/*
 
+# Output Files
+dist/*
+
