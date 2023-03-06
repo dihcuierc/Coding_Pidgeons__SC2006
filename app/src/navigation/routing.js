@@ -24,7 +24,7 @@ function Routing() {
                 <Route path="register" element={<Register/>}>
                     <Route path="otp" element={<Verify/>}/>
                 </Route>
-                <Route path="profile" element={<Profile/>}/>
+                <Route path="/" element={<Profile/>}/>
                 <Route path="password">
                     <Route path="forget" element={<Forget/>}/>
                 </Route>
