@@ -1,18 +1,4 @@
-body {
-  color: white;
-}
-
-h1, h2, h3, h4, h5, h6, p{
-  color: white;
-  font-family: 'Raleway';
-}
-
-h1{
-  font-weight: 700 !important;
-  font-size: 50px !important;
-}
-
-p{
+.workout-question{
   font-style: normal;
   font-weight: 400;
   font-size: 25px;
@@ -49,7 +35,7 @@ p{
 }
 
 
-.greeting {
+.workout-greeting {
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -57,6 +43,8 @@ p{
   align-items: center;
   padding-top: 3rem;
   gap: 11px;
+  color: white;
+  font-family: 'Raleway';
 }  
 
 .carousel-container {
@@ -65,9 +53,11 @@ p{
   padding-top: 3rem;
   margin-left: 5rem;
   gap: 2rem;
+  color: white;
+  font-family: 'Raleway';
 }
 
-.card {
+.exercise-card {
 width: 317px !important;
 height: 371px !important;
 background: rgba(213, 197, 197, 0.31) !important;

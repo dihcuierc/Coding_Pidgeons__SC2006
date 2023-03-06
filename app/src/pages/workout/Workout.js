@@ -12,9 +12,9 @@ import { Link } from 'react-router-dom';
 export default function Workout() {
     return (
         <div className={background.default}>
-            <div className="greeting">
-                <h1 className='title'>Hello, John</h1> 
-                <p>What would you like to do?</p> 
+            <div className="workout-greeting">
+                <h1 className='workout-title'>Hello, John</h1> 
+                <p className="workout-question">What would you like to do?</p> 
                 <SearchBar className="search-bar" placeholder="Search"/>
             </div>
             <div className="carousel-container">
@@ -40,7 +40,7 @@ export default function Workout() {
               </Carousel>
             </div>
         </div>
-)
+    )
 }
 
 const responsive = {
@@ -60,4 +60,3 @@ mobile: {
   slidesToSlide: 1 // optional, default to 1.
 }
 };
-
