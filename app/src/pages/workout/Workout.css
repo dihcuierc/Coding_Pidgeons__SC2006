@@ -5,35 +5,9 @@
   text-align: center;
 }
 
-.button-container {
-  display: flex;
-  justify-content: flex-end; /* align items to the right */
-}
-
-.rectangle-button {
-  background-color: red;
-  color: white;
-  border: none;
-  border-radius: 15px;
-  padding: 5px 10px; /* adjust the left and right padding */
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 14px; /* adjust the font size */
-  line-height: 1.2;
-  width: 120px; /* adjust the width as needed */
-  margin-left: auto; /* push the button to the right side */
-  margin-right: 20px;
-}
-
-.rectangle-button span {
-  display: block;
-}
-
 .ExerciseTitle {
   margin-bottom: 30px;
 }
-
 
 .workout-greeting {
   text-align: center;

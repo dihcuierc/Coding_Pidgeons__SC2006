@@ -46,14 +46,6 @@
     margin: 10px 0;
   }
   
-  /* Add the following rules */
-  .exercise-how-to > div,
-  .exercise-why > div {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-  
   .how-to-title,
   .why-title {
     flex-basis: 40%;
