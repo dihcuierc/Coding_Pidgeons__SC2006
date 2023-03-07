@@ -1,0 +1,37 @@
+.fitnessgoalscontainer {
+    padding-top: 10%;
+    padding-bottom: 5%;
+  }
+
+.delete-fitness-goal{
+    width:100px;
+    background-color: red;
+    color: white;
+    border-radius: 10px;
+}
+
+.addfitnessgoals{
+    float: left;
+    border-radius: 10px;
+    background-color: transparent;
+    color: white;
+    border: 5px solid white;   
+}
+
+.fitnessgoalstitle{
+    color: white;
+    font-size: 30px !important;
+    padding-left: 10px;
+}
+
+.fitnessgoalsubmit {
+    margin-left: auto;
+}
+
+.editfitnessgoalscontainer{
+    padding-top: 10%;
+    padding-bottom: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

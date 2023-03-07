@@ -15,26 +15,27 @@ export default function ViewGoals() {
     }
     // do a map for the goals instead of hard code
     return (
-        <Card className="bg-dark opacity-75">
-            <Card.Title className="text-white"> Fitness Goals </Card.Title>
-            <Card.Body>
-                <Card.Body className="fitness-goal">
-                    <Stack direction="horizontal">
-                        <Stack>
-                            <p className="goal-to-achieve">Weight Goal</p>
-                            <p className="current-standing">Current Weight</p>
+            <Card className="bg-dark opacity-75">
+                <a href="/fitnessgoals" style={{ textDecoration: "none" }}>
+                    <Card.Title className="fitnessgoalstitle"> Fitness Goals </Card.Title>
+                </a>
+                <Card.Body>
+                    <Card.Body className="fitness-goal">
+                        <Stack direction="horizontal">
+                            <Stack>
+                                <p className="goal-to-achieve">Weight Goal</p>
+                                <p className="current-standing">Current Weight</p>
+                            </Stack>
+                            <Stack>
+                                <p className="goal-to-achieve">50kg</p>
+                                <p className="current-standing">60kg</p>
+                            </Stack>
+                                <p className="goal-date">
+                                    10/2/2023 <button className="goal-done" onClick={handleGoalDoneClick}>Done</button>
+                                </p>
                         </Stack>
-                        <Stack>
-                            <p className="goal-to-achieve">50kg</p>
-                            <p className="current-standing">60kg</p>
-                        </Stack>
-                        <Stack>
-                            <p className="goal-date">date</p>
-                            <button className="goal-done" onClick={handleGoalDoneClick}>Done</button>
-                        </Stack>
-                    </Stack>
+                    </Card.Body>
                 </Card.Body>
-            </Card.Body>
-        </Card>
+            </Card>
     )
 }

@@ -12,6 +12,8 @@ import ExerciseCarousel from '../pages/exercisecarousel/ExerciseCarousel';
 import Exercise from '../pages/exercise/Exercise';
 import Workout from '../pages/workout/Workout';
 import ScheduleExercise from '../pages/scheduleExercise/ScheduleExercise';
+import FitnessGoals from '../pages/fitnessgoals/fitnessgoals';
+import EditFitnessGoals from '../pages/fitnessgoals/editfitnessgoals';
 
 function Routing() {
     return (
@@ -25,6 +27,8 @@ function Routing() {
                     <Route path="otp" element={<Verify/>}/>
                 </Route>
                 <Route path="/" element={<Profile/>}/>
+                <Route path="/fitnessgoals" element={<FitnessGoals/>}/>
+                <Route path="/fitnessgoals/edit" element={<EditFitnessGoals/>}/>
                 <Route path="password">
                     <Route path="forget" element={<Forget/>}/>
                 </Route>
