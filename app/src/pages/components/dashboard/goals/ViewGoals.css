@@ -1,0 +1,23 @@
+.fitness-goal{
+    color: white;
+    border: 1px solid #F03F58;
+    border-radius: 10px;
+}
+
+.goal-to-achieve{
+    color: #56AF55;
+}
+
+.current-standing{
+    color: #EFAB4A;
+}
+
+.goal-date{
+    align-items: center;
+}
+
+.goal-done{
+    background-color: #56AF55;
+    border-radius: 10px;
+    border: none;
+}
