@@ -3,8 +3,14 @@ import './ViewBMI.css';
 import Stack from "react-bootstrap/Stack";
 import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton';
+import React, { useState } from 'react';
 
 export default function BMI() {
+    const [selected, setSelected] = useState('This Week');
+
+  const handleSelect = (eventKey) => {
+    setSelected(eventKey);
+  };
     return (
         <>
             <Card className="bg-dark opacity-75">
@@ -17,11 +23,13 @@ export default function BMI() {
                         id="dropdown-button-dark-example2"
                         variant="secondary"
                         menuVariant="dark"
-                        title="This Week"
-                        className="mt-2">
-                        <Dropdown.Item href="#/action-1">Last Week</Dropdown.Item>
-                        <Dropdown.Item href="#/action-2">Last Month</Dropdown.Item>
-                        <Dropdown.Item href="#/action-3">Last Year</Dropdown.Item>
+                        title={selected}
+                        className="mt-2"
+                        onSelect={handleSelect}>
+                        <Dropdown.Item eventKey="This Week" href="#/action-1">This Week</Dropdown.Item>
+                        <Dropdown.Item eventKey="Last Week" href="#/action-2">Last Week</Dropdown.Item>
+                        <Dropdown.Item eventKey="Last Month" href="#/action-3">Last Month</Dropdown.Item>
+                        <Dropdown.Item eventKey="Last Year" href="#/action-4">Last Year</Dropdown.Item>
                     </DropdownButton>
                     </Stack>
                 </Stack>   
