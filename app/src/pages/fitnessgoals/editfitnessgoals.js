@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 
 
 
-//idk if the Link in the submit button will allow submission
 export default function FitnessGoals() {
     const navigate = useNavigate();
     const handleSubmit = (event) => {
@@ -19,8 +18,13 @@ export default function FitnessGoals() {
         const targetValue = document.getElementById('targetValue').value;
         const currentValue = document.getElementById('currentValue').value;
         const date = document.getElementById('date').value;
-        console.log({ goal, targetValue, currentValue, date });
-        navigate("/fitnessgoals");
+        
+        if (goal && targetValue && currentValue && date) {
+            navigate("/fitnessgoals");
+        } else {
+            // show an error message or handle the case where fields are blank
+            alert("Please fill in all fields before submitting.");
+        }         
     }
 
     return (
@@ -44,15 +48,11 @@ export default function FitnessGoals() {
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="date">
-                                <Form.Control size="lg" type="date" placeholder="By When?" />
+                                <Form.Control size="lg" type="date" placeholder="By When?" color='#FFF'/>
                             </Form.Group>
-
-                            
-                            
                                 <Button className='fitnessgoalsubmit' variant="danger" type="submit">
                                     Submit
                                 </Button>
-                            
                         </Form>
                     </Card>
                 </Container>

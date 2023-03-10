@@ -4,31 +4,38 @@
   }
 
 .delete-fitness-goal{
-    width:100px;
-    background-color: red;
+    width: 5%;
+    background-color: transparent;
     color: white;
-    border-radius: 10px;
+    border: none;
 }
 
 .addfitnessgoals{
-    float: left;
-    border-radius: 10px;
+    border-radius: 20px;
     background-color: transparent;
     color: white;
     border: 5px solid white;   
 }
 
+.addfitnessgoalscard{
+    justify-content: center;
+    display: flex;
+}
+
 .fitnessgoalstitle{
-    color: white;
+    color: white !important;
     font-size: 30px !important;
     padding-left: 10px;
 }
 
 .fitnessgoalsubmit {
-    margin-left: auto;
+    margin-right: auto;
+
 }
 
 .editfitnessgoalscontainer{
+    width: 700px;
+    height: 510px;
     padding-top: 10%;
     padding-bottom: 5%;
     display: flex;

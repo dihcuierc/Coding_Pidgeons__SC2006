@@ -2,6 +2,12 @@ import Card from "react-bootstrap/Card";
 import Stack from "react-bootstrap/Stack";
 import "./ViewGoals.css";
 import React, { useState } from "react";
+import Checkbox from '@mui/material/Checkbox';
+import ControlPointIcon from '@mui/icons-material/ControlPoint';
+import { common } from '@mui/material/colors';
+import DeleteIcon from '@mui/icons-material/Delete';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 export default function ViewGoals() {
     const [goals, setGoals] = useState([]);
@@ -30,9 +36,24 @@ export default function ViewGoals() {
                                 <p className="goal-to-achieve">50kg</p>
                                 <p className="current-standing">60kg</p>
                             </Stack>
-                                <p className="goal-date">
-                                    10/2/2023 <button className="goal-done" onClick={handleGoalDoneClick}>Done</button>
-                                </p>
+                            <p className="goal-date">
+                            <Stack direction="horizontal">
+                                10/2/2023
+                                <Stack>
+                                <FormGroup>
+                                    <FormControlLabel control={
+                                    <Checkbox onChange={handleGoalDoneClick}
+                                        fontsize='large' sx={{
+                                            color: common['white'],
+                                            '&.Mui-checked': {
+                                            color: common['white'],
+                                            },
+                                        }}/> 
+                                    } label="Done" />
+                                </FormGroup>
+                                </Stack>
+                                </Stack>
+                            </p>
                         </Stack>
                     </Card.Body>
                 </Card.Body>
