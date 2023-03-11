@@ -10,7 +10,7 @@ export default function ViewReviews() {
     return (
         <div className={background.profile}>
             <Container className='profile-review-container'>
-                <Card className='profile-review-card'>
+                <Card className='profile-review-card' style={{backgroundColor: 'transparent', border:'none'}}>
                     <Card.Title className='profile-review-title'>
                         All Your Reviews
                     </Card.Title>
