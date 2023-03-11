@@ -4,6 +4,7 @@ import React from "react";
 import background from "../../assets/css/Background.module.css"
 import Container from "react-bootstrap/esm/Container";
 import './ViewReviews.css';
+import Rating from '@mui/material/Rating';
 
 export default function ViewReviews() {
     return (
@@ -30,7 +31,7 @@ export default function ViewReviews() {
                                                     <p className='profile-review-date'>04/10/22</p>
                                                 </div>
                                             </Stack>
-                                            <p className='profile-review-rating' >stars</p>
+                                            <Rating name="half-rating-read" value={2.5} precision={0.5} size="large" readOnly />
                                         </div>
                                         <p className='profile-review-text'>The movie was a thrilling rollercoaster ride from start to finish. The plot was engaging and the characters were well-developed, with excellent performances by the entire cast. The special effects were top-notch and added to the overall excitement of the film. The soundtrack was also fantastic, perfectly complementing the action on screen. Overall, a must-see for any action movie fan.</p>
                                         <p></p>
@@ -55,7 +56,7 @@ export default function ViewReviews() {
                                                     <p className='profile-review-date'>04/10/22</p>
                                                 </div>
                                             </Stack>
-                                            <p className='profile-review-rating' >stars</p>
+                                            <Rating name="half-rating-read" value={2.5} precision={0.5} size="large" readOnly />
                                         </div>
                                         <p className='profile-review-text'>I recently tried the new restaurant in town and was blown away by the quality of the food. The menu offered a variety of dishes, from classic comfort food to more adventurous options, and everything we tried was delicious. The ingredients were clearly fresh and high-quality, and the presentation was beautiful. The standout dish for me was the lamb chops, which were perfectly cooked and seasoned. The service was also excellent, with friendly and attentive staff who made sure we had a great dining experience. Overall, I highly recommend this restaurant for anyone looking for a delicious and memorable meal.I recently tried the new restaurant in town and was blown away by the quality of the food. The menu offered a variety of dishes, from classic comfort food to more adventurous options, and everything we tried was delicious. The ingredients were clearly fresh and high-quality, and the presentation was beautiful. The standout dish for me was the lamb chops, which were perfectly cooked and seasoned. The service was also excellent, with friendly and attentive staff who made sure we had a great dining experience. Overall, I highly recommend this restaurant for anyone looking for a delicious and memorable meal.I recently tried the new restaurant in town and was blown away by the quality of the food. The menu offered a variety of dishes, from classic comfort food to more adventurous options, and everything we tried was delicious. The ingredients were clearly fresh and high-quality, and the presentation was beautiful. The standout dish for me was the lamb chops, which were perfectly cooked and seasoned. The service was also excellent, with friendly and attentive staff who made sure we had a great dining experience. Overall, I highly recommend this restaurant for anyone looking for a delicious and memorable meal.</p>
                                         <p></p>
