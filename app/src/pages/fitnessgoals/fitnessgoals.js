@@ -38,8 +38,8 @@ export default function FitnessGoals() {
     return (
         <div className={background.profile}>
             <Container className='fitnessgoalscontainer'>
-                <Container className="h-100 d-grid align-content-center">
-                    <Card className="bg-dark opacity-75">
+                
+                    <Card className="bg-dark opacity-75 fitnessgoalcard">
                         <Stack direction="horizontal" gap={4}>
                             <Stack>
                                 <Card.Body className="fitnessgoalstitle"> Fitness Goals </Card.Body>
@@ -50,47 +50,90 @@ export default function FitnessGoals() {
                                 </Link>
                             </Card.Body>
                         </Stack>
-                            <Card.Body>
-                                <Stack direction="horizontal">
-                                    <Stack>
-                                        <Card.Body className="fitness-goal" >
-                                            <Stack direction="horizontal">
-                                                <Stack>
-                                                    <p className="goal-to-achieve">Weight Goal</p>
-                                                    <p className="current-standing">Current Weight</p>
-                                                </Stack>
-                                                <Stack>
-                                                    <p className="goal-to-achieve">50kg </p>
-                                                    <p className="current-standing">60kg </p>
-                                                </Stack>
-                                                <p className="goal-date">
-                                                    <Stack direction="horizontal">
-                                                        10/2/2023
-                                                        <Stack>
-                                                        <FormGroup>
-                                                            <FormControlLabel control={
-                                                            <Checkbox onChange={handleGoalDoneClick}
-                                                                fontsize='large' sx={{
-                                                                    color: common['white'],
-                                                                    '&.Mui-checked': {
-                                                                    color: common['white'],
-                                                                    },
-                                                                }}/> 
-                                                            } label="Done" />
-                                                        </FormGroup>
-                                                        </Stack>
-                                                    </Stack>
-                                                </p>
+                        <Card.Body>
+                            <Stack direction="horizontal">
+                                <Stack>
+                                    <Card.Body className="fitness-goal" >
+                                        <Stack direction="horizontal" gap={3}>
+                                            <Stack>
+                                                <p className="goal-to-achieve">Weight Goal</p>
+                                                <p className="current-standing">Current Weight</p>
                                             </Stack>
-                                        </Card.Body>
-                                    </Stack>
-                                    <button className="delete-fitness-goal" onClick={handleDeleteGoalClick}>
-                                        <DeleteIcon/>
-                                    </button>            
+                                            <Stack>
+                                                <p className="goal-to-achieve">50kg </p>
+                                                <p className="current-standing">60kg </p>
+                                            </Stack>
+                                            <p className="goal-date">
+                                                <Stack direction="horizontal">
+                                                    10/2/2023
+                                                    <Stack>
+                                                    <FormGroup>
+                                                        <FormControlLabel control={
+                                                        <Checkbox onChange={handleGoalDoneClick}
+                                                            fontsize='large' sx={{
+                                                                color: common['white'],
+                                                                '&.Mui-checked': {
+                                                                color: common['white'],
+                                                                },
+                                                            }}/> 
+                                                        } label="Done" />
+                                                    </FormGroup>
+                                                    </Stack>
+                                                </Stack>
+                                            </p>
+                                        </Stack>
+                                    </Card.Body>
                                 </Stack>
+                                <button className="delete-fitness-goal" onClick={handleDeleteGoalClick}>
+                                    <DeleteIcon/>
+                                </button>            
+                            </Stack>
+                        </Card.Body>
+
+
+
+                                        
+                        <Card.Body>
+                            <Stack direction="horizontal">
+                                <Stack>
+                                    <Card.Body className="fitness-goal" >
+                                        <Stack direction="horizontal">
+                                            <Stack>
+                                                <p className="goal-to-achieve">Weight Goal</p>
+                                                <p className="current-standing">Current Weight</p>
+                                            </Stack>
+                                            <Stack>
+                                                <p className="goal-to-achieve">50kg </p>
+                                                <p className="current-standing">60kg </p>
+                                            </Stack>
+                                            <p className="goal-date">
+                                                <Stack direction="horizontal">
+                                                    10/2/2023
+                                                    <Stack>
+                                                    <FormGroup>
+                                                        <FormControlLabel control={
+                                                        <Checkbox onChange={handleGoalDoneClick}
+                                                            fontsize='large' sx={{
+                                                                color: common['white'],
+                                                                '&.Mui-checked': {
+                                                                color: common['white'],
+                                                                },
+                                                            }}/> 
+                                                        } label="Done" />
+                                                    </FormGroup>
+                                                    </Stack>
+                                                </Stack>
+                                            </p>
+                                        </Stack>
+                                    </Card.Body>
+                                </Stack>
+                                <button className="delete-fitness-goal" onClick={handleDeleteGoalClick}>
+                                    <DeleteIcon/>
+                                </button>            
+                            </Stack>
                         </Card.Body>
                     </Card>
-                </Container>
+               
             </Container>
         </div>
     )
