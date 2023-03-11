@@ -1,0 +1,48 @@
+.profile-review-container {
+    padding-top: 10%;
+    padding-bottom: 5%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+
+.profile-review-card{
+    width: 974px;
+    background-color: transparent;
+    border: none;
+}
+
+.individual-review{
+    border: 1px solid blue;
+}
+
+.user-review{
+    border-radius: 40px;
+    display: flex;
+    background-color: white;
+}
+
+.profile-review-profile{
+    width: 215px;
+}
+
+.profile-review-name{
+    border:1px solid red
+}
+
+.profile-review-image{
+    border:1px solid red
+}
+
+.profile-review-rating{
+    border:1px solid blue;
+}
+
+.profile-review-text{
+    background-color: #F6F6F6;
+    border-radius: 12px;
+}
+
+.profile-review-date{
+    border: 1px solid blue;
+}
