@@ -1,14 +1,14 @@
-import {collection, getDocs, getFirestore} from "firebase/firestore";
+import {collection, getDocs, getFirestore, addDoc, deleteDoc, doc} from "firebase/firestore";
 
 function collectData() {
     //init service
     const db = getFirestore()
 
-// collection ref
-    const colRef = collection(db, 'User')
+    // User User collection ref
+    const UserRef = collection(db, 'User')
 
-// get collection data
-    getDocs(colRef)
+    // get User collection data
+    getDocs(UserRef)
         .then((snapshot) => {
             let User = []
             snapshot.docs.forEach((doc) => {
@@ -21,4 +21,34 @@ function collectData() {
         })
 };
 
-export {collectData};
+function addData() {
+    // add User data
+    const addUser = document.querySelector('<add_button>')
+    addUser.addEventListener('<submit_button>', (e) => {
+        e.preventDefault()
+
+        addDoc(UserRef, {
+            //all the attributes
+            //<attribute> : addUser.<input_field>.value
+        })
+        .then(() => {
+            addUser.reset()
+        })
+    })
+}
+
+function deleteData() {
+    // delete User data
+    const deleteUser = document.querySelector('<delete_button>')
+    deleteUser.addEventListener('<submit_button>', (e) => {
+        e.preventDefault
+
+        const UserRef = doc(db, 'User', deleteUser.<id_field>.vaule)
+
+        deleteDoc(UserRef)
+            .then(() => {
+                deleteUser.reset()
+            })
+    })
+}
+export {collectData, addData, deleteData};
