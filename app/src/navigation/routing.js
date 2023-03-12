@@ -32,7 +32,7 @@ function Routing() {
                 <Route path="workout/schedule-exercise" element={<ScheduleExercise/>}/>
                 <Route path="workout/exerciseplan" element={<ExercisePlan/>}/>
                 <Route path="workout/exerciseview" element={<ExerciseCarousel/>}/>     
-                <Route path="workout/exerciseview/exercise" element={<Exercise/>}/>       
+                <Route path="workout/exerciseview/exercise/:id" element={<Exercise/>}/>       
                 <Route path="*" element={<NotFound/>}/>
            </Route>
         </Routes>

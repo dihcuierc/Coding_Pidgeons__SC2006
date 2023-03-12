@@ -1,31 +1,56 @@
 import background from "../../assets/css/Background.module.css"
 import React from 'react';
 import './Exercise.css';
-import exercises from '../../data/exerciseData.json';
+import { useParams } from 'react-router-dom'
+import exercises from "../../data/exerciseData.json";
+import exerciseGroups from "../../data/exerciseGroupData.json";
 
+export default function Exercise() {
+    const { id } = useParams();
 
-export default function Exercise( exercise ) {
+    const exercise = exercises.find((exercise) => exercise.id === parseInt(id));
 
-    return (
+    if (!exercise) {
+        return <div>Exercise not found!</div>;
+    }
+
+    const exerciseGroup = exerciseGroups.find((exerciseGroup) => exerciseGroup.id === exercise["exercise-group-id"]);
+    if (!exerciseGroup) {
+        return <div>Exercise group not found!</div>;
+    }
+
+    return(
         <div className={background.default}>
-             <div className="exercise-container">
-                <div className="exercise-left">
-                    <h2 className="exercise-title">Title</h2>
-                    <p className="exercise-bodypart">Arm Exercise</p>
-                    <p>image</p>
+            <div className="exercise-container">
+                <div className="exercise-block">
+                    <h1 className="exercise-title">{exercise.alt}</h1>
+                    <p>{exerciseGroup.title} Exercise</p>
+                    <div className="exercise-rating">{generateStars(exercise.rating)}</div>
+                    <img className="exercise-video" src={exercise.path} alt={exercise.alt} />
                 </div>
-                <div className="exercise-right">
-                    <div className="exercise-how-to">
-                        <h3 className="how-to-title">How To</h3>
-                        <p className='how-to-description'>Sit on an incline bench and hold a dumbbell in each hand at arm's length. Use your biceps to curl the dumbbell until it reaches your shoulder, then lower them back down to your side and repeat.
-                        </p>
+
+                <div className="exercise-block">
+                    <div className="exercise-instructions">
+                        <h3 className="instructions-title">Instructions</h3>
+                        <p className='instructions-description'>{exercise.instructions}</p>
                     </div>
-                    <div className="exercise-why">
-                        <h3 className="why-title">Why</h3>
-                        <p className="why-description">Beware: this position isolates the biceps and prevents other muscles from sharing the load. You can work the entire muscle by turning your wrists out slightly and keeping your elbows pointed towards the floor throughout the rep, a range of motion not available in other arm exercises.</p>
+                    <div className="exercise-remarks">
+                        <h3 className="remarks-title">Remarks</h3>
+                        <p className="remarks-description">{exercise.remarks}</p>
                     </div>
                 </div>
             </div>
         </div>
     )
 }
+
+function generateStars(rating) {
+    const stars = [];
+  
+    for (let i = 0; i < 5; i++) {
+      const starClass = i < rating ? "star filled" : "star";
+      stars.push(<div key={i} className={starClass}></div>);
+    }
+  
+    return stars;
+  }

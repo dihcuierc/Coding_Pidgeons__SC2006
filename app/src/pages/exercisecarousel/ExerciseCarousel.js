@@ -13,7 +13,7 @@ export default function ExerciseCarousel() {
               <h1>Arms</h1>
               <Carousel responsive={responsive} showDots={true} infinite={true}>
                   {exercsieData.map((exercise) => (
-                    <ExerciseCard link="exercise" key={exercise.id} imageUrl={exercise.path} title={exercise.alt} />
+                    <ExerciseCard link={`/workout/exerciseview/exercise/${exercise.id}`} key={exercise.id} imageUrl={exercise.path} title={exercise.alt} />
                   ))}
               </Carousel>
             </div>

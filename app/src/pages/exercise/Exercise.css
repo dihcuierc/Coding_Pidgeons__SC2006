@@ -1,76 +1,82 @@
-.exercise-container {
+@media screen{
+  .exercise-container {
     display: flex;
-    border-radius: 20px;
-    color: #FFF;
-    padding: 120px;
-    justify-content: space-between;
+    justify-content: center; /* center horizontally */
+    align-items: center; /* center vertically */
+    height: 100vh; /* set the height of the container to the height of the viewport */
   }
-  
-  .exercise-left {
-    background-color: #17202D;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* align items to the left */
-    text-align: center;
-    margin-right: 20px; /* add margin to the right */
-    border-radius: 20px;
-    padding-left: 20px; /* add padding to the left */
-  }
-  
-  .exercise-right {
-    background-color: #17202D;
-    flex: 1;
+
+  .exercise-block {
+    width: 30%;
+    padding: 2rem;
+    margin: 5rem;
+    background: #17202d;
+    border-radius: 30px;
+
     display: flex;
     flex-direction: column;
-    margin-left: 20px; /* add margin to the left */
-    border-radius: 20px;
+    align-items: flex-start;
   }
-  
-  .exercise-title {
-    margin: 20px 0 10px; /* add margin to the top */
+
+  .exercise-video {
+    margin-bottom: 2rem;
+    border-radius: 30px;
+    width: 100%;
   }
-  
-  .exercise-bodypart {
-    margin: 0;
-  }
-  
-  .exercise-how-to,
-  .exercise-why {
+
+  .exercise-instructions,
+  .exercise-remarks {
     display: flex;
     border-radius: 20px;
-    color: #FFF;
     padding: 20px;
-    justify-content: space-between;
+    justify-content: center; /* center horizontally */
+    align-items: center; /* center vertically */
   }
-  
-  .exercise-how-to h3,
-  .exercise-why h3 {
+
+  .exercise-instructions h3,
+  .exercise-remarks h3 {
     margin: 0;
   }
-  
-  .exercise-how-to p,
+
+  .exercise-instructions p,
   .exercise-why p {
     margin: 10px 0;
   }
-  
-  /* Add the following rules */
-  .exercise-how-to > div,
-  .exercise-why > div {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-  
-  .how-to-title,
-  .why-title {
+
+  .instructions-title,
+  .remarks-title {
     flex-basis: 40%;
     align-self: center;
   }
-  
-  .how-to-description,
-  .why-description {
+
+  .instructions-description,
+  .remarks-description {
     flex-basis: 70%;
     margin-left: 10px; /* Add some spacing between the title and description */
+    text-align: justify;
   }
-  
+
+  .star {
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    margin-right: 0.25em;
+    background-color: #fff;
+    border: 0.2em solid black;
+    clip-path: polygon(
+      50% 0%,
+      63% 38%,
+      100% 38%,
+      69% 59%,
+      82% 100%,
+      50% 75%,
+      18% 100%,
+      31% 59%,
+      0% 38%,
+      37% 38%
+    );
+  }
+  .star.filled {
+    background-color: #FFD700;
+  }
+}
