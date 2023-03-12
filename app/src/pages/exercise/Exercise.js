@@ -1,6 +1,7 @@
 import background from "../../assets/css/Background.module.css"
 import React from 'react';
 import './Exercise.css';
+import exercises from '../../data/exerciseData.json';
 
 
 export default function Exercise( exercise ) {

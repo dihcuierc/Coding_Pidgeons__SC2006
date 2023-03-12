@@ -18,7 +18,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import dayjs from "dayjs";
 import Stack from "react-bootstrap/esm/Stack";
-import planData from "../workout/planData.json";
+import planData from "../../data/planData.json"
 
 export default function ScheduleExercise() {
   const [date, setDate] = React.useState(new Date());

@@ -1,7 +1,7 @@
 import background from "../../assets/css/Background.module.css"
 import '../workout/Workout.css';
 import React from 'react';
-import exercsieData from "./exerciseData.json";
+import exercsieData from "../../data/exerciseData.json";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import ExerciseCard from "../workout/ExerciseCard";

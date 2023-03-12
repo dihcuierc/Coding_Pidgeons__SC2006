@@ -1,0 +1,43 @@
+[
+  {
+    "id": 1,
+    "path": "/images/ExerciseImages/InclineBicepCurl.gif",
+    "alt": "Incline Bicep Curl",
+    "instructions": "Sit on an incline bench with a dumbbell in each hand. Keep your elbows close to your sides and curl the weights up to your shoulders. Slowly lower the weights back to the starting position.",
+    "remarks": "This exercise is a great way to isolate the biceps. It is also a good exercise to use when you are trying to build up your biceps. It is important to keep your elbows close to your sides to ensure that you are working your biceps and not your shoulders. If you are having trouble keeping your elbows close to your sides, try using a lighter weight.",
+    "exercise-group-id": 4
+    
+  },
+  {
+    "id": 2,
+    "path": "/images/ExerciseImages/ConcentrationCurl.gif",
+    "alt": "Concentration Curl",
+    "instructions": "Sit on a bench with a dumbbell in each hand. Place one of the dumbbells on your thigh and curl the other dumbbell up to your shoulder. Slowly lower the weight back to the starting position.",
+    "remarks": "This exercise is a great way to isolate the biceps. It is also a good exercise to use when you are trying to build up your biceps. It is important to keep your elbows close to your sides to ensure that you are working your biceps and not your shoulders. If you are having trouble keeping your elbows close to your sides, try using a lighter weight.",
+    "exercise-group-id": 4
+  },
+  {
+    "id": 3,
+    "path": "/images/ExerciseImages/TwistingDumbbellCurl.gif",
+    "alt": "Twisting Dumbbell Curl",
+    "instructions": "Sit on a bench with a dumbbell in each hand. Curl the weights up to your shoulders. As you curl the weights up, twist your wrists so that your palms are facing each other. Slowly lower the weights back to the starting position.",
+    "remarks": "This exercise is a great way to isolate the biceps. It is also a good exercise to use when you are trying to build up your biceps. It is important to keep your elbows close to your sides to ensure that you are working your biceps and not your shoulders. If you are having trouble keeping your elbows close to your sides, try using a lighter weight.",
+    "exercise-group-id": 4
+    },
+  {
+    "id": 4,
+    "path": "/images/ExerciseImages/UnderhandSeatedRow.gif",
+    "alt": "Underhand Seated Row",
+    "instructions": "Sit on a bench with a dumbbell in each hand. Keep your elbows close to your sides and row the weights up to your chest. Slowly lower the weights back to the starting position.",
+    "remarks": "This exercise is a great way to isolate the biceps. It is also a good exercise to use when you are trying to build up your biceps. It is important to keep your elbows close to your sides to ensure that you are working your biceps and not your shoulders. If you are having trouble keeping your elbows close to your sides, try using a lighter weight.",
+    "exercise-group-id": 4
+    },
+  {
+    "id": 5,
+    "path": "/images/ExerciseImages/ReverseCurlStraightBar.gif",
+    "alt": "Reverse Curl Straight Bar",
+    "instructions": "Stand with your feet shoulder width apart and hold a straight bar with an overhand grip. Keep your elbows close to your sides and curl the bar up to your shoulders. Slowly lower the bar back to the starting position.",
+    "remarks": "This exercise is a great way to isolate the biceps. It is also a good exercise to use when you are trying to build up your biceps. It is important to keep your elbows close to your sides to ensure that you are working your biceps and not your shoulders. If you are having trouble keeping your elbows close to your sides, try using a lighter weight.",
+    "exercise-group-id": 4
+    }
+]
