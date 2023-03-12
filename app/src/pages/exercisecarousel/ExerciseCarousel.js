@@ -21,11 +21,6 @@ export default function ExerciseCarousel() {
 
   const exerciseGroup = exerciseGroupData.find((exerciseGroup) => exerciseGroup.id === filteredExercises[0]["exercise-group-id"]);
 
-  console.log(filteredExercises)
-  console.log(exerciseGroup)
-
-
-
   return (
     <div className={background.default}>
       <div className="carousel-container">
