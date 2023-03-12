@@ -35,7 +35,7 @@ export default function Workout() {
               <h1>Exercises</h1>
               <Carousel responsive={responsive} showDots={true} infinite={true}>
                   {exercsieGroupData.map((exerciseGroup) => (
-                    <ExerciseCard link={"/workout/exerciseview/"} key={exerciseGroup.id} title={exerciseGroup.title} />
+                    <ExerciseCard link={`/workout/exerciseview/${exerciseGroup.id}`} key={exerciseGroup.id} title={exerciseGroup.title} />
                   ))}
               </Carousel>
             </div>
