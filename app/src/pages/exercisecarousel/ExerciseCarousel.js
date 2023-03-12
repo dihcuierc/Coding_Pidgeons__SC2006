@@ -15,16 +15,24 @@ export default function ExerciseCarousel() {
     return exercise["exercise-group-id"] === parseInt(id);
   });
 
-  if(filteredExercises.length === 0) {
+  if (filteredExercises.length === 0) {
     return <div>Exercises not found!</div>;
   }
 
-  const exerciseGroup = exerciseGroupData.find((exerciseGroup) => exerciseGroup.id === filteredExercises[0]["exercise-group-id"]);
+  const exerciseGroup = exerciseGroupData.find(
+    (exerciseGroup) =>
+      exerciseGroup.id === filteredExercises[0]["exercise-group-id"]
+  );
 
   return (
     <div className={background.default}>
       <div className="carousel-container">
-        <h1>{exerciseGroup.title}</h1>
+        <div className="header-container">
+          <h1>{exerciseGroup.title}</h1>
+          <button className="button schedule-exercise-btn">
+            Add New Exercise
+          </button>
+        </div>
         <Carousel responsive={responsive} showDots={true} infinite={true}>
           {filteredExercises.map((exercise) => (
             <ExerciseCard
