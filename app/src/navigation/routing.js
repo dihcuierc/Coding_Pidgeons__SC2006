@@ -12,6 +12,7 @@ import ExerciseCarousel from '../pages/exercisecarousel/ExerciseCarousel';
 import Exercise from '../pages/exercise/Exercise';
 import Workout from '../pages/workout/Workout';
 import ScheduleExercise from '../pages/scheduleExercise/ScheduleExercise';
+import AddExercise from '../pages/exercise/addexercise/AddExercise';
 
 function Routing() {
     return (
@@ -28,11 +29,14 @@ function Routing() {
                 <Route path="password">
                     <Route path="forget" element={<Forget/>}/>
                 </Route>
+
                 <Route path="workout" element={<Workout/>}/>
+                <Route path="workout/add-exercise" element={<AddExercise/>}/>
+            
                 <Route path="workout/schedule-exercise" element={<ScheduleExercise/>}/>
                 <Route path="workout/exerciseplan" element={<ExercisePlan/>}/>
-                {/* <Route path="workout/exerciseview" element={<ExerciseCarousel/>}/>  */}
                 <Route path="workout/exerciseview/:id" element={<ExerciseCarousel/>}/>    
+
                 <Route path="workout/exerciseview/exercise/:id" element={<Exercise/>}/>
        
                 <Route path="*" element={<NotFound/>}/>
