@@ -1,52 +1,67 @@
-import React, { useState }  from "react";
+import React, { useState } from "react";
 import background from "../../../assets/css/Background.module.css";
 import padding from "../../../assets/css/Padding.module.css";
-import './AddExercise.css'
-
+import "./AddExercise.css";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import exerciseGroups from "../../../data/exerciseGroupData.json";
 
 export default function AddExercise() {
-    const [exerciseName, setExerciseName] = useState("");
-    const [exerciseGroup, setExerciseGroup] = useState("");
-    const [picture, setPicture] = useState(null);
-    const [instructions, setInstructions] = useState("");
-    const [additionalInfo, setAdditionalInfo] = useState("");
+  const [exerciseName, setExerciseName] = useState("");
+  const [exerciseGroup, setExerciseGroup] = useState("");
+  const [picture, setPicture] = useState(null);
+  const [instructions, setInstructions] = useState("");
+  const [additionalInfo, setAdditionalInfo] = useState("");
 
-    const handleExerciseNameChange = (event) => {
-        setExerciseName(event.target.value);
-    };
+  const handleExerciseNameChange = (event) => {
+    setExerciseName(event.target.value);
+  };
 
-    const handleExerciseGroupChange = (event) => {
-        setExerciseGroup(event.target.value);
-    };
+  const handleExerciseGroupChange = (event) => {
+    setExerciseGroup(event.target.value);
+  };
 
-    const handlePictureChange = (event) => {
-        setPicture(event.target.files[0]);
-    };
+  const handlePictureChange = (event) => {
+    setPicture(event.target.files[0]);
+  };
 
-    const handleInstructionsChange = (event) => {
-        setInstructions(event.target.value);
-    };
+  const handleInstructionsChange = (event) => {
+    setInstructions(event.target.value);
+  };
 
-    const handleAdditionalInfoChange = (event) => {
-        setAdditionalInfo(event.target.value);
-    };
+  const handleAdditionalInfoChange = (event) => {
+    setAdditionalInfo(event.target.value);
+  };
 
-    const handleSaveExercise = (event) => {
-        event.preventDefault();
-        // Add code to save the exercise to a database or send it to a server
-    };
+  const handleSaveExercise = (event) => {
+    event.preventDefault();
+    // Add code to save the exercise to a database or send it to a server
+  };
 
-    const handleCancel = () => {
-        // Add code to go back to the previous page
-    };
+  const handleCancel = () => {
+    // Add code to go back to the previous page
+  };
 
+  const handleSelect = (event) => {
+    const selectedGroup = event.target.getAttribute("value");
+    setExerciseGroup(selectedGroup);
+  };
 
+  const renderDropdownItems = () => {
+    return exerciseGroups.map((group) => {
+      return (
+        <Dropdown.Item key={group.id} value={group.title} onClick={handleSelect}>
+          {group.title}
+        </Dropdown.Item>
+      );
+    });
+  };
 
-    return (
-        <div className={background.default}>
+  return (
+    <div className={background.default}>
       <h1 className={padding.headerTop}>Add Exercise</h1>
 
-      <form onSubmit={handleSaveExercise}>
+      <form className="add-exercise-form" onSubmit={handleSaveExercise}>
         <div className="add-exercise-container">
           <div className="add-exercise-block">
             <label htmlFor="exerciseName">Exercise Name:</label>
@@ -60,14 +75,62 @@ export default function AddExercise() {
             />
 
             <label htmlFor="exerciseGroup">Exercise Group:</label>
-            <input
+            {/* 
+            <Select
+              labelId="exercise-group-label"
+              id="exercise-group"
+              value={exerciseGroup}
+              onChange={handleExerciseGroupChange}
+              required
+            >
+              <MenuItem value="">Select an exercise group</MenuItem>
+              <MenuItem value="Group A">Group A</MenuItem>
+              <MenuItem value="Group B">Group B</MenuItem>
+              <MenuItem value="Group C">Group C</MenuItem>
+              <MenuItem value="new">Add new group</MenuItem>
+            </Select>
+
+            {exerciseGroup === "new" && (
+              <input
+                type="text"
+                id="exerciseGroup"
+                name="exerciseGroup"
+                value={exerciseGroup}
+                onChange={handleExerciseGroupChange}
+                required
+              />
+            )} */}
+
+            <DropdownButton
+              id="exercise-group"
+              value={exerciseGroup}
+              title={exerciseGroup ? exerciseGroup : "Select an exercise group"}
+            >
+              {renderDropdownItems()}
+              <Dropdown.Item value="new">Add new group</Dropdown.Item>
+            </DropdownButton>
+
+            {console.log(exerciseGroup)}
+
+            {exerciseGroup === "new" && (
+              <input
+                type="text"
+                id="exerciseGroup"
+                name="exerciseGroup"
+                value={exerciseGroup}
+                onChange={handleExerciseGroupChange}
+                required
+              />
+            )}
+
+            {/* <input
               type="text"
               id="exerciseGroup"
               name="exerciseGroup"
               value={exerciseGroup}
               onChange={handleExerciseGroupChange}
               required
-            />
+            /> */}
 
             <label htmlFor="picture">Picture or Video:</label>
             <input
@@ -79,11 +142,12 @@ export default function AddExercise() {
             />
           </div>
 
-          <div className="exercise-block">
+          <div className="add-exercise-block">
             <label htmlFor="instructions">Instructions:</label>
             <textarea
               id="instructions"
               name="instructions"
+              className="multiline-text"
               value={instructions}
               onChange={handleInstructionsChange}
               required
@@ -93,15 +157,20 @@ export default function AddExercise() {
             <textarea
               id="additionalInfo"
               name="additionalInfo"
+              className="multiline-text"
               value={additionalInfo}
               onChange={handleAdditionalInfoChange}
             ></textarea>
           </div>
         </div>
 
-        <div className="exercise-buttons">
+        <div className="add-exercise-buttons">
           <button type="submit">Save Exercise</button>
-          <button type="button" onClick={handleCancel}>
+          <button
+            className="cancel-button"
+            type="button"
+            onClick={handleCancel}
+          >
             Cancel
           </button>
         </div>

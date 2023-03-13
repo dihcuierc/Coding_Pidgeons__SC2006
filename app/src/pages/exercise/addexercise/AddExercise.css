@@ -7,7 +7,7 @@
     }
   
     .add-exercise-block {
-      width: 80%;
+      width: 35rem;
       padding: 2rem;
       margin: 2rem;
       background: #17202d;
@@ -21,7 +21,7 @@
     .add-exercise-form {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
       width: 100%;
     }
   
@@ -29,7 +29,7 @@
       margin-bottom: 0.5rem;
       font-size: 1.2rem;
       font-weight: bold;
-      color: #fff;
+      color: white;
     }
   
     .add-exercise-form input,
@@ -79,7 +79,7 @@
   
     .add-exercise-buttons {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       width: 100%;
       margin-top: 1rem;
@@ -116,6 +116,11 @@
     .add-exercise-form input.error,
     .add-exercise-form textarea.error {
       border: 2px solid red;
+    }
+
+    .multiline-text{
+      resize: none;
+      width: 100%;
     }
   }
   
