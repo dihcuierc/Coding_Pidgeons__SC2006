@@ -1,0 +1,97 @@
+body {
+  color: white;
+}
+
+h1, h2, h3, h4, h5, h6, p{
+  color: white;
+  font-family: 'Raleway';
+}
+
+h1{
+  font-weight: 700 !important;
+  font-size: 50px !important;
+}
+
+p{
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  text-align: center;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end; /* align items to the right */
+}
+
+.rectangle-button {
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  padding: 5px 10px; /* adjust the left and right padding */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px; /* adjust the font size */
+  line-height: 1.2;
+  width: 120px; /* adjust the width as needed */
+  margin-left: auto; /* push the button to the right side */
+  margin-right: 20px;
+}
+
+.rectangle-button span {
+  display: block;
+}
+
+.ExerciseTitle {
+  margin-bottom: 30px;
+}
+
+
+.greeting {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 3rem;
+  gap: 11px;
+}  
+
+.carousel-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 3rem;
+  margin-left: 5rem;
+  gap: 2rem;
+}
+
+.card {
+width: 317px !important;
+height: 371px !important;
+background: rgba(213, 197, 197, 0.31) !important;
+border-radius: 30px;
+}
+
+.header-container{
+  display: flex;
+  align-items: center; /* align items vertically */
+  justify-content: space-between; /* align items horizontally */
+  margin-bottom: 20px; /* add some margin at the bottom */
+}
+
+.schedule-exercise-btn{
+  position: relative;
+  right: 3rem;
+  width: 156px;
+  height: 65px;
+  background: linear-gradient(91.93deg, #F03F58 1.39%, #FB5C51 101.04%);
+  color: white;
+  border-radius: 30px;
+  border: None;
+  font-size: 20px;
+  font-family: 'Raleway';
+  font-weight: 700;
+  line-height: 24px;
+}

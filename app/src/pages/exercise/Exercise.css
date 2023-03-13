@@ -1,0 +1,76 @@
+.exercise-container {
+    display: flex;
+    border-radius: 20px;
+    color: #FFF;
+    padding: 120px;
+    justify-content: space-between;
+  }
+  
+  .exercise-left {
+    background-color: #17202D;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* align items to the left */
+    text-align: center;
+    margin-right: 20px; /* add margin to the right */
+    border-radius: 20px;
+    padding-left: 20px; /* add padding to the left */
+  }
+  
+  .exercise-right {
+    background-color: #17202D;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px; /* add margin to the left */
+    border-radius: 20px;
+  }
+  
+  .exercise-title {
+    margin: 20px 0 10px; /* add margin to the top */
+  }
+  
+  .exercise-bodypart {
+    margin: 0;
+  }
+  
+  .exercise-how-to,
+  .exercise-why {
+    display: flex;
+    border-radius: 20px;
+    color: #FFF;
+    padding: 20px;
+    justify-content: space-between;
+  }
+  
+  .exercise-how-to h3,
+  .exercise-why h3 {
+    margin: 0;
+  }
+  
+  .exercise-how-to p,
+  .exercise-why p {
+    margin: 10px 0;
+  }
+  
+  /* Add the following rules */
+  .exercise-how-to > div,
+  .exercise-why > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .how-to-title,
+  .why-title {
+    flex-basis: 40%;
+    align-self: center;
+  }
+  
+  .how-to-description,
+  .why-description {
+    flex-basis: 70%;
+    margin-left: 10px; /* Add some spacing between the title and description */
+  }
+  

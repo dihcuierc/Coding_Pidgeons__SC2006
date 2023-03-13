@@ -52,7 +52,7 @@ function NavigationToggle({Sidebar}) {
         <Navbar.Toggle aria-controls="navbar-nav"/>
         <Navbar.Collapse id="navbar-nav">
             <Nav className="ms-auto">
-                <LinkContainer to="/exercises">
+                <LinkContainer to="/workout">
                     <Nav.Link className="mx-3">Workout</Nav.Link>
                 </LinkContainer>
                 <LinkContainer to="/facilities">
