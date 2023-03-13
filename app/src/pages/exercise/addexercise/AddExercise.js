@@ -8,7 +8,9 @@ import exerciseGroups from "../../../data/exerciseGroupData.json";
 
 export default function AddExercise() {
   const [exerciseName, setExerciseName] = useState("");
-  const [exerciseGroup, setExerciseGroup] = useState("");
+  const [exerciseGroup, setExerciseGroup] = useState({
+    id: "",
+    value: ""});
   const [picture, setPicture] = useState(null);
   const [instructions, setInstructions] = useState("");
   const [additionalInfo, setAdditionalInfo] = useState("");
@@ -17,16 +19,11 @@ export default function AddExercise() {
     setExerciseName(event.target.value);
   };
 
-  const handleExerciseGroupChange = (event) => {
-    const { name, group } = event.target.value;
-
-    setExerciseGroup((prevValue) => {
-      if (group === "new") {
-        return group;
-      }
-      return prevValue;
-    });
-  };
+  const handleNewGroupChange = (event) => {
+    const {id, value} = event.target;
+    setExerciseGroup((exerciseGroup) => 
+      ({...exerciseGroup, [id]: value}))
+  }
 
   const handlePictureChange = (event) => {
     setPicture(event.target.files[0]);
@@ -50,8 +47,10 @@ export default function AddExercise() {
   };
 
   const handleSelect = (event) => {
-    const selectedGroup = event.target.getAttribute("value");
-    setExerciseGroup(selectedGroup);
+    const selectedGroup = event.target.getAttribute("id");
+    const {id, value} = event.target;
+    setExerciseGroup((exerciseGroup) => 
+      ({...exerciseGroup, [id]: value}))
   };
 
   const renderDropdownItems = () => {
@@ -98,13 +97,13 @@ export default function AddExercise() {
               </Dropdown.Item>
             </DropdownButton>
 
-            {exerciseGroup === "new" && (
+            {exerciseGroup && (
               <input
                 type="text"
                 id="exerciseGroup"
                 name="exerciseGroup"
                 value={exerciseGroup}
-                onChange={handleExerciseGroupChange}
+                onChange={handleNewGroupChange}
                 required
               />
             )}
