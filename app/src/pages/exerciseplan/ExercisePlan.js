@@ -8,21 +8,20 @@ import { Link } from 'react-router-dom';
 
 
 export default function ExercisePlan() {
-
+    const [isEditing, setIsEditing] = React.useState(false);
+ 
     return (
         <div className={background.default}>
             <div className="exercise-plan-container">
                 <div className="exercise-plan-title">
                     <Stack direction="horizontal" gap={3}>
                         <h1>Exercise Plans</h1>
-                        <Link to="/workout/exerciseplan/edit">
-                            <EditIcon />
-                        </Link>
+                            <EditIcon onClick={()=> setIsEditing(!isEditing)}/>
                     </Stack>
                     <h2>Arms Day</h2>
                 </div>
                 <div className="Table">
-                    <Table />
+                    <Table isEditing={isEditing}/>
                 </div>
             </div>
         </div>
