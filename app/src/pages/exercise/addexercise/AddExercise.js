@@ -5,22 +5,25 @@ import "./AddExercise.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import exerciseGroups from "../../../data/exerciseGroupData.json";
+import Stack from "react-bootstrap/Stack";
+import toast, { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function AddExercise() {
   const [exerciseName, setExerciseName] = useState("");
-  const [exerciseGroup, setExerciseGroup] = useState("");
+  var [exerciseGroup, setExerciseGroup] = useState("");
   const [newExerciseGroup, setNewExerciseGroup] = useState("");
 
   const [picture, setPicture] = useState(null);
   const [instructions, setInstructions] = useState("");
   const [additionalInfo, setAdditionalInfo] = useState("");
 
+  const success = () => toast.success("Exercise added successfully!");
+  const cancel = () => toast.error("Exercise not added.");
+  const goBack = useNavigate();
+
   const handleExerciseNameChange = (event) => {
     setExerciseName(event.target.value);
-  };
-
-  const handleExerciseGroupChange = (event) => {
-    setExerciseGroup(event.target.value);
   };
 
   const handleNewExerciseGroupChange = (event) => {
@@ -41,11 +44,30 @@ export default function AddExercise() {
 
   const handleSaveExercise = (event) => {
     event.preventDefault();
-    // Add code to save the exercise to a database or send it to a server
+
+    if (exerciseGroup === "New Exercise Group") {
+      exerciseGroup = newExerciseGroup;
+    }
+    const exerciseData = {
+      exerciseName: exerciseName,
+      exerciseGroup: exerciseGroup,
+      instructions: instructions,
+      additionalInfo: additionalInfo,
+    };
+
+    const exerciseDataJSON = JSON.stringify(exerciseData);
+    console.log(exerciseDataJSON);
+
+    success();
   };
 
   const handleCancel = () => {
     // Add code to go back to the previous page
+    cancel();
+
+    setTimeout(() => {
+        goBack(-1);
+    }, 500);
   };
 
   const handleSelect = (event) => {
@@ -118,37 +140,39 @@ export default function AddExercise() {
             />
           </div>
 
-          <div className="add-exercise-block">
-            <label htmlFor="instructions">Instructions:</label>
-            <textarea
-              id="instructions"
-              name="instructions"
-              className="multiline-text"
-              value={instructions}
-              onChange={handleInstructionsChange}
-              required
-            ></textarea>
+          <Stack className="stack-column" direction="vertical">
+            <div className="add-exercise-block">
+              <label htmlFor="instructions">Instructions:</label>
+              <textarea
+                id="instructions"
+                name="instructions"
+                className="multiline-text"
+                value={instructions}
+                onChange={handleInstructionsChange}
+                required
+              ></textarea>
 
-            <label htmlFor="additionalInfo">Additional Information:</label>
-            <textarea
-              id="additionalInfo"
-              name="additionalInfo"
-              className="multiline-text"
-              value={additionalInfo}
-              onChange={handleAdditionalInfoChange}
-            ></textarea>
-          </div>
-        </div>
-
-        <div className="add-exercise-buttons">
-          <button type="submit">Save Exercise</button>
-          <button
-            className="cancel-button"
-            type="button"
-            onClick={handleCancel}
-          >
-            Cancel
-          </button>
+              <label htmlFor="additionalInfo">Additional Information:</label>
+              <textarea
+                id="additionalInfo"
+                name="additionalInfo"
+                className="multiline-text"
+                value={additionalInfo}
+                onChange={handleAdditionalInfoChange}
+              ></textarea>
+            </div>
+            <div className="add-exercise-buttons">
+              <button type="submit">Save Exercise</button>
+              <button
+                className="cancel-button"
+                type="button"
+                onClick={handleCancel}
+              >
+                Cancel
+              </button>
+            </div>
+            <Toaster />
+          </Stack>
         </div>
       </form>
     </div>
