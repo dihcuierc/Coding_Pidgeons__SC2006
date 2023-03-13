@@ -1,8 +1,8 @@
 import background from "../../assets/css/Background.module.css"
 import './Workout.css';
 import React from 'react';
-import exercsieData from "./exercisesData.json";
-import planData from "./planData.json";
+import exercsieGroupData from "../../data/exerciseGroupData.json";
+import planData from "../../data/planData.json";
 import SearchBar from '../components/searchbar/SearchBar'
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -26,7 +26,7 @@ export default function Workout() {
               </div>
               <Carousel responsive={responsive} showDots={true} infinite={true}>
                 {planData.map((plan) => (
-                  <ExerciseCard link="exerciseplan" key={plan.id} title={plan.title} />
+                  <ExerciseCard link={"/workout/exerciseplan/"} key={plan.id} title={plan.title} />
                 ))}
               </Carousel>
             </div>
@@ -34,8 +34,8 @@ export default function Workout() {
             <div className="carousel-container">
               <h1>Exercises</h1>
               <Carousel responsive={responsive} showDots={true} infinite={true}>
-                  {exercsieData.map((exercise) => (
-                    <ExerciseCard link="exerciseview" key={exercise.id} title={exercise.title} />
+                  {exercsieGroupData.map((exerciseGroup) => (
+                    <ExerciseCard link={`/workout/exerciseview/${exerciseGroup.id}`} key={exerciseGroup.id} title={exerciseGroup.title} />
                   ))}
               </Carousel>
             </div>
