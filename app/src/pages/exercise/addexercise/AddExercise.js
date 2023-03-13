@@ -9,6 +9,8 @@ import exerciseGroups from "../../../data/exerciseGroupData.json";
 export default function AddExercise() {
   const [exerciseName, setExerciseName] = useState("");
   const [exerciseGroup, setExerciseGroup] = useState("");
+  const [newExerciseGroup, setNewExerciseGroup] = useState("");
+
   const [picture, setPicture] = useState(null);
   const [instructions, setInstructions] = useState("");
   const [additionalInfo, setAdditionalInfo] = useState("");
@@ -18,14 +20,11 @@ export default function AddExercise() {
   };
 
   const handleExerciseGroupChange = (event) => {
-    const { name, group } = event.target.value;
+    setExerciseGroup(event.target.value);
+  };
 
-    setExerciseGroup((prevValue) => {
-      if (group === "new") {
-        return group;
-      }
-      return prevValue;
-    });
+  const handleNewExerciseGroupChange = (event) => {
+    setNewExerciseGroup(event.target.value);
   };
 
   const handlePictureChange = (event) => {
@@ -93,18 +92,18 @@ export default function AddExercise() {
               title={exerciseGroup ? exerciseGroup : "Select an exercise group"}
             >
               {renderDropdownItems()}
-              <Dropdown.Item value="new" onClick={handleSelect}>
+              <Dropdown.Item value="New Exercise Group" onClick={handleSelect}>
                 Add new group
               </Dropdown.Item>
             </DropdownButton>
 
-            {exerciseGroup === "new" && (
+            {exerciseGroup === "New Exercise Group" && (
               <input
                 type="text"
                 id="exerciseGroup"
                 name="exerciseGroup"
-                value={exerciseGroup}
-                onChange={handleExerciseGroupChange}
+                value={newExerciseGroup}
+                onChange={handleNewExerciseGroupChange}
                 required
               />
             )}
