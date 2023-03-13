@@ -4,6 +4,7 @@
     justify-content: center; /* center horizontally */
     align-items: center; /* center vertically */
     height: 100vh; /* set the height of the container to the height of the viewport */
+    color: #fff;
   }
 
   .exercise-block {
@@ -29,6 +30,7 @@
     display: flex;
     border-radius: 20px;
     padding: 20px;
+    margin-right: 10px;
     justify-content: center; /* center horizontally */
     align-items: center; /* center vertically */
   }
@@ -39,7 +41,7 @@
   }
 
   .exercise-instructions p,
-  .exercise-why p {
+  .exercise-remarks p {
     margin: 10px 0;
   }
 
@@ -47,12 +49,13 @@
   .remarks-title {
     flex-basis: 40%;
     align-self: center;
+    padding-right: 1.5rem;
+    min-width: 165px;
   }
 
   .instructions-description,
   .remarks-description {
     flex-basis: 70%;
-    margin-left: 10px; /* Add some spacing between the title and description */
     text-align: justify;
   }
 

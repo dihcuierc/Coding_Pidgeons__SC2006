@@ -13,19 +13,23 @@ import Exercise from '../pages/exercise/Exercise';
 import Workout from '../pages/workout/Workout';
 import ScheduleExercise from '../pages/scheduleExercise/ScheduleExercise';
 import AddExercise from '../pages/exercise/addexercise/AddExercise';
+import FitnessGoals from '../pages/fitnessgoals/fitnessgoals';
+import EditFitnessGoals from '../pages/fitnessgoals/editfitnessgoals';
 
 function Routing() {
     return (
     <BrowserRouter>
         <Routes>
             <Route path="/" element={<Navbar/>}>
-                <Route index element={<Facilities/>}/>
+                <Route index element={<Profile/>}/>
                 <Route path="/facilities" element={<Facilities/>}/>
                 <Route path="login" element={<Login/>}/>
                 <Route path="register" element={<Register/>}>
                     <Route path="otp" element={<Verify/>}/>
                 </Route>
-                <Route path="profile" element={<Profile/>}/>
+                <Route path="/" element={<Profile/>}/>
+                <Route path="/fitnessgoals" element={<FitnessGoals/>}/>
+                <Route path="/fitnessgoals/edit" element={<EditFitnessGoals/>}/>
                 <Route path="password">
                     <Route path="forget" element={<Forget/>}/>
                 </Route>

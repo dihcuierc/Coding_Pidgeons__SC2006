@@ -1,10 +1,11 @@
-  .Container {
+  .exercise-plan-container {
     margin-left: 10%;
     margin-right: 10%;
     padding-top: 4%;
     
   }
 
-  .Title h2 {
+  .exercise-plan-title {
     font-size: 22px;
+    color: white;
   }
