@@ -62,7 +62,6 @@ export default function AddExercise() {
   };
 
   const handleCancel = () => {
-    // Add code to go back to the previous page
     cancel();
 
     setTimeout(() => {
