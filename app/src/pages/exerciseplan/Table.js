@@ -1,7 +1,9 @@
 import React from 'react';
 import "./Table.css";
+import exercisePlanData from "../../data/exercisePlanData.json";
 
 export default function Table() {
+  const totalCaloriesBurned = exercisePlanData.reduce((total, exercisePlan) => total + exercisePlan.caloriesBurned, 0);
   return (
     <div className="Table-container">
         <table className='Table'>
@@ -10,35 +12,24 @@ export default function Table() {
             <th>No.</th>
             <th>Exercise</th>
             <th>Reps</th>
-            <th>Rest</th>
             <th>Sets</th>
+            <th>Rest (seconds)</th>
             <th>Calories Burned</th>
             </tr>
         </thead>
         <tbody>
+            {exercisePlanData.map((exercisePlan, index) => (
+            <tr key={index}>
+                <td>{exercisePlan.id}</td>
+                <td>{exercisePlan.exerciseName}</td>
+                <td>{exercisePlan.reps}</td>
+                <td>{exercisePlan.sets}</td>
+                <td>{exercisePlan.rest}</td>
+                <td>{exercisePlan.caloriesBurned}</td>
+            </tr>))}
             <tr>
-            <td>1</td>
-            <td>Bicep curls</td>
-            <td>10</td>
-            <td>60 sec</td>
-            <td>3</td>
-            <td>100</td>
-            </tr>
-            <tr>
-            <td>2</td>
-            <td>Tricep extensions</td>
-            <td>12</td>
-            <td>45 sec</td>
-            <td>3</td>
-            <td>80</td>
-            </tr>
-            <tr>
-            <td>3</td>
-            <td>Push-ups</td>
-            <td>15</td>
-            <td>30 sec</td>
-            <td>3</td>
-            <td>120</td>
+            <td colSpan="5">Total Calories Burned</td>
+            <td>{totalCaloriesBurned}</td>
             </tr>
         </tbody>
         </table>
