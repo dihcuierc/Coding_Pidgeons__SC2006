@@ -18,7 +18,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import dayjs from "dayjs";
 import Stack from "react-bootstrap/esm/Stack";
-import planData from "../workout/planData.json";
+import planData from "../../data/planData.json"
 
 export default function ScheduleExercise() {
   const [date, setDate] = React.useState(new Date());
@@ -30,7 +30,7 @@ export default function ScheduleExercise() {
   return (
     <div className={background.default}>
       {console.log(startTime)}
-      <h1 className={padding.headerTop}>Schedule Exercise</h1>
+      <h1 className={padding.headerTop} style={{color: "white"}}>Schedule Exercise</h1>
       <Stack className="stack-container" gap={3}>
         <Calendar onChange={setDate} value={date} calendarType="US" />
         {console.log(date)}
@@ -65,6 +65,7 @@ export default function ScheduleExercise() {
           <TextField
             required
             label="Required"
+          
             placeholder="Enter Location"
             onChange={(e) => setLocation(e.target.value)}
             sx={{
@@ -81,7 +82,7 @@ export default function ScheduleExercise() {
                 "& .MuiInputBase-input": { color: "white" },
               }}
             >
-              <InputLabel>Exercise Plan</InputLabel>
+              <InputLabel style={{color: "white"}}>Exercise Plan</InputLabel>
               <Select
                 onChange={(e) => setExercisePlan(e.target.value)}
               >
