@@ -27,33 +27,30 @@ export default function ViewGoals() {
                 </a>
                 <Card.Body>
                     <Card.Body className="fitness-goal">
-                        <Stack direction="horizontal">
-                            <Stack>
+                        <Stack direction="horizontal" gap={4}>
+                            <div>
                                 <p className="goal-to-achieve">Weight Goal</p>
                                 <p className="current-standing">Current Weight</p>
-                            </Stack>
-                            <Stack>
+                            </div>
+                            <div>
                                 <p className="goal-to-achieve">50kg</p>
                                 <p className="current-standing">60kg</p>
-                            </Stack>
-                            <p className="goal-date">
-                            <Stack direction="horizontal">
-                                10/2/2023
-                                <Stack>
-                                <FormGroup>
-                                    <FormControlLabel control={
-                                    <Checkbox onChange={handleGoalDoneClick}
-                                        fontsize='large' sx={{
-                                            color: common['white'],
-                                            '&.Mui-checked': {
-                                            color: common['white'],
-                                            },
-                                        }}/> 
-                                    } label="Done" />
-                                </FormGroup>
-                                </Stack>
-                                </Stack>
-                            </p>
+                            </div>
+                            <div className="goal-date">
+                                
+                                <p style={{border:'1px solid blue'}}>10/2/2023</p>
+                            </div>
+                            <FormGroup style={{border:'1px solid blue'}}>
+                                <FormControlLabel control={
+                                <Checkbox onChange={handleGoalDoneClick}
+                                    fontsize='large' sx={{
+                                        color: common['white'],
+                                        '&.Mui-checked': {
+                                        color: common['white'],
+                                        },
+                                    }}/> 
+                                } label="Done" />
+                            </FormGroup>
                         </Stack>
                     </Card.Body>
                 </Card.Body>
