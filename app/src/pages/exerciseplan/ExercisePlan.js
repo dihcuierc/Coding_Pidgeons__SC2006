@@ -4,6 +4,7 @@ import './ExercisePlan.css';
 import Table from './Table';
 import EditIcon from '@mui/icons-material/Edit';
 import Stack from 'react-bootstrap/Stack';
+import { Link } from 'react-router-dom';
 
 
 export default function ExercisePlan() {
@@ -14,7 +15,9 @@ export default function ExercisePlan() {
                 <div className="exercise-plan-title">
                     <Stack direction="horizontal" gap={3}>
                         <h1>Exercise Plans</h1>
-                        <EditIcon />
+                        <Link to="/workout/exerciseplan/edit">
+                            <EditIcon />
+                        </Link>
                     </Stack>
                     <h2>Arms Day</h2>
                 </div>
