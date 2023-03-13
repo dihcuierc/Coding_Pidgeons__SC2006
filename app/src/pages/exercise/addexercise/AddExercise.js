@@ -71,8 +71,10 @@ export default function AddExercise() {
   };
 
   const handleSelect = (event) => {
-    const selectedGroup = event.target.getAttribute("value");
-    setExerciseGroup(selectedGroup);
+    const selectedGroup = event.target.getAttribute("id");
+    const {id, value} = event.target;
+    setExerciseGroup((exerciseGroup) => 
+      ({...exerciseGroup, [id]: value}))
   };
 
   const renderDropdownItems = () => {
