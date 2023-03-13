@@ -18,7 +18,14 @@ export default function AddExercise() {
   };
 
   const handleExerciseGroupChange = (event) => {
-    setExerciseGroup(event.target.value);
+    const { name, group } = event.target.value;
+
+    setExerciseGroup((prevValue) => {
+      if (group === "new") {
+        return group;
+      }
+      return prevValue;
+    });
   };
 
   const handlePictureChange = (event) => {
@@ -50,7 +57,11 @@ export default function AddExercise() {
   const renderDropdownItems = () => {
     return exerciseGroups.map((group) => {
       return (
-        <Dropdown.Item key={group.id} value={group.title} onClick={handleSelect}>
+        <Dropdown.Item
+          key={group.id}
+          value={group.title}
+          onClick={handleSelect}
+        >
           {group.title}
         </Dropdown.Item>
       );
@@ -75,31 +86,6 @@ export default function AddExercise() {
             />
 
             <label htmlFor="exerciseGroup">Exercise Group:</label>
-            {/* 
-            <Select
-              labelId="exercise-group-label"
-              id="exercise-group"
-              value={exerciseGroup}
-              onChange={handleExerciseGroupChange}
-              required
-            >
-              <MenuItem value="">Select an exercise group</MenuItem>
-              <MenuItem value="Group A">Group A</MenuItem>
-              <MenuItem value="Group B">Group B</MenuItem>
-              <MenuItem value="Group C">Group C</MenuItem>
-              <MenuItem value="new">Add new group</MenuItem>
-            </Select>
-
-            {exerciseGroup === "new" && (
-              <input
-                type="text"
-                id="exerciseGroup"
-                name="exerciseGroup"
-                value={exerciseGroup}
-                onChange={handleExerciseGroupChange}
-                required
-              />
-            )} */}
 
             <DropdownButton
               id="exercise-group"
@@ -107,10 +93,10 @@ export default function AddExercise() {
               title={exerciseGroup ? exerciseGroup : "Select an exercise group"}
             >
               {renderDropdownItems()}
-              <Dropdown.Item value="new">Add new group</Dropdown.Item>
+              <Dropdown.Item value="new" onClick={handleSelect}>
+                Add new group
+              </Dropdown.Item>
             </DropdownButton>
-
-            {console.log(exerciseGroup)}
 
             {exerciseGroup === "new" && (
               <input
@@ -122,15 +108,6 @@ export default function AddExercise() {
                 required
               />
             )}
-
-            {/* <input
-              type="text"
-              id="exerciseGroup"
-              name="exerciseGroup"
-              value={exerciseGroup}
-              onChange={handleExerciseGroupChange}
-              required
-            /> */}
 
             <label htmlFor="picture">Picture or Video:</label>
             <input
