@@ -1,55 +1,11 @@
-body {
-  color: white;
-}
-
-h1, h2, h3, h4, h5, h6, p{
-  color: white;
-  font-family: 'Raleway';
-}
-
-h1{
-  font-weight: 700 !important;
-  font-size: 50px !important;
-}
-
-p{
+.workout-question{
   font-style: normal;
   font-weight: 400;
   font-size: 25px;
   text-align: center;
 }
 
-.button-container {
-  display: flex;
-  justify-content: flex-end; /* align items to the right */
-}
-
-.rectangle-button {
-  background-color: red;
-  color: white;
-  border: none;
-  border-radius: 15px;
-  padding: 5px 10px; /* adjust the left and right padding */
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 14px; /* adjust the font size */
-  line-height: 1.2;
-  width: 120px; /* adjust the width as needed */
-  margin-left: auto; /* push the button to the right side */
-  margin-right: 20px;
-}
-
-.rectangle-button span {
-  display: block;
-}
-
-.ExerciseTitle {
-  margin-bottom: 30px;
-}
-
-
-.greeting {
+.workout-greeting {
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -57,6 +13,8 @@ p{
   align-items: center;
   padding-top: 3rem;
   gap: 11px;
+  color: white;
+  font-family: 'Raleway';
 }  
 
 .carousel-container {
@@ -65,9 +23,11 @@ p{
   padding-top: 3rem;
   margin-left: 5rem;
   gap: 2rem;
+  color: white;
+  font-family: 'Raleway';
 }
 
-.card {
+.exercise-card {
 width: 317px !important;
 height: 371px !important;
 background: rgba(213, 197, 197, 0.31) !important;
