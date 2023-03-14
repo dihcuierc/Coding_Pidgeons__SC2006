@@ -17,7 +17,6 @@ import EditFitnessGoals from '../pages/fitnessgoals/editfitnessgoals';
 import ExerciseReview from "../pages/exercise/ExerciseReview";
 import AddExerciseReview from "../pages/exercise/AddExerciseReview"
 
-
 function Routing() {
     return (
     <BrowserRouter>
