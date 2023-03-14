@@ -1,0 +1,60 @@
+.exercise-review-container {
+    padding-top: 10%;
+    padding-bottom: 5%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+
+  }
+
+  .exercise-review-star{
+    background-color: #17202D;
+    border-radius: 30px;
+    justify-content: center;
+    display: flex;
+    
+  }
+
+  .exercise-review-rating-text{
+    width: 500px
+  }
+
+  .exercise-review-text{
+    background-color: #17202D;
+    border-radius: 30px;
+  }
+
+  .exercise-review-words{
+    width: 100%;
+    padding: 10px;
+    margin: 0;
+    box-sizing: border-box;
+    resize: none;
+  }
+
+  .exercise-review-type{
+    background-color: #F03F58;
+    color:white;
+    border-radius: 15px;
+    justify-content: center;
+    display:flex;
+    align-items: center;
+    height:50px;
+  }
+
+  .exercise-review-card{
+    background-color: transparent;
+  }
+
+  .submit-button{
+    background-color:#F03F58;
+    color:white;
+    border-radius: 15px;
+    margin-left: auto;
+    display: block;
+    width: 100px;
+  }
+
+  .MuiRating-iconEmpty{
+    color: #ffffff;
+  }
