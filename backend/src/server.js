@@ -6,7 +6,6 @@ import authRoutes from "./routes/authentication";
 import {firebase} from "./firebaseConfig";
 import {collectData} from "./DBConnection";
 
-
 const app = express();
 
 app.use(cors());
