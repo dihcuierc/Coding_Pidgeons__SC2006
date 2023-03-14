@@ -1,0 +1,36 @@
+.all-exercise-review-container {
+    padding-top: 5%;
+    padding-bottom: 5%;
+    align-items: flex-start;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+.all-exercise-review-details{
+  align-self: flex-start;
+  width: 100%;
+  white-space: nowrap;
+  color: white;
+}
+
+.all-individual-review{
+  background-color: white;
+  border-radius: 12px;
+}
+
+.all-exercise-review-text{
+  background-color: #D9D9D9;
+  margin-top: 10px;
+}
+
+.all-exercise-title{
+  color:white
+}
+
+.exercise-video-review{
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 12px;
+}
