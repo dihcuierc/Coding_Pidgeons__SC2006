@@ -10,6 +10,14 @@ export default function Table({ isEditing }) {
     newData[index][field] = newValue;
     setEditableData(newData);
   };
+
+  const handleSave = (event) => {
+    event.preventDefault();
+  
+    const exercisePlanDataJSON = JSON.stringify(editableData);
+    console.log(exercisePlanDataJSON);
+  }
+  
   const totalCaloriesBurned = exercisePlanData.reduce(
     (total, exercisePlan) => total + exercisePlan.caloriesBurned,
     0
@@ -65,7 +73,7 @@ export default function Table({ isEditing }) {
                     type="number"
                     value={exercisePlan.rest}
                     onChange={(event) =>
-                      handleEdit(index, "sets", parseInt(event.target.value))
+                      handleEdit(index, "rest", parseInt(event.target.value))
                     }
                   />
                 ) : (
@@ -83,7 +91,7 @@ export default function Table({ isEditing }) {
       </table>
       {isEditing && (
         <div className="table-save">
-          <button>Save</button>
+          <button onClick={handleSave}>Save</button>
         </div>
       )}
     </div>
