@@ -1,0 +1,23 @@
+[
+    {
+      "id": 1,
+      "path": "/images/ExerciseImages/InclineBicepCurl.gif",
+      "alt": "Incline Bicep Curl",
+      "name": "Sugma",
+      "date":"10/3/2023",
+      "text": "Bad Exercise",
+      "exercise-group-id": 4,
+      "rating": 2
+      
+    },
+    {
+      "id": 2,
+      "path": "/images/ExerciseImages/ConcentrationCurl.gif",
+      "alt": "Concentration Curl",
+      "text": "Trash exercise",
+      "exercise-group-id": 5,
+      "rating": 4
+    }
+    
+  ]
+  
