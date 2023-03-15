@@ -1,0 +1,131 @@
+@media screen {
+    .add-exercise-container {
+      display: flex;
+      height: fit-content;
+      justify-content: center;
+    }
+  
+    .add-exercise-block {
+      width: 35rem;
+      padding: 2rem;
+      margin: 2rem;
+      background: #17202d;
+      border-radius: 30px;
+  
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .add-exercise-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+  
+    .add-exercise-form label {
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: white;
+    }
+  
+    .add-exercise-form input,
+    .add-exercise-form textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border-radius: 5px;
+      border: none;
+      background-color: #d4d4d4;
+      color: #000;
+    }
+  
+    .add-exercise-form select {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border-radius: 5px;
+      border: none;
+      background-color: #d4d4d4;
+      color: #000;
+    }
+  
+    .add-exercise-form .file-upload-container {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+  
+    .add-exercise-form .file-upload-container label {
+      font-size: 1rem;
+      color: #fff;
+      margin-right: 1rem;
+    }
+  
+    .add-exercise-form .file-upload-container input[type="file"] {
+      display: none;
+    }
+  
+    .add-exercise-form .file-upload-container .file-name {
+      font-size: 1rem;
+      color: #fff;
+    }
+  
+    .add-exercise-form textarea {
+      height: 10rem;
+    }
+  
+    .add-exercise-buttons {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 30%;
+      margin-top: 1rem;
+    }
+  
+    .add-exercise-buttons button {
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      border: none;
+      background-color: #4CAF50;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+    }
+  
+    .add-exercise-buttons button:hover {
+      background-color: #3e8e41;
+    }
+  
+    .add-exercise-buttons button.cancel-button {
+      background-color: #f44336;
+    }
+  
+    .add-exercise-buttons button.cancel-button:hover {
+      background-color: #c62828;
+    }
+  
+    .add-exercise-form label.error {
+      color: red;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+  
+    .add-exercise-form input.error,
+    .add-exercise-form textarea.error {
+      border: 2px solid red;
+    }
+
+    .multiline-text{
+      resize: none;
+      width: 100%;
+    }
+
+    .stack-column{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+  }
+  

@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "plan-data-id": 4,
+        "exercise-id": 1,
+        "exerciseName": "Incline Bicep Curl",
+        "reps": 10,
+        "sets": 3,
+        "rest": 60,
+        "caloriesBurned": 100
+    },
+    {
+        "id": 2,
+        "plan-data-id": 4,
+        "exercise-id": 2,
+        "exerciseName": "Concentration Curl",
+        "reps": 10,
+        "sets": 3,
+        "rest": 60,
+        "caloriesBurned": 100
+    },
+    {
+        "id": 3,
+        "plan-data-id": 4,
+        "exercise-id": 3,
+        "exerciseName": "Twisting Dumbbell Curl",
+        "reps": 10,
+        "sets": 3,
+        "rest": 60,
+        "caloriesBurned": 100
+    }
+]
