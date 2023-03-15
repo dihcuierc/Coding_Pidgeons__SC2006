@@ -70,7 +70,7 @@ export default function AddExercise() {
   };
 
   const handleSelect = (event) => {
-    setExerciseGroup(event.target.value);
+    setExerciseGroup(event.target.getAttribute("value"));
   };
 
   const renderDropdownItems = () => {
@@ -124,7 +124,6 @@ export default function AddExercise() {
                 name="exerciseGroup"
                 value={newExerciseGroup}
                 onChange={handleNewExerciseGroupChange}
-                required
               />
             )}
 
