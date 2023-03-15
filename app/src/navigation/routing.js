@@ -14,7 +14,6 @@ import Workout from '../pages/workout/Workout';
 import ScheduleExercise from '../pages/scheduleExercise/ScheduleExercise';
 import AddExercise from '../pages/exercise/addexercise/AddExercise';
 import FitnessGoals from '../pages/fitnessgoals/fitnessgoals';
-import EditFitnessGoals from '../pages/fitnessgoals/editfitnessgoals';
 
 function Routing() {
     return (
