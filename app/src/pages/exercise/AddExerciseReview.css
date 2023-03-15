@@ -1,10 +1,10 @@
 .exercise-review-container {
-    padding-top: 10%;
+    padding-top: 5%;
     padding-bottom: 5%;
-    align-items: center;
+
     justify-content: center;
     display: flex;
-
+    align-items: flex-start;
   }
 
   .exercise-review-star{
@@ -12,11 +12,11 @@
     border-radius: 30px;
     justify-content: center;
     display: flex;
-    
   }
 
   .exercise-review-rating-text{
-    width: 500px
+    width: 600px;
+    align-self: flex-start;
   }
 
   .exercise-review-text{
@@ -44,6 +44,7 @@
 
   .exercise-review-card{
     background-color: transparent;
+    align-self: flex-start;
   }
 
   .submit-button{
@@ -53,10 +54,6 @@
     margin-left: auto;
     display: block;
     width: 100px;
-  }
-
-  .MuiRating-iconEmpty{
-    color: #ffffff;
   }
 
   .review-exercise-video{
