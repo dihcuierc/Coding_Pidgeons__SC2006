@@ -1,32 +1,51 @@
-import Button from 'react-bootstrap/Button';
-import './Settings.css';
+import Col from 'react-bootstrap/Col';
+import Nav from 'react-bootstrap/Nav';
+import Row from 'react-bootstrap/Row';
+import Tab from 'react-bootstrap/Tab';
+import "./Settings.css";
+import Account from "../../profile/settings/account/Account";
 import Card from 'react-bootstrap/Card';
-import Stack from 'react-bootstrap/esm/Stack';
 
-export default function Settings() {
-    return (
-        <Card className= 'settingsbox'>
-            <Stack direction="horizontal" gap={2}>
-            <Stack gap={4}>
-                <Card.Body>
-                    <Card.Title>Settings</Card.Title>
-                    <Card.Text>
-                    Some quick example text to build on the card title and make up the
-                    bulk of the card's content.
-                    </Card.Text>
-                    <Button variant="primary">Lets Go somewhere</Button>
-                </Card.Body>
-            </Stack>
-            <Card.Img variant="top" src="holder.js/100px180" />
-                <Card.Body>
-                    <Card.Title>Settings</Card.Title>
-                    <Card.Text>
-                    Some quick example text to build on the card title and make up the
-                    bulk of the card's content.
-                    </Card.Text>
-                    <Button variant="primary">Lets Go somewhere</Button>
-                </Card.Body>
-                </Stack>
-            </Card> 
-    );
+function LeftTabsExample() {
+  return (
+    <Card>
+    <Tab.Container class = "ul.nav.nav-tabs" id="left-tabs-example" defaultActiveKey="first">
+      <Row>
+        <Col sm={3}>
+          <Nav variant="pills" className="flex-column">
+            <Nav.Item>
+              <Nav.Link eventKey="first">Account</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="second">Followers & Following</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="third">Notifications</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="forth">Security</Nav.Link>
+            </Nav.Item>
+          </Nav>
+        </Col>
+        <Col sm={9}>
+          <Tab.Content>
+            <Tab.Pane eventKey="first">
+          
+            {<Account/>}
+
+            </Tab.Pane>
+            <Tab.Pane eventKey="second">
+               {/* <Sonnet /> */}
+            </Tab.Pane>
+          </Tab.Content>
+        </Col>
+      </Row>
+    </Tab.Container>
+    </Card>
+  );
 }
+
+
+export default LeftTabsExample; 
+
+
