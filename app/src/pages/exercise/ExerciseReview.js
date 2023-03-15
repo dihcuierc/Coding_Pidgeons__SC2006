@@ -21,7 +21,7 @@ export default function ExerciseReview() {
     const [reviews, setReviews] = useState([]);
     const [averageRating, setAverageRating] = useState(0);
     const [ratingCounts, setRatingCounts] = useState([0, 0, 0, 0, 0]);
-
+    const sum = ratingCounts.reduce((accumulator, currentValue) => accumulator + currentValue);
     const addReview = () => {
         navigate('add');
     };
@@ -83,9 +83,9 @@ export default function ExerciseReview() {
                                 <Stack direction="vertical" gap={4}>
                                     {ratingCounts.map((rating_score, index) => (
                                         <Stack direction="horizontal" gap={3} style={{height:"5px"}}>
-                                        <p style={{height:"7px", width: "30px"}}>{Math.round(rating_score/reviews.length * 100)}%</p>
-                                        <BorderLinearProgress variant="determinate" value={rating_score/reviews.length * 100} />
-                                        <p style={{height:"7px"}}>{index+1}</p>
+                                        <p style={{height:"7px", width: "30px"}}>{Math.round(rating_score/sum * 100)}%</p>
+                                        <BorderLinearProgress variant="determinate" value={rating_score/sum * 100} />
+                                        <p style={{height:"7px"}}>{5-index}</p>
                                         </Stack>
                                     ))}
                                 </Stack>
