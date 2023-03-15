@@ -1,47 +1,99 @@
-import React from 'react';
+import React, { useState } from "react";
 import "./Table.css";
+import exercisePlanData from "../../data/exercisePlanData.json";
 
-export default function Table() {
+export default function Table({ isEditing }) {
+  const [editableData, setEditableData] = useState(exercisePlanData);
+
+  const handleEdit = (index, field, newValue) => {
+    const newData = [...editableData];
+    newData[index][field] = newValue;
+    setEditableData(newData);
+  };
+
+  const handleSave = (event) => {
+    event.preventDefault();
+  
+    const exercisePlanDataJSON = JSON.stringify(editableData);
+    console.log(exercisePlanDataJSON);
+  }
+  
+  const totalCaloriesBurned = exercisePlanData.reduce(
+    (total, exercisePlan) => total + exercisePlan.caloriesBurned,
+    0
+  );
+
   return (
     <div className="Table-container">
-        <table className='Table'>
+      <table className="Table">
         <thead>
-            <tr>
+          <tr>
             <th>No.</th>
             <th>Exercise</th>
             <th>Reps</th>
-            <th>Rest</th>
             <th>Sets</th>
+            <th>Rest (seconds)</th>
             <th>Calories Burned</th>
-            </tr>
+          </tr>
         </thead>
         <tbody>
-            <tr>
-            <td>1</td>
-            <td>Bicep curls</td>
-            <td>10</td>
-            <td>60 sec</td>
-            <td>3</td>
-            <td>100</td>
+          {exercisePlanData.map((exercisePlan, index) => (
+            <tr key={index}>
+              <td>{exercisePlan.id}</td>
+              <td>{exercisePlan.exerciseName}</td>
+              <td>
+                {isEditing ? (
+                  <input
+                    type="number"
+                    value={exercisePlan.reps}
+                    onChange={(event) =>
+                      handleEdit(index, "reps", parseInt(event.target.value))
+                    }
+                  />
+                ) : (
+                  exercisePlan.reps
+                )}
+              </td>
+              <td>
+                {isEditing ? (
+                  <input
+                    type="number"
+                    value={exercisePlan.sets}
+                    onChange={(event) =>
+                      handleEdit(index, "sets", parseInt(event.target.value))
+                    }
+                  />
+                ) : (
+                  exercisePlan.sets
+                )}
+              </td>
+              <td>
+                {isEditing ? (
+                  <input
+                    type="number"
+                    value={exercisePlan.rest}
+                    onChange={(event) =>
+                      handleEdit(index, "rest", parseInt(event.target.value))
+                    }
+                  />
+                ) : (
+                  exercisePlan.rest
+                )}
+              </td>
+              <td>{exercisePlan.caloriesBurned}</td>
             </tr>
-            <tr>
-            <td>2</td>
-            <td>Tricep extensions</td>
-            <td>12</td>
-            <td>45 sec</td>
-            <td>3</td>
-            <td>80</td>
-            </tr>
-            <tr>
-            <td>3</td>
-            <td>Push-ups</td>
-            <td>15</td>
-            <td>30 sec</td>
-            <td>3</td>
-            <td>120</td>
-            </tr>
+          ))}
+          <tr>
+            <td colSpan="5">Total Calories Burned</td>
+            <td>{totalCaloriesBurned}</td>
+          </tr>
         </tbody>
-        </table>
+      </table>
+      {isEditing && (
+        <div className="table-save">
+          <button onClick={handleSave}>Save</button>
+        </div>
+      )}
     </div>
   );
 }
