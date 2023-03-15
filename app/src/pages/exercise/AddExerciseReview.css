@@ -58,3 +58,18 @@
   .MuiRating-iconEmpty{
     color: #ffffff;
   }
+
+  .review-exercise-video{
+    width: 450px;
+    overflow: hidden;
+    border-radius: 12px;
+    aspect-ratio: 1.5;
+  }
+
+  .exercise-review-words{
+    margin-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: justify;
+    font-weight: bold;
+  }
