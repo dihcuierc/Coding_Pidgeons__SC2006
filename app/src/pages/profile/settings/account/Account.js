@@ -16,25 +16,23 @@ import padding from "../../../../assets/css/Padding.module.css"
 
 export default function UpdateProfile() {
     return (
-        <div>
-            <Container className={padding.heading}>
+            
                 <div className={formStyle.register}>
                     <RegisterForm></RegisterForm>
                     <div className="text-light d-flex justify-content-center m-3">
                         <LinkContainer to="/profile">
                             <Nav.Link>
-                                <b className="p-2 text-danger">Cancel</b>
+                                <b className="p-2 text-danger">Done</b>
                             </Nav.Link>
                         </LinkContainer>
                         <LinkContainer to="/profile">
                             <Nav.Link>
-                                <b className="p-2 text-danger">Done</b>
+                                <b className="p-2 text-danger">Cancel</b>
                             </Nav.Link>
                         </LinkContainer>
                     </div>
                 </div>
-            </Container>
-        </div>
+            
     )
 }
 

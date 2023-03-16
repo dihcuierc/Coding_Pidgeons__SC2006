@@ -4,6 +4,8 @@ import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
 import "./Settings.css";
 import Account from "../../profile/settings/account/Account";
+import Notifications from "../../profile/settings/notifications/Notifications";
+import Security from "../../profile/settings/Security/Security"
 import Card from 'react-bootstrap/Card';
 
 function LeftTabsExample() {
@@ -29,14 +31,23 @@ function LeftTabsExample() {
         </Col>
         <Col sm={9}>
           <Tab.Content>
-            <Tab.Pane eventKey="first">
-          
-            {<Account/>}
 
+            <Tab.Pane eventKey="first">          
+            {<Account/>}
             </Tab.Pane>
-            <Tab.Pane eventKey="second">
-               {/* <Sonnet /> */}
+
+            <Tab.Pane eventKey="second">            
+            
             </Tab.Pane>
+
+            <Tab.Pane eventKey="third">           
+            {<Notifications/>}
+            </Tab.Pane>
+
+            <Tab.Pane eventKey="forth">           
+            {<Security/>}
+            </Tab.Pane>
+
           </Tab.Content>
         </Col>
       </Row>
