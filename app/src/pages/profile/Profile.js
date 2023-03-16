@@ -11,6 +11,12 @@ import Settings from "../profile/settings/Settings"
 import Reviews from "../review/ViewReviews"
 
 
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import ReviewsIcon from '@mui/icons-material/Reviews';
+import SettingsIcon from '@mui/icons-material/Settings';
+import LogoutIcon from '@mui/icons-material/Logout';
+
 export default function Profile() {
     return (
         <Tab.Container
@@ -21,19 +27,19 @@ export default function Profile() {
                 <Col sm={2} md={1} className="my-auto p-3">
                     <Nav variant="pills" className="flex-column">
                         <Nav.Item>
-                            <Nav.Link eventKey="dashboard">D</Nav.Link>
+                            <Nav.Link eventKey="dashboard"><DashboardIcon/></Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link eventKey="friends">F</Nav.Link>
+                            <Nav.Link eventKey="friends"><PersonAddIcon/></Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link eventKey="reviews">R</Nav.Link>
+                            <Nav.Link eventKey="reviews"><ReviewsIcon/></Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link eventKey="settings">S</Nav.Link>
+                            <Nav.Link eventKey="settings"><SettingsIcon/></Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link eventKey="logout">L</Nav.Link>
+                            <Nav.Link eventKey="logout"><LogoutIcon/></Nav.Link>
                         </Nav.Item>
                     </Nav>
                 </Col>
