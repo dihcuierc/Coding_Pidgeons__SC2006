@@ -6,9 +6,24 @@
     display: flex;
   }
 
+  .profile-review-card{
+    display:flex;
+    width:100%;
+    margin-right:10%;
+  }
+
 .individual-review{
-    border: 1px solid blue;
-}
+    background-color: #F6F6F6;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 12px 16px;
+    width:100%;
+    
+    border: 1px solid black;
+    }
 
 .user-review{
     border-radius: 40px;
@@ -31,11 +46,6 @@
 
 .profile-review-rating{
     border:1px solid blue;
-}
-
-.profile-review-text{
-    background-color: #F6F6F6;
-    border-radius: 12px;
 }
 
 .profile-review-date{
