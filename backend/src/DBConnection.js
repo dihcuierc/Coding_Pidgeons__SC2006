@@ -1,12 +1,12 @@
 import {collection, onSnapshot, getFirestore, addDoc, deleteDoc, 
-    doc, query, where, orderBy, serverTimestamp
+    doc, query, where, orderBy, serverTimestamp, getDoc
 } from "firebase/firestore";
 
-function collectData() {
-    //init service
-    const db = getFirestore()
+//init service
+const db = getFirestore()
 
-    // User User collection ref
+function collectUserData() {
+    // User collection ref
     const UserRef = collection(db, 'User')
 
     // User query -> Maybe can pass in a string to search for a particular "friend"
@@ -21,12 +21,45 @@ function collectData() {
         })
         console.log(User)
     })
+}
+
+function collectOneUser(id){
+    // id represents a User's unqiue id
+    const UserRef = doc(db, 'User', id)
+
+    onSnapshot(UserRef, (doc) => {
+        console.log(doc.data(), doc.id)
+    })
+}
+
+function collectRevData(){
+    //Review collection ref
+    const reviewRef = collection(db, 'Review')
+
+    // real time Review collection data
+    onSnapshot(reviewRef, (snapshot) => {
+        let Review = []
+        snapshot.docs.forEach((doc) => {
+            Review.push({...doc.data(), id: doc.id})
+        })
+        console.log(Review)
+    })
 
 };
 
-function addData() {
+function collectOneRev(id){
+    // id represents a User's unqiue id
+    const reviewRef = doc(db, 'Review', id)
+
+    onSnapshot(reviewRef, (doc) => {
+        console.log(doc.data(), doc.id)
+    })
+}
+
+function addUserData(id) {
     // add User data
     const addUser = document.querySelector('.add')
+    const UserRef = collection(db, 'User', id)
     addUser.addEventListener('submit', (e) => {
         e.preventDefault()
 
@@ -49,13 +82,31 @@ function addData() {
     })
 }
 
-function deleteData() {
+function addRevData(id){
+    // add Review data
+    const addReview = document.querySelector('.add')
+    const reviewRef = collection(db, 'Review', id)
+    addReview.addEventListener('submit', (e) => {
+        e.preventDefault()
+
+        addDoc(reviewRef, {
+            //all the attributes
+            comment: addReview.comment.value,
+            name: addReview.name.value,
+            rating: addReview.rating.value
+        })
+    })
+}
+
+//SEARCH HOW TO DELETE FOR A PARTICULAR DOCUMENT FROM A COLLECTION
+
+function deleteUserData(id) {
     // delete User data
     const deleteUser = document.querySelector('.delete')
     deleteUser.addEventListener('submit', (e) => {
         e.preventDefault
-        // require the id of the document to delete
-        const UserRef = doc(db, 'User', deleteUser.id.value)
+        // require the input field of the document to delete
+        const UserRef = doc(db, 'User', id, deleteUser.id.value)
 
         deleteDoc(UserRef)
             .then(() => {
@@ -63,4 +114,19 @@ function deleteData() {
             })
     })
 }
-export {collectData, addData, deleteData};
+
+function deleteRevData(id){
+    // delete Review data
+    const deleteReview = document.querySelector('.delete')
+    deleteReview.addEventListener('submit', (e) => {
+        e.preventDefault
+        // require the input field (id) of the review to delete
+        const reviewRef = doc(db, 'User', id, deleteReview.id.value)
+
+        deleteDoc(reviewRef)
+            .then(() => {
+                deleteReview.reset()
+            })
+    })
+}
+export {collectUserData, collectOneUser, addUserData, deleteUserData, collectRevData, collectOneRev, addRevData, deleteRevData};
