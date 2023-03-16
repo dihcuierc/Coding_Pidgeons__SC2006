@@ -4,6 +4,8 @@ import './Exercise.css';
 import { useParams } from 'react-router-dom'
 import exercises from "../../data/exerciseData.json";
 import exerciseGroups from "../../data/exerciseGroupData.json";
+import { Link } from 'react-router-dom';
+
 
 export default function Exercise() {
     const { id } = useParams();
@@ -21,6 +23,9 @@ export default function Exercise() {
 
     return(
         <div className={background.default}>
+            <Link to={`/workout/exerciseview/exercise/${id}/exercisereview`}>
+                    <button>Review</button>
+                </Link>
             <div className="exercise-container">
                 <div className="exercise-block">
                     <h1 className="exercise-title">{exercise.alt}</h1>
@@ -28,7 +33,6 @@ export default function Exercise() {
                     <div className="exercise-rating">{generateStars(exercise.rating)}</div>
                     <img className="exercise-video" src={exercise.path} alt={exercise.alt} />
                 </div>
-
                 <div className="exercise-block">
                     <div className="exercise-instructions">
                         <h3 className="instructions-title">Instructions</h3>
