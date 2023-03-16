@@ -1,0 +1,66 @@
+.all-exercise-review-container {
+    padding-top: 5%;
+    padding-bottom: 5%;
+    align-items: flex-start;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+.all-exercise-review-details{
+  align-self: flex-start;
+  width: 100%;
+  white-space: nowrap;
+  color: white;
+  max-width: 400px;
+}
+
+.all-add-review-button {
+  margin-left: auto;
+  background-color:#F03F58;
+  color:white;
+  border-radius: 15px;
+  margin-left: auto;
+  display: block;
+  width: 120px;
+  }
+
+
+.all-individual-review{
+  background-color: white;
+  border-radius: 12px;
+}
+
+.all-exercise-review-text{
+  background-color: #D9D9D9;
+  margin-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: justify;
+  font-weight: bold;
+  width:100%;
+  align-self: flex-start;
+}
+
+.all-exercise-review-card{
+  display:flex;
+  width:100%;
+  margin-right:10%;
+}
+
+.all-exercise-title{
+  color:white
+}
+
+.exercise-video-review{
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.all-exercise-reviews{
+  width:100%;
+  margin-right:5%;
+  align-self: flex-start;
+}

@@ -1,0 +1,102 @@
+.exercise-review-container {
+    padding-top: 5%;
+    padding-bottom: 5%;
+
+    justify-content: center;
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .exercise-review-star{
+    background-color: #17202D;
+    border-radius: 30px;
+    justify-content: center;
+    display: flex;
+  }
+
+  .exercise-review-rating-text{
+    width: 600px;
+    align-self: flex-start;
+  }
+
+  .exercise-review-text{
+    background-color: #17202D;
+    border-radius: 30px;
+  }
+
+  .exercise-review-words{
+    width: 100%;
+    padding: 10px;
+    margin: 0;
+    box-sizing: border-box;
+    resize: none;
+  }
+
+  .exercise-review-type{
+    background-color: #F03F58;
+    color:white;
+    border-radius: 15px;
+    justify-content: center;
+    display:flex;
+    align-items: center;
+    height:50px;
+  }
+
+  .exercise-review-card{
+    background-color: transparent;
+    align-self: flex-start;
+  }
+
+  .submit-button{
+    background-color:#F03F58;
+    color:white;
+    border-radius: 15px;
+    margin-left: auto;
+    display: block;
+    width: 100px;
+  }
+
+  .review-exercise-video{
+    width: 450px;
+    overflow: hidden;
+    border-radius: 12px;
+    aspect-ratio: 1.5;
+  }
+
+  .exercise-review-words{
+    margin-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: justify;
+    font-weight: bold;
+  }
+
+  .review-exercise-video{
+    width: 450px;
+    overflow: hidden;
+    border-radius: 12px;
+    aspect-ratio: 1.5;
+  }
+
+  .exercise-review-words{
+    margin-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: justify;
+    font-weight: bold;
+  }
+
+  .review-exercise-video{
+    width: 450px;
+    overflow: hidden;
+    border-radius: 12px;
+    aspect-ratio: 1.5;
+  }
+
+  .exercise-review-words{
+    margin-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: justify;
+    font-weight: bold;
+  }

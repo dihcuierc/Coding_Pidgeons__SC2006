@@ -1,11 +1,10 @@
   .exercise-plan-container {
-    margin-left: 10%;
-    margin-right: 10%;
+    margin: 0 10%;
     padding-top: 4%;
-    
   }
 
   .exercise-plan-title {
     font-size: 22px;
     color: white;
+    padding: 0 0 15px 0;
   }
