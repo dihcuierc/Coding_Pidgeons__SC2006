@@ -25,9 +25,10 @@ function collectUserData() {
 
 function collectOneUser(id){
     // id represents a User's unqiue id
-    const UserRef = doc(db, 'User', id)
+    const UserRef = doc(db, 'User')
+    const user = query(UserRef, where("id", "=", id))
 
-    onSnapshot(UserRef, (doc) => {
+    onSnapshot(user, (doc) => {
         console.log(doc.data(), doc.id)
     })
 }
@@ -50,20 +51,54 @@ function collectRevData(){
 function collectOneRev(id){
     // id represents a User's unqiue id
     const reviewRef = doc(db, 'Review', id)
+    const review = query(reviewRef, where("id", "=", id))
+    
+    // collect all reviews from one user
+    onSnapshot(review, (snapshot) => {
+        let userRev = []
+        snapshot.docs.forEach((doc) => {
+            userRev.push({...doc.data(), id: doc.id})
+        })
+        console.log(userRev)
+    })
+}
 
-    onSnapshot(reviewRef, (doc) => {
-        console.log(doc.data(), doc.id)
+function collectGoalData(){
+    const goalRef = doc(db, 'Goal')
+
+    onSnapshot(goalRef, (snapshot) => {
+        let Goal = []
+        snapshot.docs.forEach((doc) => {
+            Goal.push({...doc.data(), id: doc.id})
+        })
+        console.log(Goal)
+    })
+}
+
+function collectOneGoal(id){
+    // id represents a User's unqiue id
+    const goalRef = doc(db, 'Goal', id)
+    const goal = query(goalRef, where("id", "=", id))
+    
+    // collect all goals from one user
+    onSnapshot(goal, (snapshot) => {
+        let userGoal = []
+        snapshot.docs.forEach((doc) => {
+            userGoal.push({...doc.data(), id: doc.id})
+        })
+        console.log(userGoal)
     })
 }
 
 function addUserData(id) {
     // add User data
     const addUser = document.querySelector('.add')
-    const UserRef = collection(db, 'User', id)
+    const UserRef = collection(db, 'User')
+    const user = query(UserRef, where("id", "=", id))
     addUser.addEventListener('submit', (e) => {
         e.preventDefault()
 
-        addDoc(UserRef, {
+        addDoc(user, {
             //all the attributes
             password: addUser.password.value,
             firstName: addUser.firstName.value,
@@ -85,15 +120,36 @@ function addUserData(id) {
 function addRevData(id){
     // add Review data
     const addReview = document.querySelector('.add')
-    const reviewRef = collection(db, 'Review', id)
+    const reviewRef = collection(db, 'Review')
+    const review = query(reviewRef, where("id", "=", id))
     addReview.addEventListener('submit', (e) => {
         e.preventDefault()
 
-        addDoc(reviewRef, {
+        addDoc(review, {
             //all the attributes
             comment: addReview.comment.value,
             name: addReview.name.value,
             rating: addReview.rating.value
+        })
+    })
+}
+
+function addGoalData(id){
+    // add Goal data
+    const addGoal = document.querySelector('.add')
+    const goalRef = collection(db, 'Goal')
+    const goal = query(goalRef, where("id", "=", id))
+
+    addGoal.addEventListener('submit', (e) => {
+        e.preventDefault()
+
+        addDoc(goal, {
+            //all the attributes
+            calories: addGoal.calories.value,
+            date: addGoal.date.value,
+            goalSetting: addGoal.goalSetting.value,
+            image: addGoal.image.value,
+            name: addGoal.name.value
         })
     })
 }
@@ -129,4 +185,5 @@ function deleteRevData(id){
             })
     })
 }
-export {collectUserData, collectOneUser, addUserData, deleteUserData, collectRevData, collectOneRev, addRevData, deleteRevData};
+export {collectUserData, collectOneUser, addUserData, deleteUserData, collectRevData, collectOneRev, addRevData, deleteRevData,
+    collectGoalData, collectOneGoal, addGoalData};
