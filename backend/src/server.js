@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 
 import authRoutes from "./routes/authentication";
-import {collectData} from "./DBConnection";
+import {collectUserData} from "./DBConnection";
 import {errorHandler} from "./errors/errorHandler";
 
 const app = express();
@@ -14,5 +14,5 @@ app.use(errorHandler);
 
 app.listen(8080, () => {
     console.log(`Server running on localhost:8080`);
-    collectData();
+    collectUserData();
 })
