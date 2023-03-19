@@ -12,11 +12,11 @@ import Button from "react-bootstrap/Button";
 import LinkContainer from "react-router-bootstrap/LinkContainer";
 
 // #Custom CSS Module
-import pic from "../../assets/css/Pic.module.css"
+import pic from "../../../../assets/css/Pic.module.css"
 
 // #Custom CSS
 import "./Navbar.css";
-import profileIcon from "../../assets/images/icons/profile.svg"
+import profileIcon from "../../../../assets/images/icons/profile.svg"
 
 const noSidebarNonLoginRoutes = ["/login","/register"];
 const profileSidebarRoutes = ["/exercises"]

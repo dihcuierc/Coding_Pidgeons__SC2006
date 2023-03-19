@@ -1,0 +1,14 @@
+.display {
+    height: 75vh;
+    width: 50vw;
+}
+
+.marker {
+    border: 1px solid white;
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+    cursor: pointer;
+    background: red;
+    z-index: 10;
+}
