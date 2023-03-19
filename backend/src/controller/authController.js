@@ -75,12 +75,33 @@ async function logIn(b64auth) {
     });
  }
 
- async function updatePass() {
-
+ async function updatePass(newPassword) {
+    let status = false;
+    let user = auth.currentUser;
+    return await updatePassword(user, newPassword).then(() => {
+        console.log("Password successfully updated");
+        status = true;
+        return {status};
+    }).catch((err) => {
+        err.code = Status.Forbidden;
+        return {status, err};
+    })
  }
 
  async function updateUser() {
 
+ }
+
+ async function sendReset(email) {
+    let sendStatus = false;
+    return await sendPasswordResetEmail(auth, email).then(() => {
+        console.log("Email Sent");
+        sendStatus = true;
+        return {sendStatus};
+    }).catch((err) => {
+        err.code = Status.BadRequest;
+        return {sendStatus, err};
+    })
  }
 
 function decodingBasicAuth(b64auth) {
