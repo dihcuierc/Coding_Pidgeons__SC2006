@@ -16,6 +16,7 @@ import FitnessGoals from '../../fitnessgoals/fitnessgoals';
 import EditFitnessGoals from '../../fitnessgoals/editfitnessgoals';
 import ExerciseReview from "../../exercise/ExerciseReview";
 import AddExerciseReview from "../../exercise/AddExerciseReview"
+import AddExercise from "../../exercise/addexercise/AddExercise";
 
 function Routing() {
     return (
@@ -37,6 +38,7 @@ function Routing() {
                 <Route path="workout" element={<Workout/>}/>
                 <Route path="workout/schedule-exercise" element={<ScheduleExercise/>}/>
                 <Route path="workout/exerciseplan" element={<ExercisePlan/>}/>
+                <Route path="workout/add-exercise" element={<AddExercise/>}/>
                 {/* <Route path="workout/exerciseview" element={<ExerciseCarousel/>}/>  */}
                 <Route path="workout/exerciseview/:id" element={<ExerciseCarousel/>}/>    
                 <Route path="workout/exerciseview/exercise/:id" element={<Exercise/>}/>
