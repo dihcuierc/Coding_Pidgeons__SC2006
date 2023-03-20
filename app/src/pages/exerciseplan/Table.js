@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "./Table.css";
 import exercisePlanData from "../../data/exercisePlanData.json";
+import DeleteIcon from "@mui/icons-material/Delete";
 
-export default function Table({ isEditing }) {
+export default function Table({ isEditing, setIsEditing }) {
   const [editableData, setEditableData] = useState(exercisePlanData);
 
   const handleEdit = (index, field, newValue) => {
@@ -13,11 +14,12 @@ export default function Table({ isEditing }) {
 
   const handleSave = (event) => {
     event.preventDefault();
-  
+
     const exercisePlanDataJSON = JSON.stringify(editableData);
+    setIsEditing(false);
     console.log(exercisePlanDataJSON);
-  }
-  
+  };
+
   const totalCaloriesBurned = exercisePlanData.reduce(
     (total, exercisePlan) => total + exercisePlan.caloriesBurned,
     0
@@ -81,6 +83,19 @@ export default function Table({ isEditing }) {
                 )}
               </td>
               <td>{exercisePlan.caloriesBurned}</td>
+              {/* {isEditing ? (
+                <td >
+                  <DeleteIcon
+                    onClick={() => {
+                      const newData = [...editableData];
+                      newData.splice(index, 1);
+                      setEditableData(newData);
+                    }}
+                  />
+                </td>
+              ) : (
+                <></>
+              )} */}
             </tr>
           ))}
           <tr>
@@ -89,11 +104,11 @@ export default function Table({ isEditing }) {
           </tr>
         </tbody>
       </table>
-      {isEditing && (
+      {/* {isEditing && (
         <div className="table-save">
           <button onClick={handleSave}>Save</button>
         </div>
-      )}
+      )} */}
     </div>
   );
 }
