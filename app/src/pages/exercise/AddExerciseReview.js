@@ -36,11 +36,10 @@ export default function AddExerciseReview(prop) {
         const currentDate = new Date();
         const formattedDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}`;
         const newReview = {
-            id: exercise.id,
-            "path": "/images/ExerciseImages/InclineBicepCurl.gif",
-            "alt": "Incline Bicep Curl",
+            id: exerciseReviews.length + 1,
+            "path": exercise.path,
+            "alt": exercise.alt,
             "exercise-group-id": exercise["exercise-group-id"],
-            "name": "Sugma",
             "rating": value,
             "text": review,
             "date": formattedDate
