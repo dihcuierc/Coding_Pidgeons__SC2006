@@ -30,9 +30,6 @@ export default function Profile() {
                             <Nav.Link eventKey="dashboard"><DashboardIcon/></Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link eventKey="friends"><PersonAddIcon/></Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
                             <Nav.Link eventKey="reviews"><ReviewsIcon/></Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
