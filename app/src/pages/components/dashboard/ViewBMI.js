@@ -3,14 +3,38 @@ import './ViewBMI.css';
 import Stack from "react-bootstrap/Stack";
 import React, { useState, useEffect } from 'react';
 import TextField from '@mui/material/TextField';
-import { LinearProgress, makeStyles } from "@mui/material";
+import Slider from '@mui/material/Slider';
 
 export default function BMI() {
 
     const [height, setHeight] = useState('0');
     const [weight, setWeight] = useState('0');
     const [bmi, setBMI] = useState(0);
-
+    const marks = [
+        {
+          value: 15,
+          label: '15',
+        },
+        {
+          value: 18.5,
+          label: '18.5',
+        },
+        {
+            value: 25,
+            label: '25',
+        },
+        {
+          value: 30,
+          label: '30',
+        },
+        {
+          value: 40,
+          label: '40',
+        },
+      ];
+      function valuetext(value) {
+        return `${value}°C`;
+      }
 
 
     useEffect(() => {
@@ -86,25 +110,40 @@ export default function BMI() {
                         </Card.Body>
                     </Stack>
                     <Stack direction='vertical' gap={4}>
-                        <Card bg='secondary' style={{width:"300px", height:"200px"}}>
-                        <Card.Title>Body Mass Index (BMI)</Card.Title>
+                        <Card style={{width:"300px", height:"220px", backgroundColor:'#4A4949'}}>
+                        <Card.Title className='BMITitle'>Body Mass Index (BMI)</Card.Title>
                         <Card.Body className="calculator-card">
-                            <Stack direction="horizontal" gap={4}>
-                                
-                                    <Card.Body className="BMIvalue">{bmi}</Card.Body>
+                            <Stack gap={1}>
+                                <Stack direction="horizontal" gap={4}>
+                                    
+                                    <Card.Body className="BMIvalue">
+                                        <p style={{color:'white', fontSize:'30px'}}>{bmi}</p>
+                                    </Card.Body>
                                     <Card.Body className='healthy'>You're {getBMIClass()}</Card.Body>
-                                
-                            </Stack> 
-
-                            <LinearProgress
-                                variant="determinate"
-                                height='5'
-                                value={bmi}
-                                sx={{
-                                    background: 'linear-gradient(to right, #6fcbb6, #9c64f4)',
-                                    '> span': { backgroundColor: 'red' },
-                                }}
+                                    
+                                </Stack> 
+                                <Slider
+                                    aria-label="BMI"
+                                    defaultValue={bmi}
+                                    value={bmi}
+                                    getAriaValueText={valuetext}
+                                    marks={marks}
+                                    min={15}
+                                    max={40}
+                                    sx={{
+                                        background: 'linear-gradient(to right, #B5D4F1, #81E5DB, #E8D284, #E2798E)',
+                                        '> span': { backgroundColor: 'none', color:'white' },
+                                        '& 	.MuiSlider-mark': {
+                                            color: 'transparent',
+                                        },
+                                        '& 	.MuiSlider-rail': {
+                                            color: 'transparent',
+                                        }
+                                    }}
+                                    disabled 
                                 />
+                                
+                                </Stack>
                         </Card.Body>
                         </Card>
                     </Stack>
