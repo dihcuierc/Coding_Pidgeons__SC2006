@@ -27,8 +27,9 @@ export default function ExerciseReview() {
     };
 
     useEffect(() => {
-        const filteredReviews = exerciseReviews.filter((review) => review["id"] === exercise["id"]);
+        const filteredReviews = exerciseReviews.filter((review) => review["exercise-id"] === exercise["id"]);
         setReviews(filteredReviews);
+        console.log("Current reviews state:", reviews);
 
         const totalRating = filteredReviews.reduce((acc, filteredReviews) => {
             return acc + filteredReviews.rating;
