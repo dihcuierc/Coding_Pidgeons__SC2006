@@ -1,53 +1,25 @@
 .Table-container {
-    width: 100%;
     margin: 0 auto;
-    
   }
   
   .Table {
     color: #FFF;
-    border-collapse: collapse;
+    border-collapse: none;
     width: 100%;
   }
   
-  .Table td,
+  .Table td:not(.delete-row),
   .Table th {
     padding: 12px;
     text-align: left;
-    border: 1px solid #FFF;
-  }
-  
-  .Table th {
-    background-color: #091321;
-  }
-  
-  .Table tr:nth-child(even) {
-    background-color: #0D47A1;
-  }
-  
-  .Table tr:nth-child(odd) {
-    background-color: #1565C0;
-  }
-
-  .table-save{
-    background-color: transparent;
-    color: #FFF;
-    border-collapse: collapse;
-    width: 100%;
-    text-align: right;
-    margin-top: 3rem;
-  }
-
-  .table-save button {
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
     border: none;
-    background-color: #4CAF50;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
   }
 
-  .table-save button:hover {
-    background-color: #3e8e41;
+  .Table th {
+    background: #F03F58;
+    border: none;
   }
+  
+
+
+

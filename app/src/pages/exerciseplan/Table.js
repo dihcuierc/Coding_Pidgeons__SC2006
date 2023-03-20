@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import "./Table.css";
 import exercisePlanData from "../../data/exercisePlanData.json";
+import DeleteIcon from "@mui/icons-material/Delete";
+import IconButton from "@mui/material/IconButton";
 
 export default function Table({ isEditing }) {
   const [editableData, setEditableData] = useState(exercisePlanData);
+  const [caloriesBurn, setCaloriesBurn] = useState(exercisePlanData.reduce(
+    (total, exercisePlan) => total + exercisePlan.caloriesBurned,
+    0
+  ));
 
   const handleEdit = (index, field, newValue) => {
     const newData = [...editableData];
@@ -11,17 +17,16 @@ export default function Table({ isEditing }) {
     setEditableData(newData);
   };
 
-  const handleSave = (event) => {
-    event.preventDefault();
-  
-    const exercisePlanDataJSON = JSON.stringify(editableData);
-    console.log(exercisePlanDataJSON);
-  }
-  
-  const totalCaloriesBurned = exercisePlanData.reduce(
-    (total, exercisePlan) => total + exercisePlan.caloriesBurned,
-    0
-  );
+  const handleDelete = (index) => {
+    const newData = [...editableData];
+    newData.splice(index, 1);
+    setEditableData(newData);
+    handleCaloriesBurn(caloriesBurn - editableData[index].caloriesBurned)
+  };
+
+  const handleCaloriesBurn = (newValue) => {
+    setCaloriesBurn(newValue);
+  };
 
   return (
     <div className="Table-container">
@@ -34,12 +39,13 @@ export default function Table({ isEditing }) {
             <th>Sets</th>
             <th>Rest (seconds)</th>
             <th>Calories Burned</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
-          {exercisePlanData.map((exercisePlan, index) => (
+          {editableData.map((exercisePlan, index) => (
             <tr key={index}>
-              <td>{exercisePlan.id}</td>
+              <td>{index + 1}</td>
               <td>{exercisePlan.exerciseName}</td>
               <td>
                 {isEditing ? (
@@ -81,19 +87,26 @@ export default function Table({ isEditing }) {
                 )}
               </td>
               <td>{exercisePlan.caloriesBurned}</td>
+              {isEditing && (
+                <td className="delete-row">
+                  <IconButton
+                    aria-label="delete"
+                    size="small"
+                    onClick={() => handleDelete(index)}
+                  >
+                    <DeleteIcon color="error" />
+                  </IconButton>
+                </td>
+              )}
             </tr>
           ))}
+
           <tr>
             <td colSpan="5">Total Calories Burned</td>
-            <td>{totalCaloriesBurned}</td>
+            <td>{caloriesBurn}</td>
           </tr>
         </tbody>
       </table>
-      {isEditing && (
-        <div className="table-save">
-          <button onClick={handleSave}>Save</button>
-        </div>
-      )}
     </div>
   );
 }
