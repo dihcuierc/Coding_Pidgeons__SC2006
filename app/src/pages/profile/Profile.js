@@ -36,7 +36,7 @@ export default function Profile() {
                             <Nav.Link eventKey="settings"><SettingsIcon/></Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link eventKey="logout"><LogoutIcon/></Nav.Link>
+                            <Nav.Link eventKey="Logout"><LogoutIcon/></Nav.Link>
                         </Nav.Item>
                     </Nav>
                 </Col>
