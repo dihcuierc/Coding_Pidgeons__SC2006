@@ -86,7 +86,12 @@ export default function AddExerciseReview(prop) {
                                         onChangeActive={(event, newHover) => {
                                             setHover(newHover);
                                             }}
-                                        iconEmpty='white'
+                                        sx={{
+                                            '& .MuiRating-iconEmpty': {
+                                                color: 'white',
+                                            }
+                                            }}
+                                    
                                         />
                                 </Card.Body>
                                 <Card.Body className='exercise-review-text'>
