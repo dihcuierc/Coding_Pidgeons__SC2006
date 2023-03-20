@@ -4,11 +4,27 @@ import './ExercisePlan.css';
 import Table from './Table';
 import EditIcon from '@mui/icons-material/Edit';
 import Stack from 'react-bootstrap/Stack';
-import { Link } from 'react-router-dom';
-
+import exercisePlanData from "../../data/exercisePlanData.json";
+import planData from "../../data/planData.json";
+import { useParams } from 'react-router-dom';
 
 export default function ExercisePlan() {
+    const { id } = useParams();
     const [isEditing, setIsEditing] = React.useState(false);
+
+    const filteredExercisePlans = exercisePlanData.filter((exercisePlan) => {
+        return exercisePlan["plan-data-id"] === parseInt(id);
+    });
+
+    if (filteredExercisePlans.length === 0) {
+        return <div>Exercise Plans not found!</div>;
+    }
+    
+    const exercisePlan = planData.find(
+        (plan) =>
+            plan.id === filteredExercisePlans[0]["plan-data-id"]
+    );
+
  
     return (
         <div className={background.default}>
@@ -18,7 +34,7 @@ export default function ExercisePlan() {
                         <h1>Exercise Plans</h1>
                             <EditIcon onClick={()=> setIsEditing(!isEditing)}/>
                     </Stack>
-                    <h2>Arms Day</h2>
+                    <h2>{exercisePlan.title}</h2>
                 </div>
                 <div className="Table">
                     <Table isEditing={isEditing}/>

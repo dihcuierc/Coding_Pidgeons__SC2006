@@ -7,7 +7,7 @@ import SearchBar from '../components/searchbar/SearchBar'
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import ExerciseCard from "./ExerciseCard";
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 
 export default function Workout() {
     return (
@@ -26,7 +26,7 @@ export default function Workout() {
               </div>
               <Carousel responsive={responsive} showDots={true} infinite={true}>
                 {planData.map((plan) => (
-                  <ExerciseCard link={"/workout/exerciseplan/"} key={plan.id} title={plan.title} />
+                  <ExerciseCard link={`exerciseplan/${plan.id}`} key={plan.id} title={plan.title} />
                 ))}
               </Carousel>
             </div>
@@ -39,6 +39,7 @@ export default function Workout() {
                   ))}
               </Carousel>
             </div>
+            <Outlet />
         </div>
     )
 }
