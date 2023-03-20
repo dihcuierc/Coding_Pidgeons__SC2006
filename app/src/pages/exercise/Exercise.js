@@ -1,16 +1,34 @@
 import background from "../../assets/css/Background.module.css"
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './Exercise.css';
 import { useParams } from 'react-router-dom'
 import exercises from "../../data/exerciseData.json";
 import exerciseGroups from "../../data/exerciseGroupData.json";
 import { Link } from 'react-router-dom';
+import exerciseReviews from "../../data/exerciseReviews.json";
+import Rating from '@mui/material/Rating';
 
 
 export default function Exercise() {
     const { id } = useParams();
 
     const exercise = exercises.find((exercise) => exercise.id === parseInt(id));
+
+    const [reviews, setReviews] = useState([]);
+    const [averageRating, setAverageRating] = useState(0);
+
+    useEffect(() => {
+        const filteredReviews = exerciseReviews.filter((review) => review["exercise-id"] === exercise["id"]);
+        setReviews(filteredReviews);
+
+        const totalRating = filteredReviews.reduce((acc, filteredReviews) => {
+            return acc + filteredReviews.rating;
+          }, 0);
+        
+          const averageRating = totalRating / filteredReviews.length;
+          setAverageRating(averageRating);  
+      }, [exercise]);
+
 
     if (!exercise) {
         return <div>Exercise not found!</div>;
@@ -30,7 +48,19 @@ export default function Exercise() {
                 <div className="exercise-block">
                     <h1 className="exercise-title">{exercise.alt}</h1>
                     <p>{exerciseGroup.title} Exercise</p>
-                    <div className="exercise-rating">{generateStars(exercise.rating)}</div>
+                    <Rating 
+                        name="half-rating-read" 
+                        value={averageRating} 
+                        precision={0.1} 
+                        size="large" 
+                        sx={{
+                            '& .MuiRating-iconEmpty': {
+                                color: 'white',
+                            }
+                            }}
+                        readOnly 
+                    />
+                                
                     <img className="exercise-video" src={exercise.path} alt={exercise.alt} />
                 </div>
                 <div className="exercise-block">

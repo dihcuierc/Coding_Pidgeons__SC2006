@@ -15,8 +15,6 @@ import { styled } from '@mui/material/styles';
 export default function ExerciseReview() {
     const { id } = useParams();
     const exercise = exercises.find((exercise) => exercise.id === parseInt(id));
-    console.log(exercise);
-    console.log(id);
     const navigate = useNavigate();
     const [reviews, setReviews] = useState([]);
     const [averageRating, setAverageRating] = useState(0);
@@ -76,7 +74,20 @@ export default function ExerciseReview() {
                             <img className="exercise-video-review" src={exercise.path} alt={exercise.alt} style={{display: 'block', margin: 'auto'}}/>
                             <p style={{ textAlign: 'center' }}>Overall Rating For This Exercise:</p>
                             <Stack direction="horizontal" gap={2} style={{ display: 'flex', justifyContent: 'center' }}>
-                                <Rating name="half-rating-read" value={averageRating} precision={0.1} size="large" iconEmpty='white' readOnly />
+                                <Rating 
+                                    name="half-rating-read" 
+                                    value={averageRating} 
+                                    precision={0.1} 
+                                    size="large" 
+                                    sx={{
+                                        '& .MuiRating-iconEmpty': {
+                                          color: 'white',
+                                        }
+                                      }}
+                                    readOnly 
+                                />
+                                
+                                
                                 <h3 style={{paddingTop:'10px'}}>{averageRating.toFixed(1)}</h3>
                             </Stack>
                             <br></br>
