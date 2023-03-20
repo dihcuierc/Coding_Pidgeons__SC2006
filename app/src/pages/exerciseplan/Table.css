@@ -19,6 +19,14 @@
     background: #F03F58;
     border: none;
   }
+
+  .Table td input {
+    border: none;
+    background: #1f2938;
+    color: #FFF;
+    padding: 0.5rem;
+    border-radius: 5px;
+  }
   
 
 
