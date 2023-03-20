@@ -12,14 +12,6 @@ export default function Table({ isEditing, setIsEditing }) {
     setEditableData(newData);
   };
 
-  const handleSave = (event) => {
-    event.preventDefault();
-
-    const exercisePlanDataJSON = JSON.stringify(editableData);
-    setIsEditing(false);
-    console.log(exercisePlanDataJSON);
-  };
-
   const totalCaloriesBurned = exercisePlanData.reduce(
     (total, exercisePlan) => total + exercisePlan.caloriesBurned,
     0

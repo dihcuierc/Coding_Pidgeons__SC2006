@@ -14,6 +14,7 @@ export default function ExercisePlan() {
 
   const handleSave = (event) => {
     setIsEditing(false);
+    console.log(exercisePlanData)
   };
 
   const filteredExercisePlans = exercisePlanData.filter((exercisePlan) => {
