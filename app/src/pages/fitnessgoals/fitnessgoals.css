@@ -6,6 +6,8 @@
     display: flex;
   }
 
+
+
 .delete-fitness-goal{
     width: 5%;
     background-color: transparent;
@@ -50,4 +52,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.editfitnessgoalcard{
+    margin-bottom: 10px;
 }

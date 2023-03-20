@@ -11,29 +11,37 @@ import { common } from '@mui/material/colors';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import fitnessGoals from "../../data/fitnessGoals.json";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function FitnessGoals() {
-    const [goals, setGoals] = useState([]);
+    const [goals, setGoals] = useState(fitnessGoals.map(goal => ({ ...goal, checked: goal.done })));
 
-    // create function to fetch goals from database
+    const [checked, setChecked] = useState();
+    const sortedGoals = goals.sort((a, b) => new Date(b['due-date']) - new Date(a['due-date']));
 
-    const [checked, setChecked] = React.useState(true);
+    const success = () => toast.success("Goal deleted successfully");
+    
 
-    const handleGoalDoneClick = (event) => {
-        setChecked(event.target.checked);
-        if(event.target.checked) {
-            const today = new Date();
-            const sunday = new Date(today.setDate(today.getDate() - today.getDay() + 7));
-            const sundayFormatted = sunday.toLocaleDateString("en-US");
-            
-            //edit here for database
-            const updatedGoals = goals.filter((goal) => goal.date !== sundayFormatted);
-            setGoals(updatedGoals);
-          }
-      };
+    const handleGoalDoneClick = (event, id) => {
+        const updatedGoals = goals.map((goal) =>
+        goal.id === id ? { ...goal, checked: event.target.checked } : goal
+        );
+        setGoals(updatedGoals);
+        const sunday = new Date();
+        sunday.setDate(sunday.getDate() + (7 - sunday.getDay()) % 7 + 1); // get next Sunday
+        const formattedSunday = sunday.toLocaleDateString('en-GB'); // format to DD/MM/YYYY
+        
+        if (event.target.checked) {
+            const done = () => toast.success("Goal Completed! It will be removed on " + formattedSunday);
+            done();
+        }
+    }
 
-    function handleDeleteGoalClick() {
-      // handle click to delete goal
+    const handleDeleteGoalClick = (id) =>  {
+        const updatedGoals = goals.filter((goal) => goal.id !== id);
+        setGoals(updatedGoals);
+        success();
     }
     return (
         <div className={background.profile}>
@@ -50,88 +58,52 @@ export default function FitnessGoals() {
                                 </Link>
                             </Card.Body>
                         </Stack>
-                        <Card.Body>
-                            <Stack direction="horizontal">
-                                <Stack>
-                                    <Card.Body className="fitness-goal" >
-                                        <Stack direction="horizontal" gap={3}>
-                                            <Stack>
-                                                <p className="goal-to-achieve">Weight Goal</p>
-                                                <p className="current-standing">Current Weight</p>
-                                            </Stack>
-                                            <Stack>
-                                                <p className="goal-to-achieve">50kg </p>
-                                                <p className="current-standing">60kg </p>
-                                            </Stack>
-                                            <p className="goal-date">
-                                                <Stack direction="horizontal">
-                                                    10/2/2023
-                                                    <Stack>
-                                                    <FormGroup>
-                                                        <FormControlLabel control={
-                                                        <Checkbox onChange={handleGoalDoneClick}
-                                                            fontsize='large' sx={{
-                                                                color: common['white'],
-                                                                '&.Mui-checked': {
-                                                                color: common['white'],
-                                                                },
-                                                            }}/> 
-                                                        } label="Done" />
-                                                    </FormGroup>
-                                                    </Stack>
+                        {sortedGoals.map((goal) => (
+                            <Card.Body>
+                                <Stack direction="horizontal">
+                                    <Stack>
+                                        <Card.Body className="fitness-goal" >
+                                            <Stack direction="horizontal" gap={3}>
+                                                <Stack>
+                                                    <p className="goal-to-achieve">Target: {goal['goal-title']} </p>
+                                                   
                                                 </Stack>
-                                            </p>
-                                        </Stack>
-                                    </Card.Body>
-                                </Stack>
-                                <button className="delete-fitness-goal" onClick={handleDeleteGoalClick}>
-                                    <DeleteIcon/>
-                                </button>            
-                            </Stack>
-                        </Card.Body>
-
-
-
-                                        
-                        <Card.Body>
-                            <Stack direction="horizontal">
-                                <Stack>
-                                    <Card.Body className="fitness-goal" >
-                                        <Stack direction="horizontal">
-                                            <Stack>
-                                                <p className="goal-to-achieve">Weight Goal</p>
-                                                <p className="current-standing">Current Weight</p>
-                                            </Stack>
-                                            <Stack>
-                                                <p className="goal-to-achieve">50kg </p>
-                                                <p className="current-standing">60kg </p>
-                                            </Stack>
-                                            <p className="goal-date">
-                                                <Stack direction="horizontal">
-                                                    10/2/2023
-                                                    <Stack>
-                                                    <FormGroup>
-                                                        <FormControlLabel control={
-                                                        <Checkbox onChange={handleGoalDoneClick}
-                                                            fontsize='large' sx={{
-                                                                color: common['white'],
-                                                                '&.Mui-checked': {
-                                                                color: common['white'],
-                                                                },
-                                                            }}/> 
-                                                        } label="Done" />
-                                                    </FormGroup>
-                                                    </Stack>
+                                                <Stack>
+                                                    <p className="goal-to-achieve">Target: {goal['target-value']} </p>
+                                                    <p className="current-standing">Current: {goal['current-value']} </p>
                                                 </Stack>
-                                            </p>
-                                        </Stack>
-                                    </Card.Body>
+                                                <p className="goal-date" style={{marginLeft:"auto"}}>
+                                                    <Stack direction="horizontal">
+                                                        Aim: {goal['due-date']} 
+                                                        <Stack style={{paddingLeft:"20px"}}>
+                                                        <FormGroup>
+                                                            <FormControlLabel control={
+                                                            <Checkbox 
+                                                            checked={goal.checked}
+                                                            onChange={(event) => handleGoalDoneClick(event, goal.id)}
+                                                                fontsize='large' sx={{
+                                                                    color: common['white'],
+                                                                    '&.Mui-checked': {
+                                                                    color: common['white'],
+                                                                    },
+                                                                }}/> 
+                                                            } label="Done" />
+                                                            <Toaster />      
+                                                        </FormGroup>
+                                                        </Stack>
+                                                    </Stack>
+                                                </p>
+                                            </Stack>
+                                        </Card.Body>
+                                    </Stack>
+                                    <button className="delete-fitness-goal" onClick={() => handleDeleteGoalClick(goal.id)}>
+                                        <DeleteIcon/>
+                                    </button>
+                                    <Toaster />            
                                 </Stack>
-                                <button className="delete-fitness-goal" onClick={handleDeleteGoalClick}>
-                                    <DeleteIcon/>
-                                </button>            
-                            </Stack>
-                        </Card.Body>
+                            </Card.Body>
+
+                        ))}
                     </Card>
                
             </Container>
