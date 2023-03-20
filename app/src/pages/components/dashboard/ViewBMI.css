@@ -9,5 +9,12 @@
 
 .healthy{
   background-color: #D6FFDD;
+  border-radius: 12px;
+  align-content: center;
+  justify-content: center;
+  display: flex;
 }
 
+.BMIvalue{
+  
+}
