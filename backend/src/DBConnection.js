@@ -50,7 +50,7 @@ function collectRevData(){
 
 function collectOneRev(id){
     // id represents a User's unqiue id
-    const reviewRef = doc(db, 'Review', id)
+    const reviewRef = collection(db, 'Review')
     const review = query(reviewRef, where("id", "=", id))
     
     // collect all reviews from one user
@@ -64,7 +64,7 @@ function collectOneRev(id){
 }
 
 function collectGoalData(){
-    const goalRef = doc(db, 'Goal')
+    const goalRef = collection(db, 'Goal')
 
     onSnapshot(goalRef, (snapshot) => {
         let Goal = []
@@ -77,7 +77,7 @@ function collectGoalData(){
 
 function collectOneGoal(id){
     // id represents a User's unqiue id
-    const goalRef = doc(db, 'Goal', id)
+    const goalRef = collection(db, 'Goal')
     const goal = query(goalRef, where("id", "=", id))
     
     // collect all goals from one user
@@ -90,100 +90,153 @@ function collectOneGoal(id){
     })
 }
 
-function addUserData(id) {
+function collectExData(){
+    const ExRef = collection(db, 'Exercise')
+    onSnapshot(ExRef, (snapshot) => {
+        let Exercise = []
+        snapshot.docs.forEach((doc) => {
+            Exercise.push({...doc.data(), id: doc.id})
+        })
+        console.log(Exercise)
+    })
+}
+
+//Collect data of one exercise only
+function collectOneEx(exID){
+    // id represents an exercise's unqiue id
+    const ExRef = collection(db, 'Exercise')
+    const exercise = query(ExRef, where("exID", "=", exID))
+    
+    // collect one exercise only
+    onSnapshot(exercise, (doc) => {
+        console.log(doc.data(), doc.id)
+    })
+}
+
+function addUserData(new_id, new_password, new_firstName, new_lastName, new_username, new_email, new_profile, new_image, new_mobile) {
     // add User data
-    const addUser = document.querySelector('.add')
-    const UserRef = collection(db, 'User')
-    const user = query(UserRef, where("id", "=", id))
-    addUser.addEventListener('submit', (e) => {
-        e.preventDefault()
-
-        addDoc(user, {
-            //all the attributes
-            password: addUser.password.value,
-            firstName: addUser.firstName.value,
-            lastName: addUser.lastName.value,
-            username: addUser.username.value,
-            email: addUser.email.value,
-            profile: addUser.profile.value,
-            image: addUser.image.value,
-            mobile: addUser.mobile.value,
-            //goals, Reviews, friends can add separately
-            createdAt: serverTimestamp()
-        })
-        .then(() => {
-            addUser.reset()
-        })
+    const UserRef = collection(db, "User");
+    const data = {
+        //all the attributes
+        id: new_id,
+        password: new_password,
+        firstName: new_firstName,
+        lastName: new_lastName,
+        username: new_username,
+        email: new_email,
+        profile: new_profile,
+        image: new_image,
+        mobile: new_mobile,
+        //goals, Reviews, friends can add separately
+        createdAt: serverTimestamp()
+    }
+    addDoc(UserRef, data)
+    .then(() => {
+        console.log("User has been added successfully");
+    })
+    .catch(error => {
+        console.log(error);
     })
 }
 
-function addRevData(id){
+function addRevData(new_comment, new_name, new_rating, new_id){
     // add Review data
-    const addReview = document.querySelector('.add')
-    const reviewRef = collection(db, 'Review')
-    const review = query(reviewRef, where("id", "=", id))
-    addReview.addEventListener('submit', (e) => {
-        e.preventDefault()
-
-        addDoc(review, {
-            //all the attributes
-            comment: addReview.comment.value,
-            name: addReview.name.value,
-            rating: addReview.rating.value
-        })
+    const reviewRef = collection(db, "Review");
+    const data = {
+        //all the attributes
+        comment: new_comment,
+        name: new_name,
+        rating: new_rating,
+        id: new_id,
+        createdAt: serverTimestamp()
+    }
+    addDoc(reviewRef, data)
+    .then(() => {
+        console.log("Review has been added successfully");
+    })
+    .catch(error => {
+        console.log(error);
     })
 }
 
-function addGoalData(id){
+function addGoalData(new_calories, new_date, new_goalSetting, new_image, new_name, new_id){
     // add Goal data
-    const addGoal = document.querySelector('.add')
-    const goalRef = collection(db, 'Goal')
-    const goal = query(goalRef, where("id", "=", id))
-
-    addGoal.addEventListener('submit', (e) => {
-        e.preventDefault()
-
-        addDoc(goal, {
-            //all the attributes
-            calories: addGoal.calories.value,
-            date: addGoal.date.value,
-            goalSetting: addGoal.goalSetting.value,
-            image: addGoal.image.value,
-            name: addGoal.name.value
-        })
+    const goalRef = collection(db, "Goal");
+    const data = {
+        //all the attributes
+        calories: new_calories,
+        date: new_date,
+        goalSetting: new_goalSetting,
+        image: new_image    ,
+        name: new_name,
+        id: new_id,
+        createdAt: serverTimestamp()
+    }
+    addDoc(goalRef, data)
+    .then(() => {
+        console.log("Goal has been added successfully");
+    })
+    .catch(error => {
+        console.log(error);
     })
 }
 
-//SEARCH HOW TO DELETE FOR A PARTICULAR DOCUMENT FROM A COLLECTION
-
-function deleteUserData(id) {
-    // delete User data
-    const deleteUser = document.querySelector('.delete')
-    deleteUser.addEventListener('submit', (e) => {
-        e.preventDefault
-        // require the input field of the document to delete
-        const UserRef = doc(db, 'User', id, deleteUser.id.value)
-
-        deleteDoc(UserRef)
-            .then(() => {
-                deleteUser.reset()
-            })
+function addExData(new_calories, new_date, new_goalSetting, new_image, new_name, new_id){
+    // add new exercise data
+    const goalRef = collection(db, "Exercise");
+    const data = {
+        //all the attributes
+        exID: new_exID,
+        
+        createdAt: serverTimestamp()
+    }
+    addDoc(goalRef, data)
+    .then(() => {
+        console.log("Goal has been added successfully");
+    })
+    .catch(error => {
+        console.log(error);
     })
 }
 
-function deleteRevData(id){
+function deleteUserData(docID) {
+    // delete User data using document's ID
+    const UserRef = doc(db, "User", docID)
+
+    deleteDoc(UserRef)
+    .then(() => {
+        console.log("User has been deleted successfully.")
+    })
+    .catch(error => {
+        console.log(error);
+    })
+}
+
+function deleteRevData(docID){
     // delete Review data
-    const deleteReview = document.querySelector('.delete')
-    deleteReview.addEventListener('submit', (e) => {
-        e.preventDefault
-        // require the input field (id) of the review to delete
-        const reviewRef = doc(db, 'User', id, deleteReview.id.value)
+    const reviewRef = doc(db, "Review", docID)
 
-        deleteDoc(reviewRef)
-            .then(() => {
-                deleteReview.reset()
-            })
+    deleteDoc(reviewRef)
+    .then(() => {
+        console.log("Review has been deleted successfully.")
+    })
+    .catch(error => {
+        console.log(error);
     })
 }
+
+function deleteGoalData(docID){
+    // delete Goal data
+    const goalRef = doc(db, "Goal", docID)
+
+    deleteDoc(goalRef)
+    .then(() => {
+        console.log("Goal has been deleted successfully.")
+    })
+    .catch(error => {
+        console.log(error);
+    })
+}
+
 export {collectUserData, collectOneUser, addUserData, deleteUserData, collectRevData, collectOneRev, addRevData, deleteRevData,
-    collectGoalData, collectOneGoal, addGoalData};
+    collectGoalData, collectOneGoal, addGoalData, deleteGoalData};
