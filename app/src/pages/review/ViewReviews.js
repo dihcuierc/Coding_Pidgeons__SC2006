@@ -1,6 +1,6 @@
 import Card from "react-bootstrap/Card";
 import Stack from "react-bootstrap/Stack";
-import React, {useState} from "react";
+import React, {useState, useEffect } from "react";
 import background from "../../assets/css/Background.module.css"
 import Container from "react-bootstrap/esm/Container";
 import './ViewReviews.css';
@@ -12,16 +12,24 @@ export default function ViewReviews() {
 
     const [reviews, setReviews] = useState(exerciseReviews);
 
-    const sortedReviews = exerciseReviews.sort((a, b) => {
+    const sortedReviews = reviews.sort((a, b) => {
         const dateA = a.date.split('/').reverse().join('-');
         const dateB = b.date.split('/').reverse().join('-');
         return new Date(dateB) - new Date(dateA);
       });
 
+      useEffect(() => {
+        setReviews(reviews);
+      }, [reviews]);
+
       const handleDeleteReview = (id) => {
+        console.log("Deleting review with id", id);
+        console.log("Current reviews state:", reviews);
+        
         const updatedReviews = reviews.filter(review => review.id !== id);
+        console.log("Updated reviews state:", updatedReviews);
+        
         setReviews(updatedReviews);
-        console.log("deleted");
     };
 
     return (
@@ -39,8 +47,6 @@ export default function ViewReviews() {
                                     <div className='exercise-review-picture'>
                                         <img className="exercise-video-small" src={review.path} alt={review.alt} style={{display: 'block', margin: 'auto'}}/>
                                     </div>
-                                   
-                                        
                                         <div className='individual-review'>
                                             <Stack direction="horizontal" gap={3}>
                                                 <div className='profile-review-profile'>
@@ -57,12 +63,10 @@ export default function ViewReviews() {
                                                 <p></p>
                                             </Stack> 
                                         </div>
-                                        <button className="delete-review" onClick={() => handleDeleteReview(review.id)}>
+                                        <button className="delete-review" onClick={() => handleDeleteReview(review["id"])}>
                                             <DeleteIcon/>
                                         </button>
                                         </Stack>
-
-                               
                             </Card.Body>
                         
                         ))}

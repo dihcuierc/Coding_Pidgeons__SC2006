@@ -40,6 +40,7 @@ export default function AddExerciseReview(prop) {
             "path": exercise.path,
             "alt": exercise.alt,
             "exercise-group-id": exercise["exercise-group-id"],
+            "exercise-id": exercise.id,
             "rating": value,
             "text": review,
             "date": formattedDate

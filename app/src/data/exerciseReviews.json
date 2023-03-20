@@ -6,6 +6,7 @@
       "date":"10/3/2023",
       "text": "Bad Exercise",
       "exercise-group-id": 4,
+      "exercise-id": 1,
       "rating": 2
       
     },
@@ -16,6 +17,7 @@
       "text": "Trash exercise",
       "date":"10/3/2023",
       "exercise-group-id": 5,
+      "exercise-id": 2,
       "rating": 4
     }
     
