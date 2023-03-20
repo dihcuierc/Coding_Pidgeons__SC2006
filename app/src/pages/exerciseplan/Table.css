@@ -10,44 +10,26 @@
     width: 100%;
   }
   
-  .Table td,
+  .Table td:not(.delete-row),
   .Table th {
     padding: 12px;
     text-align: left;
     border: 1px solid #FFF;
+    background-color: inherit;
   }
   
   .Table th {
     background-color: #091321;
   }
   
-  .Table tr:nth-child(even) {
+  .Table tr:not(:last-child):nth-child(even) td:not(:last-child){
     background-color: #0D47A1;
   }
   
-  .Table tr:nth-child(odd) {
+  .Table tr:not(:last-child):nth-child(odd) td:not(:last-child){
     background-color: #1565C0;
   }
 
-  .table-save{
-    background-color: transparent;
-    color: #FFF;
-    border-collapse: collapse;
-    width: 100%;
-    text-align: right;
-    margin-top: 3rem;
-  }
-
-  .table-save button {
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    border: none;
-    background-color: #4CAF50;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-  }
-
-  .table-save button:hover {
-    background-color: #3e8e41;
+  .last-row {
+    background-color: #0D47A1;
   }

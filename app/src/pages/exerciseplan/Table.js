@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Table.css";
 import exercisePlanData from "../../data/exercisePlanData.json";
 import DeleteIcon from "@mui/icons-material/Delete";
+import IconButton from "@mui/material/IconButton";
 
 export default function Table({ isEditing, setIsEditing }) {
   const [editableData, setEditableData] = useState(exercisePlanData);
@@ -9,6 +10,12 @@ export default function Table({ isEditing, setIsEditing }) {
   const handleEdit = (index, field, newValue) => {
     const newData = [...editableData];
     newData[index][field] = newValue;
+    setEditableData(newData);
+  };
+
+  const handleDelete = (index) => {
+    const newData = [...editableData];
+    newData.splice(index, 1);
     setEditableData(newData);
   };
 
@@ -75,32 +82,26 @@ export default function Table({ isEditing, setIsEditing }) {
                 )}
               </td>
               <td>{exercisePlan.caloriesBurned}</td>
-              {/* {isEditing ? (
-                <td >
-                  <DeleteIcon
-                    onClick={() => {
-                      const newData = [...editableData];
-                      newData.splice(index, 1);
-                      setEditableData(newData);
-                    }}
-                  />
+              {isEditing && (
+                <td className="delete-row">
+                  <IconButton
+                    aria-label="delete"
+                    size="small"
+                    onClick={() => handleDelete(index)}
+                  >
+                    <DeleteIcon color="error" />
+                  </IconButton>
                 </td>
-              ) : (
-                <></>
-              )} */}
+              )}
             </tr>
           ))}
-          <tr>
+
+          <tr className="last-row">
             <td colSpan="5">Total Calories Burned</td>
             <td>{totalCaloriesBurned}</td>
           </tr>
         </tbody>
       </table>
-      {/* {isEditing && (
-        <div className="table-save">
-          <button onClick={handleSave}>Save</button>
-        </div>
-      )} */}
     </div>
   );
 }
