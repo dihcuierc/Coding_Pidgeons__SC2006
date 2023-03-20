@@ -4,8 +4,12 @@ import exercisePlanData from "../../data/exercisePlanData.json";
 import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
 
-export default function Table({ isEditing, setIsEditing }) {
+export default function Table({ isEditing }) {
   const [editableData, setEditableData] = useState(exercisePlanData);
+  const [caloriesBurn, setCaloriesBurn] = useState(exercisePlanData.reduce(
+    (total, exercisePlan) => total + exercisePlan.caloriesBurned,
+    0
+  ));
 
   const handleEdit = (index, field, newValue) => {
     const newData = [...editableData];
@@ -17,12 +21,12 @@ export default function Table({ isEditing, setIsEditing }) {
     const newData = [...editableData];
     newData.splice(index, 1);
     setEditableData(newData);
+    handleCaloriesBurn(caloriesBurn - editableData[index].caloriesBurned)
   };
 
-  const totalCaloriesBurned = exercisePlanData.reduce(
-    (total, exercisePlan) => total + exercisePlan.caloriesBurned,
-    0
-  );
+  const handleCaloriesBurn = (newValue) => {
+    setCaloriesBurn(newValue);
+  };
 
   return (
     <div className="Table-container">
@@ -38,9 +42,9 @@ export default function Table({ isEditing, setIsEditing }) {
           </tr>
         </thead>
         <tbody>
-          {exercisePlanData.map((exercisePlan, index) => (
+          {editableData.map((exercisePlan, index) => (
             <tr key={index}>
-              <td>{exercisePlan.id}</td>
+              <td>{index + 1}</td>
               <td>{exercisePlan.exerciseName}</td>
               <td>
                 {isEditing ? (
@@ -98,7 +102,7 @@ export default function Table({ isEditing, setIsEditing }) {
 
           <tr className="last-row">
             <td colSpan="5">Total Calories Burned</td>
-            <td>{totalCaloriesBurned}</td>
+            <td>{caloriesBurn}</td>
           </tr>
         </tbody>
       </table>

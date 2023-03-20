@@ -22,11 +22,11 @@
     background-color: #091321;
   }
   
-  .Table tr:not(:last-child):nth-child(even) td:not(:last-child){
+  .Table tr:nth-child(even){
     background-color: #0D47A1;
   }
   
-  .Table tr:not(:last-child):nth-child(odd) td:not(:last-child){
+  .Table tr:nth-child(odd){
     background-color: #1565C0;
   }
 
