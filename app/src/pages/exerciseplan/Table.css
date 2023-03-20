@@ -1,12 +1,10 @@
 .Table-container {
-    width: 100%;
     margin: 0 auto;
-    
   }
   
   .Table {
     color: #FFF;
-    border-collapse: collapse;
+    border-collapse: none;
     width: 100%;
   }
   
@@ -14,22 +12,14 @@
   .Table th {
     padding: 12px;
     text-align: left;
-    border: 1px solid #FFF;
-    background-color: inherit;
-  }
-  
-  .Table th {
-    background-color: #091321;
-  }
-  
-  .Table tr:nth-child(even){
-    background-color: #0D47A1;
-  }
-  
-  .Table tr:nth-child(odd){
-    background-color: #1565C0;
+    border: none;
   }
 
-  .last-row {
-    background-color: #0D47A1;
+  .Table th {
+    background: #F03F58;
+    border: none;
   }
+  
+
+
+

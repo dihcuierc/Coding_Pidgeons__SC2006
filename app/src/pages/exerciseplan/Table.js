@@ -39,6 +39,7 @@ export default function Table({ isEditing }) {
             <th>Sets</th>
             <th>Rest (seconds)</th>
             <th>Calories Burned</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -100,7 +101,7 @@ export default function Table({ isEditing }) {
             </tr>
           ))}
 
-          <tr className="last-row">
+          <tr>
             <td colSpan="5">Total Calories Burned</td>
             <td>{caloriesBurn}</td>
           </tr>

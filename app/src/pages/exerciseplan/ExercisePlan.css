@@ -9,6 +9,13 @@
     padding: 0 0 15px 0;
   }
 
+  .table{
+    background-color: #17202d;
+    color: #FFF;
+    padding: 2rem;
+    border-radius: 10px;
+  }
+
   .table-save{
     background-color: transparent;
     color: #FFF;

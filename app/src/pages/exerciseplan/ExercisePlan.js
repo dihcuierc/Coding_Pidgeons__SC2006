@@ -39,9 +39,8 @@ export default function ExercisePlan() {
           </Stack>
           <h2>{exercisePlan.title}</h2>
         </div>
-        <div className="Table">
+        <div className="table">
           <Table isEditing={isEditing} />
-
           {isEditing && (
             <div className="table-save">
               <button onClick={handleSave}>Save</button>
