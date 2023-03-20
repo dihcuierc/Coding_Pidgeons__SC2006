@@ -22,13 +22,8 @@ export default function ViewReviews() {
         setReviews(reviews);
       }, [reviews]);
 
-      const handleDeleteReview = (id) => {
-        console.log("Deleting review with id", id);
-        console.log("Current reviews state:", reviews);
-        
+      const handleDeleteReview = (id) => {        
         const updatedReviews = reviews.filter(review => review.id !== id);
-        console.log("Updated reviews state:", updatedReviews);
-        
         setReviews(updatedReviews);
     };
 

@@ -1,0 +1,20 @@
+[
+    {
+      "id": 1,
+      "goal-title": "Do 20 push ups",
+      "due-date":"10/3/2023",
+      "target-value": "1000",
+      "current-value": "20",
+      "done": false
+    },
+    {
+        "id": 2,
+        "goal-title": "have a 20 inch dick",
+        "due-date":"10/3/2023",
+        "target-value": "20",
+        "current-value": "1",
+        "done": false
+    }
+    
+]
+  
