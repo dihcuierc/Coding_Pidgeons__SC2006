@@ -10,7 +10,7 @@ import Card from 'react-bootstrap/Card';
 
 function LeftTabsExample() {
   return (
-    <Card>
+    <Card className="d-flex flex-wrap justify-content-center align-content-center ">
     <Tab.Container class = "ul.nav.nav-tabs" id="left-tabs-example" defaultActiveKey="first">
       <Row>
         <Col sm={3}>
