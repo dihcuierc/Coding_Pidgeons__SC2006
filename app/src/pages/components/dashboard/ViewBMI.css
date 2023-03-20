@@ -9,5 +9,21 @@
 
 .healthy{
   background-color: #D6FFDD;
+  border-radius: 12px;
+  align-content: center;
+  justify-content: center;
+  display: flex;
 }
 
+.BMIvalue{
+  color: white;
+}
+
+.BMITitle{
+  color:white;
+  margin-left:20px;
+  margin-bottom: 20px;
+  
+  height:50px;
+  padding-top: 20px;
+}
