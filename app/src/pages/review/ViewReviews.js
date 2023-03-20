@@ -43,7 +43,6 @@ export default function ViewReviews() {
                                 <Stack direction="horizontal" gap={3} style={{width:"100%"}}>
                                     <div className='exercise-review-picture'>
                                         <img className="exercise-video-small" src={review.path} alt={review.alt} style={{display: 'block', margin: 'auto'}}/>
-                                        <img className="exercise-video-small" src={review.path} alt={review.alt} style={{display: 'block', margin: 'auto'}}/>
                                     </div>
                                         <div className='individual-review'>
                                             <Stack direction="horizontal" gap={3}>
