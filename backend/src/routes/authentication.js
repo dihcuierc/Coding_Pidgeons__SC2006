@@ -1,36 +1,52 @@
 import express from "express";
 
-import {signUp} from "../controller/authController";
+import {logIn, logOut, signUp, verify} from "../controller/authController";
 
 const router = express.Router();
 
-router.post('/signup', async(req, res) => {
-    const auth = req.headers["authorization"]
-    if (!auth) {
-        res.setHeader('WWW-Authenticate', 'Basic realm="Secure Area"');
-        res.status(401).send({Error: "There are no authorization placed in header"});
-        return;
-    }
-    const {authenticated, err, accessToken,verified} = await signUp(auth);
-    console.log(authenticated);
-    if (!authenticated) {
-        res.status(400).send({Error : "Unable to sign up to Firebase", description: err});
-        return;
-    }
-    sendSuccess(accessToken,res);
+router.post('/signup', async(req, res, next) => {
+    let b64auth = (req.header("authorization") || '');
+    const {authenticated, err, accessToken} = await signUp(b64auth);
+    if (!authenticated)
+        return next(err);
+    sendSuccessAuthentication(accessToken,res);
 });
 
-router.post("/login", async(req,res) => {
-
+router.post("/signin", async(req,res, next) => {
+    let b64auth = (req.header("authorization") || '');
+    const { authenticated, err, accessToken, verified} = await logIn(b64auth);
+    if (!authenticated)
+        return next(err);
+    sendSuccessAuthentication(accessToken,res);
 })
 
 router.post('/forget-password', async(req,res) => {
 
 })
 
-function sendSuccess(accessToken,res) {
+router.post('/signout', async(req,res) => {
+    let header = req.header["authorization"];
+    if (!header) {
+        res.setHeader('WWW-Authenticate', 'Basic realm="Secure Area"');
+        res.status(401).send({Error: "There are no authorization placed in header"});
+        return;
+    }
+    const {loggedOut, err} = await logOut(header);
+
+})
+
+router.post('/verifyEmail', async(req,res,next) => {
+    const {verified,err} = await verify();
+    if (!verified) {
+        return next(err);
+    }
+    res.status(200).send({message: "success"});
+})
+
+
+function sendSuccessAuthentication(accessToken,res) {
     res.setHeader('Authorization', "Bearer " + accessToken);
-    res.status(200).send({description: "success"});
+    res.status(200).send({message: "success"});
 }
 
 export default router;

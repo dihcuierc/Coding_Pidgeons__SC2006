@@ -1,20 +1,21 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Navbar from "./navbar/Navbar";
-import Login from "../pages/login/Login"
-import NotFound from "../pages/error/NotFound";
-import Register from "../pages/register/Register"
-import Forget from "../pages/login/Forget";
-import Facilities from "../pages/facilities/Facilities";
-import Verify from "../pages/register/Verify";
-import Profile from "../pages/profile/Profile";
-import ExercisePlan from '../pages/exerciseplan/ExercisePlan';
-import ExerciseCarousel from '../pages/exercisecarousel/ExerciseCarousel';
-import Exercise from '../pages/exercise/Exercise';
-import Workout from '../pages/workout/Workout';
-import ScheduleExercise from '../pages/scheduleExercise/ScheduleExercise';
-import FitnessGoals from '../pages/fitnessgoals/fitnessgoals';
-import EditFitnessGoals from '../pages/fitnessgoals/editfitnessgoals';
-
+import Login from "../../login/Login"
+import NotFound from "../../error/NotFound";
+import Register from "../../register/Register"
+import Forget from "../../login/Forget";
+import Facilities from "../../facilities/Facilities";
+import Verify from "../../register/Verify";
+import Profile from "../../profile/Profile";
+import ExercisePlan from '../../exerciseplan/ExercisePlan';
+import ExerciseCarousel from '../../exercisecarousel/ExerciseCarousel';
+import Exercise from '../../exercise/Exercise';
+import Workout from '../../workout/Workout';
+import ScheduleExercise from '../../scheduleExercise/ScheduleExercise';
+import FitnessGoals from '../../fitnessgoals/fitnessgoals';
+import EditFitnessGoals from '../../fitnessgoals/editfitnessgoals';
+import ExerciseReview from "../../exercise/ExerciseReview";
+import AddExerciseReview from "../../exercise/AddExerciseReview"
 
 function Routing() {
     return (
@@ -39,8 +40,9 @@ function Routing() {
                 {/* <Route path="workout/exerciseview" element={<ExerciseCarousel/>}/>  */}
                 <Route path="workout/exerciseview/:id" element={<ExerciseCarousel/>}/>    
                 <Route path="workout/exerciseview/exercise/:id" element={<Exercise/>}/>
-                
-                
+                <Route path="workout/exerciseview/exercise/:id/exercisereview" element={<ExerciseReview/>}/>
+                <Route path="workout/exerciseview/exercise/:id/exercisereview/add" element={<AddExerciseReview/>}/>
+       
                 <Route path="*" element={<NotFound/>}/>
            </Route>
         </Routes>
