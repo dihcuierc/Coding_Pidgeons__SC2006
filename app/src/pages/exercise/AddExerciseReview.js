@@ -89,7 +89,8 @@ export default function AddExerciseReview(prop) {
                                         sx={{
                                             '& .MuiRating-iconEmpty': {
                                                 color: 'white',
-                                            }
+                                            },
+                                            fontSize: "4rem"
                                             }}
                                     
                                         />

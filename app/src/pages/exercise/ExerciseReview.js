@@ -72,7 +72,7 @@ export default function ExerciseReview() {
                     <Stack direction="horizontal" gap={5}>
                         <div className='all-exercise-review-details'>
                             <img className="exercise-video-review" src={exercise.path} alt={exercise.alt} style={{display: 'block', margin: 'auto'}}/>
-                            <p style={{ textAlign: 'center' }}>Overall Rating For This Exercise:</p>
+                            <h3 style={{ textAlign: 'center', marginTop:"10px" }}>Overall Rating For This Exercise:</h3>
                             <Stack direction="horizontal" gap={2} style={{ display: 'flex', justifyContent: 'center' }}>
                                 <Rating 
                                     name="half-rating-read" 
@@ -82,7 +82,8 @@ export default function ExerciseReview() {
                                     sx={{
                                         '& .MuiRating-iconEmpty': {
                                           color: 'white',
-                                        }
+                                        },
+                                        fontSize: "4rem"
                                       }}
                                     readOnly 
                                 />
