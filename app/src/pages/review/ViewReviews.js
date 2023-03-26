@@ -33,9 +33,9 @@ export default function ViewReviews() {
     };
 
     return (
-        <div className={background.profile}>
+        <div className={background.default}>
             <Container className='profile-review-container'>
-                <Card className='profile-review-card' style={{backgroundColor: 'transparent', border:'none'}}>
+                <Card className='profile-review-card ' style={{border:'none', background : "transparent"}}>
             
                     <Card.Title className='profile-review-title'>
                         All Your Reviews
@@ -43,7 +43,7 @@ export default function ViewReviews() {
                   
                     <Stack direction="vertical" gap={3}>
                         {sortedReviews.map(review => (
-                            <Card.Body className='user-review'  key={review.id}>
+                            <Card.Body className='user-review'  key={review.id} >
                                
                                 <Stack direction="horizontal" gap={3} style={{width:"100%"}}>
                                     <div className='exercise-review-picture'>
