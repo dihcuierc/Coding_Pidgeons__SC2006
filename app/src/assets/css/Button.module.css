@@ -4,3 +4,10 @@
     --bs-bg-opacity: 1;
     color: rgb(var(--bs-light));
 }
+
+.add_exercise {
+    position: absolute;
+    top: 50px;
+    left: 292px;
+    border-radius: 100%;
+}
