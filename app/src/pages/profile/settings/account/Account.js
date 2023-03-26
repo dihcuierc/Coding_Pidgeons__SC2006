@@ -54,8 +54,7 @@ function RegisterForm() {
             validationSchema={schema}
             onSubmit={console.log}
             initialValues={{
-                firstName: "",
-                lastName: "",
+                username: "",
                 email: "",
                 password: "",
                 confirmPassword: ""
@@ -71,33 +70,18 @@ function RegisterForm() {
             }) => (
                 <Form onSubmit={handleSubmit} className="text-light ms-3 ms-sm-2">
     
-                    <Form.Group as={Col} className="mb-3" controlId="fNameInput">
-                        <FloatingLabel className="text-dark" label="First Name">
-                            <Form.Control
-                                type="text"
-                                placeholder="John"
-                                name="firstName"
-                                value={values.firstName}
-                                onChange={handleChange}
-                                isInvalid={!!errors.firstName && touched.firstName}
-                            />
-                            <Form.Control.Feedback type="invalid" tooltip>
-                                {errors?.firstName}
-                            </Form.Control.Feedback>
-                        </FloatingLabel>
-                    </Form.Group>
-                    <Form.Group as={Col} className="mb-3" controlId="lNameInput">
-                        <FloatingLabel className="text-dark" label="Last Name">
+                    <Form.Group as={Col} className="mb-3" controlId="UserNameInput">
+                        <FloatingLabel className="text-dark" label="User Name">
                             <Form.Control
                                 type="text"
                                 placeholder="Doe"
-                                name="lastName"
-                                value={values.lastName}
+                                name="username"
+                                value={values.username}
                                 onChange={handleChange}
-                                isInvalid={!!errors.lastName && touched.lastName}
+                                isInvalid={!!errors.username && touched.username}
                             />
                             <Form.Control.Feedback type="invalid" tooltip>
-                                {errors?.lastName}
+                                {errors?.username}
                             </Form.Control.Feedback>
                         </FloatingLabel>
                     </Form.Group>

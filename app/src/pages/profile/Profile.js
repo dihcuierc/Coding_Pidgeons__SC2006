@@ -19,13 +19,14 @@ import LogoutIcon from '@mui/icons-material/Logout';
 
 export default function Profile() {
     return (
+        
         <Tab.Container
             variant="pills"
             id="sideBarTabs"
             defaultActiveKey="dashboard">
-            <Row className="me-0">
-                <Col sm={2} md={1} className="my-auto p-3">
-                    <Nav variant="pills" className="flex-column">
+            <Row className="me-0" >
+                <Col sm={1} md={1} className="my-auto p-3" >
+                    <Nav variant="pills" className="flex-column" >
                         <Nav.Item>
                             <Nav.Link eventKey="dashboard"><DashboardIcon/></Nav.Link>
                         </Nav.Item>
@@ -36,11 +37,11 @@ export default function Profile() {
                             <Nav.Link eventKey="settings"><SettingsIcon/></Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link eventKey="logout"><LogoutIcon/></Nav.Link>
+                            <Nav.Link eventKey="Logout"><LogoutIcon/></Nav.Link>
                         </Nav.Item>
                     </Nav>
                 </Col>
-                <Col sm={10} md={11} className={`${background.profile}`}>
+                <Col sm={10} md={11}>
                     <Tab.Content className="h-100">
                         <Tab.Pane eventKey="dashboard" className="h-100">
                             <Dashboard/>

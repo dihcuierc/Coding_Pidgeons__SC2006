@@ -7,25 +7,25 @@ import Account from "../../profile/settings/account/Account";
 import Notifications from "../../profile/settings/notifications/Notifications";
 import Security from "../../profile/settings/Security/Security"
 import Card from 'react-bootstrap/Card';
+import background from "../../../assets/css/Background.module.css";
 
 function LeftTabsExample() {
   return (
-    <Card className="d-flex flex-wrap justify-content-center align-content-center ">
-    <Tab.Container class = "ul.nav.nav-tabs" id="left-tabs-example" defaultActiveKey="first">
+    <div className={`${background.default} p-5`}>
+    <Card className="card mx-auto col d-flex flex-wrap justify-content-center align-content-center" style = {{paddingTop : "25px" , width : "50%", display : "flex" }}> 
+    <Card.Body className="col d-flex flex-wrap justify-content-center align-content-center" style={{border:'none'}}>
+    <Tab.Container className="h-100" class = "ul.nav.nav-tabs" id="left-tabs-example" defaultActiveKey="first">
       <Row>
         <Col sm={3}>
-          <Nav variant="pills" className="flex-column">
+          <Nav variant="pills" className="h-100">
             <Nav.Item>
               <Nav.Link eventKey="first">Account</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="second">Followers & Following</Nav.Link>
+              <Nav.Link eventKey="second">Notifications</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="third">Notifications</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="forth">Security</Nav.Link>
+              <Nav.Link eventKey="third">Security</Nav.Link>
             </Nav.Item>
           </Nav>
         </Col>
@@ -36,15 +36,11 @@ function LeftTabsExample() {
             {<Account/>}
             </Tab.Pane>
 
-            <Tab.Pane eventKey="second">            
-            
-            </Tab.Pane>
-
-            <Tab.Pane eventKey="third">           
+            <Tab.Pane eventKey="second">           
             {<Notifications/>}
             </Tab.Pane>
 
-            <Tab.Pane eventKey="forth">           
+            <Tab.Pane eventKey="third">           
             {<Security/>}
             </Tab.Pane>
 
@@ -52,7 +48,9 @@ function LeftTabsExample() {
         </Col>
       </Row>
     </Tab.Container>
+    </Card.Body>
     </Card>
+    </div>
   );
 }
 
