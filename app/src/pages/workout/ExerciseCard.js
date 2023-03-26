@@ -7,11 +7,13 @@ import ButtonStyle from "../../assets/css/Button.module.css";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import IconButton from "@mui/material/IconButton";
 import PlanData from "../../data/planData.json";
+import ExercisePlanData from "../../data/exercisePlanData.json"
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
 export default function ExerciseCard(props) {
   const [anchorEl, setAnchorEl] = useState(null);
+  const [selectedPlan, setSelectedPlan] = useState(null);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -20,6 +22,21 @@ export default function ExerciseCard(props) {
   const handleClose = (event) => {
     setAnchorEl(null);
   };
+
+  // need to adjust the exercisePlanData to fit the new data structure
+  const handleAddToExercisePlan = () => {
+    if (selectedPlan) {
+      const newExercisePlan = {
+        id: ExercisePlanData.length + 1,
+        title: props.title,
+        plan: selectedPlan.title,
+        imageUrl: props.imageUrl
+      };
+      ExercisePlanData.push(newExercisePlan);
+      console.log(ExercisePlanData);
+      setAnchorEl(null);
+    }
+  }
 
   return (
     <div>
@@ -38,7 +55,11 @@ export default function ExerciseCard(props) {
             onClose={handleClose}
           >
             {PlanData.map((plan) => (
-              <MenuItem key={plan.id} onClick={handleClose}>
+              <MenuItem key={plan.id} onClick={() => {
+                setSelectedPlan(plan);
+                console.log(plan)
+                handleAddToExercisePlan();
+              }}>
                 {plan.title}
               </MenuItem>
             ))}
