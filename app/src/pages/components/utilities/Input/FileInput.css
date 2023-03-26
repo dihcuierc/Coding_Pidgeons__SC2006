@@ -1,0 +1,48 @@
+.upload-button {
+    cursor: pointer;
+    padding: 0.25rem;
+    font: 1rem "Oswald", sans-serif;
+    border: none !important;
+    background-color: transparent !important;
+    color: black !important;
+}
+
+.upload-button:hover {
+    text-decoration-line: underline;
+}
+
+#form-file {
+    height: 100px;
+    max-width: 600px;
+    text-align: center;
+    border: 2px dashed #202020 !important;
+    position: relative;
+}
+
+#input-file {
+    display: none;
+}
+
+#label-file {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    background-color: #f8fafc;
+}
+
+#label-file:-moz-drag-over {
+    background-color: #ffffff;
+}
+
+#drag-file {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+}

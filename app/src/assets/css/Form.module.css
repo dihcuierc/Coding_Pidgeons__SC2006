@@ -13,6 +13,17 @@
 .forget {
     width: 400px !important;
     max-height: 450px !important;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    padding: 1.5rem;
+}
+
+.setup {
+    width: 600px !important;
+    max-height: 600px !important;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    padding: 1.5rem;
 }
 
 .error {

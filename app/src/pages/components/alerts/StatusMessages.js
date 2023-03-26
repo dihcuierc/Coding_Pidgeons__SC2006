@@ -4,18 +4,14 @@ import {Alert} from "react-bootstrap";
 function StatusMessages({error, message}) {
     if (message) {
         return (
-            <>
-                <Alert className="pb-0 mt-3 bg-transparent text-success border-success">
-                    <p>{message}</p>
-                </Alert>
-            </>
+            <Alert className="pb-0 mt-3 bg-transparent text-success border-success">
+                <p>{message}</p>
+            </Alert>
         )
     }
     else if (error){
         return (
-            <>
-                <ErrorMessages error={error}/>
-            </>
+            <ErrorMessages error={error}/>
         )
     }
 }
