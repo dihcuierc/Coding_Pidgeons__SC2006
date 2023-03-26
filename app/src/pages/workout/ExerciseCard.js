@@ -6,7 +6,6 @@ import CardHeader from "@mui/material/CardHeader";
 import ButtonStyle from "../../assets/css/Button.module.css";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import IconButton from "@mui/material/IconButton";
-import ExercisePlan from "../../data/exercisePlanData.json";
 import PlanData from "../../data/planData.json";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -18,7 +17,7 @@ export default function ExerciseCard(props) {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleClose = (event) => {
     setAnchorEl(null);
   };
 
