@@ -42,6 +42,7 @@ export default function ExerciseCarousel() {
               key={exercise.id}
               imageUrl={exercise.path}
               title={exercise.alt}
+              addExercise={true}
             />
           ))}
         </Carousel>
