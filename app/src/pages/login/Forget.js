@@ -8,29 +8,41 @@ import formStyle from "../../assets/css/Form.module.css";
 import background from "../../assets/css/Background.module.css";
 import padding from "../../assets/css/Padding.module.css"
 
-export default function Forget() {
+import { ResetPassword } from "../../provider/auth/AuthProvider";
+import {useState} from "react";
+import {StatusMessages} from "../components/alerts/StatusMessages";
+
+export default function ForgetWrapper() {
     return(
         <div className={`${background.login } d-flex`}>
             <div className={`${padding.heading} mx-auto`}>
                 <div className={`${formStyle.forget} rounded p-3 bg-white`}>
-                    <h2 className="text-black mb-4">
+                    <h2 className="text-black mb-4 text-center">
                         Forgot your password?
                     </h2>
-                    <ForgetForm></ForgetForm>
+                    <Forget></Forget>
                 </div>
             </div>
         </div>
     )
 }
 
-function ForgetForm() {
+function Forget() {
+    const [message, setMessage] = useState(null);
+    const [error, setError] = useState(null);
     const schema = Yup.object().shape({
         email: Yup.string().email("Please enter a valid email").required()
     });
     return (
     <Formik
         validationSchema={schema}
-            onSubmit={console.log}
+            onSubmit={values => {
+                ResetPassword(values.email).then((status) => {
+                    setMessage("A password reset link have been send to your email.");
+                }).catch((err) => {
+                    setError(err);
+                })
+            }}
             initialValues={{
                 email: ''
             }}>
@@ -61,10 +73,13 @@ function ForgetForm() {
                 </Form.Group>
                 <div className="d-grid gap-2 pt-2 mt-2">
                     <Button
-                        className="bg-dark border-dark"
+                        className="btn btn-dark "
                         type="submit"
                     ><h3>Send email</h3></Button>
                 </div>
+                {message !== null ?
+                    <StatusMessages message={message}/> :
+                    error !== null && <StatusMessages error={error}/> }
             </Form>
         )}
     </Formik>
