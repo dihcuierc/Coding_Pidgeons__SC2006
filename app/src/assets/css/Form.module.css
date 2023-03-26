@@ -1,6 +1,6 @@
 .login {
-    max-width: 350px !important;
-    max-height: 350px !important;
+    max-width: 400px !important;
+    max-height: 450px !important;
     margin-top: 1.5rem!important;
 }
 
@@ -11,6 +11,29 @@
 }
 
 .forget {
-    max-width: 400px !important;
-    max-height: 300px !important;
+    width: 400px !important;
+    max-height: 450px !important;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    padding: 1.5rem;
+}
+
+.setup {
+    width: 600px !important;
+    max-height: 600px !important;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    padding: 1.5rem;
+}
+
+.error {
+    margin-top: 25px;
+    background-color: rgba(175,48,69,0.86);
+    border-radius: 1px;
+    flex: 1;
+    max-height: 50px !important;
+    max-width: 450px !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
 }
