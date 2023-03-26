@@ -1,11 +1,10 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Navbar from "./navbar/Navbar";
-import Login from "../../login/Login"
+import Login from "../../authentication/login/Login"
 import NotFound from "../../error/NotFound";
-import Register from "../../register/Register"
-import Forget from "../../login/Forget";
+import Register from "../../authentication/register/Register"
+import Forget from "../../authentication/login/Forget";
 import Facilities from "../../facilities/Facilities";
-import Verify from "../../register/Verify";
 import Profile from "../../profile/Profile";
 import ExercisePlan from '../../exerciseplan/ExercisePlan';
 import ExerciseCarousel from '../../exercisecarousel/ExerciseCarousel';
@@ -17,6 +16,7 @@ import EditFitnessGoals from '../../fitnessgoals/editfitnessgoals';
 import ExerciseReview from "../../exercise/ExerciseReview";
 import AddExerciseReview from "../../exercise/AddExerciseReview"
 import AddExercise from "../../exercise/addexercise/AddExercise";
+import Setup from "../../authentication/register/Setup";
 
 function Routing() {
     return (
@@ -26,8 +26,9 @@ function Routing() {
                 <Route index element={<Profile/>}/>
                 <Route path="/facilities" element={<Facilities/>}/>
                 <Route path="login" element={<Login/>}/>
-                <Route path="register" element={<Register/>}>
-                    <Route path="otp" element={<Verify/>}/>
+                <Route path="register">
+                    <Route index element={<Register/>}/>
+                    <Route path="setup" element={<Setup/>}/>
                 </Route>
                 <Route path="profile" element={<Profile/>}/>
                 <Route path="/fitnessgoals" element={<FitnessGoals/>}/>

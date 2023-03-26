@@ -1,24 +1,24 @@
 .error {
     background: url("../images/ErrorBackground.jpg") no-repeat center center fixed;
     background-size: cover;
-    min-height: 92vh;
+    min-height: calc(100vh - 65px);
 }
 
 .default {
     background: url("../images/DefaultBackground.jpg") no-repeat center center fixed;
     box-shadow: inset 0 0 0 1000px rgba(4, 26, 84, 0.8);
     background-size: cover;
-    min-height: 95vh;
+    min-height: calc(100vh - 65px);;
 }
 
 .login {
     background: url("../images/LoginBackground.jpg") no-repeat top center fixed;
     box-shadow: inset 0 0 0 1000px rgba(0,0,0, 0.65);
     background-size: cover;
-    min-height: 92vh;
+    min-height: calc(100vh - 65px);;
 }
 
 .profile {
     background : wheat;
-    min-height: 92vh;
+    min-height: calc(100vh - 65px);;
 }

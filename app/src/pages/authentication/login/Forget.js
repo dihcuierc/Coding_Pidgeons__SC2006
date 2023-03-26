@@ -4,19 +4,19 @@ import * as Yup from "yup";
 import Form from "react-bootstrap/Form";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Button from "react-bootstrap/Button";
-import formStyle from "../../assets/css/Form.module.css";
-import background from "../../assets/css/Background.module.css";
-import padding from "../../assets/css/Padding.module.css"
+import formStyle from "../../../assets/css/Form.module.css";
+import background from "../../../assets/css/Background.module.css";
+import padding from "../../../assets/css/Padding.module.css"
 
-import { ResetPassword } from "../../provider/auth/AuthProvider";
+import { ResetPassword } from "../../../provider/auth/AuthProvider";
 import {useState} from "react";
-import {StatusMessages} from "../components/alerts/StatusMessages";
+import {StatusMessages} from "../../components/alerts/StatusMessages";
 
 export default function ForgetWrapper() {
     return(
         <div className={`${background.login } d-flex`}>
             <div className={`${padding.heading} mx-auto`}>
-                <div className={`${formStyle.forget} rounded p-3 bg-white`}>
+                <div className={formStyle.forget}>
                     <h2 className="text-black mb-4 text-center">
                         Forgot your password?
                     </h2>

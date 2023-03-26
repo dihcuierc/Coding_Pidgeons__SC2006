@@ -3,7 +3,7 @@ import './Workout.css';
 import React from 'react';
 import exercsieGroupData from "../../data/exerciseGroupData.json";
 import planData from "../../data/planData.json";
-import SearchBar from '../components/searchbar/SearchBar'
+import SearchBar from '../components/utilities/searchbar/SearchBar'
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import ExerciseCard from "./ExerciseCard";

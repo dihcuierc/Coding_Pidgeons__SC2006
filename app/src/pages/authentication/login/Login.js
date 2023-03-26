@@ -11,12 +11,12 @@ import Stack from "react-bootstrap/Stack";
 import Nav from "react-bootstrap/Nav";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 
-import background from "../../assets/css/Background.module.css"
-import buttonStyle from "../../assets/css/Button.module.css"
-import formStyle from "../../assets/css/Form.module.css"
+import background from "../../../assets/css/Background.module.css"
+import buttonStyle from "../../../assets/css/Button.module.css"
+import formStyle from "../../../assets/css/Form.module.css"
 
-import {SignIn} from "../../provider/auth/AuthProvider";
-import {StatusMessages} from "../components/alerts/StatusMessages";
+import {SignIn} from "../../../provider/auth/AuthProvider";
+import {StatusMessages} from "../../components/alerts/StatusMessages";
 
 export default function LoginWrapper() {
     return (
@@ -118,9 +118,6 @@ function Login() {
                             </Form.Control.Feedback>
                         </FloatingLabel>
                     </Form.Group>
-                    <div className="d-flex justify-content-center text-muted">
-                        OR
-                    </div>
                     <div className="d-grid gap-2 pt-2 mt-2">
                         <Button
                             className={buttonStyle.auth}

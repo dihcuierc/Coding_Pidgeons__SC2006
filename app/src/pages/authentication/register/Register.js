@@ -9,12 +9,12 @@ import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col"
-import formStyle from "../../assets/css/Form.module.css";
-import buttonStyle from "../../assets/css/Button.module.css";
-import background from "../../assets/css/Background.module.css";
-import padding from "../../assets/css/Padding.module.css"
+import formStyle from "../../../assets/css/Form.module.css";
+import buttonStyle from "../../../assets/css/Button.module.css";
+import background from "../../../assets/css/Background.module.css";
+import padding from "../../../assets/css/Padding.module.css"
 
-export default function Register() {
+export default function RegisterWrapper() {
     return (
         <div className={`${background.login } d-flex`}>
             <Container className={padding.heading}>
@@ -22,7 +22,7 @@ export default function Register() {
                     Welcome to <b>Train</b>Together!
                 </h2>
                 <div className={formStyle.register}>
-                    <RegisterForm></RegisterForm>
+                    <Register></Register>
                     <div className="text-light d-flex justify-content-center m-3">
                         <b>Already have an account?</b>
                         <LinkContainer to="/login">
@@ -37,7 +37,7 @@ export default function Register() {
     )
 }
 
-function RegisterForm() {
+function Register() {
     const schema = Yup.object().shape({
         firstName: Yup.string().required("Required"),
         lastName: Yup.string().required("Required"),
@@ -156,12 +156,8 @@ function RegisterForm() {
                         </FloatingLabel>
                     </Form.Group>
                     <div className="d-flex justify-content-center text-muted">
-                        OR
                     </div>
                     <div className="d-grid gap-2 pt-2 mt-2">
-                        <Button variant="outline-secondary">
-                            Continue with Singpass
-                        </Button>
                         <Button
                             className={buttonStyle.auth}
                             type="submit"

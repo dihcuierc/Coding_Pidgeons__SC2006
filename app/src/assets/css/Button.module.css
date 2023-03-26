@@ -4,3 +4,10 @@
     --bs-bg-opacity: 1;
     color: rgb(var(--bs-light));
 }
+
+.setup {
+    background-color: rgba(50,107,255,0.86) !important;
+    border: 0 !important;
+    --bs-bg-opacity: 1;
+    color: rgb(var(--bs-light));
+}

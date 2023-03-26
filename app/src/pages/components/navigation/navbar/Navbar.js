@@ -19,7 +19,7 @@ import "./Navbar.css";
 import profileIcon from "../../../../assets/images/icons/profile.svg"
 
 const noSidebarNonLoginRoutes = ["/login","/register"];
-const profileSidebarRoutes = ["/exercises"]
+const profileSidebarRoutes = ["/workout"]
 
 export default function NavigationBar() {
     const {pathname} = useLocation();
