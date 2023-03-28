@@ -24,13 +24,8 @@
     margin-top: 3rem!important;
 }
 
-.singpass {
-    height: 20px;
-    width: 70px;
-    padding: 2px
-}
-
 .profile {
-    height: 30px;
-    width: 30px;
+    height: 25px;
+    width: 25px;
+    margin-top: 3px;
 }

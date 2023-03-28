@@ -14,6 +14,8 @@ import formStyle from "../../../assets/css/Form.module.css";
 import buttonStyle from "../../../assets/css/Button.module.css"
 
 import FileInput from "../../components/utilities/Input/FileInput"
+import {useLocation} from "react-router-dom";
+import {CreateUser} from "../../../provider/firestore/FirestoreProvider";
 
 export default function SetupWrapper() {
     return (
@@ -28,6 +30,7 @@ export default function SetupWrapper() {
 }
 
 function Setup() {
+    const {state} = useLocation();
     const schema = Yup.object().shape({
         age: Yup.date()
             .min(new Date(1900, 0,1), "You cannot choose a date before this!")
@@ -41,7 +44,9 @@ function Setup() {
     return (
         <Formik
             validationSchema={schema}
-            onSubmit={console.log}
+            onSubmit={async values => {
+                console.log(values);
+            }}
             initialValues={{
                 age: new Date(),
                 height: 100,
@@ -125,7 +130,7 @@ function Setup() {
                             </FloatingLabel>
                         </Form.Group>
                     </Row>
-                    <FileInput/>
+                    <FileInput image={values.image}/>
                     <div className="d-flex justify-content-center text-muted">
                     </div>
                     <div className="d-grid gap-2 pt-2 mt-2">

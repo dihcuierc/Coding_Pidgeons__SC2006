@@ -29,6 +29,7 @@ function ErrorMessages({error}) {
             description = "Access to this account has been temporarily disabled due to many failed login attempt."
             break;
         case ERRORCODE.EmailExists:
+        case ERRORCODE.EmailInUse:
             description = "Email has been used. Please register with another email or login with existing account."
             break;
         case ERRORCODE.InvalidUser:

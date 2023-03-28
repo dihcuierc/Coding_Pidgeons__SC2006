@@ -75,12 +75,12 @@ function SignSidebar() {
         <>
             <LinkContainer to="/login">
                 <Nav.Link>
-                    <Button variant="outline-primary" className="text-light">Sign in</Button> {' '}
+                    <Button size="sm" variant="outline-primary" className="text-light">Sign in</Button> {' '}
                 </Nav.Link>
             </LinkContainer>
             <LinkContainer to="/register">
                 <Nav.Link>
-                    <Button variant="outline-secondary" className="text-light">Sign Up</Button>{' '}
+                    <Button size="sm" variant="outline-secondary" className="text-light">Sign Up</Button>{' '}
                 </Nav.Link>
             </LinkContainer>
         </>

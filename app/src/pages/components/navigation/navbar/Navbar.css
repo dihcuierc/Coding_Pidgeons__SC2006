@@ -5,6 +5,7 @@
 .navbar-nav .nav-link.active {
     color: #a42c2c !important;
 }
+
 .navbar {
-    height: 65px;
+    min-height: 65px;
 }

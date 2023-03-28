@@ -36,12 +36,13 @@ function Forget() {
     return (
     <Formik
         validationSchema={schema}
-            onSubmit={values => {
-                ResetPassword(values.email).then((status) => {
+            onSubmit={async values => {
+                try {
+                    await ResetPassword(values.email)
                     setMessage("A password reset link have been send to your email.");
-                }).catch((err) => {
+                } catch(err) {
                     setError(err);
-                })
+                }
             }}
             initialValues={{
                 email: ''
