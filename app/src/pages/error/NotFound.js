@@ -17,7 +17,7 @@ export default function NotFound() {
         <div className={background.error}>
             <Container className="d-flex">
                 <Stack gap={4} className="align-items-center text-center">
-                    <Image src={errorPic} className={picStyle.error} alt="Error Picture"></Image>
+                    <Image fluid src={errorPic} className={picStyle.error} alt="Error Picture"></Image>
                         <h3 className="fw-bold">404 Error - Page Not Found</h3>
                         <h5>The Page You Requested Could Not Be Found!</h5>
                     <LinkContainer to="/facilities">

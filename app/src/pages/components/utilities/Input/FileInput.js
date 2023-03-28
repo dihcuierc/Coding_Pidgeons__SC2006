@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./FileInput.css"
 
-function FileInput() {
+function FileInput({image}) {
     const [dragActive, setDragActive] = useState(false);
     const inputRef = useRef(null);
 
@@ -22,14 +22,16 @@ function FileInput() {
         e.stopPropagation();
         setDragActive(false);
         if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-            // handleFiles(e.dataTransfer.files);
+            image = e.dataTransfer.files;
+            console.log(image);
         }
     };
 
     const handleChange = function(e) {
         e.preventDefault();
         if (e.target.files && e.target.files[0]) {
-            // handleFiles(e.target.files);
+            image = e.target.files;
+            console.log(image);
         }
     };
 

@@ -1,3 +1,5 @@
+import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 import * as Yup from "yup"
 import {Formik} from "formik";
 
@@ -7,12 +9,15 @@ import Button from "react-bootstrap/Button";
 import LinkContainer from "react-router-bootstrap/LinkContainer";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col"
+
 import formStyle from "../../../assets/css/Form.module.css";
 import buttonStyle from "../../../assets/css/Button.module.css";
 import background from "../../../assets/css/Background.module.css";
 import padding from "../../../assets/css/Padding.module.css"
+
+import { SignUp } from "../../../provider/auth/AuthProvider";
+import {StatusMessages} from "../../components/alerts/StatusMessages";
+
 
 export default function RegisterWrapper() {
     return (
@@ -38,12 +43,17 @@ export default function RegisterWrapper() {
 }
 
 function Register() {
+    const navigate = useNavigate();
+    const [error, setError] = useState(null);
     const schema = Yup.object().shape({
-        firstName: Yup.string().required("Required"),
-        lastName: Yup.string().required("Required"),
+        displayName: Yup.string().required("No username provided!")
+            .min(6, "Username is too short - a minimum of 6 characters.")
+            .matches(/[^\s-]$/,
+                "Username must not contain spaces"),
+        name: Yup.string().required("No name provided!"),
         email: Yup.string().email('Invalid email address').required("Required"),
-        password: Yup.string().required("No password provided")
-            .min(8, "Password is too short - aj minimum of 8 characters.")
+        password: Yup.string().required("No password provided!")
+            .min(8, "Password is too short - a minimum of 8 characters.")
             .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
                 "Password must contain at least one Uppercase, Lowercase, one number and special character"),
         confirmPassword: Yup.string().oneOf([Yup.ref('password'),null],"Passwords must match")
@@ -52,10 +62,25 @@ function Register() {
     return (
         <Formik
             validationSchema={schema}
-            onSubmit={console.log}
+            onSubmit={async values => {
+                try {
+                const userid = await SignUp(values.email, values.password);
+                console.log(values.displayName);
+                navigate("./setup", {
+                    state : {
+                        id : userid,
+                        name: values.name,
+                        username: values.displayName,
+                        email: values.email
+                    }
+                })
+                } catch (err) {
+                    setError(err);
+                }
+            }}
             initialValues={{
-                firstName: "",
-                lastName: "",
+                displayName: "",
+                name: "",
                 email: "",
                 password: "",
                 confirmPassword: ""
@@ -70,38 +95,36 @@ function Register() {
                 errors
             }) => (
                 <Form onSubmit={handleSubmit} className="text-light ms-3 ms-sm-2">
-                    <Row>
-                    <Form.Group as={Col} className="mb-3" controlId="fNameInput">
-                        <FloatingLabel className="text-dark" label="First Name">
+                    <Form.Group className="mb-3" controlId="displayNameInput">
+                        <FloatingLabel className="text-dark" label="Username">
                             <Form.Control
                                 type="text"
                                 placeholder="John"
-                                name="firstName"
-                                value={values.firstName}
+                                name="displayName"
+                                value={values.displayName}
                                 onChange={handleChange}
-                                isInvalid={!!errors.firstName && touched.firstName}
+                                isInvalid={!!errors.displayName && touched.displayName}
                             />
                             <Form.Control.Feedback type="invalid" tooltip>
-                                {errors?.firstName}
+                                {errors?.displayName}
                             </Form.Control.Feedback>
                         </FloatingLabel>
                     </Form.Group>
-                    <Form.Group as={Col} className="mb-3" controlId="lNameInput">
-                        <FloatingLabel className="text-dark" label="Last Name">
+                    <Form.Group className="mb-3" controlId="nameInput">
+                        <FloatingLabel className="text-dark" label="Name">
                             <Form.Control
                                 type="text"
                                 placeholder="Doe"
-                                name="lastName"
-                                value={values.lastName}
+                                name="name"
+                                value={values.name}
                                 onChange={handleChange}
-                                isInvalid={!!errors.lastName && touched.lastName}
+                                isInvalid={!!errors.name && touched.name}
                             />
                             <Form.Control.Feedback type="invalid" tooltip>
-                                {errors?.lastName}
+                                {errors?.name}
                             </Form.Control.Feedback>
                         </FloatingLabel>
                     </Form.Group>
-                    </Row>
                     <Form.Group className="mb-3" controlId="emailInput">
                         <FloatingLabel className="text-dark" label="Email Address">
                             <Form.Control
@@ -163,6 +186,7 @@ function Register() {
                             type="submit"
                         ><h3>Register</h3></Button>
                     </div>
+                    {error !== null && <StatusMessages error={error}/>}
                 </Form>
             )}
 

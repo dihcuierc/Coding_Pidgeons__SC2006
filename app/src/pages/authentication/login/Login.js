@@ -61,13 +61,13 @@ function Login() {
     })
     return (
         <Formik validationSchema={schema}
-                onSubmit={values => {
-                    SignIn(values.email,values.password)
-                        .then(() => {
-                            navigate('/profile');
-                    }).catch((err) => {
+                onSubmit={async values => {
+                    try {
+                        await SignIn(values.email, values.password);
+                        navigate("/profile");
+                    } catch (err) {
                         setError(err);
-                    })
+                    }
                 }}
          initialValues={{
              email: '',
