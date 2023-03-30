@@ -11,6 +11,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import fitnessGoals from "../../../../data/fitnessGoals.json";
 import toast, { Toaster } from "react-hot-toast";
 import { Tab } from "@mui/material";
+import {Link} from "react-router-dom";
 
 export default function ViewGoals() {
     const [goals, setGoals] = useState(fitnessGoals.map(goal => ({ ...goal, checked: goal.done })));
@@ -39,9 +40,9 @@ export default function ViewGoals() {
     }
     return (
             <Card className="bg-dark opacity-75">
-                <a href="/fitnessgoals" style={{ textDecoration: "none" }}>
+                <Link to="goals" style={{ textDecoration: "none" }}>
                     <Card.Title className="fitnessgoalstitle"> Fitness Goals </Card.Title>
-                </a>
+                </Link>
                 {sortedGoals.map((goal) => (
                     <Card.Body>
                         <Stack direction="horizontal">

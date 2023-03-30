@@ -53,7 +53,7 @@ export default function FitnessGoals() {
                                 <Card.Body className="fitnessgoalstitle"> Fitness Goals </Card.Body>
                             </Stack>
                             <Card.Body className="addfitnessgoalscard">
-                                <Link to="/fitnessgoals/edit">
+                                <Link to="./edit">
                                     <ControlPointIcon fontSize="large" sx={{ color: common['white'] }}/>
                                 </Link>
                             </Card.Body>

@@ -17,6 +17,7 @@ import ExerciseReview from "../../exercise/ExerciseReview";
 import AddExerciseReview from "../../exercise/AddExerciseReview"
 import AddExercise from "../../exercise/addexercise/AddExercise";
 import Setup from "../../authentication/register/Setup";
+import Eateries from "../../facilities/Eateries/Eatries";
 
 function Routing() {
     return (
@@ -24,28 +25,43 @@ function Routing() {
         <Routes>
             <Route path="/" element={<Navbar/>}>
                 <Route index element={<Profile/>}/>
-                <Route path="/facilities" element={<Facilities/>}/>
+                <Route path="profile" element={<Profile/>}/>
+                <Route path="facilities">
+                    <Route path="exercise" element={<Facilities/>}/>
+                    <Route path="eateries" element={<Eateries/>}/>
+                </Route>
                 <Route path="login" element={<Login/>}/>
                 <Route path="register">
                     <Route index element={<Register/>}/>
                     <Route path="setup" element={<Setup/>}/>
                 </Route>
-                <Route path="profile" element={<Profile/>}/>
-                <Route path="/fitnessgoals" element={<FitnessGoals/>}/>
-                <Route path="/fitnessgoals/edit" element={<EditFitnessGoals/>}/>
+                <Route path="goals">
+                    <Route index element={<FitnessGoals/>}/>
+                    <Route path="edit" element={<EditFitnessGoals/>}/>
+                </Route>
                 <Route path="password">
                     <Route path="forget" element={<Forget/>}/>
                 </Route>
-                <Route path="workout" element={<Workout/>}/>
-                <Route path="workout/schedule-exercise" element={<ScheduleExercise/>}/>
-                <Route path="workout/exerciseplan/:id" element={<ExercisePlan/>}/>
-                <Route path="workout/add-exercise" element={<AddExercise/>}/>
-
-                <Route path="workout/exerciseview/:id" element={<ExerciseCarousel/>}/>    
-                <Route path="workout/exerciseview/exercise/:id" element={<Exercise/>}/>
-                <Route path="workout/exerciseview/exercise/:id/exercisereview" element={<ExerciseReview/>}/>
-                <Route path="workout/exerciseview/exercise/:id/exercisereview/add" element={<AddExerciseReview/>}/>
-       
+                <Route path="workout">
+                    <Route index element={<Workout/>}/>
+                    <Route path="schedule" element={<ScheduleExercise/>}/>
+                    <Route path="plans">
+                        <Route path=":id" element={<ExercisePlan/>}/>
+                        <Route path="add" element={<AddExercise/>}/>
+                    </Route>
+                    <Route path="views">
+                        <Route path=":id" element={<ExerciseCarousel/>}/>
+                        <Route path="exercise">
+                            <Route path=":id">
+                                <Route index element={<Exercise/>}/>
+                                <Route path="review">
+                                    <Route index element={<ExerciseReview/>}/>
+                                    <Route path="add" element={<AddExerciseReview/>}/>
+                                </Route>
+                            </Route>
+                        </Route>
+                    </Route>
+                </Route>
                 <Route path="*" element={<NotFound/>}/>
            </Route>
         </Routes>

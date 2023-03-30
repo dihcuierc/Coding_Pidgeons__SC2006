@@ -53,10 +53,10 @@ function NavigationToggle({Sidebar}) {
                 <LinkContainer to="/workout">
                     <Nav.Link className="mx-3">Workout</Nav.Link>
                 </LinkContainer>
-                <LinkContainer to="/facilities">
+                <LinkContainer to="/facilities/exercise">
                     <Nav.Link className="mx-3">Exercise Facilities</Nav.Link>
                 </LinkContainer>
-                <LinkContainer to="/eateries">
+                <LinkContainer to="/facilities/eateries">
                     <Nav.Link className="mx-3">Hungry Go Where?</Nav.Link>
                 </LinkContainer>
             </Nav>
