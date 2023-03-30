@@ -20,13 +20,13 @@ export default function Workout() {
             <div className="carousel-container">
               <div className="header-container">
                 <h1>Exercise Plan</h1>
-                <Link to="schedule-exercise">
+                <Link to="schedule">
                   <button className="button schedule-exercise-btn">Schedule Exercise</button>
                 </Link>
               </div>
               <Carousel responsive={responsive} showDots={true} infinite={true}>
                 {planData.map((plan) => (
-                  <ExerciseCard link={`exerciseplan/${plan.id}`} key={plan.id} title={plan.title} />
+                  <ExerciseCard link={`plans/${plan.id}`} key={plan.id} title={plan.title} />
                 ))}
               </Carousel>
             </div>
@@ -35,7 +35,7 @@ export default function Workout() {
               <h1>Exercises</h1>
               <Carousel responsive={responsive} showDots={true} infinite={true}>
                   {exercsieGroupData.map((exerciseGroup) => (
-                    <ExerciseCard link={`/workout/exerciseview/${exerciseGroup.id}`} key={exerciseGroup.id} title={exerciseGroup.title} />
+                    <ExerciseCard link={`views/${exerciseGroup.id}`} key={exerciseGroup.id} title={exerciseGroup.title} />
                   ))}
               </Carousel>
             </div>

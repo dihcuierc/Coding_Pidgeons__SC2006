@@ -41,7 +41,7 @@ export default function Exercise() {
 
     return(
         <div className={background.default}>
-            <Link to={`/workout/exerciseview/exercise/${id}/exercisereview`}>
+            <Link to={`./review`}>
                     <button>Review</button>
                 </Link>
             <div className="exercise-container">

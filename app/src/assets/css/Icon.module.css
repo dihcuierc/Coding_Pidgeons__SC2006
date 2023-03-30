@@ -25,7 +25,10 @@
 }
 
 .profile {
-    height: 25px;
-    width: 25px;
     margin-top: 3px;
+}
+
+.map {
+    font-size: 32px;
+    color: #2b43df
 }

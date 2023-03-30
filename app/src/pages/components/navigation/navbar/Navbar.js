@@ -4,7 +4,6 @@ import {Outlet, useLocation} from "react-router-dom";
 //# React Bootstrap Components
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
-import Image from "react-bootstrap/Image";
 import Nav from 'react-bootstrap/Nav';
 import Button from "react-bootstrap/Button";
 
@@ -12,11 +11,10 @@ import Button from "react-bootstrap/Button";
 import LinkContainer from "react-router-bootstrap/LinkContainer";
 
 // #Custom CSS Module
-import pic from "../../../../assets/css/Pic.module.css"
+import iconStyle from "../../../../assets/css/Icon.module.css"
 
 // #Custom CSS
 import "./Navbar.css";
-import profileIcon from "../../../../assets/images/icons/profile.svg"
 
 const noSidebarNonLoginRoutes = ["/login","/register"];
 const profileSidebarRoutes = ["/workout"]
@@ -55,10 +53,10 @@ function NavigationToggle({Sidebar}) {
                 <LinkContainer to="/workout">
                     <Nav.Link className="mx-3">Workout</Nav.Link>
                 </LinkContainer>
-                <LinkContainer to="/facilities">
+                <LinkContainer to="/facilities/exercise">
                     <Nav.Link className="mx-3">Exercise Facilities</Nav.Link>
                 </LinkContainer>
-                <LinkContainer to="/eateries">
+                <LinkContainer to="/facilities/eateries">
                     <Nav.Link className="mx-3">Hungry Go Where?</Nav.Link>
                 </LinkContainer>
             </Nav>
@@ -93,7 +91,7 @@ function ProfileToggle() {
             <LinkContainer to="/profile">
                 <Nav.Link active={false}>
                     <div className="d-flex">
-                        <Image roundedCircle={true} src={profileIcon} className={`${pic.profile} border`}></Image>
+                        <span className={`bi bi-person-circle ${iconStyle.profile}`}></span>
                         <div className="m-1 px-1 small">John Doe</div>
                     </div>
                 </Nav.Link>

@@ -29,7 +29,7 @@ export default function ExerciseCarousel() {
       <div className="carousel-container">
         <div className="header-container">
           <h1>{exerciseGroup.title}</h1>
-          <Link to="/workout/add-exercise">
+          <Link to="../../plans/add">
             <button className="button schedule-exercise-btn">
               Add Your Own Exercise
             </button>
@@ -38,7 +38,7 @@ export default function ExerciseCarousel() {
         <Carousel responsive={responsive} showDots={true} infinite={true}>
           {filteredExercises.map((exercise) => (
             <ExerciseCard
-              link={`/workout/exerciseview/exercise/${exercise.id}`}
+              link={`../exercise/${exercise.id}`}
               key={exercise.id}
               imageUrl={exercise.path}
               title={exercise.alt}
