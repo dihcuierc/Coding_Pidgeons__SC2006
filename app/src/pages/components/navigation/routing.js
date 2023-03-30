@@ -4,7 +4,7 @@ import Login from "../../authentication/login/Login"
 import NotFound from "../../error/NotFound";
 import Register from "../../authentication/register/Register"
 import Forget from "../../authentication/login/Forget";
-import Facilities from "../../facilities/Facilities";
+import Facilities from "../../facilities/ExerciseFacilities/Facilities";
 import Profile from "../../profile/Profile";
 import ExercisePlan from '../../exerciseplan/ExercisePlan';
 import ExerciseCarousel from '../../exercisecarousel/ExerciseCarousel';

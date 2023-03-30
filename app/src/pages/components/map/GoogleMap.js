@@ -1,29 +1,48 @@
 import mapStyle from "../../../assets/css/Map.module.css"
-import GoogleMapReact from "google-map-react";
-import PropTypes from "prop-types";
+import {useCallback, useMemo, useRef} from "react";
 
-const GoogleMap = ({ children, ...props }) => (
-    <div className={mapStyle.display}>
-        <GoogleMapReact
-            bootstrapURLKeys={{
-                key: "",
-            }}
-            {...props}
-        >
-            {children}
-        </GoogleMapReact>
-    </div>
-);
+import {
+    GoogleMap,
+    useLoadScript,
+} from "@react-google-maps/api";
+import Searchbar from "./Searchbox/Searchbox";
 
-GoogleMap.propTypes = {
-    children: PropTypes.oneOfType([
-        PropTypes.node,
-        PropTypes.arrayOf(PropTypes.node),
-    ]),
-};
+const libraries = ["places", "routes"];
 
-GoogleMap.defaultProps = {
-    children: null,
-};
+function Map(props) {
+    const mapRef = useRef(GoogleMap);
+    const {isLoaded}  = useLoadScript({
+        googleMapsApiKey: process.env.REACT_APP_API_MAP_KEY,
+        libraries
+    });
+    const defaultProps = useMemo(() => ({
+        center: {
+            lat: 1.3521,
+            lng: 103.8198
+        },
+        zoom: 10,
+        options: {
+            disableDefaultUI: true,
+            clickableIcons: false,
+            zoomControl: true,
+        }
+    }),[]);
+    const onLoad = useCallback((map) => (mapRef.current = map), []);
+    if (!isLoaded)
+        return <div>Loading...</div>
+    return (
+            <GoogleMap
+                zoom={defaultProps.zoom}
+                center={defaultProps.center}
+                options={defaultProps.options}
+                onLoad={onLoad}
+                id="map"
+                mapContainerClassName={mapStyle.display}
+            >
+                <Searchbar mapRef={mapRef}/>
+                {props.children}
+            </GoogleMap>
+    )
+}
 
-export default GoogleMap;
+export {Map};
