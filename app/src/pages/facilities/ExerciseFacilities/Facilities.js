@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 
 import Stack from "react-bootstrap/Stack";
 import Card from "react-bootstrap/Card";
+import Badge from "react-bootstrap/Badge"
 
 import backgroundStyle from "../../../assets/css/Background.module.css"
 import mapStyle from "../../../assets/css/Map.module.css";
@@ -40,10 +41,23 @@ export default function Facilities() {
                                 </Card.Text>
                             </div>
                             <div className="d-flex">
+                                <i className={`bi bi-clock ${iconStyle.map} me-4`}></i>
+                                <div className="d-flex mt-1 pt-2">
+                                    {details.OpeningHours === "24h" ? <Card.Text className="text-success me-2">Open</Card.Text> : <Card.Text className="text-danger me-2">Closed</Card.Text>}
+                                    {details.OpeningHours}
+                                </div>
+                            </div>
+                            <div className="d-flex">
                                 <i className={`bi bi-globe ${iconStyle.map} me-4`}></i>
                                 <Card.Text className="my-auto">
                                     <Link to={details.HYPERLINK} className={`${textStyle.hoverline}`}> NPark Website</Link>
                                 </Card.Text>
+                            </div>
+                            <div className="mt-5">
+                                {details.TAG.map((tag) => (
+                                    <Badge bg="primary" className="me-1">{tag}</Badge>
+                                ))
+                                }
                             </div>
                         </Card.Body>
                         }

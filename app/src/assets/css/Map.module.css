@@ -22,3 +22,12 @@
     margin-left: -120px;
     margin-top: 15px;
 }
+
+.details {
+    width: 80vw;
+    min-width: 300px !important;
+    height: 300px;
+    min-height: 300px !important;
+    border-radius: 30px !important;
+    background-color: #ffffff !important;
+}
