@@ -18,3 +18,10 @@
     --bs-bg-opacity: 1;
     color: rgb(var(--bs-light));
 }
+
+.dropdown {
+    --bs-btn-bg: #445162 !important;
+    --bs-btn-border-color: #000 !important;
+    --bs-btn-hover-bg: #000 !important;
+    color: floralwhite;
+}

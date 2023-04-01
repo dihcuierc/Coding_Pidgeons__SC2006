@@ -42,7 +42,7 @@ export default function Facilities() {
                             </div>
                             <div className="d-flex">
                                 <i className={`bi bi-clock ${iconStyle.map} me-4`}></i>
-                                <div className="d-flex mt-1 pt-2">
+                                <div className="d-flex mt-1">
                                     {details.OpeningHours === "24h" ? <Card.Text className="text-success me-2">Open</Card.Text> : <Card.Text className="text-danger me-2">Closed</Card.Text>}
                                     {details.OpeningHours}
                                 </div>
