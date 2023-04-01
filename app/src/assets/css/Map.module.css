@@ -22,3 +22,11 @@
     margin-left: -120px;
     margin-top: 15px;
 }
+
+.filter {
+    width: 500px;
+    min-width: 300px !important;
+    height: 200px;
+    border-radius: 15px !important;
+    background-color: rgba(0, 0, 0, 0.53) !important;
+}
