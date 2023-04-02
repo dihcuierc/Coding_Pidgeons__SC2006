@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardHeader from "@mui/material/CardHeader";
-import ButtonStyle from "../../assets/css/Button.module.css";
+import ButtonStyle from "../../../../../assets/css/Button.module.css";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import IconButton from "@mui/material/IconButton";
-import PlanData from "../../data/planData.json";
-import ExercisePlanData from "../../data/exercisePlanData.json"
+import PlanData from "../../../../../data/planData.json";
+import ExercisePlanData from "../../../../../data/exercisePlanData.json"
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 

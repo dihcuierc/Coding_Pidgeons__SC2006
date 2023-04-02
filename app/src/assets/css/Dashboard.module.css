@@ -1,0 +1,6 @@
+.card {
+    min-height: 300px !important;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    padding: 1rem;
+}

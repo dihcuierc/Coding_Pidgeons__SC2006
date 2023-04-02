@@ -1,11 +1,11 @@
-import background from "../../assets/css/Background.module.css";
-import "../workout/Workout.css";
+import background from "../../../../assets/css/Background.module.css";
+import "../../../workout/Workout.css";
 import React from "react";
-import exerciseData from "../../data/exerciseData.json";
-import exerciseGroupData from "../../data/exerciseGroupData.json";
+import exerciseData from "../../../../data/exerciseData.json";
+import exerciseGroupData from "../../../../data/exerciseGroupData.json";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import ExerciseCard from "../workout/ExerciseCard";
+import ExerciseCard from "../cards/exercise/ExerciseCard";
 import { useParams, Link } from "react-router-dom";
 
 export default function ExerciseCarousel() {

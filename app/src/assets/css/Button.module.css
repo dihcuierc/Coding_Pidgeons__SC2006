@@ -25,3 +25,10 @@
     --bs-btn-hover-bg: #000 !important;
     color: floralwhite;
 }
+
+.goals {
+    background-color: transparent !important;
+    color: white !important;
+    border: none !important;
+    margin-bottom: 10px;
+}

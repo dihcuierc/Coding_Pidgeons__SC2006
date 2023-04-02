@@ -6,16 +6,17 @@ import Register from "../../authentication/register/Register"
 import Forget from "../../authentication/login/Forget";
 import Facilities from "../../facilities/ExerciseFacilities/Facilities";
 import Profile from "../../profile/Profile";
-import ExercisePlan from '../../exerciseplan/ExercisePlan';
-import ExerciseCarousel from '../../exercisecarousel/ExerciseCarousel';
+import ExercisePlan from '../../exercise/plans/ExercisePlan';
+import ExerciseCarousel from '../utilities/carousel/ExerciseCarousel';
 import Exercise from '../../exercise/Exercise';
 import Workout from '../../workout/Workout';
-import ScheduleExercise from '../../scheduleExercise/ScheduleExercise';
-import FitnessGoals from '../../fitnessgoals/fitnessgoals';
-import EditFitnessGoals from '../../fitnessgoals/editfitnessgoals';
-import ExerciseReview from "../../exercise/ExerciseReview";
-import AddExerciseReview from "../../exercise/AddExerciseReview"
-import AddExercise from "../../exercise/addexercise/AddExercise";
+import ScheduleExercise from '../../exercise/schedule/ScheduleExercise';
+import ViewGoals from '../../goals/View/ViewGoals';
+import AddGoals from '../../goals/Add/addGoals';
+import EditGoals from "../../goals/Edit/editGoals";
+import ExerciseReview from "../../review/ExerciseReview";
+import AddExerciseReview from "../../review/Add/AddExerciseReview"
+import AddExercise from "../../exercise/add/AddExercise";
 import Setup from "../../authentication/register/Setup";
 import Eateries from "../../facilities/Eateries/Eatries";
 
@@ -36,8 +37,10 @@ function Routing() {
                     <Route path="setup" element={<Setup/>}/>
                 </Route>
                 <Route path="goals">
-                    <Route index element={<FitnessGoals/>}/>
-                    <Route path="edit" element={<EditFitnessGoals/>}/>
+                    <Route index element={<ViewGoals/>}/>
+                    <Route path="add" element={<AddGoals/>}/>
+                    <Route path=":id" element={<EditGoals/>}>
+                    </Route>
                 </Route>
                 <Route path="password">
                     <Route path="forget" element={<Forget/>}/>

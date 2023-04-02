@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Table.css";
-import exercisePlanData from "../../data/exercisePlanData.json";
+import exercisePlanData from "../../../data/exercisePlanData.json";
 import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
 

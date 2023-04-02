@@ -10,7 +10,7 @@ import padding from "../../../assets/css/Padding.module.css"
 
 import { ResetPassword } from "../../../provider/auth/AuthProvider";
 import {useState} from "react";
-import {StatusMessages} from "../../components/alerts/StatusMessages";
+import {StatusMessages} from "../../components/utilities/alerts/StatusMessages";
 
 export default function ForgetWrapper() {
     return(

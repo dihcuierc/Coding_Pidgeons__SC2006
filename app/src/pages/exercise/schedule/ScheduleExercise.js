@@ -1,6 +1,6 @@
 import React from "react";
-import background from "../../assets/css/Background.module.css";
-import padding from "../../assets/css/Padding.module.css";
+import background from "../../../assets/css/Background.module.css";
+import padding from "../../../assets/css/Padding.module.css";
 import "react-calendar/dist/Calendar.css";
 
 import Calendar from "react-calendar";
@@ -18,7 +18,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import dayjs from "dayjs";
 import Stack from "react-bootstrap/esm/Stack";
-import planData from "../../data/planData.json"
+import planData from "../../../data/planData.json"
 
 export default function ScheduleExercise() {
   const [date, setDate] = React.useState(new Date());

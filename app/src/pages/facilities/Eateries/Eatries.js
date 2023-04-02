@@ -40,7 +40,6 @@ export default function Eateries() {
 
     const [filteredList, setFilteredList] = useState(eateriesData);
     const [selectedList, setSelectedList] = useState(null);
-    const index = useRef(-1);
 
     const onFilter = useCallback(() => {
         setFilteredList(filteredList.filter((data) => ["Non-Halal"].includes(data.dining_concept)))

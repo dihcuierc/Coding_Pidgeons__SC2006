@@ -35,5 +35,9 @@
     max-width: 450px !important;
     overflow: hidden;
     text-overflow: ellipsis;
+}
 
+.goals {
+    width: 300px;
+    display: grid;
 }

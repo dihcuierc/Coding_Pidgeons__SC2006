@@ -1,15 +1,15 @@
 import Card from "react-bootstrap/Card";
 import Stack from "react-bootstrap/Stack";
 import React from "react";
-import background from "../../assets/css/Background.module.css"
+import background from "../../../assets/css/Background.module.css"
 import Container from "react-bootstrap/esm/Container";
 import './AddExerciseReview.css';
 import Rating from '@mui/material/Rating';
 import { useState } from "react";
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
-import exercises from "../../data/exerciseData.json";
+import exercises from "../../../data/exerciseData.json";
 import toast, { Toaster } from "react-hot-toast";
-import exerciseReviews from "../../data/exerciseReviews.json";
+import exerciseReviews from "../../../data/exerciseReviews.json";
 
 export default function AddExerciseReview(prop) {
     const [value, setValue] = useState(0);

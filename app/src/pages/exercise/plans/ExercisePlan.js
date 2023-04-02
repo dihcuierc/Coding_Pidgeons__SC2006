@@ -1,11 +1,11 @@
-import background from "../../assets/css/Background.module.css";
+import background from "../../../assets/css/Background.module.css";
 import React from "react";
 import "./ExercisePlan.css";
 import Table from "./Table";
 import EditIcon from "@mui/icons-material/Edit";
 import Stack from "react-bootstrap/Stack";
-import exercisePlanData from "../../data/exercisePlanData.json";
-import planData from "../../data/planData.json";
+import exercisePlanData from "../../../data/exercisePlanData.json";
+import planData from "../../../data/planData.json";
 import { useParams } from "react-router-dom";
 
 export default function ExercisePlan() {

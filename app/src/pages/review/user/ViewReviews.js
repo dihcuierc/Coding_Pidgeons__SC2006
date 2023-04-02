@@ -1,11 +1,11 @@
 import Card from "react-bootstrap/Card";
 import Stack from "react-bootstrap/Stack";
 import React, {useState, useEffect } from "react";
-import background from "../../assets/css/Background.module.css"
+import background from "../../../assets/css/Background.module.css"
 import Container from "react-bootstrap/esm/Container";
 import './ViewReviews.css';
 import Rating from '@mui/material/Rating';
-import exerciseReviews from "../../data/exerciseReviews.json";
+import exerciseReviews from "../../../data/exerciseReviews.json";
 import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function ViewReviews() {

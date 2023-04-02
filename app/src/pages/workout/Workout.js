@@ -6,7 +6,7 @@ import planData from "../../data/planData.json";
 import SearchBar from '../components/utilities/searchbar/SearchBar'
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import ExerciseCard from "./ExerciseCard";
+import ExerciseCard from "../components/utilities/cards/exercise/ExerciseCard";
 import { Link, Outlet } from 'react-router-dom';
 
 export default function Workout() {
