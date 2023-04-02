@@ -3,12 +3,12 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 
-import background from "../../assets/css/Background.module.css"
+import "./Profile.css"
 
 import Dashboard from "../profile/dashboard/Dashboard";
 import Friends from "../profile/friends/Friends";
 import Settings from "../profile/settings/Settings"
-import Reviews from "../review/ViewReviews"
+import Reviews from "../review/user/ViewReviews"
 
 
 import DashboardIcon from '@mui/icons-material/Dashboard';
@@ -19,13 +19,13 @@ import LogoutIcon from '@mui/icons-material/Logout';
 
 export default function Profile() {
     return (
-        
+
         <Tab.Container
             variant="pills"
             id="sideBarTabs"
             defaultActiveKey="dashboard">
             <Row className="me-0" >
-                <Col sm={1} md={1} className="my-auto p-3" >
+                <Col className="tabs py-sm-0 p-2">
                     <Nav variant="pills" className="flex-column" >
                         <Nav.Item>
                             <Nav.Link eventKey="dashboard"><DashboardIcon/></Nav.Link>
@@ -41,7 +41,7 @@ export default function Profile() {
                         </Nav.Item>
                     </Nav>
                 </Col>
-                <Col sm={10} md={11}>
+                <Col className="p-sm-0">
                     <Tab.Content className="h-100">
                         <Tab.Pane eventKey="dashboard" className="h-100">
                             <Dashboard/>
