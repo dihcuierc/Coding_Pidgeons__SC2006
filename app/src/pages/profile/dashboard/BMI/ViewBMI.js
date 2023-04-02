@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import TextField from '@mui/material/TextField';
 import Slider from '@mui/material/Slider';
 
-import dashboardStyle from "../../../../assets/css/Dashboard.module.css"
+import cardStyle from "../../../../assets/css/Card.module.css"
 import './ViewBMI.css';
 
 export default function BMI() {
@@ -63,7 +63,7 @@ export default function BMI() {
 
     return (
       
-        <Card className={`${dashboardStyle.card} bg-dark opacity-75`}>
+        <Card className={`${cardStyle.dashboard} bg-dark opacity-75`}>
             <Stack direction="horizontal" gap={4}>
                 <Card.Title className="text-white"> BMI Calculator </Card.Title>
             </Stack>   

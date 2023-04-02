@@ -1,5 +1,6 @@
 import React, {useCallback, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
+import toast, {Toaster} from "react-hot-toast";
 
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
@@ -8,14 +9,17 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 
+import AddIcon from "@mui/icons-material/AddCircleOutlined";
+
 import buttonStyle from "../../../../../assets/css/Button.module.css";
-import iconStyle from "../../../../../assets/css/Icon.module.css";
 import cardStyle from "../../../../../assets/css/Card.module.css";
 import divStyle from "../../../../../assets/css/Div.module.css";
+import iconStyle from "../../../../../assets/css/Icon.module.css"
 import textStyle from "../../../../../assets/css/Text.module.css";
 
 import data from "../../../../../data/fitnessGoals.json";
-import toast, {Toaster} from "react-hot-toast";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 export default function GoalCard({add,clickable}) {
     const [goals, setGoals] = useState(
         data.sort((a,b) => new Date(b['due-date']) - new Date(a['due-date']))
@@ -46,7 +50,7 @@ export default function GoalCard({add,clickable}) {
                     {add &&
                         <div className="ms-auto">
                             <Link to="./add">
-                                <i className={`bi bi-plus-circle ${iconStyle.add} p-3`}></i>
+                                <AddIcon className={iconStyle.add}/>
                             </Link>
                         </div>
                     }
@@ -86,19 +90,19 @@ export default function GoalCard({add,clickable}) {
                                         </Col>
                                 </div>
                                 <Row xs={1}>
-                                    <Button className={buttonStyle.goals} onClick={() => {
+                                    <Button className={buttonStyle.transparent} onClick={() => {
                                         navigate(`/goals/${item.id}`, {
                                             state: {
                                                 goals: item,
                                             }})
                                     }}>
-                                            <i className="bi bi-pencil"></i>
+                                            <EditIcon/>
                                     </Button>
-                                    <Button className={buttonStyle.goals} onClick={() => {
+                                    <Button className={buttonStyle.transparent} onClick={() => {
                                         setGoals(goals.filter(goal => goal.id !== item.id));
                                         onDelete();
                                     }}>
-                                        <i className="bi bi-trash"></i>
+                                        <DeleteIcon/>
                                     </Button>
                                 </Row>
                             </div>

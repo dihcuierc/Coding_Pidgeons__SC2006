@@ -1,16 +1,18 @@
 import {Marker, MarkerClusterer} from "@react-google-maps/api";
 import {useState} from "react";
-
 import {Link} from "react-router-dom";
 
 import Stack from "react-bootstrap/Stack";
 import Card from "react-bootstrap/Card";
 import Badge from "react-bootstrap/Badge"
 
+import MapIcon from "@mui/icons-material/LocationOn";
+import TimeIcon from "@mui/icons-material/AccessTime";
+import WebIcon from "@mui/icons-material/Public";
+
 import backgroundStyle from "../../../assets/css/Background.module.css"
 import mapStyle from "../../../assets/css/Map.module.css";
-import iconStyle from "../../../assets/css/Icon.module.css"
-import textStyle from "../../../assets/css/Text.module.css"
+import textStyle from "../../../assets/css/Text.module.css";
 
 import {Map} from "../../components/map/GoogleMap"
 import data from "../../../data/Parks.json";
@@ -34,21 +36,21 @@ export default function Facilities() {
                             <Card.Subtitle className="small ms-2 text-black-50">
                                 {details.ADDRESSSTREETNAME}
                             </Card.Subtitle>
-                            <div className="d-flex">
-                                <i className={`bi bi-geo-alt-fill ${iconStyle.map} me-4`}></i>
+                            <div className="d-flex pt-2">
+                                <MapIcon color="success" fontSize="large" className="me-3"/>
                                 <Card.Text className="my-auto">
                                     {details.ADDRESSPOSTALCODE}
                                 </Card.Text>
                             </div>
                             <div className="d-flex">
-                                <i className={`bi bi-clock ${iconStyle.map} me-4`}></i>
+                                <TimeIcon color="primary" fontSize="large" className="me-3"/>
                                 <div className="d-flex mt-1">
                                     {details.OpeningHours === "24h" ? <Card.Text className="text-success me-2">Open</Card.Text> : <Card.Text className="text-danger me-2">Closed</Card.Text>}
                                     {details.OpeningHours}
                                 </div>
                             </div>
                             <div className="d-flex">
-                                <i className={`bi bi-globe ${iconStyle.map} me-4`}></i>
+                                <WebIcon color="secondary" fontSize="large" className="me-3"/>
                                 <Card.Text className="my-auto">
                                     <Link to={details.HYPERLINK} className={`${textStyle.hoverline}`}> NPark Website</Link>
                                 </Card.Text>

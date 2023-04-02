@@ -1,14 +1,16 @@
+import React from 'react';
+import { Link, Outlet } from 'react-router-dom';
+import Carousel from "react-multi-carousel";
+
+import SearchBar from '../components/utilities/searchbar/SearchBar'
+import ExerciseCard from "../components/utilities/carousel/exercise/ExerciseCard";
+
 import background from "../../assets/css/Background.module.css"
 import './Workout.css';
-import React from 'react';
+
 import exercsieGroupData from "../../data/exerciseGroupData.json";
 import planData from "../../data/planData.json";
-import SearchBar from '../components/utilities/searchbar/SearchBar'
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
-import ExerciseCard from "../components/utilities/cards/exercise/ExerciseCard";
-import { Link, Outlet } from 'react-router-dom';
-
+import AddCard from "../components/utilities/carousel/exercise/addCard";
 export default function Workout() {
     return (
         <div className={background.default}>
@@ -25,6 +27,7 @@ export default function Workout() {
                 </Link>
               </div>
               <Carousel responsive={responsive} showDots={true} infinite={true}>
+                  <AddCard/>
                 {planData.map((plan) => (
                   <ExerciseCard link={`plans/${plan.id}`} key={plan.id} title={plan.title} />
                 ))}

@@ -47,7 +47,10 @@ function Routing() {
                 </Route>
                 <Route path="workout">
                     <Route index element={<Workout/>}/>
-                    <Route path="schedule" element={<ScheduleExercise/>}/>
+                    <Route path="schedule">
+                        <Route index element={<ScheduleExercise/>}/>
+                        <Route path=":id" element={<ScheduleExercise/>}/>
+                    </Route>
                     <Route path="plans">
                         <Route path=":id" element={<ExercisePlan/>}/>
                         <Route path="add" element={<AddExercise/>}/>

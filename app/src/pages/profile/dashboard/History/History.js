@@ -1,16 +1,15 @@
 import {VictoryBar, VictoryChart} from "victory";
 
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container"
 
-import dashboardStyle from "../../../../assets/css/Dashboard.module.css"
+import cardStyle from "../../../../assets/css/Card.module.css"
 
 
 export default function History() {
     return (
         <>
-            <Card className={`${dashboardStyle.card}`}>
+            <Card className={`${cardStyle.dashboard}`}>
                 <Container className="d-flex mt-3">
                     <Card.Title className="mx-auto ps-5 mt-1"> Daily Calories </Card.Title>
                 </Container>

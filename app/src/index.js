@@ -4,6 +4,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Routing from "./pages/components/navigation/routing";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "react-multi-carousel/lib/styles.css";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 

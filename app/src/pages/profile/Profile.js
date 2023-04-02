@@ -6,20 +6,19 @@ import Nav from "react-bootstrap/Nav";
 import "./Profile.css"
 
 import Dashboard from "../profile/dashboard/Dashboard";
-import Friends from "../profile/friends/Friends";
+import Exercise from "./exercises/ScheduledExercise";
 import Settings from "../profile/settings/Settings"
 import Reviews from "../review/user/ViewReviews"
 
 
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import ReviewsIcon from '@mui/icons-material/Reviews';
 import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
 
 export default function Profile() {
     return (
-
         <Tab.Container
             variant="pills"
             id="sideBarTabs"
@@ -28,7 +27,14 @@ export default function Profile() {
                 <Col className="tabs py-sm-0 p-2">
                     <Nav variant="pills" className="flex-column" >
                         <Nav.Item>
-                            <Nav.Link eventKey="dashboard"><DashboardIcon/></Nav.Link>
+                            <Nav.Link eventKey="dashboard">
+                                <DashboardIcon/>
+                            </Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link eventKey="exercises">
+                                <FitnessCenterIcon/>
+                            </Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
                             <Nav.Link eventKey="reviews"><ReviewsIcon/></Nav.Link>
@@ -46,8 +52,8 @@ export default function Profile() {
                         <Tab.Pane eventKey="dashboard" className="h-100">
                             <Dashboard/>
                         </Tab.Pane>
-                        <Tab.Pane eventKey="friends">
-                            <Friends/>
+                        <Tab.Pane eventKey="exercises">
+                            <Exercise/>
                         </Tab.Pane>
                         <Tab.Pane eventKey="reviews">
                             <Reviews/>

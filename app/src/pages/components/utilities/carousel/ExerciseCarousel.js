@@ -5,7 +5,7 @@ import exerciseData from "../../../../data/exerciseData.json";
 import exerciseGroupData from "../../../../data/exerciseGroupData.json";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import ExerciseCard from "../cards/exercise/ExerciseCard";
+import ExerciseCard from "./exercise/ExerciseCard";
 import { useParams, Link } from "react-router-dom";
 
 export default function ExerciseCarousel() {
@@ -29,11 +29,6 @@ export default function ExerciseCarousel() {
       <div className="carousel-container">
         <div className="header-container">
           <h1>{exerciseGroup.title}</h1>
-          <Link to="../../plans/add">
-            <button className="button schedule-exercise-btn">
-              Add Your Own Exercise
-            </button>
-          </Link>
         </div>
         <Carousel responsive={responsive} showDots={true} infinite={true}>
           {filteredExercises.map((exercise) => (

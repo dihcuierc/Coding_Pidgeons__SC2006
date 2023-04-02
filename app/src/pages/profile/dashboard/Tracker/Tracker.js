@@ -2,16 +2,15 @@ import {VictoryLabel, VictoryPie} from "victory";
 
 import Card from "react-bootstrap/Card";
 
-import dashboardStyle from "../../../../assets/css/Dashboard.module.css"
-import textStyle from "../../../../assets/css/Text.module.css"
+import cardStyle from "../../../../assets/css/Card.module.css"
 
 export default function Tracker() {
     return (
         <>
-            <Card className={dashboardStyle.card}>
+            <Card className={cardStyle.dashboard}>
                 <Card.Title className="mx-auto mt-3">Calories Burnt</Card.Title>
                 <Card.Body className="d-flex justify-content-center">
-                    <svg height={300} width={300} viewBox="50 50 50 50" className={dashboardStyle.graph}>
+                    <svg height={300} width={300} viewBox="50 50 50 50">
                     <VictoryPie
                         standalone={false}
                         innerRadius={21}

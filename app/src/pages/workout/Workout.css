@@ -31,7 +31,7 @@
 width: 317px !important;
 height: 371px !important;
 background: rgba(213, 197, 197, 0.31) !important;
-border-radius: 30px;
+border-radius: 30px !important;
 }
 
 .header-container{

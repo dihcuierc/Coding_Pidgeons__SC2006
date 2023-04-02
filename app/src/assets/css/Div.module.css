@@ -7,3 +7,10 @@
     height: 90px;
     width: 100%;
 }
+
+.exercises {
+    border: 2px solid #0a1524;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+}

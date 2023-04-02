@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import background from "../../../assets/css/Background.module.css";
 import padding from "../../../assets/css/Padding.module.css";
 import "react-calendar/dist/Calendar.css";
@@ -19,21 +19,29 @@ import Select from "@mui/material/Select";
 import dayjs from "dayjs";
 import Stack from "react-bootstrap/esm/Stack";
 import planData from "../../../data/planData.json"
+import {useLocation} from "react-router-dom";
 
 export default function ScheduleExercise() {
+  const {state} = useLocation();
   const [date, setDate] = React.useState(new Date());
   const [startTime, setStartTime] = React.useState(date.getTime());
   const [endTime, setEndTime] = React.useState(date.getTime() + 3600000);
   const [location, setLocation] = React.useState("");
   const [exercisePlan, setExercisePlan] = React.useState("");
 
+  useEffect(() => {
+    if (state !== null) {
+      const exercise = state.exercise;
+      setLocation(exercise.location);
+      setDate(new Date(exercise.date));
+    }
+  },[state,date,startTime,endTime,location,exercisePlan])
+
   return (
     <div className={background.default}>
-      {console.log(startTime)}
       <h1 className={padding.headerTop} style={{color: "white"}}>Schedule Exercise</h1>
       <Stack className="stack-container" gap={3}>
         <Calendar onChange={setDate} value={date} calendarType="US" />
-        {console.log(date)}
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <div className="row-item">
             <Typography sx={{ left: "20px" }}>Start Time</Typography>
@@ -46,7 +54,6 @@ export default function ScheduleExercise() {
                 "& .MuiInputBase-input": { color: "white" },
               }}
             />
-            {console.log(startTime)}
           </div>
           <div className="row-item">
             <Typography>End Time</Typography>
@@ -90,7 +97,6 @@ export default function ScheduleExercise() {
                   <MenuItem value={plan.title}>{plan.title}</MenuItem>
                 ))}
               </Select>
-              {console.log(exercisePlan)}
             </FormControl>
           </Box>
         </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useCallback, useState} from "react";
 import { Link } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
@@ -24,19 +24,21 @@ export default function ExerciseCard(props) {
   };
 
   // need to adjust the exercisePlanData to fit the new data structure
-  const handleAddToExercisePlan = () => {
-    if (selectedPlan) {
-      const newExercisePlan = {
-        id: ExercisePlanData.length + 1,
-        title: props.title,
-        plan: selectedPlan.title,
-        imageUrl: props.imageUrl
-      };
-      ExercisePlanData.push(newExercisePlan);
-      console.log(ExercisePlanData);
-      setAnchorEl(null);
-    }
-  }
+
+  const handleAdd = useCallback(() => {
+      if (selectedPlan) {
+        const newExercisePlan = {
+          id: ExercisePlanData.length + 1,
+          title: props.title,
+          plan: selectedPlan.title,
+          imageUrl: props.imageUrl
+        };
+        ExercisePlanData.push(newExercisePlan);
+        console.log(ExercisePlanData);
+        setAnchorEl(null);
+      }
+    },
+      [selectedPlan,anchorEl])
 
   return (
     <div>
@@ -58,7 +60,7 @@ export default function ExerciseCard(props) {
               <MenuItem key={plan.id} onClick={() => {
                 setSelectedPlan(plan);
                 console.log(plan)
-                handleAddToExercisePlan();
+                handleAdd();
               }}>
                 {plan.title}
               </MenuItem>
