@@ -16,7 +16,7 @@ import buttonStyle from "../../../assets/css/Button.module.css"
 import formStyle from "../../../assets/css/Form.module.css"
 
 import {SignIn} from "../../../provider/auth/AuthProvider";
-import {StatusMessages} from "../../components/alerts/StatusMessages";
+import {StatusMessages} from "../../components/utilities/alerts/StatusMessages";
 
 export default function LoginWrapper() {
     return (

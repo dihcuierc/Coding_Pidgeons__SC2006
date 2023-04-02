@@ -1,10 +1,12 @@
 import Container from "react-bootstrap/Container";
-import Stack from "react-bootstrap/Stack";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
-import Tracker from "../../components/dashboard/Tracker";
-import Goals from "../../components/dashboard/goals/ViewGoals";
-import Stats from "../../components/dashboard/Stats";
-import BMI from "../../components/dashboard/ViewBMI";
+import Tracker from "./Tracker/Tracker";
+import Goals from "./goals/goals";
+import History from "./History/History";
+import BMI from "./BMI/ViewBMI";
+
 import background from "../../../assets/css/Background.module.css";
 
 
@@ -13,18 +15,17 @@ export default function Dashboard() {
         <>
            <div className={background.default}>
             <Container className="h-100 d-grid align-content-center">
-            
-                <Stack direction="horizontal" gap={4}>
-                    <Stack gap={4}>
+                <Row className="p-0">
+                    <Col>
                         <Tracker/>
                         <BMI/>
-                    </Stack>
-                    <Stack gap={4}>
-                        <Stats/>
+                    </Col>
+                    <Col>
+                        <History/>
                         <Goals/>
-                    </Stack>
-                </Stack>
-                
+                    </Col>
+                </Row>
+
             </Container>
             </div>
             

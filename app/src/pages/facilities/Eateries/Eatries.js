@@ -1,10 +1,8 @@
 import {Marker, MarkerClusterer} from "@react-google-maps/api";
-import {useCallback, useMemo, useRef, useState} from "react";
+import {useCallback, useMemo, useState} from "react";
 
 import Card from "react-bootstrap/Card";
 import Stack from "react-bootstrap/Stack";
-import Row from "react-bootstrap/Row";
-import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 import mapStyle from "../../../assets/css/Map.module.css";
@@ -40,7 +38,6 @@ export default function Eateries() {
 
     const [filteredList, setFilteredList] = useState(eateriesData);
     const [selectedList, setSelectedList] = useState(null);
-    const index = useRef(-1);
 
     const onFilter = useCallback(() => {
         setFilteredList(filteredList.filter((data) => ["Non-Halal"].includes(data.dining_concept)))

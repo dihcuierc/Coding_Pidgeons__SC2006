@@ -1,0 +1,30 @@
+.goals {
+    background-color: rgba(0,0,0,0.75) !important;
+    width: auto;
+    min-height: 415px !important;
+    border-radius: 20px !important;
+}
+
+.dashboard {
+    min-height: 300px !important;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    padding: 1rem;
+}
+
+.schedule {
+    max-width: 800px;
+    min-width: 200px !important;
+    height: 400px;
+    padding: 1.5rem;
+    margin-left: 50px;
+    border-radius: 20px;
+}
+
+.exercise {
+    width: 317px !important;
+    height: 371px !important;
+    background: rgba(213, 197, 197, 0.31) !important;
+    border-radius: 30px !important;
+    margin-top: 24px;
+}

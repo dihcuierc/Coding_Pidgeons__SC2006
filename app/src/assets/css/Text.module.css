@@ -6,3 +6,15 @@
 .hoverline:hover {
     text-decoration: underline;
 }
+
+.target {
+    color: #56AF55;
+}
+
+.currentValue {
+    color: #EFAB4A;
+}
+
+.targetDate {
+    color: white;
+}

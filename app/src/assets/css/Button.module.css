@@ -25,3 +25,10 @@
     --bs-btn-hover-bg: #000 !important;
     color: floralwhite;
 }
+
+.transparent {
+    padding: 0 5px !important;
+    background-color: transparent !important;
+    border: none !important;
+    margin-bottom: 10px;
+}
