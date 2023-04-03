@@ -166,7 +166,7 @@ function Register() {
                             <Form.Control
                                 type="password"
                                 name="confirmPassword"
-                                placeholder="Password"
+                                placeholder="Confirm Password"
                                 aria-describedby="passwordBlock"
                                 onChange={handleChange}
                                 isInvalid={!!errors.confirmPassword && touched.confirmPassword}
