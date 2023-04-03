@@ -34,10 +34,18 @@ function Setup() {
     const schema = Yup.object().shape({
         age: Yup.date()
             .min(new Date(1900, 0,1), "You cannot choose a date before this!")
-            .max(new Date(Date.now() - 315360000000), "You cannot be younger than 10 years old!")
+            .max(new Date((new Date().getFullYear() - 10), 1), "You cannot be younger than 10 years old!")
             .required("Required"),
-        height: Yup.number().positive().required("Required"),
-        weight: Yup.number().positive().required("Required"),
+            height: Yup.number()
+            .positive('Must be a positive number')
+            .min(90, 'Must be at least 90 cm')
+            .max(220, 'Cannot be more than 220 cm')
+            .required('Required'),
+          weight: Yup.number()
+            .positive('Must be a positive number')
+            .min(20, 'Must be at least 20 kg')
+            .max(400, 'Cannot be more than 400 kg')
+            .required('Required'),
         gender: Yup.string().required("Required"),
         image: Yup.string().nullable()
     })
@@ -89,7 +97,7 @@ function Setup() {
                                     value={values.height}
                                     onChange={handleChange}
                                     isInvalid={!!errors.height && touched.height}/>
-                                <Form.Control.Feedback>
+                                <Form.Control.Feedback type="invalid" tooltip>
                                     {errors?.height}
                                 </Form.Control.Feedback>
                             </FloatingLabel>
@@ -103,7 +111,7 @@ function Setup() {
                                     value={values.weight}
                                     onChange={handleChange}
                                     isInvalid={!!errors.weight && touched.weight}/>
-                                <Form.Control.Feedback>
+                                <Form.Control.Feedback type="invalid" tooltip>
                                     {errors?.weight}
                                 </Form.Control.Feedback>
                             </FloatingLabel>
