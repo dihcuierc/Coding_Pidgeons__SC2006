@@ -48,7 +48,7 @@ function Register() {
     const schema = Yup.object().shape({
         displayName: Yup.string().required("No username provided!")
             .min(6, "Username is too short - a minimum of 6 characters.")
-            .matches(/[^\s-]$/,
+            .matches(/^\S*$/,
                 "Username must not contain spaces"),
         name: Yup.string().required("No name provided!"),
         email: Yup.string().email('Invalid email address').required("Required"),
