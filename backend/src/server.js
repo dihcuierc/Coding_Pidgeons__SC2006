@@ -2,8 +2,9 @@ import express from "express";
 import cors from "cors";
 
 import authRoutes from "./routes/authentication";
-import {addUserData, collectOneRev, collectOneUser, collectRevData, collectUserData, deleteUserData, addRevData, deleteRevData, collectGoalData,
-collectOneGoal, addGoalData, deleteGoalData} from "./controller/DBConnection";
+import {collectUserData, collectOneUser, addUserData, deleteUserData, collectRevData, collectOneRev, addRevData, deleteRevData,
+    collectGoalData, collectOneGoal, addGoalData, deleteGoalData, collectExData, collectOneEx, collectCH, collectOneCH, addCH, deleteCH, 
+    collectSE, collectOneSE, addSE, deleteSE, collectExGroup, collectOneExGroup, collectPlan, collectOnePlan, addPlan, deletePlan} from "./controller/DBConnection";
 import userRoutes from "./routes/user";
 import {errorHandler} from "./errors/errorHandler";
 import { deleteUser } from "firebase/auth";
@@ -19,8 +20,8 @@ app.use(errorHandler);
 app.listen(8080, () => {
     console.log(`Server running on localhost:8080`);
     //collectUserData();
-    collectRevData();
-    //collectOneUser("9hkil8WTIIWf2XJdZxWU");
+    //collectRevData();
+    collectOneUser("2yJag0rbfr7VyQvkuzZn");
     //collectOneRev("9hkil8WTIIWf2XJdZxWU");
     //addUserData("123456", "Kai Jie", "Wan", "kjwan", "kjwan@gmail.com", null, "98765432")
     //deleteUserData("fTF3x1lyCfxvQJbepxRi")

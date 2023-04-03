@@ -136,6 +136,6 @@ function authentication(b64auth) {
     }
 }
 
-
+//function for deleting of user and prevention of logging in
 
 export {signUp, logIn, logOut, verify};
