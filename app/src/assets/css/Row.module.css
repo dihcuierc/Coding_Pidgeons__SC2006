@@ -14,3 +14,13 @@
     padding: 10px;
     margin-bottom: 20px;
 }
+
+.plans {
+    background-color: white;
+    border-radius: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}

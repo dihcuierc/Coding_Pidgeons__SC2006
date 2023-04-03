@@ -14,7 +14,7 @@ import TimeIcon from "@mui/icons-material/AccessTime";
 import background from "../../../assets/css/Background.module.css";
 import buttonStyle from "../../../assets/css/Button.module.css";
 import cardStyle from "../../../assets/css/Card.module.css";
-import divStyle from "../../../assets/css/Div.module.css";
+import rowStyle from "../../../assets/css/Row.module.css";
 
 //Temp Data
 const data = [
@@ -44,7 +44,7 @@ export default function ViewExercises() {
                 <Card.Title className="display-6 mx-auto p-0">Scheduled Exercises</Card.Title>
                 <Card.Body>
                     {data.map((item) => (
-                        <Row className={divStyle.exercises}>
+                        <Row className={rowStyle.exercises}>
                             <div className="mb-2 d-flex">
                                 <Card.Text>Exercise Plan 1: {item.name} </Card.Text>
                                 <Button className={`${buttonStyle.transparent} ms-auto`}
