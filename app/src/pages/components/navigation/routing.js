@@ -16,7 +16,7 @@ import AddGoals from '../../goals/Add/addGoals';
 import EditGoals from "../../goals/Edit/editGoals";
 import ExerciseReview from "../../review/ExerciseReview";
 import AddExerciseReview from "../../review/Add/AddExerciseReview"
-import AddExercise from "../../exercise/add/AddExercise";
+import AddExercise from "../../exercise/plans/add/AddExercisePlans";
 import Setup from "../../authentication/register/Setup";
 import Eateries from "../../facilities/Eateries/Eatries";
 

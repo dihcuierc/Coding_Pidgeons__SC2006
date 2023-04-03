@@ -13,7 +13,7 @@ import AddIcon from "@mui/icons-material/AddCircleOutlined";
 
 import buttonStyle from "../../../../../assets/css/Button.module.css";
 import cardStyle from "../../../../../assets/css/Card.module.css";
-import divStyle from "../../../../../assets/css/Div.module.css";
+import rowStyle from "../../../../../assets/css/Row.module.css";
 import iconStyle from "../../../../../assets/css/Icon.module.css"
 import textStyle from "../../../../../assets/css/Text.module.css";
 
@@ -58,7 +58,7 @@ export default function GoalCard({add,clickable}) {
                 <Card.Body className="ps-0">
                         {goals.map((item,index) => (
                             <div className="d-flex mb-3" key={index}>
-                                <div className={`${divStyle.goals} d-flex align-items-center`}>
+                                <div className={`${rowStyle.goals} d-flex align-items-center`}>
                                         <Col className="p-3">
                                             <Card.Text className={textStyle.target}>Target: {item['goal-title']}</Card.Text>
                                         </Col>
