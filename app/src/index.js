@@ -4,13 +4,12 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Routing from "./pages/components/navigation/routing";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "react-multi-carousel/lib/styles.css";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-  //<React.StrictMode>
       <Routing/>
-  //</React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
