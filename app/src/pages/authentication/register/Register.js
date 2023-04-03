@@ -51,13 +51,13 @@ function Register() {
             .matches(/^\S*$/,
                 "Username must not contain spaces"),
         name: Yup.string().required("No name provided!"),
-        email: Yup.string().email('Invalid email address').required("Required"),
+        email: Yup.string().email('Invalid email address').required("No email provided!"),
         password: Yup.string().required("No password provided!")
             .min(8, "Password is too short - a minimum of 8 characters.")
             .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
                 "Password must contain at least one Uppercase, Lowercase, one number and special character"),
         confirmPassword: Yup.string().oneOf([Yup.ref('password'),null],"Passwords must match")
-            .required("No password provided")
+            .required("No password provided!")
     })
     return (
         <Formik
