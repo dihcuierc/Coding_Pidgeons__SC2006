@@ -6,14 +6,15 @@
     }
   
     .add-exercise-block {
-      width: 35rem;
-      padding: 2rem;
-      margin: 2rem;
-      background: #17202d;
-      border-radius: 30px;
-  
-      display: flex;
-      flex-direction: column;
+        width: 550px;
+        min-width: 550px;
+        padding: 2rem;
+        margin: 2rem;
+        background: #17202d;
+        border-radius: 30px;
+
+        display: flex;
+        flex-direction: column;
     }
   
     .add-exercise-form {

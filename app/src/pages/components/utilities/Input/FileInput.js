@@ -42,7 +42,7 @@ function FileInput({image}) {
     return (
         <>
             <Form.Group id="form-file" className="text-black" onDragEnter={handleDrag}>
-                <Form.Control type="file" ref={inputRef} id="input-file" onChange={handleChange}/>
+                <Form.Control type="file" ref={inputRef} id="input-file" accept="image/png, image/jpg, image/gif" onChange={handleChange}/>
                     <Form.Label id="input-label" className={dragActive ? "drag-active" : ""}>
                         <p>Drag and drop your file here or</p>
                         <Button className="upload-button" onClick={onButtonClick}>Upload a file</Button>

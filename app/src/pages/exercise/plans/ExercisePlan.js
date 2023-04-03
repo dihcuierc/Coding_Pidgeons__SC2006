@@ -1,7 +1,7 @@
 import background from "../../../assets/css/Background.module.css";
 import React from "react";
 import "./ExercisePlan.css";
-import Table from "./Table";
+import Table from "../../components/utilities/tables/Table";
 import EditIcon from "@mui/icons-material/Edit";
 import Stack from "react-bootstrap/Stack";
 import exercisePlanData from "../../../data/exercisePlanData.json";
