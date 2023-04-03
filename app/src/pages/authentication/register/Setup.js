@@ -42,11 +42,11 @@ function Setup() {
     height: Yup.number()
       .min(90, "Must be at least 90 cm")
       .max(220, "Cannot be more than 220 cm")
-      .required("Required"),
+      .required("Please enter your height in cm"),
     weight: Yup.number()
       .min(20, "Must be at least 20 kg")
       .max(400, "Cannot be more than 400 kg")
-      .required("Required"),
+      .required("Please enter your weight in kg"),
     gender: Yup.string().required("Required"),
     image: Yup.string().nullable(),
   });
