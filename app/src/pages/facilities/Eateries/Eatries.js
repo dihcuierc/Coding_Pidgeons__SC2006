@@ -14,7 +14,7 @@ import {Map} from "../../components/map/GoogleMap";
 
 
 import EatryDetails from "./Details";
-import compare from "../../../context/misc/compare";
+import compare from "../../../misc/compare";
 import eateriesData from "../../../data/Eatries.json";
 import Col from "react-bootstrap/Col";
 import Dropdown from "react-bootstrap/Dropdown";

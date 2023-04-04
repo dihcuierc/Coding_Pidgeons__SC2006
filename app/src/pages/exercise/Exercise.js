@@ -1,16 +1,16 @@
 import background from "../../assets/css/Background.module.css"
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import './Exercise.css';
-import { useParams } from 'react-router-dom'
+import {Link, useParams} from 'react-router-dom'
 import exercises from "../../data/exerciseData.json";
 import exerciseGroups from "../../data/exerciseGroupData.json";
-import { Link } from 'react-router-dom';
 import exerciseReviews from "../../data/exerciseReviews.json";
 import Rating from '@mui/material/Rating';
+import Button from "react-bootstrap/Button";
 
 
 export default function Exercise() {
-    const { id } = useParams();
+    const {id} = useParams();
 
     const exercise = exercises.find((exercise) => exercise.id === parseInt(id));
 
@@ -23,11 +23,11 @@ export default function Exercise() {
 
         const totalRating = filteredReviews.reduce((acc, filteredReviews) => {
             return acc + filteredReviews.rating;
-          }, 0);
-        
-          const averageRating = totalRating / filteredReviews.length;
-          setAverageRating(averageRating);  
-      }, [exercise]);
+        }, 0);
+
+        const averageRating = totalRating / filteredReviews.length;
+        setAverageRating(averageRating);
+    }, [exercise]);
 
 
     if (!exercise) {
@@ -39,29 +39,31 @@ export default function Exercise() {
         return <div>Exercise group not found!</div>;
     }
 
-    return(
+    return (
         <div className={background.default}>
-            <Link to={`./review`}>
-                    <button>Review</button>
-                </Link>
             <div className="exercise-container">
                 <div className="exercise-block">
                     <h1 className="exercise-title">{exercise.alt}</h1>
                     <p>{exerciseGroup.title} Exercise</p>
-                    <Rating 
-                        name="half-rating-read" 
-                        value={averageRating} 
-                        precision={0.1} 
-                        size="large" 
+                    <Rating
+                        name="half-rating-read"
+                        value={averageRating}
+                        precision={0.1}
+                        size="large"
                         sx={{
                             '& .MuiRating-iconEmpty': {
                                 color: 'white',
                             }
-                            }}
-                        readOnly 
+                        }}
+                        readOnly
                     />
-                                
-                    <img className="exercise-video" src={exercise.path} alt={exercise.alt} />
+                    <img className="exercise-video" src={exercise.path} alt={exercise.alt}/>
+                    <div className="mx-auto text-decoration-none">
+                        <Button variant="danger">
+                            <Link to="./review" className="text-white text-decoration-none">
+                                Review
+                            </Link>
+                    </Button></div>
                 </div>
                 <div className="exercise-block">
                     <div className="exercise-instructions">
@@ -80,11 +82,11 @@ export default function Exercise() {
 
 function generateStars(rating) {
     const stars = [];
-  
+
     for (let i = 0; i < 5; i++) {
-      const starClass = i < rating ? "star filled" : "star";
-      stars.push(<div key={i} className={starClass}></div>);
+        const starClass = i < rating ? "star filled" : "star";
+        stars.push(<div key={i} className={starClass}></div>);
     }
-  
+
     return stars;
-  }
+}

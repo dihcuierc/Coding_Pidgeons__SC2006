@@ -31,15 +31,12 @@
       color: white;
     }
   
-    .add-exercise-form input,
-    .add-exercise-form textarea {
+    .add-exercise-form input {
       width: 100%;
       padding: 0.5rem;
       margin-bottom: 1rem;
       border-radius: 5px;
-      border: none;
-      background-color: #d4d4d4;
-      color: #000;
+      border: 2px #d4d4d4 solid;
     }
   
     .add-exercise-form select {

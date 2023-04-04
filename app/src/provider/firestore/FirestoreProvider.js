@@ -1,7 +1,6 @@
 import {useEffect, useState} from "react";
-import { collection, onSnapshot, setDoc, doc, query, where, orderBy, serverTimestamp, getDocs } from "firebase/firestore";
+import { collection, onSnapshot, setDoc, doc, getCountFromServer} from "firebase/firestore";
 import {initializeFirebase} from "../FirebaseConfig";
-import {userConverter} from "../classes/User";
 
 const {db} = initializeFirebase();
 
@@ -20,12 +19,24 @@ function GetCollection(path) {
     return data;
 }
 
-async function CreateUser({data}) {
+async function CreateUser(uuID,{data}) {
     try {
-        await setDoc(doc(db, "User", data.uid).withConverter(userConverter));
+        await setDoc(doc(db,"User",uuID), data);
+        return true;
     } catch(err) {
-        console.log(err);
+        throw err;
     }
 }
 
-export {GetCollection, CreateUser};
+async function GetSize(path) {
+    try {
+        const collectionRef = collection(db, path);
+        const snapshot = await getCountFromServer(collectionRef);
+        return snapshot.data().count;
+    } catch(err) {
+        console.log("Tesvt");
+        throw err;
+    }
+}
+
+export {GetCollection, CreateUser, GetSize};

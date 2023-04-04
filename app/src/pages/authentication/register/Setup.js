@@ -1,3 +1,7 @@
+import * as Yup from "yup";
+import { Formik } from "formik";
+import {useLocation, useNavigate} from "react-router-dom";
+
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
@@ -5,17 +9,13 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-import * as Yup from "yup";
-import { Formik } from "formik";
-
 import background from "../../../assets/css/Background.module.css";
 import padding from "../../../assets/css/Padding.module.css";
 import formStyle from "../../../assets/css/Form.module.css";
 import buttonStyle from "../../../assets/css/Button.module.css";
 
-import FileInput from "../../components/utilities/Input/FileInput";
-import { useLocation } from "react-router-dom";
-import { CreateUser } from "../../../provider/firestore/FirestoreProvider";
+import { CreateUser, GetSize } from "../../../provider/firestore/FirestoreProvider";
+import calculateAge from "../../../misc/calculateAge";
 
 export default function SetupWrapper() {
   return (
@@ -30,7 +30,8 @@ export default function SetupWrapper() {
 }
 
 function Setup() {
-  const { state } = useLocation();
+    const navigate = useNavigate();
+    const { state } = useLocation();
   const schema = Yup.object().shape({
     age: Yup.date()
       .min(new Date(1900, 0, 1), "You cannot choose a date before this!")
@@ -47,6 +48,9 @@ function Setup() {
       .min(20, "Must be at least 20 kg")
       .max(400, "Cannot be more than 400 kg")
       .required("Please enter your weight in kg"),
+      mobile: Yup
+          .string()
+          .matches(/(6|8|9)\d{7}/, "Phone number is not valid"),
     gender: Yup.string().required("Required"),
     image: Yup.string().nullable(),
   });
@@ -54,7 +58,38 @@ function Setup() {
     <Formik
       validationSchema={schema}
       onSubmit={async (values) => {
-        console.log(values);
+          try {
+              const age = calculateAge(values.age);
+              const userDetails = state.user;
+              const email = userDetails.email;
+              const gender = values.gender;
+              const height = values.height;
+              const mobile = values.mobile;
+              const name = userDetails.name;
+              const image = values.image;
+              const id = await GetSize("User") + 1;
+              const username = userDetails.username;
+              const weight = values.weight;
+              const uid = userDetails.uid;
+              const data = {
+                  age,
+                  email,
+                  gender,
+                  height,
+                  mobile,
+                  name,
+                  image,
+                  id,
+                  username,
+                  weight,
+              }
+              const status = await CreateUser(uid,{data});
+              if (status)
+                  navigate("../../profile");
+          } catch(err) {
+              console.log(err);
+
+          }
       }}
       initialValues={{
         age: new Date(),
@@ -62,6 +97,7 @@ function Setup() {
         weight: 30.5,
         gender: "Male",
         image: "",
+          mobile: "91248592"
       }}
     >
       {({
@@ -89,6 +125,20 @@ function Setup() {
               </Form.Control.Feedback>
             </FloatingLabel>
           </Form.Group>
+            <Form.Group className="mb-3" controlId="mobileInput">
+                <FloatingLabel className="text-dark" label="Phone Number">
+                    <Form.Control
+                        type="text"
+                        name="mobile"
+                        value={values.mobile}
+                        onChange={handleChange}
+                        isInvalid={!!errors.mobile && touched.mobile}
+                    />
+                    <Form.Control.Feedback type="invalid" tooltip>
+                        {errors?.mobile}
+                    </Form.Control.Feedback>
+                </FloatingLabel>
+            </Form.Group>
           <Row>
             <Form.Group as={Col} className="mb-3" controlId="heightInput">
               <FloatingLabel className="text-dark" label="Height (cm)">
@@ -125,6 +175,7 @@ function Setup() {
                 <Form.Select
                   name="gender"
                   placeholder="Gender"
+                  value={values.gender}
                   onChange={handleChange}
                   isInvalid={!!errors.gender && touched.gender}
                 >

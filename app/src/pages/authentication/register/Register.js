@@ -15,8 +15,8 @@ import buttonStyle from "../../../assets/css/Button.module.css";
 import background from "../../../assets/css/Background.module.css";
 import padding from "../../../assets/css/Padding.module.css"
 
-import { SignUp } from "../../../provider/auth/AuthProvider";
 import {StatusMessages} from "../../components/utilities/alerts/StatusMessages";
+import {SignUp} from "../../../provider/auth/AuthProvider";
 
 
 export default function RegisterWrapper() {
@@ -64,14 +64,15 @@ function Register() {
             validationSchema={schema}
             onSubmit={async values => {
                 try {
-                const userid = await SignUp(values.email, values.password);
-                console.log(values.displayName);
+                const uid = await SignUp(values.email,values.password);
                 navigate("./setup", {
                     state : {
-                        id : userid,
-                        name: values.name,
-                        username: values.displayName,
-                        email: values.email
+                        user: {
+                            uid: uid,
+                            name: values.name,
+                            username: values.displayName,
+                            email: values.email,
+                        }
                     }
                 })
                 } catch (err) {

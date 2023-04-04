@@ -1,6 +1,32 @@
 import {initializeFirebase} from "../FirebaseConfig";
-import {createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail} from "firebase/auth"
+import {
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signOut,
+    sendPasswordResetEmail,
+    signInWithPopup,
+    GoogleAuthProvider,
+} from "firebase/auth"
+
 const {auth} = initializeFirebase();
+
+const provider = new GoogleAuthProvider();
+
+async function GoogleAuth() {
+    try {
+        let registered = false;
+        const result = await signInWithPopup(auth, provider);
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const user = result.user;
+        const sessionToken = credential.accessToken;
+        sessionStorage.setItem("sessionToken", sessionToken);
+        if (result.additionalUserInfo.isNewUser)
+            registered = true;
+        return {registered, user}
+    } catch (err) {
+        console.log(err);
+    }
+}
 
 async function SignUp(email,password) {
     try {
@@ -47,4 +73,4 @@ async function ResetPassword(email) {
     }
 }
 
-export {SignUp, SignIn, LogOut, ResetPassword}
+export {GoogleAuth, SignUp, SignIn, LogOut, ResetPassword}

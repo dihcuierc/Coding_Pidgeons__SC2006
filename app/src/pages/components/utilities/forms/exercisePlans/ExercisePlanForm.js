@@ -29,8 +29,8 @@ export default function ExercisePlanForm() {
         title: Yup
             .string()
             .required("Exercise Plan must have a name!"),
-        exercise: Yup.array()
-            .of(Yup.object().shape({
+        exercise: Yup.array().of(
+                Yup.object().shape({
                 name: Yup
                     .string()
                     .required(),
@@ -169,9 +169,9 @@ export default function ExercisePlanForm() {
                                             </Col>
                                             <Col xs={2}>
                                                 <p>Reps:</p>
-                                                <Form.Group controlId="reps">
+                                                <Form.Group controlId="repsInput">
                                                     <Form.Control
-                                                        name="reps"
+                                                        name={`exercises[${index}].reps`}
                                                         type="number"
                                                         value={values.exercises[index].reps}
                                                         onChange={handleChange}
@@ -184,9 +184,9 @@ export default function ExercisePlanForm() {
                                             </Col>
                                             <Col xs={2}>
                                                 <p>Sets:</p>
-                                                <Form.Group controlId="sets">
+                                                <Form.Group controlId="setsInput">
                                                     <Form.Control
-                                                        name="sets"
+                                                        name={`exercises[${index}].sets`}
                                                         type="number"
                                                         value={values.exercises[index].sets}
                                                         onChange={handleChange}
@@ -199,9 +199,9 @@ export default function ExercisePlanForm() {
                                             </Col>
                                             <Col xs={2}>
                                                 <p>Rest:</p>
-                                                <Form.Group controlId="rest">
+                                                <Form.Group controlId="restInput">
                                                     <Form.Control
-                                                        name="rest"
+                                                        name={`exercises[${index}].rest`}
                                                         type="number"
                                                         value={values.exercises[index].rest}
                                                         onChange={handleChange}
