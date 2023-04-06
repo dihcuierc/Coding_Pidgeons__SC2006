@@ -162,7 +162,7 @@ function Register() {
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="confirmPasswordInput">
                         <FloatingLabel
-                            label="Password"
+                            label="Confirm Password"
                             className="text-dark">
                             <Form.Control
                                 type="password"
