@@ -225,6 +225,23 @@ async function deleteRevData(UID, revID){
     return "Review has been deleted successfully"
 }
 
+async function updateRevData(revID, new_exercise, new_comments, new_date, new_rating, new_exID, new_UID){
+    //Pass in the particular review's document id
+    const review = doc(db, "Review", revID)
+
+    await updateDoc(review, {
+        UID: new_UID,
+        comments: new_comments,
+        rating: new_rating,
+        exID: new_exID,
+        date: new_date,
+        Exercise: new_exercise,
+        updatedAt: serverTimestamp()
+    })
+    console.log("Review has been updated successfully")
+    return "Review has been updated successfully"
+}
+
 function collectGoalData(){
     const goalRef = collection(db, 'Goal')
 
@@ -294,6 +311,23 @@ async function deleteGoalData(UID, GID){
         console.log("Goal has been deleted successfully")
     })
     return "Goal has been deleted successfully"
+}
+
+async function updateGoalData(GID, new_UID, new_Title, new_CV, new_TV, new_Deadline, new_Done){
+    //Pass in the particular goal's document id
+    const goal = doc(db, "Goal", GID)
+
+    await updateDoc(review, {
+        UID: new_UID,
+        Title: new_Title,
+        CurrentValue: new_CV,
+        TargetValue: new_TV,
+        Deadline: new_Deadline,
+        Done: new_Done,
+        updatedAt: serverTimestamp()
+    })
+    console.log("Goal has been updated successfully")
+    return "Goal has been updated successfully"
 }
 
 function collectExData(){
@@ -454,6 +488,22 @@ async function deleteSE(UID, SEID){
     return "Scheduled exercise has been deleted successfully"
 }
 
+async function updateSE(SEID, new_date, new_end_time, new_planID, new_start_time, new_UID){
+      //Pass in the particular scheduled exercise's document id
+      const plan = doc(db, "ScheduleExercise", SEID)
+
+      await updateDoc(plan, {
+        date: new_date,
+        end_time: new_end_time,
+        planID: new_planID,
+        start_time: new_start_time,
+        userID: new_UID,
+        updatedAt: serverTimestamp()
+      })
+      console.log("Scheduled exercise has been updated successfully")
+      return "Scheduled exercise has been updated successfully"
+}
+
 function collectExGroup(){
     const EGref = collection(db, "ExerciseGroups")
 
@@ -553,6 +603,24 @@ async function deletePlan(UID, planID){
     return "Plan has been deleted successfully"
 }
 
+async function updatePlan(planID, new_UID, new_image, new_planID, new_title, new_totalCal, new_exercises){
+      //Pass in the particular plan's document id
+      const plan = doc(db, "Plan", planID)
+
+      await updateDoc(plan, {
+        userID: new_UID,
+        image_ref: new_image,
+        planID: new_planID,
+        title: new_title,
+        totalCalories: new_totalCal,
+        exercises: new_exercises,
+        updatedAt: serverTimestamp()
+      })
+      console.log("Plan has been updated successfully")
+      return "Plan has been updated successfully"
+}
+
 export {collectUserData, collectOneUser, addUserData, deleteUserData, collectRevData, collectOneRev, addRevData, deleteRevData,
     collectGoalData, collectOneGoal, addGoalData, deleteGoalData, collectExData, collectOneEx, collectCH, collectOneCH, addCH, deleteCH, 
-    collectSE, collectOneSE, addSE, deleteSE, collectExGroup, collectOneExGroup, collectPlan, collectOnePlan, addPlan, deletePlan};
+    collectSE, collectOneSE, addSE, deleteSE, collectExGroup, collectOneExGroup, collectPlan, collectOnePlan, addPlan, deletePlan,
+    updateGoalData, updateRevData, updateSE, updatePlan};
