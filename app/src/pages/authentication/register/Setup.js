@@ -15,7 +15,7 @@ import formStyle from "../../../assets/css/Form.module.css";
 import buttonStyle from "../../../assets/css/Button.module.css";
 
 import { CreateUser, GetSize } from "../../../provider/firestore/FirestoreProvider";
-import calculateAge from "../../../misc/calculateAge";
+import {calculateAge} from "../../../misc/dateConverter";
 
 export default function SetupWrapper() {
   return (

@@ -32,7 +32,7 @@ export default function ViewReviews() {
             <Container className='profile-review-container'>
                 <Card className='profile-review-card ' style={{border:'none', background : "transparent"}}>
             
-                    <Card.Title className='profile-review-title'>
+                    <Card.Title className='profile-review-title text-white'>
                         All Your Reviews
                     </Card.Title>
                   

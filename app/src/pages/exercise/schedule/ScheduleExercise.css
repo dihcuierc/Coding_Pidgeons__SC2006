@@ -1,13 +1,13 @@
 .stack-container {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding-top: 3rem;
     background-color: #2C2C2E;
     width: 35rem;
     border-radius: 50px;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .row-item {
@@ -19,6 +19,7 @@
     padding-right: 3rem;
     width: inherit;
     color: white;
+    margin-bottom: 3rem !important
 }
 
 /* calendar styling */

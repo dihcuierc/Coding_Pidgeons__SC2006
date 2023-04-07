@@ -21,6 +21,9 @@ import exerciseGroups from "../../../../../data/exerciseGroupData.json";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {AddCollection, GetCollection, GetSize} from "../../../../../provider/firestore/FirestoreProvider";
 import {UploadFiles} from "../../../../../provider/storage/StorageProvider";
+import toast, {Toaster} from "react-hot-toast";
+import {wait} from "@testing-library/user-event/dist/utils";
+import {useNavigate} from "react-router-dom";
 
 export default function ExercisePlanForm() {
     const schema = Yup.object().shape({
@@ -47,7 +50,10 @@ export default function ExercisePlanForm() {
 
     const [selectGroup, setSelectGroup] = useState(1);
     const [exerciseData, setExerciseData] = useState([]);
-    const [size, setSize] = useState(1);
+    const navigate = useNavigate();
+
+    const success = useCallback(() =>
+        toast.success("You have successfully created a new Exercise Plan!"),[])
 
     const getExercises = useCallback(() => {
         GetCollection("Exercise").then((data) => {
@@ -73,20 +79,29 @@ export default function ExercisePlanForm() {
     return (
         <Formik
             validationSchema={schema}
-            onSubmit={values => {
-                GetSize("Plan").then(data =>
-                    setSize(data)
-                )
+            onSubmit={async values => {
+                try {
+                const size = await GetSize("Plan");
                 let totalCalories = 0;
-                values.exercises.map((item) => totalCalories += (item.reps * item.sets * 0.11))
+                values.exercises.forEach((item) => totalCalories += (item.reps * item.sets * 0.11))
                 const data = {
                     planID: size+1,
                     title: values.title,
                     exercises: values.exercises,
                     image_ref: values.image,
-                    totalCalories: totalCalories
+                    totalCalories: totalCalories,
+                    userID: 1
                 }
-                AddCollection("Plan", data).catch(err => console.log(err));
+                const status = await AddCollection("Plan",size, data).catch(err => console.log(err));
+                if (status) {
+                    await wait(500);
+                    success()
+                    navigate(-1);
+                }
+                } catch(err) {
+                    const error = () => toast.error("There was an error" + err.message);
+                    error();
+                }
             }}
             initialValues={{
                 title: "",
@@ -252,6 +267,7 @@ export default function ExercisePlanForm() {
                                 }
                             </div>
                         )}
+                        <Toaster/>
                     </Container>
                 </Form>
             )}

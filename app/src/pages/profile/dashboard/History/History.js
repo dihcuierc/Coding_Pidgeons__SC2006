@@ -7,6 +7,7 @@ import cardStyle from "../../../../assets/css/Card.module.css"
 
 
 export default function History() {
+
     return (
         <>
             <Card className={`${cardStyle.dashboard}`}>

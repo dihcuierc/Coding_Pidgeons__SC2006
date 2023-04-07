@@ -1,28 +1,32 @@
 import background from "../../../../assets/css/Background.module.css";
 import "../../../workout/Workout.css";
-import React from "react";
-import exerciseData from "../../../../data/exerciseData.json";
-import exerciseGroupData from "../../../../data/exerciseGroupData.json";
+import React, {useCallback, useEffect, useState} from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import ExerciseCard from "./exercise/ExerciseCard";
 import { useParams } from "react-router-dom";
+import {GetCollection} from "../../../../provider/firestore/FirestoreProvider";
 
 export default function ExerciseCarousel() {
   const { id } = useParams();
 
-  const filteredExercises = exerciseData.filter((exercise) => {
-    return exercise["exercise-group-id"] === parseInt(id);
-  });
+  const [exerciseGroup, setExerciseGroup] = useState([]);
+  const [exercises, setExercises] = useState([])
+  const [filtered, setFiltered] = useState([]);
+  
+  const fetchExerciseGroup = useCallback(() => {
+    GetCollection("ExerciseGroups",id).then(data => setExerciseGroup(data)).catch(err => console.log(err));
+  },[id])
 
-  if (filteredExercises.length === 0) {
-    return <div>Exercises not found!</div>;
-  }
+  const fetchExercises = useCallback(() => {
+    GetCollection("Exercise").then(data => 
+      setExercises(data.filter(item => item['exgrp_ID'] === parseInt(id)))).catch(err => console.log(err));
+  },[id])
 
-  const exerciseGroup = exerciseGroupData.find(
-    (exerciseGroup) =>
-      exerciseGroup.id === filteredExercises[0]["exercise-group-id"]
-  );
+  useEffect(() => {
+    fetchExerciseGroup();
+    fetchExercises();
+  },[exercises, fetchExerciseGroup, fetchExercises, id])
 
   return (
     <div className={background.default}>
@@ -31,12 +35,12 @@ export default function ExerciseCarousel() {
           <h1>{exerciseGroup.title}</h1>
         </div>
         <Carousel responsive={responsive} showDots={true} infinite={true}>
-          {filteredExercises.map((exercise) => (
+          {exercises.map((exercise) => (
             <ExerciseCard
               link={`../exercise/${exercise.id}`}
               key={exercise.id}
-              imageUrl={exercise.path}
-              title={exercise.alt}
+              imageUrl={exercise['image_ref']}
+              title={exercise.title}
               addExercise={true}
             />
           ))}

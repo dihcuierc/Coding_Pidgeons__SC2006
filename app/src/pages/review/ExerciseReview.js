@@ -1,7 +1,7 @@
 import background from "../../assets/css/Background.module.css"
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import './ExerciseReview.css';
-import { useParams, useNavigate } from 'react-router-dom'
+import {useParams, useNavigate, useLocation} from 'react-router-dom'
 import exercises from "../../data/exerciseData.json";
 import Container from "react-bootstrap/esm/Container";
 import Card from "react-bootstrap/Card";
@@ -10,39 +10,57 @@ import Rating from '@mui/material/Rating';
 import exerciseReviews from "../../data/exerciseReviews.json";
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 import { styled } from '@mui/material/styles';
+import {GetCollection} from "../../provider/firestore/FirestoreProvider";
 
 
 export default function ExerciseReview() {
     const { id } = useParams();
-    const exercise = exercises.find((exercise) => exercise.id === parseInt(id));
+    const {state} = useLocation();
+
     const navigate = useNavigate();
+    const [exercise, setExercise] = useState([]);
     const [reviews, setReviews] = useState([]);
     const [averageRating, setAverageRating] = useState(0);
     const [ratingCounts, setRatingCounts] = useState([0, 0, 0, 0, 0]);
     const sum = ratingCounts.reduce((accumulator, currentValue) => accumulator + currentValue);
-    const addReview = () => {
-        navigate('add');
-    };
+
+    const addReview = useCallback(() => {
+        navigate("add", {
+            state: {
+                exercise
+            }
+        })
+    },[exercise, navigate])
+
+    //Use Location to get Exercise
+    const getExercise = useCallback(() => {
+        GetCollection("Exercise", id).then(data => {
+            setExercise(data)}).catch(err => console.log(err));
+    },[id])
+
+    const getReviews = useCallback(() => {
+        GetCollection("Review").then(data => {
+            setReviews(data.filter(item => item['exID'] === parseInt(id)))
+        })
+    },[id])
 
     useEffect(() => {
-        const filteredReviews = exerciseReviews.filter((review) => review["exercise-id"] === exercise["id"]);
-        setReviews(filteredReviews);
-        console.log("Current reviews state:", reviews);
-
-        const totalRating = filteredReviews.reduce((acc, filteredReviews) => {
+        getReviews();
+        getExercise();
+        const totalRating = reviews.reduce((acc, filteredReviews) => {
             return acc + filteredReviews.rating;
           }, 0);
         
-          const averageRating = totalRating / filteredReviews.length;
+          const averageRating = totalRating / reviews.length;
           setAverageRating(averageRating);
         
         const counts = [0, 0, 0, 0, 0];
-        filteredReviews.forEach((review) => {
+        reviews.forEach((review) => {
             counts[5 - review.rating] += 1;
         });
         setRatingCounts(counts);
           
-      }, [exercise]);
+      }, [getExercise, getReviews, reviews]);
 
 
       const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
@@ -63,7 +81,7 @@ export default function ExerciseReview() {
                 <Card className='all-exercise-review-card' style={{backgroundColor:"transparent", border:'none'}}>
                     <Stack direction="horizontal" gap={4} >
                         <Card.Title className="all-exercise-title">
-                            <h1>All Reviews For:</h1>
+                            <h1>All Reviews For: {exercise.title}</h1>
                         </Card.Title>
                         
                         <button className='all-add-review-button' onClick={addReview}>Add Review</button>
@@ -71,7 +89,7 @@ export default function ExerciseReview() {
                     </Stack>
                     <Stack direction="horizontal" gap={5}>
                         <div className='all-exercise-review-details'>
-                            <img className="exercise-video-review" src={exercise.path} alt={exercise.alt} style={{display: 'block', margin: 'auto'}}/>
+                            <img className="exercise-video-review" src={exercise['image_ref']} alt={exercise.title} style={{display: 'block', margin: 'auto'}}/>
                             <h3 style={{ textAlign: 'center', marginTop:"10px" }}>Overall Rating For This Exercise:</h3>
                             <Stack direction="horizontal" gap={2} style={{ display: 'flex', justifyContent: 'center' }}>
                                 <Rating 
@@ -108,7 +126,7 @@ export default function ExerciseReview() {
                             <Stack direction="vertical" gap={3}>
                                 
                                 {reviews.map((review) => (
-                                    review.text &&
+                                    review.comments &&
                                     <div key={review.id} className='all-individual-review' >
                                         <Stack direction="horizontal" gap={3} >
                                             <div className='all-exercise-review-profile'>
@@ -122,7 +140,7 @@ export default function ExerciseReview() {
                                                 <Rating name="half-rating-read" value={review.rating} precision={0.5} size="large" readOnly />
                                             </div>
                                             <div className='all-exercise-review-text' >
-                                                <p>{review.text}</p>
+                                                <p>{review.comments}</p>
                                             </div>
                                             <p></p>
                                         </Stack> 

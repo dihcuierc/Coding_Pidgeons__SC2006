@@ -12,6 +12,7 @@
     border-radius: 30px;
     justify-content: center;
     display: flex;
+    padding: 10px;
   }
 
   .exercise-review-rating-text{
@@ -22,6 +23,7 @@
   .exercise-review-text{
     background-color: #17202D;
     border-radius: 30px;
+    padding: 30px;
   }
 
   .exercise-review-words{
@@ -43,17 +45,19 @@
   }
 
   .exercise-review-card{
-    background-color: transparent;
+    background-color: transparent !important;
+    border: none !important;
     align-self: flex-start;
   }
 
   .submit-button{
-    background-color:#F03F58;
-    color:white;
+    background-color:#F03F58 !important;
+    color:white !important;
     border-radius: 15px;
-    margin-left: auto;
-    display: block;
+    margin-left: auto !important;
+    display: block !important;
     width: 100px;
+    margin-top: 15px;
   }
 
   .review-exercise-video{
@@ -99,4 +103,9 @@
     padding-right: 10px;
     text-align: justify;
     font-weight: bold;
+  }
+
+  .comments {
+    height: 200px !important;
+    width: 450px !important;
   }

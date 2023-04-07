@@ -1,5 +1,5 @@
 import background from "../../assets/css/Background.module.css"
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import './Exercise.css';
 import {Link, useParams} from 'react-router-dom'
 import exercises from "../../data/exerciseData.json";
@@ -7,44 +7,45 @@ import exerciseGroups from "../../data/exerciseGroupData.json";
 import exerciseReviews from "../../data/exerciseReviews.json";
 import Rating from '@mui/material/Rating';
 import Button from "react-bootstrap/Button";
+import {GetCollection} from "../../provider/firestore/FirestoreProvider";
 
 
 export default function Exercise() {
     const {id} = useParams();
 
-    const exercise = exercises.find((exercise) => exercise.id === parseInt(id));
+    const [exercise, setExercise] = useState([]);
 
     const [reviews, setReviews] = useState([]);
     const [averageRating, setAverageRating] = useState(0);
 
-    useEffect(() => {
-        const filteredReviews = exerciseReviews.filter((review) => review["exercise-id"] === exercise["id"]);
-        setReviews(filteredReviews);
 
-        const totalRating = filteredReviews.reduce((acc, filteredReviews) => {
+    const fetchExercise = useCallback(() => {
+        GetCollection("Exercise",id).then(data => setExercise(data)).catch(err => console.log(err));
+    },[id])
+
+    const fetchReview = useCallback(() => {
+        GetCollection("Review").then(data =>
+            setReviews(data.filter(item => item['exID'] === parseInt(id)))
+        )
+    },[id])
+
+    useEffect(() => {
+        fetchExercise();
+        fetchReview();
+        const totalRating = reviews.reduce((acc, filteredReviews) => {
             return acc + filteredReviews.rating;
         }, 0);
 
-        const averageRating = totalRating / filteredReviews.length;
+        const averageRating = totalRating / reviews.length;
         setAverageRating(averageRating);
-    }, [exercise]);
+    }, [exercise, fetchExercise, fetchReview, reviews]);
 
-
-    if (!exercise) {
-        return <div>Exercise not found!</div>;
-    }
-
-    const exerciseGroup = exerciseGroups.find((exerciseGroup) => exerciseGroup.id === exercise["exercise-group-id"]);
-    if (!exerciseGroup) {
-        return <div>Exercise group not found!</div>;
-    }
 
     return (
         <div className={background.default}>
             <div className="exercise-container">
                 <div className="exercise-block">
-                    <h1 className="exercise-title">{exercise.alt}</h1>
-                    <p>{exerciseGroup.title} Exercise</p>
+                    <h1 className="exercise-title">{exercise.title}</h1>
                     <Rating
                         name="half-rating-read"
                         value={averageRating}
@@ -57,7 +58,7 @@ export default function Exercise() {
                         }}
                         readOnly
                     />
-                    <img className="exercise-video" src={exercise.path} alt={exercise.alt}/>
+                    <img className="exercise-video" src={exercise['image_ref']} alt={exercise.title}/>
                     <div className="mx-auto text-decoration-none">
                         <Button variant="danger">
                             <Link to="./review" className="text-white text-decoration-none">
@@ -78,15 +79,4 @@ export default function Exercise() {
             </div>
         </div>
     )
-}
-
-function generateStars(rating) {
-    const stars = [];
-
-    for (let i = 0; i < 5; i++) {
-        const starClass = i < rating ? "star filled" : "star";
-        stars.push(<div key={i} className={starClass}></div>);
-    }
-
-    return stars;
 }
