@@ -1,6 +1,7 @@
   .exercise-plan-container {
     margin: 0 10%;
-    padding-top: 4%;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
   }
 
   .exercise-plan-title {
@@ -14,6 +15,7 @@
     color: #FFF;
     padding: 2rem;
     border-radius: 10px;
+    margin-bottom: 0!important;
   }
 
   .table-save{
@@ -38,3 +40,34 @@
   .table-save button:hover {
     background-color: #3e8e41;
   }
+
+  .Table-container {
+    margin: 0 auto;
+  }
+
+  .Table {
+    color: #FFF !important;
+    width: 100%;
+  }
+
+  .Table td:not(.delete-row),
+  .Table th {
+    padding: 12px;
+    text-align: left;
+    border: none;
+  }
+
+  .Table th {
+    background: #F03F58 !important;
+    border: none;
+  }
+
+  .Table td input {
+    border: none;
+    background: #1f2938 !important;
+    color: #FFF !important;
+    padding: 0.5rem;
+    border-radius: 5px;
+  }
+
+
