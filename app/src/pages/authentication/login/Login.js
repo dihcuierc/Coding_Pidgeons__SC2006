@@ -23,7 +23,7 @@ export default function LoginWrapper() {
         <div className={background.login}>
             <Stack gap={2}>
                 <div className="d-flex justify-content-end m-4 pe-3">
-                    <div className="text-light mt-2 me-3">Already have an Account?</div>
+                    <div className="text-light mt-2 me-3">Do not have an account?</div>
                     <LinkContainer to="/register">
                         <Nav.Link>
                             <Button variant="outline-secondary" className="text-light rounded-pill px-3">Sign Up</Button>{' '}
