@@ -19,6 +19,8 @@ import AddExerciseReview from "../../review/Add/AddExerciseReview"
 import AddExercise from "../../exercise/plans/add/AddExercisePlans";
 import Setup from "../../authentication/register/Setup";
 import Eateries from "../../facilities/Eateries/Eatries";
+import {GetCollection} from "../../../provider/firestore/FirestoreProvider";
+import {useEffect} from "react";
 
 export const router = createBrowserRouter([
     {
@@ -89,7 +91,6 @@ export const router = createBrowserRouter([
             },
             {
                 path: "workout",
-                loader: () => null,
                 children: [
                     {
                         index: true,

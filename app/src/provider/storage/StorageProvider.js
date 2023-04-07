@@ -1,10 +1,30 @@
+import {initializeFirebase} from "../FirebaseConfig";
+import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
 
-function UploadFiles() {
+const { storage } = initializeFirebase();
+
+
+async function UploadFiles(file,path) {
+    try {
+        const fileRef = ref(storage, path);
+        await uploadBytes(fileRef, file);
+        return true;
+    } catch (err) {
+        throw err;
+    }
 
 }
 
-function RetrieveFiles() {
+async function RetrieveFiles(path) {
+    try {
+        console.log(path);
+        const fileRef = ref(storage,path)
+        console.log(fileRef)
+        return await getDownloadURL(fileRef);
 
+    } catch (err) {
+        throw err;
+    }
 }
 
 export {UploadFiles, RetrieveFiles};

@@ -1,22 +1,28 @@
-import {useEffect, useState} from "react";
-import { collection, onSnapshot, setDoc, doc, getCountFromServer} from "firebase/firestore";
+import {collection, doc, getCountFromServer, getDocs, getDoc, setDoc} from "firebase/firestore";
 import {initializeFirebase} from "../FirebaseConfig";
-
 const {db} = initializeFirebase();
 
-function GetCollection(path) {
-    const [data, setData] = useState(null);
-    useEffect(() => {
-        const unsub = onSnapshot(collection(db, path),(snapshot) => {
-            const docs = snapshot.docs.map((doc) =>
-                ({...doc.data(), id: doc.id}))
-            setData(docs);
-        });
+async function AddCollection(path,size, data) {
+    try {
+        await setDoc(doc(db, path, size + 1), data);
+        return true;
+    } catch (err) {
+        console.log(err);
+    }
+}
 
-        return () =>
-            unsub();
-    });
-    return data;
+
+async function GetCollection(path, index) {
+    try {
+        if (!index) {
+            const querySnapshot = await getDocs(collection(db, path));
+            return querySnapshot.docs.map((doc) => ({...doc.data(), id: doc.id}));
+        }
+        const querySnapshot = await getDoc(doc(db,path,index));
+        return ({...querySnapshot.data()});
+    } catch (err) {
+        throw err;
+    }
 }
 
 async function CreateUser(uuID,{data}) {
@@ -34,9 +40,9 @@ async function GetSize(path) {
         const snapshot = await getCountFromServer(collectionRef);
         return snapshot.data().count;
     } catch(err) {
-        console.log("Tesvt");
         throw err;
     }
 }
 
-export {GetCollection, CreateUser, GetSize};
+
+export {AddCollection,GetCollection, CreateUser, GetSize};

@@ -15,13 +15,13 @@ export default function ExerciseCard(props) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedPlan, setSelectedPlan] = useState(null);
 
-  const handleClick = (event) => {
+  const handleClick = useCallback((event) => {
     setAnchorEl(event.currentTarget);
-  };
+  },[]);
 
-  const handleClose = (event) => {
+  const handleClose = useCallback((event) => {
     setAnchorEl(null);
-  };
+  },[]);
 
   // need to adjust the exercisePlanData to fit the new data structure
 

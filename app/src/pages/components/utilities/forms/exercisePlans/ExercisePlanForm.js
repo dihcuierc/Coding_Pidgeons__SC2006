@@ -1,9 +1,7 @@
-import React, {useCallback, useEffect, useRef, useState} from "react";
-import {useNavigate} from "react-router-dom";
-import toast from "react-hot-toast";
+import React, {useCallback, useEffect, useState} from "react";
 
 import * as Yup from "yup";
-import {Field, FieldArray, Formik} from "formik";
+import {Formik} from "formik";
 
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -19,10 +17,10 @@ import AddIcon from "@mui/icons-material/AddCircleOutlined";
 
 import "./ExercisePlanForm.css";
 
-import exerciseData from "../../../../../data/exerciseData.json";
 import exerciseGroups from "../../../../../data/exerciseGroupData.json";
-import exercisePlans from "../../../../../data/exercisePlanData.json";
 import DeleteIcon from "@mui/icons-material/Delete";
+import {AddCollection, GetCollection, GetSize} from "../../../../../provider/firestore/FirestoreProvider";
+import {UploadFiles} from "../../../../../provider/storage/StorageProvider";
 
 export default function ExercisePlanForm() {
     const schema = Yup.object().shape({
@@ -48,11 +46,19 @@ export default function ExercisePlanForm() {
     });
 
     const [selectGroup, setSelectGroup] = useState(1);
-    const exerciseRef = useRef([]);
-    const success = () => toast.success("Exercise added successfully!");
-    const cancel = () => toast.error("Exercise not added.");
-    const goBack = useNavigate();
+    const [exerciseData, setExerciseData] = useState([]);
+    const [size, setSize] = useState(1);
 
+    const getExercises = useCallback(() => {
+        GetCollection("Exercise").then((data) => {
+            setExerciseData(data)
+        })
+    },[])
+
+    useEffect(() => {
+        if (!exerciseData.length)
+            getExercises();
+    },[exerciseData.length])
     const renderDropdown = useCallback(() => (
              exerciseGroups.map(group=> (
                 <option
@@ -68,7 +74,19 @@ export default function ExercisePlanForm() {
         <Formik
             validationSchema={schema}
             onSubmit={values => {
-                console.log(values);
+                GetSize("Plan").then(data =>
+                    setSize(data)
+                )
+                let totalCalories = 0;
+                values.exercises.map((item) => totalCalories += (item.reps * item.sets * 0.11))
+                const data = {
+                    planID: size+1,
+                    title: values.title,
+                    exercises: values.exercises,
+                    image_ref: values.image,
+                    totalCalories: totalCalories
+                }
+                AddCollection("Plan", data).catch(err => console.log(err));
             }}
             initialValues={{
                 title: "",
@@ -107,35 +125,39 @@ export default function ExercisePlanForm() {
                                 <Form.Label>Exercise Group</Form.Label>
                                 <Form.Select value={selectGroup} onChange={(e) =>{
                                     setSelectGroup(parseInt(e.target.value))
-                                }}>
+                                }}
+                                isInvalid={!!errors.exercises && touched.exercises}>
                                         {renderDropdown()}
                                 </Form.Select>
+                                <Form.Control.Feedback type="invalid">
+                                    {errors?.exercises}
+                                </Form.Control.Feedback>
                             </Form.Group>
                             <Form.Group controlId="exercisesInput">
                                 <Form.Label>Exercises</Form.Label>
                                 {
                                     exerciseData
-                                        .filter(data => data['exercise-group-id'] === selectGroup)
+                                        .filter(data => data['exgrp_ID'] === selectGroup)
                                         .map((item, index) =>
                                     (
                                         <Row className={rowStyle.plans} key={index}>
                                             <Col xs={2}>
-                                                <Image fluid src={item.path} alt={item.alt}/>
+                                                <Image fluid src={item['image_ref']} alt={item.title}/>
                                             </Col>
                                             <Col className="d-flex justify-content-center align-items-center">
-                                                <div>{item.alt}</div>
+                                                <div>{item.title}</div>
                                             </Col>
                                             <Col xs={2} className="d-flex align-items-center">
                                                 <Button className={`${buttonStyle.transparent} mb-0`} onClick={(e) => {
                                                     let tmp = values.exercises;
                                                     tmp.push({
-                                                        name: item.alt,
+                                                        name: item.title,
                                                         reps: 10,
                                                         sets: 3,
                                                         rest: 60
                                                     })
                                                     setFieldValue("exercises", tmp);
-                                                }} disabled={values.exercises.find(obj => obj.name === item.alt)}>
+                                                }} disabled={values.exercises.find(obj => obj.name === item.title)}>
                                                     <AddIcon color="primary"/>
                                                 </Button>
                                             </Col>
@@ -212,8 +234,14 @@ export default function ExercisePlanForm() {
                                                     </Form.Control.Feedback>
                                                 </Form.Group>
                                             </Col>
-                                            <Col xs={2} className="d-flex align-items-center">
-                                                <Button className={`${buttonStyle.transparent} mb-0`} onClick={() =>
+                                            <Col xs={1}>
+                                                <p>Calories:</p>
+                                                <div className="p-2">
+                                                    {exercise.sets * exercise.reps * 0.11}
+                                                </div>
+                                            </Col>
+                                            <Col className="d-flex justify-content-center">
+                                                <Button className={`${buttonStyle.transparent} mb-3`} onClick={() =>
                                                     setFieldValue("exercises", values.exercises.filter(e => e.name !== exercise.name))
                                                 }>
                                                     <DeleteIcon color="action"/>
@@ -229,8 +257,4 @@ export default function ExercisePlanForm() {
             )}
         </Formik>
     )
-}
-
-function onClick() {
-
 }

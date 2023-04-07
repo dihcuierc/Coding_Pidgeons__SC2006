@@ -6,7 +6,7 @@ import exerciseGroupData from "../../../../data/exerciseGroupData.json";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import ExerciseCard from "./exercise/ExerciseCard";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 export default function ExerciseCarousel() {
   const { id } = useParams();
