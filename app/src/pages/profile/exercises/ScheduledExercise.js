@@ -17,8 +17,9 @@ import cardStyle from "../../../assets/css/Card.module.css";
 import rowStyle from "../../../assets/css/Row.module.css";
 import {collection, onSnapshot} from "firebase/firestore";
 import {initializeFirebase} from "../../../provider/FirebaseConfig";
-import {GetCollection} from "../../../provider/firestore/FirestoreProvider";
+import {DeleteDoc, GetCollection} from "../../../provider/firestore/FirestoreProvider";
 import {useAuth} from "../../../provider/auth/AuthProvider";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const {db} = initializeFirebase();
 export default function ViewExercises() {
@@ -83,6 +84,14 @@ export default function ViewExercises() {
                                     <TimeIcon className="me-1"/>
                                     <Card.Text>{item['start time']} - {item['end time']}</Card.Text>
                                 </div>
+                            </Col>
+                            <Col xs={1} className="mt-auto">
+                                <Button className={`${buttonStyle.transparent} ms-auto`}
+                                        onClick={() => {
+                                            DeleteDoc("ScheduleExercise",item.id).catch(err => console.log(err));
+                                        }}>
+                                    <DeleteIcon color="action"/>
+                                </Button>
                             </Col>
                         </Row>
                     ))}

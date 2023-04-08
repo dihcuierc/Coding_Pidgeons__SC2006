@@ -18,6 +18,7 @@ export default function ExerciseReview() {
     const {user} = useAuth();
 
     const navigate = useNavigate();
+    const [users, setUsers] = useState([]);
     const [exercise, setExercise] = useState([]);
     const [reviews, setReviews] = useState([]);
     const [averageRating, setAverageRating] = useState(0);
@@ -44,9 +45,14 @@ export default function ExerciseReview() {
         })
     },[id])
 
+    const getUsers = useCallback(() => {
+        GetCollection("User").then(data => setUsers(data)).catch(err => console.log(err));
+    },[])
+
     useEffect(() => {
         getReviews();
         getExercise();
+        getUsers();
         const totalRating = reviews.reduce((acc, filteredReviews) => {
             return acc + filteredReviews.rating;
           }, 0);
@@ -59,8 +65,7 @@ export default function ExerciseReview() {
             counts[5 - review.rating] += 1;
         });
         setRatingCounts(counts);
-          
-      }, [getExercise, getReviews, reviews]);
+      }, [getExercise, getReviews, getUsers, reviews]);
 
 
       const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
@@ -131,7 +136,7 @@ export default function ExerciseReview() {
                                         <Stack direction="horizontal" gap={3} >
                                             <div className='all-exercise-review-profile'>
                                                 <Stack direction="horizontal" gap={3}>
-                                                    <Image className="ms-3" roundedCircle width={36} height={36} src={user.profileImage} alt={user.name}/>
+                                                    <Image className="ms-3" roundedCircle width={36} height={36} src={users.find(item => item['userID'] === review['userID'])?.profileImage} alt={users.find(item => item['userID'] === review['userID'])?.name}/>
                                                     <div>
                                                         <p className="all-exeercise-review-name">{review.name}</p>
                                                         <p className='all-exercise-review-date'>{review.date}</p>

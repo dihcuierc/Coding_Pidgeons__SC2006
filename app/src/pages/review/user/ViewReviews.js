@@ -85,7 +85,7 @@ export default function ViewReviews() {
                                         </div>
                                     <div>
                                         <Button variant="danger" className={buttonStyle.delete} onClick={() => {
-                                            DeleteDoc("Review", review.id).then(status => console.log("TE")).catch(err => console.log(err))
+                                            DeleteDoc("Review", review.id).catch(err => console.log(err))
                                             onDelete();
                                         }}>
                                             <DeleteIcon/>
