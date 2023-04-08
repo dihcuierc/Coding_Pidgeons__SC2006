@@ -2,6 +2,7 @@ import Card from "react-bootstrap/Card";
 import Stack from "react-bootstrap/Stack";
 import React, {useState, useEffect, useCallback} from "react";
 import background from "../../../assets/css/Background.module.css"
+import buttonStyle from "../../../assets/css/Button.module.css"
 import Container from "react-bootstrap/esm/Container";
 import './ViewReviews.css';
 import Rating from '@mui/material/Rating';
@@ -11,6 +12,7 @@ import {convertStringToDate} from "../../../misc/dateConverter";
 import {initializeFirebase} from "../../../provider/FirebaseConfig";
 import {collection, onSnapshot} from "firebase/firestore";
 import toast, {Toaster} from "react-hot-toast";
+import Button from 'react-bootstrap/Button';
 import EditIcon from "@mui/icons-material/Edit";
 
 const {db} = initializeFirebase();
@@ -30,7 +32,6 @@ export default function ViewReviews() {
         toast.success("Review have been successfully deleted!");
     },[])
 
-    const basePath = process.env.PUBLIC_URL;
 
       useEffect(() => {
           const reviewRef = collection(db,"Review");
@@ -61,10 +62,9 @@ export default function ViewReviews() {
                             return dateB - dateA;
                         }).map(review => (
                             <Card.Body className='user-review'  key={review.id} >
-                               
-                                <Stack direction="horizontal" gap={3} style={{width:"100%"}}>
+                                <Stack direction="horizontal" gap={3} style={{width:"100%", padding: '10px'}}>
                                     <div className='exercise-review-picture'>
-                                        <img className="exercise-video-small" src={review.exercise?.image_ref} alt={review.exercise?.title} style={{display: 'block', margin: 'auto'}}/>
+                                        <img className="exercise-video-small" src={review.exercise?.image_ref} alt={review.exercise?.title} style={{display: 'block', margin: 'auto', width: '150px', height: '150px', objectFit:'fill'}}/>
                                     </div>
                                         <div className='individual-review'>
                                             <Stack direction="horizontal" gap={3}>
@@ -83,12 +83,12 @@ export default function ViewReviews() {
                                             </Stack> 
                                         </div>
                                     <div>
-                                        <button className="delete-review" onClick={() => {
+                                        <Button variant="danger" className={buttonStyle.delete} onClick={() => {
                                             DeleteDoc("Review", review.id).then(status => console.log("TE")).catch(err => console.log(err))
                                             onDelete();
                                         }}>
                                             <DeleteIcon/>
-                                        </button>
+                                        </Button>   
                                     </div>
                                         </Stack>
                             </Card.Body>
