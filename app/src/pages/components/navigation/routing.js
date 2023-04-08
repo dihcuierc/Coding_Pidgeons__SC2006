@@ -20,6 +20,7 @@ import AddExercise from "../../exercise/plans/add/AddExercisePlans";
 import EditExercise from "../../exercise/plans/edit/EditExercisePlan"
 import Setup from "../../authentication/register/Setup";
 import Eateries from "../../facilities/Eateries/Eatries";
+import {ProtectedRoute} from "../../../provider/auth/AuthLayout";
 
 export const router = createBrowserRouter([
     {
@@ -32,7 +33,10 @@ export const router = createBrowserRouter([
             },
             {
                 path: "profile",
-                element: <Profile/>
+                element:
+                <ProtectedRoute>
+                    <Profile/>
+                </ProtectedRoute>
             },
             {
                 path: "facilities",
@@ -67,15 +71,24 @@ export const router = createBrowserRouter([
                 children: [
                     {
                         index: true,
-                        element: <ViewGoals/>
+                        element:
+                            <ProtectedRoute>
+                             <ViewGoals/>
+                            </ProtectedRoute>
                     },
                     {
                         path: "add",
-                        element: <AddGoals/>
+                        element:
+                        <ProtectedRoute>
+                            <AddGoals/>
+                        </ProtectedRoute>
                     },
                     {
                         path: ":id",
-                        element: <EditGoals/>
+                        element:
+                        <ProtectedRoute>
+                            <EditGoals/>
+                        </ProtectedRoute>
                     },
                 ]
             },
@@ -93,18 +106,27 @@ export const router = createBrowserRouter([
                 children: [
                     {
                         index: true,
-                        element: <Workout/>
+                        element:
+                        <ProtectedRoute>
+                            <Workout/>
+                        </ProtectedRoute>
                     },
                     {
                         path: "schedule",
                         children: [
                             {
                                 index:true,
-                                element:<ScheduleExercise/>
+                                element:
+                                <ProtectedRoute>
+                                    <ScheduleExercise/>
+                                </ProtectedRoute>
                             },
                             {
                                 path: ":id",
-                                element:<ScheduleExercise/>
+                                element:
+                                <ProtectedRoute>
+                                    <ScheduleExercise/>
+                                </ProtectedRoute>
                             }
                         ]
                     },
@@ -116,17 +138,26 @@ export const router = createBrowserRouter([
                                 children: [
                                     {
                                     index: true,
-                                    element: <ExercisePlan/>
+                                    element:
+                                    <ProtectedRoute>
+                                        <ExercisePlan/>
+                                    </ProtectedRoute>
                                     },
                                     {
                                         path: "edit",
-                                        element: <EditExercise/>
+                                        element:
+                                        <ProtectedRoute>
+                                            <EditExercise/>
+                                        </ProtectedRoute>
                                     }
                                 ]
                             },
                             {
                                 path: "add",
-                                element: <AddExercise/>
+                                element:
+                                <ProtectedRoute>
+                                    <AddExercise/>
+                                </ProtectedRoute>
                             }
                         ]
                     },
@@ -135,7 +166,10 @@ export const router = createBrowserRouter([
                         children: [
                             {
                                 path: ":id",
-                                element: <ExerciseCarousel/>
+                                element:
+                                <ProtectedRoute>
+                                    <ExerciseCarousel/>
+                                </ProtectedRoute>
                             },
                             {
                                 path: "exercise",
@@ -145,18 +179,27 @@ export const router = createBrowserRouter([
                                       children: [
                                           {
                                               index: true,
-                                              element: <Exercise/>
+                                              element:
+                                              <ProtectedRoute>
+                                                  <Exercise/>
+                                              </ProtectedRoute>
                                           },
                                           {
                                               path: "review",
                                               children: [
                                                   {
                                                     index: true,
-                                                    element: <ExerciseReview/>
+                                                    element:
+                                                    <ProtectedRoute>
+                                                        <ExerciseReview/>
+                                                    </ProtectedRoute>
                                                   },
                                                   {
                                                       path: "add",
-                                                      element: <AddExerciseReview/>
+                                                      element:
+                                                      <ProtectedRoute>
+                                                          <AddExerciseReview/>
+                                                      </ProtectedRoute>
                                                   }
                                               ]
                                           }

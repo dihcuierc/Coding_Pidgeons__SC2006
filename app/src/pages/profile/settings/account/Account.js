@@ -15,6 +15,8 @@ import background from "../../../../assets/css/Background.module.css";
 import padding from "../../../../assets/css/Padding.module.css"
 import {useAuth} from "../../../../provider/auth/AuthProvider";
 import {UpdateCollection} from "../../../../provider/firestore/FirestoreProvider";
+import {useCallback} from "react";
+import toast, {Toaster} from "react-hot-toast";
 
 export default function UpdateProfile() {
     return (
@@ -28,6 +30,13 @@ export default function UpdateProfile() {
 
 function RegisterForm() {
     const { user } = useAuth();
+    const success = useCallback(() => {
+        toast.success("User Profile have been updated");
+    },[])
+
+    const error = useCallback(() => {
+        toast.error("User Profile is unable to update");
+    })
     const schema = Yup.object().shape({
         username: Yup.string().required("No username provided!")
             .min(6, "Username is too short - a minimum of 6 characters.")
@@ -41,7 +50,17 @@ function RegisterForm() {
             validationSchema={schema}
             enableReinitialize
             onSubmit={async (values) => {
-                console.log(user)
+                const data = {
+                    username: values.username,
+                    email: values.email,
+                    mobile: values.mobile
+                }
+                const status = await UpdateCollection("User", user.id, data);
+                if (status) {
+                    success();
+                } else {
+                    error();
+                }
             }}
             initialValues={{
                 username: user?.username,
@@ -59,7 +78,6 @@ function RegisterForm() {
                 resetForm
             }) => (
                 <Form onSubmit={handleSubmit} onReset={resetForm} className="text-light ms-3 ms-sm-2">
-    
                     <Form.Group as={Col} className="mb-3" controlId="UserNameInput">
                         <FloatingLabel className="text-dark" label="User Name">
                             <Form.Control
@@ -109,6 +127,7 @@ function RegisterForm() {
                         <Button type="submit" variant="outline-light" className="p-2 text-primary">Done</Button>
                         <Button type="reset" variant="outline-light" className="p-2 text-danger ms-3">Cancel</Button>
                     </div>
+                    <Toaster/>
                 </Form>
             )}
 
