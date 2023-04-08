@@ -39,9 +39,9 @@ async function GetExercise(index) {
         await GetCollection("Exercise");
 }
 
-async function CreateUser(uuID,{data}) {
+async function CreateUser(uuID,data) {
     try {
-        await setDoc(doc(db,"User",uuID), data);
+        await setDoc(doc(db,"User",`${uuID}`), data);
         return true;
     } catch(err) {
         throw err;

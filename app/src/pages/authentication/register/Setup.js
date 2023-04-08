@@ -16,6 +16,10 @@ import buttonStyle from "../../../assets/css/Button.module.css";
 
 import { CreateUser, GetSize } from "../../../provider/firestore/FirestoreProvider";
 import {calculateAge} from "../../../misc/dateConverter";
+import setFilePath from "../../../misc/filePath";
+import {useCallback} from "react";
+import toast, {Toaster} from "react-hot-toast";
+import {wait} from "@testing-library/user-event/dist/utils";
 
 export default function SetupWrapper() {
   return (
@@ -32,6 +36,10 @@ export default function SetupWrapper() {
 function Setup() {
     const navigate = useNavigate();
     const { state } = useLocation();
+    const success = useCallback(() => {
+        toast.success("You have successfully registered with us!");
+    },[])
+
   const schema = Yup.object().shape({
     age: Yup.date()
       .min(new Date(1900, 0, 1), "You cannot choose a date before this!")
@@ -66,10 +74,13 @@ function Setup() {
               const height = values.height;
               const mobile = values.mobile;
               const name = userDetails.name;
-              const image = values.image;
-              const id = await GetSize("User") + 1;
+              let profileImage = "";
+              if (values.image !== "")
+                profileImage = setFilePath(values.image,"/images/Profile Picture/");
+              const userID = await GetSize("User") + 1;
               const username = userDetails.username;
               const weight = values.weight;
+              const uid = userDetails.uid;
               const data = {
                   age,
                   email,
@@ -77,16 +88,25 @@ function Setup() {
                   height,
                   mobile,
                   name,
-                  image,
-                  id,
+                  userID,
+                  profileImage,
                   username,
                   weight,
               }
-              const status = await CreateUser(id,{data});
-              if (status)
+              const status = await CreateUser(uid,data);
+              if (status) {
+                  success();
+                  await wait(500);
                   navigate("../../profile");
+              }
+              else {
+                  const error = () => toast.error("There was an error in updating your exercise plan");
+                  error();
+              }
           } catch(err) {
               console.log(err);
+              const error = () => toast.error("An error have occurred. Please follow the direction " + err.message);
+              error();
 
           }
       }}
@@ -192,7 +212,7 @@ function Setup() {
             <Form.Label>Profile Picture</Form.Label>
             <Form.Control
               type="file"
-              accept="image/png, image/jpg, image/gif"
+              accept="image/png, image/jpeg, image/jpg, image/gif"
               name="image"
               onChange={handleChange}
             />
@@ -204,6 +224,7 @@ function Setup() {
               <h3>Complete Setup</h3>
             </Button>
           </div>
+            <Toaster/>
         </Form>
       )}
     </Formik>

@@ -16,8 +16,11 @@ import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import ReviewsIcon from '@mui/icons-material/Reviews';
 import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
+import {LogOut} from "../../provider/auth/AuthProvider";
+import {useNavigate} from "react-router-dom";
 
 export default function Profile() {
+    const navigate = useNavigate();
     return (
         <Tab.Container
             variant="pills"
@@ -43,7 +46,12 @@ export default function Profile() {
                             <Nav.Link eventKey="settings"><SettingsIcon/></Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link eventKey="Logout"><LogoutIcon/></Nav.Link>
+                            <Nav.Link eventKey="Logout" onClick={() => {
+                                LogOut().catch(err => console.log(err))
+                                navigate("/");
+                            }}>
+                                <LogoutIcon/>
+                            </Nav.Link>
                         </Nav.Item>
                     </Nav>
                 </Col>

@@ -23,6 +23,7 @@ import {AddCollection, GetCollection, GetSize} from "../../../../../provider/fir
 import toast, {Toaster} from "react-hot-toast";
 import {wait} from "@testing-library/user-event/dist/utils";
 import {useNavigate} from "react-router-dom";
+import setFilePath from "../../../../../misc/filePath";
 
 export default function ExercisePlanForm() {
     const schema = Yup.object().shape({
@@ -83,6 +84,10 @@ export default function ExercisePlanForm() {
                 try {
                 const size = await GetSize("Plan");
                 let totalCalories = 0;
+                let path = "";
+                if (values.image !== "") {
+                    path = setFilePath(values.image, "/images/ExerciseImages/")
+                }
                 values.exercises.forEach((item) => {
                   totalCalories += item['Calories']
                 })
@@ -90,7 +95,7 @@ export default function ExercisePlanForm() {
                     planID: size+1,
                     title: values.title,
                     exercises: values.exercises,
-                    image_ref: values.image,
+                    image_ref: path,
                     totalCalories: totalCalories,
                     userID: 1
                 }
