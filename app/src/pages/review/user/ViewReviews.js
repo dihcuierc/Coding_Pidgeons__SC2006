@@ -2,6 +2,7 @@ import Card from "react-bootstrap/Card";
 import Stack from "react-bootstrap/Stack";
 import React, {useState, useEffect, useCallback} from "react";
 import background from "../../../assets/css/Background.module.css"
+import buttonStyle from "../../../assets/css/Button.module.css"
 import Container from "react-bootstrap/esm/Container";
 import './ViewReviews.css';
 import Rating from '@mui/material/Rating';
@@ -11,6 +12,7 @@ import {convertStringToDate} from "../../../misc/dateConverter";
 import {initializeFirebase} from "../../../provider/FirebaseConfig";
 import {collection, onSnapshot} from "firebase/firestore";
 import toast, {Toaster} from "react-hot-toast";
+import Button from 'react-bootstrap/Button';
 import EditIcon from "@mui/icons-material/Edit";
 import {useAuth} from "../../../provider/auth/AuthProvider";
 
@@ -61,12 +63,13 @@ export default function ViewReviews() {
                             return dateB - dateA;
                         }).map(review => (
                             <Card.Body className='user-review'  key={review.id} >
-                               
-                                <Stack direction="horizontal" gap={3} style={{width:"100%"}}>
+                                <Stack direction="horizontal" gap={3} style={{width:"100%", padding: '10px'}}>
                                     <div className='exercise-review-picture'>
-                                        <img className="exercise-video-small" src={review.exercise?.image_ref} alt={review.exercise?.title} style={{display: 'block', margin: 'auto'}}/>
+                                        <img className="exercise-video-small" src={review.exercise?.image_ref} alt={review.exercise?.title} style={{display: 'block', margin: 'auto', width: '150px', height: '150px', objectFit:'cover'}}/>
                                     </div>
                                         <div className='individual-review'>
+                                            <h4>{review.exercise?.title}</h4>
+                                            <Rating name="half-rating-read" value={review.rating} precision={0.5} size="large" readOnly sx={{fontSize: '1.25rem'}} />
                                             <Stack direction="horizontal" gap={3}>
                                                 <div className='profile-review-profile'>
                                                     <Stack direction="horizontal" gap={3}>
@@ -76,19 +79,17 @@ export default function ViewReviews() {
                                                             <p className='profile-review-date'>{review.date}</p>
                                                         </div>
                                                     </Stack>
-                                                    <Rating name="half-rating-read" value={review.rating} precision={0.5} size="large" readOnly />
                                                 </div>
                                                 <p className='profile-review-text'>{review.comments}</p>
-                                                <p></p>
                                             </Stack> 
                                         </div>
                                     <div>
-                                        <button className="delete-review" onClick={() => {
+                                        <Button variant="danger" className={buttonStyle.delete} onClick={() => {
                                             DeleteDoc("Review", review.id).then(status => console.log("TE")).catch(err => console.log(err))
                                             onDelete();
                                         }}>
                                             <DeleteIcon/>
-                                        </button>
+                                        </Button>   
                                     </div>
                                         </Stack>
                             </Card.Body>
