@@ -5,6 +5,7 @@ import background from "../../../assets/css/Background.module.css"
 import buttonStyle from "../../../assets/css/Button.module.css"
 import Container from "react-bootstrap/esm/Container";
 import './ViewReviews.css';
+import reviewStyle from "../../../assets/css/Review.module.css";
 import Rating from '@mui/material/Rating';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {DeleteDoc, GetCollection, GetExercise} from "../../../provider/firestore/FirestoreProvider";
@@ -13,7 +14,6 @@ import {initializeFirebase} from "../../../provider/FirebaseConfig";
 import {collection, onSnapshot} from "firebase/firestore";
 import toast, {Toaster} from "react-hot-toast";
 import Button from 'react-bootstrap/Button';
-import EditIcon from "@mui/icons-material/Edit";
 
 const {db} = initializeFirebase();
 
@@ -66,11 +66,11 @@ export default function ViewReviews() {
                                     <div className='exercise-review-picture'>
                                         <img className="exercise-video-small" src={review.exercise?.image_ref} alt={review.exercise?.title} style={{display: 'block', margin: 'auto', width: '150px', height: '150px', objectFit:'cover'}}/>
                                     </div>
-                                        <div className='individual-review'>
+                                        <div className={reviewStyle.individual_review}>
                                             <h4>{review.exercise?.title}</h4>
                                             <Rating name="half-rating-read" value={review.rating} precision={0.5} size="large" readOnly sx={{fontSize: '1.25rem'}} />
                                             <Stack direction="horizontal" gap={3}>
-                                                <p className='profile-review-text'>{review.comments}</p>
+                                                <p className={reviewStyle.review_text}>{review.comments}</p>
                                             </Stack> 
                                         </div>
                                     <div>
