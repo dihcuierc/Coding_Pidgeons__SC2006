@@ -6,25 +6,29 @@ import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Button from "react-bootstrap/Button";
+import Image from "react-bootstrap/Image"
 
 // #React Boostrap Routing Components
 import LinkContainer from "react-router-bootstrap/LinkContainer";
 
-// #Custom CSS Module
-import iconStyle from "../../../../assets/css/Icon.module.css"
 
 // #Custom CSS
 import "./Navbar.css";
+import iconStyle from "../../../../assets/css/Icon.module.css";
+
+// #Icon
+import {AccountCircleRounded} from "@mui/icons-material";
+
+import {useAuth} from "../../../../provider/auth/AuthProvider";
+
 
 const noSidebarNonLoginRoutes = ["/login","/register"];
-const profileSidebarRoutes = ["/workout"]
 
 export default function NavigationBar() {
+    const {user} = useAuth();
     const {pathname} = useLocation();
 
     const noSideBars = noSidebarNonLoginRoutes.some((item) => pathname.includes(item));
-
-    const profileSideBars = profileSidebarRoutes.some((item) => pathname.includes(item));
 
     return (
     <>
@@ -36,7 +40,7 @@ export default function NavigationBar() {
                         Together
                     </Navbar.Brand>
                 </LinkContainer>
-                {noSideBars ? null : <NavigationToggle Sidebar={profileSideBars}/>}
+                {noSideBars ? null : <NavigationToggle user={user}/>}
             </Container>
         </Navbar>
         <Outlet/>
@@ -44,7 +48,7 @@ export default function NavigationBar() {
     )
 }
 
-function NavigationToggle({Sidebar}) {
+function NavigationToggle({user}) {
     return(
     <>
         <Navbar.Toggle aria-controls="navbar-nav"/>
@@ -61,7 +65,7 @@ function NavigationToggle({Sidebar}) {
                 </LinkContainer>
             </Nav>
             <Nav className="ms-auto">
-            {Sidebar ? <ProfileToggle/> : <SignSidebar/>}
+            {Object.keys(user).length ? <ProfileToggle user={user}/> : <SignSidebar/>}
             </Nav>
         </Navbar.Collapse>
     </>
@@ -85,14 +89,17 @@ function SignSidebar() {
     )
 }
 
-function ProfileToggle() {
+function ProfileToggle({user}) {
     return (
         <>
             <LinkContainer to="/profile">
                 <Nav.Link active={false}>
                     <div className="d-flex">
-                        <span className={`bi bi-person-circle ${iconStyle.profile}`}></span>
-                        <div className="m-1 px-1 small">John Doe</div>
+                        {user?.profileImage === "" ? <AccountCircleRounded className={iconStyle.navbar}/> :
+                            <Image roundedCircle width={30} height={30} src={user?.profileImage} alt={user?.name}/>
+                        }
+
+                        <div className="m-1 px-1 small">{user.username}</div>
                     </div>
                 </Nav.Link>
             </LinkContainer>

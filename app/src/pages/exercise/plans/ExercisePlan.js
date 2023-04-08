@@ -12,6 +12,7 @@ import background from "../../../assets/css/Background.module.css";
 
 import EditIcon from "@mui/icons-material/Edit";
 import "./ExercisePlan.css";
+import {useAuth} from "../../../provider/auth/AuthProvider";
 
 export default function ExercisePlan() {
   const { id } = useParams();
@@ -19,6 +20,7 @@ export default function ExercisePlan() {
   const [exercisePlan, setExercisePlan] = useState({});
   const [exercises, setExercises] = useState([]);
   const [exerciseTitle, setExerciseTitle] = useState([]);
+  const {user} = useAuth();
 
     const getExercises = useCallback(() => {
         GetExercise().then(data => setExerciseTitle(data.map(item => ({title: item.title, id: item.id}))));
@@ -42,12 +44,15 @@ export default function ExercisePlan() {
         <div className="exercise-plan-title">
           <Stack direction="horizontal" gap={3}>
             <h1>Exercise Plans</h1>
+            { exercisePlan.userID === user.userID ? (
             <EditIcon onClick={() =>
                 navigate("./edit",{
                     state: {
                         exercisePlan : exercisePlan
                     }
                 })} />
+                ) : null
+            }
           </Stack>
           <h2>{exercisePlan.title}</h2>
         </div>

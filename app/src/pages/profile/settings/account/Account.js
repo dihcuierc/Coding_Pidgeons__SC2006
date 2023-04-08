@@ -13,51 +13,40 @@ import formStyle from "../../../../assets/css/Form.module.css";
 import buttonStyle from "../../../../assets/css/Button.module.css";
 import background from "../../../../assets/css/Background.module.css";
 import padding from "../../../../assets/css/Padding.module.css"
+import {useAuth} from "../../../../provider/auth/AuthProvider";
+import {UpdateCollection} from "../../../../provider/firestore/FirestoreProvider";
 
 export default function UpdateProfile() {
     return (
             
                 <div className={formStyle.register}>
                     <RegisterForm></RegisterForm>
-                    <div className="text-light d-flex justify-content-center m-3">
-                        <LinkContainer to="/profile">
-                            <Nav.Link>
-                                <b className="p-2 text-danger">Done</b>
-                            </Nav.Link>
-                        </LinkContainer>
-                        <LinkContainer to="/profile">
-                            <Nav.Link>
-                                <b className="p-2 text-danger">Cancel</b>
-                            </Nav.Link>
-                        </LinkContainer>
-                    </div>
                 </div>
             
     )
 }
 
 function RegisterForm() {
+    const { user } = useAuth();
     const schema = Yup.object().shape({
-        firstName: Yup.string().required("Required"),
-        lastName: Yup.string().required("Required"),
-        
+        username: Yup.string().required("No username provided!")
+            .min(6, "Username is too short - a minimum of 6 characters.")
+            .matches(/^\S*$/,
+                "Username must not contain spaces"),
         email: Yup.string().email('Invalid email address').required("Required"),
-        password: Yup.string().required("No password provided")
-            .min(8, "Password is too short - a minimum of 8 characters.")
-            .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-                "Password must contain at least one Uppercase, Lowercase, one number and special character"),
-        confirmPassword: Yup.string().oneOf([Yup.ref('password'),null],"Passwords must match")
-            .required("No password provided")
+        mobile: Yup.string().matches(/(6|8|9)\d{7}/, "Phone number is not valid"),
     })
     return (
         <Formik
             validationSchema={schema}
-            onSubmit={console.log}
+            enableReinitialize
+            onSubmit={async (values) => {
+                console.log(user)
+            }}
             initialValues={{
-                username: "",
-                email: "",
-                password: "",
-                confirmPassword: ""
+                username: user?.username,
+                email: user?.email,
+                mobile: user?.mobile
             }}>
             {({
                 handleSubmit,
@@ -66,9 +55,10 @@ function RegisterForm() {
                 values,
                 touched,
                 isValid,
-                errors
+                errors,
+                resetForm
             }) => (
-                <Form onSubmit={handleSubmit} className="text-light ms-3 ms-sm-2">
+                <Form onSubmit={handleSubmit} onReset={resetForm} className="text-light ms-3 ms-sm-2">
     
                     <Form.Group as={Col} className="mb-3" controlId="UserNameInput">
                         <FloatingLabel className="text-dark" label="User Name">
@@ -85,18 +75,18 @@ function RegisterForm() {
                             </Form.Control.Feedback>
                         </FloatingLabel>
                     </Form.Group>
-                    <Form.Group as={Col} className="mb-3" controlId="MnumberInput">
+                    <Form.Group as={Col} className="mb-3" controlId="mobileInput">
                         <FloatingLabel className="text-dark" label="Mobile Number">
                             <Form.Control
                                 type="text"
                                 placeholder="12345"
-                                name="mobile number"
-                                value={values.Mnumber}
+                                name="mobile"
+                                value={values.mobile}
                                 onChange={handleChange}
-                                isInvalid={!!errors.Mnumber && touched.Mnumber}
+                                isInvalid={!!errors.mobile && touched.mobile}
                             />
                             <Form.Control.Feedback type="invalid" tooltip>
-                                {errors?.Mnumber}
+                                {errors?.mobile}
                             </Form.Control.Feedback>
                         </FloatingLabel>
                     </Form.Group>                    
@@ -115,25 +105,10 @@ function RegisterForm() {
                             </Form.Control.Feedback>
                         </FloatingLabel>
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="passwordInput">
-                        <FloatingLabel
-                            label="Password"
-                            className="text-dark">
-                            <Form.Control
-                                type="password"
-                                name="password"
-                                placeholder="Password"
-                                aria-describedby="passwordBlock"
-                                onChange={handleChange}
-                                isInvalid={!!errors.password && touched.password}
-                            />
-                            <Form.Control.Feedback
-                                type="invalid"
-                                tooltip>
-                                {errors?.password}
-                            </Form.Control.Feedback>
-                        </FloatingLabel>
-                    </Form.Group> 
+                    <div className="text-light d-flex justify-content-center m-3">
+                        <Button type="submit" variant="outline-light" className="p-2 text-primary">Done</Button>
+                        <Button type="reset" variant="outline-light" className="p-2 text-danger ms-3">Cancel</Button>
+                    </div>
                 </Form>
             )}
 

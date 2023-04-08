@@ -12,12 +12,13 @@ import AddCard from "../components/utilities/carousel/exercise/addCard";
 import {collection, onSnapshot} from "firebase/firestore";
 import {initializeFirebase} from "../../provider/FirebaseConfig";
 import {GetCollection} from "../../provider/firestore/FirestoreProvider";
-import {RetrieveFiles} from "../../provider/storage/StorageProvider";
+import {useAuth} from "../../provider/auth/AuthProvider";
 
 const {db} = initializeFirebase();
 export default function Workout() {
     const [plans, setPlans] = useState([]);
     const [groups,setGroups] = useState([]);
+    const {user} = useAuth();
 
     const fetchGroup = useCallback(() => {
         GetCollection("ExerciseGroups").then((data) => {
@@ -45,7 +46,7 @@ export default function Workout() {
     return (
         <div className={background.default}>
             <div className="workout-greeting">
-                <h1 className='workout-title'>Hello, John</h1>
+                <h1 className='workout-title'>Hello, {user?.name}</h1>
                 <p className="workout-question">What would you like to do?</p>
             </div>
             <div className="carousel-container">

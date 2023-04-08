@@ -24,6 +24,7 @@ import toast, {Toaster} from "react-hot-toast";
 import {wait} from "@testing-library/user-event/dist/utils";
 import {useNavigate} from "react-router-dom";
 import setFilePath from "../../../../../misc/filePath";
+import {useAuth} from "../../../../../provider/auth/AuthProvider";
 
 export default function ExercisePlanForm() {
     const schema = Yup.object().shape({
@@ -50,6 +51,7 @@ export default function ExercisePlanForm() {
 
     const [selectGroup, setSelectGroup] = useState(1);
     const [exerciseData, setExerciseData] = useState([]);
+    const {user} = useAuth();
     const navigate = useNavigate();
 
     const success = useCallback(() =>
@@ -97,7 +99,7 @@ export default function ExercisePlanForm() {
                     exercises: values.exercises,
                     image_ref: path,
                     totalCalories: totalCalories,
-                    userID: 1
+                    userID: user.userID
                 }
                 const status = await AddCollection("Plan",size, data).catch(err => console.log(err));
                 if (status) {

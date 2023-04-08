@@ -12,6 +12,7 @@ import {initializeFirebase} from "../../../provider/FirebaseConfig";
 import {collection, onSnapshot} from "firebase/firestore";
 import toast, {Toaster} from "react-hot-toast";
 import EditIcon from "@mui/icons-material/Edit";
+import {useAuth} from "../../../provider/auth/AuthProvider";
 
 const {db} = initializeFirebase();
 
@@ -19,7 +20,7 @@ export default function ViewReviews() {
 
     const [reviews, setReviews] = useState([]);
     const [exercises, setExercises] = useState([]);
-    const [user, setUser] = useState(1);
+    const { user } = useAuth();
 
 
     const fetchExercise = useCallback(() => {
@@ -35,7 +36,7 @@ export default function ViewReviews() {
           const reviewRef = collection(db,"Review");
           fetchExercise();
           const unsub = onSnapshot(reviewRef, (snapshot) => {
-              const docs = snapshot.docs.filter(doc => doc.data().userID === user)
+              const docs = snapshot.docs.filter(doc => doc.data().userID === user.userID)
                   .map((doc) => {
                       const exercise = exercises.find(item => item.exID === doc.data().exID);
                   return ({...doc.data(), exercise, id: doc.id});
@@ -71,7 +72,7 @@ export default function ViewReviews() {
                                                     <Stack direction="horizontal" gap={3}>
                                                         <p className='profile-review-image'></p>
                                                         <div>
-                                                            <p className="profile-review-name">Joseph Ma</p>
+                                                            <p className="profile-review-name">{user.name}</p>
                                                             <p className='profile-review-date'>{review.date}</p>
                                                         </div>
                                                     </Stack>

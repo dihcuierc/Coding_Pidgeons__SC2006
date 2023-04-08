@@ -14,12 +14,13 @@ import padding from "../../../assets/css/Padding.module.css";
 import formStyle from "../../../assets/css/Form.module.css";
 import buttonStyle from "../../../assets/css/Button.module.css";
 
-import { CreateUser, GetSize } from "../../../provider/firestore/FirestoreProvider";
+import {CreateUser, GetCollection, GetSize} from "../../../provider/firestore/FirestoreProvider";
 import {calculateAge} from "../../../misc/dateConverter";
 import setFilePath from "../../../misc/filePath";
 import {useCallback} from "react";
 import toast, {Toaster} from "react-hot-toast";
 import {wait} from "@testing-library/user-event/dist/utils";
+import {useAuth} from "../../../provider/auth/AuthProvider";
 
 export default function SetupWrapper() {
   return (
@@ -36,6 +37,7 @@ export default function SetupWrapper() {
 function Setup() {
     const navigate = useNavigate();
     const { state } = useLocation();
+    const {setUser} = useAuth();
     const success = useCallback(() => {
         toast.success("You have successfully registered with us!");
     },[])
@@ -96,7 +98,8 @@ function Setup() {
               const status = await CreateUser(uid,data);
               if (status) {
                   success();
-                  await wait(500);
+                  localStorage.setItem("user", JSON.stringify({id: uid, ...data}));
+                  setUser({id: uid, ...data});
                   navigate("../../profile");
               }
               else {

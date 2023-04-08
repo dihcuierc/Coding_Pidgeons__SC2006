@@ -16,11 +16,13 @@ import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import ReviewsIcon from '@mui/icons-material/Reviews';
 import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
-import {LogOut} from "../../provider/auth/AuthProvider";
+import {LogOut} from "../../provider/auth/auth";
 import {useNavigate} from "react-router-dom";
+import {useAuth} from "../../provider/auth/AuthProvider";
 
 export default function Profile() {
     const navigate = useNavigate();
+    const {setUser} = useAuth();
     return (
         <Tab.Container
             variant="pills"
@@ -48,6 +50,7 @@ export default function Profile() {
                         <Nav.Item>
                             <Nav.Link eventKey="Logout" onClick={() => {
                                 LogOut().catch(err => console.log(err))
+                                setUser({});
                                 navigate("/");
                             }}>
                                 <LogoutIcon/>

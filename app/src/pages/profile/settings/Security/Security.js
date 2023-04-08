@@ -4,10 +4,13 @@ import {Formik} from "formik";
 import Form from "react-bootstrap/Form";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Button from "react-bootstrap/Button";
-import LinkContainer from "react-router-bootstrap/LinkContainer";
-import Nav from "react-bootstrap/Nav";
+import Modal from "react-bootstrap/Modal";
+
 import formStyle from "../../../../assets/css/Form.module.css";
-import {UpdatePassword} from "../../../../provider/auth/AuthProvider";
+import {UpdatePassword, useAuth} from "../../../../provider/auth/AuthProvider";
+import {DeleteUser} from "../../../../provider/auth/auth";
+import {useCallback, useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 export default function Security() {
     return (
@@ -19,6 +22,11 @@ export default function Security() {
 }
 
 function RegisterForm() {
+    const [show, setShow] = useState(false);
+    const handleClose = useCallback(() => 
+        setShow(false),[]);
+    const handleShow = useCallback(() => setShow(true),[])
+
     const schema = Yup.object().shape({
         currentPassword: Yup.string()
             .required("Current Password cannot be empty!"),
@@ -110,15 +118,37 @@ function RegisterForm() {
                     </Form.Group>
                     <div className="text-light d-flex justify-content-center m-3">
                         <Button variant="outline-light" type="submit" className="p-2 text-primary">Done</Button>
-                        <LinkContainer to="/profile">
-                            <Nav.Link>
-                                <Button variant="outline-light" className="p-2 text-danger">Delete Account</Button>
-                            </Nav.Link>
-                        </LinkContainer>
+                        <Button variant="outline-light" className="p-2 text-danger" onClick={() => {
+                            handleShow();
+                        }}>Delete Account</Button>
                     </div>
+                    <DeleteModal show={show} handleClose={handleClose} handleShow={handleShow}/>
                 </Form>
             )}
 
         </Formik>
+    )
+}
+
+function DeleteModal(props) {
+    const navigate = useNavigate();
+    const {setUser} = useAuth();
+    return (
+        <>
+            <Modal show={props.show} onHide={props.handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Delete Account</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Are you sure you want to delete your account?</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="danger" onClick={() => {
+                        DeleteUser().catch(err => console.log(err));
+                        setUser({});
+                        navigate("/");
+                    }}>Delete Account</Button>
+                    <Button variant="info" onClick={props.handleClose}>Close</Button>
+                </Modal.Footer>
+            </Modal>
+        </>
     )
 }

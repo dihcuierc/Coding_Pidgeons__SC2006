@@ -1,7 +1,7 @@
 import {Formik} from "formik";
 import * as Yup from 'yup';
 import {useNavigate} from "react-router-dom";
-import {useState} from "react";
+import {useCallback, useState} from "react";
 
 import LinkContainer from "react-router-bootstrap/LinkContainer";
 import Form from "react-bootstrap/Form";
@@ -15,8 +15,11 @@ import background from "../../../assets/css/Background.module.css"
 import buttonStyle from "../../../assets/css/Button.module.css"
 import formStyle from "../../../assets/css/Form.module.css"
 
-import {SignIn} from "../../../provider/auth/AuthProvider";
+import {SignIn} from "../../../provider/auth/auth";
 import {StatusMessages} from "../../components/utilities/alerts/StatusMessages";
+import {useAuth} from "../../../provider/auth/AuthProvider";
+import {GetCollection} from "../../../provider/firestore/FirestoreProvider";
+import toast, {Toaster} from "react-hot-toast";
 
 export default function LoginWrapper() {
     return (
@@ -53,6 +56,7 @@ export default function LoginWrapper() {
 function Login() {
     const navigate = useNavigate();
     const [error, setError] = useState(null);
+    const {setUser} = useAuth();
     const schema = Yup.object().shape({
         email: Yup.string().email('Invalid email address').required("Required"),
         password: Yup.string().required("No password provided")
@@ -63,7 +67,10 @@ function Login() {
         <Formik validationSchema={schema}
                 onSubmit={async values => {
                     try {
-                        await SignIn(values.email, values.password);
+                        const uid = await SignIn(values.email, values.password);
+                        const user = await GetCollection("User", uid);
+                        localStorage.setItem("user", JSON.stringify({id: uid,...user}));
+                        setUser({id: uid, ...user});
                         navigate("/profile");
                     } catch (err) {
                         setError(err);

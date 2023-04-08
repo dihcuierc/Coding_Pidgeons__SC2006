@@ -8,7 +8,7 @@ import formStyle from "../../../assets/css/Form.module.css";
 import background from "../../../assets/css/Background.module.css";
 import padding from "../../../assets/css/Padding.module.css"
 
-import { ResetPassword } from "../../../provider/auth/AuthProvider";
+import { ResetPassword } from "../../../provider/auth/auth";
 import {useState} from "react";
 import {StatusMessages} from "../../components/utilities/alerts/StatusMessages";
 

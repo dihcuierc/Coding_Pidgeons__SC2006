@@ -1,21 +1,21 @@
 import background from "../../assets/css/Background.module.css"
 import React, {useCallback, useEffect, useState} from 'react';
 import './ExerciseReview.css';
-import {useParams, useNavigate, useLocation} from 'react-router-dom'
-import exercises from "../../data/exerciseData.json";
-import Container from "react-bootstrap/esm/Container";
+import {useParams, useNavigate} from 'react-router-dom'
+import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Stack from "react-bootstrap/Stack";
+import Image from "react-bootstrap/Image"
 import Rating from '@mui/material/Rating';
-import exerciseReviews from "../../data/exerciseReviews.json";
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 import { styled } from '@mui/material/styles';
 import {GetCollection} from "../../provider/firestore/FirestoreProvider";
+import {useAuth} from "../../provider/auth/AuthProvider";
 
 
 export default function ExerciseReview() {
     const { id } = useParams();
-    const {state} = useLocation();
+    const {user} = useAuth();
 
     const navigate = useNavigate();
     const [exercise, setExercise] = useState([]);
@@ -131,7 +131,7 @@ export default function ExerciseReview() {
                                         <Stack direction="horizontal" gap={3} >
                                             <div className='all-exercise-review-profile'>
                                                 <Stack direction="horizontal" gap={3}>
-                                                    <p className='all-exercise-profile-image'>image</p>
+                                                    <Image className="ms-3" roundedCircle width={36} height={36} src={user.profileImage} alt={user.name}/>
                                                     <div>
                                                         <p className="all-exeercise-review-name">{review.name}</p>
                                                         <p className='all-exercise-review-date'>{review.date}</p>

@@ -19,6 +19,7 @@ import Image from "react-bootstrap/Image";
 import setFilePath from "../../../../misc/filePath";
 import toast, {Toaster} from "react-hot-toast";
 import {wait} from "@testing-library/user-event/dist/utils";
+import {useAuth} from "../../../../provider/auth/AuthProvider";
 export default function EditExercisePlanWrapper() {
     const {state} = useLocation();
     const { id } = useParams();
@@ -26,7 +27,7 @@ export default function EditExercisePlanWrapper() {
 
     const [exercises, setExercises] = useState([]);
     const [selectedExercise, setSelectedExercise] = useState(-1);
-    const [user, setUser] = useState(1);
+    const {user} = useAuth();
 
     const success = useCallback(() => {
         toast.success("You have successfully updated exercise plan!");
@@ -57,7 +58,7 @@ export default function EditExercisePlanWrapper() {
                       planID: id,
                       title: values.title,
                       totalCalories: totalCalories,
-                      userID: user
+                      userID: user.userID
                   }
                   const status = await UpdateCollection("Plan", id, data);
                   if (status) {
@@ -90,7 +91,7 @@ export default function EditExercisePlanWrapper() {
             resetForm,
             setFieldValue,
             }) => (
-          <div className={background.default}>
+          <div className={`${background.default} p-4`}>
               <h1 className={padding.headerTop}>Edit Exercise Plans</h1>
               <Container className={`${padding.container} bg-black text-white rounded-4`}>
                   <Form onSubmit={handleSubmit}>
@@ -109,7 +110,7 @@ export default function EditExercisePlanWrapper() {
                               {errors?.title}
                           </Form.Control.Feedback>
                       </Form.Group>
-                      <Form.Group  controlId="imageInput">
+                      <Form.Group controlId="imageInput">
                           <Form.Label>Image</Form.Label>
                           <Form.Control
                               name="image"
