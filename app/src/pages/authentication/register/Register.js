@@ -16,7 +16,7 @@ import background from "../../../assets/css/Background.module.css";
 import padding from "../../../assets/css/Padding.module.css"
 
 import {StatusMessages} from "../../components/utilities/alerts/StatusMessages";
-import {SignUp} from "../../../provider/auth/AuthProvider";
+import {SignUp, useAuth} from "../../../provider/auth/AuthProvider";
 
 
 export default function RegisterWrapper() {

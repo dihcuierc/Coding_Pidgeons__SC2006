@@ -47,7 +47,7 @@ export default function EditExercisePlanWrapper() {
                   values.exercises.forEach(item => {
                       totalCalories += item['Calories'];
                   })
-                  let path = "";
+                  let path = state.exercisePlan.image_ref;
                   if (values.image !== "") {
                       path = setFilePath(values.image, "/images/ExerciseImages/")
                   }

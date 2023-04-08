@@ -12,7 +12,6 @@ import {
 import {DeleteDoc} from "../firestore/FirestoreProvider";
 
 const {auth} = initializeFirebase();
-
 const provider = new GoogleAuthProvider();
 
 async function GoogleAuth() {
