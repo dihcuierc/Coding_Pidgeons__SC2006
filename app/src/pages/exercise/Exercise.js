@@ -2,9 +2,6 @@ import background from "../../assets/css/Background.module.css"
 import React, {useCallback, useEffect, useState} from 'react';
 import './Exercise.css';
 import {Link, useParams} from 'react-router-dom'
-import exercises from "../../data/exerciseData.json";
-import exerciseGroups from "../../data/exerciseGroupData.json";
-import exerciseReviews from "../../data/exerciseReviews.json";
 import Rating from '@mui/material/Rating';
 import Button from "react-bootstrap/Button";
 import {GetCollection} from "../../provider/firestore/FirestoreProvider";

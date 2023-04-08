@@ -6,11 +6,14 @@ import {router} from "./pages/components/navigation/routing";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "react-multi-carousel/lib/styles.css";
 import {RouterProvider} from "react-router-dom";
+import {AuthProvider} from "./provider/auth/AuthProvider";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-    <RouterProvider router={router}/>
+    <AuthProvider>
+        <RouterProvider router={router}/>
+    </AuthProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

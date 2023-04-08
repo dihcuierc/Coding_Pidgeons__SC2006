@@ -22,12 +22,13 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import {collection, onSnapshot} from "firebase/firestore";
 import {initializeFirebase} from "../../../../../provider/FirebaseConfig";
 import {DeleteDoc, UpdateCollection} from "../../../../../provider/firestore/FirestoreProvider";
+import {useAuth} from "../../../../../provider/auth/AuthProvider";
 
 const {db} = initializeFirebase();
 export default function GoalCard({add,clickable}) {
     const [goals, setGoals] = useState([])
     const navigate = useNavigate();
-    const [user, setUser] = useState(1);
+    const {user} = useAuth();
 
     const onDelete = useCallback(() => {
         toast.success("Goal have been successfully deleted!");
@@ -69,7 +70,7 @@ export default function GoalCard({add,clickable}) {
                     }
                 </div>
                 <Card.Body className="ps-0">
-                        {goals.filter(item => item.userID === user).map((item,index) => (
+                        {goals.filter(item => item.userID === user.userID).map((item,index) => (
                             <div className="d-flex mb-3" key={index}>
                                 <div className={`${rowStyle.goals} d-flex align-items-center`}>
                                         <Col className="p-3">

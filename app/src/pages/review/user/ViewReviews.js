@@ -14,6 +14,7 @@ import {initializeFirebase} from "../../../provider/FirebaseConfig";
 import {collection, onSnapshot} from "firebase/firestore";
 import toast, {Toaster} from "react-hot-toast";
 import Button from 'react-bootstrap/Button';
+import {useAuth} from "../../../provider/auth/AuthProvider";
 
 const {db} = initializeFirebase();
 
@@ -21,7 +22,7 @@ export default function ViewReviews() {
 
     const [reviews, setReviews] = useState([]);
     const [exercises, setExercises] = useState([]);
-    const [user, setUser] = useState(1);
+    const { user } = useAuth();
 
 
     const fetchExercise = useCallback(() => {
@@ -37,7 +38,7 @@ export default function ViewReviews() {
           const reviewRef = collection(db,"Review");
           fetchExercise();
           const unsub = onSnapshot(reviewRef, (snapshot) => {
-              const docs = snapshot.docs.filter(doc => doc.data().userID === user)
+              const docs = snapshot.docs.filter(doc => doc.data().userID === user.userID)
                   .map((doc) => {
                       const exercise = exercises.find(item => item.exID === doc.data().exID);
                   return ({...doc.data(), exercise, id: doc.id});

@@ -16,6 +16,7 @@ import Image from "react-bootstrap/Image";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import {AddCollection, GetSize} from "../../../provider/firestore/FirestoreProvider";
 import {wait} from "@testing-library/user-event/dist/utils";
+import {useAuth} from "../../../provider/auth/AuthProvider";
 
 export default function AddExerciseReview() {
     const { state } = useLocation();
@@ -23,6 +24,7 @@ export default function AddExerciseReview() {
     const [value, setValue] = useState(0);
     const [hover, setHover] = useState(-1);
     const [review, setReview] = useState('');
+    const {user} = useAuth();
     const navigate = useNavigate();
 
     const schema = Yup.object().shape({
@@ -55,7 +57,7 @@ export default function AddExerciseReview() {
                         date: new Date(Date.now()).toLocaleDateString("en-GB"),
                         exID: exercise.exID,
                         rating: value,
-                        userID: 1
+                        userID: user.userID,
                     }
                     const status = await AddCollection("Review", size, data);
                     if (status) {

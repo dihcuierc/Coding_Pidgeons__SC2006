@@ -18,12 +18,14 @@ import rowStyle from "../../../assets/css/Row.module.css";
 import {collection, onSnapshot} from "firebase/firestore";
 import {initializeFirebase} from "../../../provider/FirebaseConfig";
 import {GetCollection} from "../../../provider/firestore/FirestoreProvider";
+import {useAuth} from "../../../provider/auth/AuthProvider";
 
 const {db} = initializeFirebase();
 export default function ViewExercises() {
     const navigate = useNavigate();
     const [scheduledExercises, setScheduledExercises] = useState([]);
     const [planTitle, setPlanTitle] = useState([]);
+    const {user} = useAuth();
 
     const getPlans = useCallback(() => {
         GetCollection("Plan").then(plans => {
@@ -51,7 +53,7 @@ export default function ViewExercises() {
             <Card className={`${cardStyle.schedule} mx-lg-auto`}>
                 <Card.Title className="display-6 mx-auto p-0">Scheduled Exercises</Card.Title>
                 <Card.Body>
-                    {scheduledExercises.map((item) => (
+                    {scheduledExercises.filter(item => item['userID'] === user.userID).map((item) => (
                         <Row className={rowStyle.exercises}>
                             <div className="mb-2 d-flex">
                                 <Card.Text>Exercise Plan: {item.id} </Card.Text>

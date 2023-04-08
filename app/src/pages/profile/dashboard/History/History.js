@@ -8,13 +8,14 @@ import cardStyle from "../../../../assets/css/Card.module.css"
 import historyData from "../../../../data/CaloriesHistory.json";
 import {useCallback, useEffect, useState} from "react";
 import {convertStringToDate} from "../../../../misc/dateConverter";
+import {useAuth} from "../../../../provider/auth/AuthProvider";
 export default function History() {
 
     const [axis,setAxis] = useState([]);
-    const [user, setUser] = useState(1);
+    const {user} = useAuth();
     
     const setData = useCallback(() => {
-        setAxis(historyData.filter(item => item.userID === user).map(item => {
+        setAxis(historyData.filter(item => item['userID'] === user.userID).map(item => {
             const x = convertStringToDate(item.date);
             const y = item['calories burnt'];
             return {x,y};

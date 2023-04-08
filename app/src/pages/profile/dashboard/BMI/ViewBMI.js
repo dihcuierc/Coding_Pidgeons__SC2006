@@ -6,11 +6,12 @@ import Slider from '@mui/material/Slider';
 
 import cardStyle from "../../../../assets/css/Card.module.css"
 import './ViewBMI.css';
+import {useAuth} from "../../../../provider/auth/AuthProvider";
 
 export default function BMI() {
-
-    const [height, setHeight] = useState('0');
-    const [weight, setWeight] = useState('0');
+    const {user} = useAuth();
+    const [height, setHeight] = useState(user?.height);
+    const [weight, setWeight] = useState(user?.weight);
     const [bmi, setBMI] = useState(0);
     const marks = [
         {
