@@ -27,6 +27,7 @@ const {db} = initializeFirebase();
 export default function GoalCard({add,clickable}) {
     const [goals, setGoals] = useState([])
     const navigate = useNavigate();
+    const [user, setUser] = useState(1);
 
     const onDelete = useCallback(() => {
         toast.success("Goal have been successfully deleted!");
@@ -68,7 +69,7 @@ export default function GoalCard({add,clickable}) {
                     }
                 </div>
                 <Card.Body className="ps-0">
-                        {goals.map((item,index) => (
+                        {goals.filter(item => item.userID === user).map((item,index) => (
                             <div className="d-flex mb-3" key={index}>
                                 <div className={`${rowStyle.goals} d-flex align-items-center`}>
                                         <Col className="p-3">

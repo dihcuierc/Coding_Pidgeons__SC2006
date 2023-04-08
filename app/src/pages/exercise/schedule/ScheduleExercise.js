@@ -27,7 +27,6 @@ export default function ScheduleExercise() {
   const [date, setDate] = useState(new Date());
   const [startTime, setStartTime] = useState(date.getTime());
   const [endTime, setEndTime] = useState(date.getTime() + 3600000);
-  const [location, setLocation] = useState("");
   const [plans, setPlans] = useState([]);
   const [exercisePlan, setExercisePlan] = useState("");
   const [user, setUser] = useState(1);
@@ -49,19 +48,15 @@ export default function ScheduleExercise() {
   useEffect(() => {
     if (state !== null) {
       const exercise = state.exercise;
-      setLocation(exercise.location);
       setExercisePlan(exercise.planID);
-      setDate(convertStringToDate(exercise.date));
-      setEndTime(convertTimeToTimeStamp(exercise['end time'],exercise.date));
-      setStartTime(convertTimeToTimeStamp(exercise['start time'], exercise.date));
       setUser(exercise.userID);
     }
     getPlans();
-  },[state, date, startTime, endTime, location, exercisePlan, getPlans])
+  },[state, date, startTime, endTime, exercisePlan, getPlans])
 
   return (
       <Formik
-          onSubmit={ async (values) => {
+          onSubmit={ async  (values) => {
             try {
               let status = false;
                 const start = calculateDate(startTime);

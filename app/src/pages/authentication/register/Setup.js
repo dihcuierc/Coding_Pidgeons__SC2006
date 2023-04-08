@@ -70,7 +70,6 @@ function Setup() {
               const id = await GetSize("User") + 1;
               const username = userDetails.username;
               const weight = values.weight;
-              const uid = userDetails.uid;
               const data = {
                   age,
                   email,
@@ -83,7 +82,7 @@ function Setup() {
                   username,
                   weight,
               }
-              const status = await CreateUser(uid,{data});
+              const status = await CreateUser(id,{data});
               if (status)
                   navigate("../../profile");
           } catch(err) {

@@ -24,3 +24,13 @@
     margin-left: 0 !important;
     margin-right: 0 !important;
 }
+
+.edit {
+    width: 700px;
+    margin-top: 1.5rem;
+}
+
+.select {
+    width: 700px;
+    margin-top: 1.5rem;
+}

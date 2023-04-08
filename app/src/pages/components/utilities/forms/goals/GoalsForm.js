@@ -54,7 +54,6 @@ export default function GoalsForm({goals}) {
                             "done": false,
                             "userID": user,
                         }
-                        console.log("te")
                         status = await AddCollection("Goal", size, data);
                     } else {
                         const data = {

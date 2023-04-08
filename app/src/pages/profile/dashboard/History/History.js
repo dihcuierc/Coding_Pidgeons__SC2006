@@ -5,8 +5,25 @@ import Container from "react-bootstrap/Container"
 
 import cardStyle from "../../../../assets/css/Card.module.css"
 
-
+import historyData from "../../../../data/CaloriesHistory.json";
+import {useCallback, useEffect, useState} from "react";
+import {convertStringToDate} from "../../../../misc/dateConverter";
 export default function History() {
+
+    const [axis,setAxis] = useState([]);
+    const [user, setUser] = useState(1);
+    
+    const setData = useCallback(() => {
+        setAxis(historyData.filter(item => item.userID === user).map(item => {
+            const x = convertStringToDate(item.date);
+            const y = item['calories burnt'];
+            return {x,y};
+        }))
+    },[user])
+
+    useEffect(() => {
+        setData();
+    },[setData])
 
     return (
         <>
@@ -23,14 +40,7 @@ export default function History() {
                             domainPadding={30}
                             scale={{x: "time", y: "linear"}}
                         >
-                            <VictoryBar data={[
-                                {x: new Date(2023,3,27),y: 400 },
-                                {x: new Date(2023,3,28),y: 200 },
-                                {x: new Date(2023,3,29),y: 600 },
-                                {x: new Date(2023,3,30),y: 500 },
-                                {x: new Date(2023,3,31),y: 200 },
-                                {x: new Date(2023,4,1),y: 100 },
-                            ]}
+                            <VictoryBar data={axis}
                                 alignment="start"
                             />
                         </VictoryChart>

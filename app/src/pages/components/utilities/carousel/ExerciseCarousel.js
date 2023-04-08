@@ -12,7 +12,6 @@ export default function ExerciseCarousel() {
 
   const [exerciseGroup, setExerciseGroup] = useState([]);
   const [exercises, setExercises] = useState([])
-  const [filtered, setFiltered] = useState([]);
   
   const fetchExerciseGroup = useCallback(() => {
     GetCollection("ExerciseGroups",id).then(data => setExerciseGroup(data)).catch(err => console.log(err));
@@ -41,7 +40,6 @@ export default function ExerciseCarousel() {
               key={exercise.id}
               imageUrl={exercise['image_ref']}
               title={exercise.title}
-              addExercise={true}
             />
           ))}
         </Carousel>

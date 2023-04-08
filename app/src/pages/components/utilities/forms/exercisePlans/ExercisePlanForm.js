@@ -20,7 +20,6 @@ import "./ExercisePlanForm.css";
 import exerciseGroups from "../../../../../data/exerciseGroupData.json";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {AddCollection, GetCollection, GetSize} from "../../../../../provider/firestore/FirestoreProvider";
-import {UploadFiles} from "../../../../../provider/storage/StorageProvider";
 import toast, {Toaster} from "react-hot-toast";
 import {wait} from "@testing-library/user-event/dist/utils";
 import {useNavigate} from "react-router-dom";
@@ -32,16 +31,16 @@ export default function ExercisePlanForm() {
             .required("Exercise Plan must have a name!"),
         exercise: Yup.array().of(
                 Yup.object().shape({
-                name: Yup
+                exID: Yup
                     .string()
                     .required(),
-                reps: Yup.number()
+                Reps: Yup.number()
                     .positive()
                     .required(),
-                sets: Yup.number()
+                Sets: Yup.number()
                     .positive()
                     .required(),
-                rest: Yup.number()
+                Rest: Yup.number()
                     .positive()
                     .required()
             })),
@@ -79,11 +78,14 @@ export default function ExercisePlanForm() {
     return (
         <Formik
             validationSchema={schema}
+            enableReinitialize
             onSubmit={async values => {
                 try {
                 const size = await GetSize("Plan");
                 let totalCalories = 0;
-                values.exercises.forEach((item) => totalCalories += (item.reps * item.sets * 0.11))
+                values.exercises.forEach((item) => {
+                  totalCalories += item['Calories']
+                })
                 const data = {
                     planID: size+1,
                     title: values.title,
@@ -107,7 +109,8 @@ export default function ExercisePlanForm() {
                 title: "",
                 exercises: [],
                 image: ""
-            }}>
+            }}
+        >
             {({
                   handleSubmit,
                   handleChange,
@@ -163,16 +166,17 @@ export default function ExercisePlanForm() {
                                                 <div>{item.title}</div>
                                             </Col>
                                             <Col xs={2} className="d-flex align-items-center">
-                                                <Button className={`${buttonStyle.transparent} mb-0`} onClick={(e) => {
+                                                <Button className={`${buttonStyle.transparent} mb-0`}                                                       onClick={() => {
                                                     let tmp = values.exercises;
                                                     tmp.push({
-                                                        name: item.title,
-                                                        reps: 10,
-                                                        sets: 3,
-                                                        rest: 60
+                                                        exID: item.exID,
+                                                        Reps: 10,
+                                                        Sets: 3,
+                                                        Rest: 60,
+                                                        Calories:  item?.met * item?.time * 10 * 3,
                                                     })
                                                     setFieldValue("exercises", tmp);
-                                                }} disabled={values.exercises.find(obj => obj.name === item.title)}>
+                                                }} disabled={values.exercises?.find(obj => obj.name === item.title)}>
                                                     <AddIcon color="primary"/>
                                                 </Button>
                                             </Col>
@@ -195,22 +199,22 @@ export default function ExercisePlanForm() {
                                 <Button className="cancel-button" type="reset">Cancel</Button>
                             </div>
                         </div>
-                        {values.exercises.length !== 0 && (
+                        {values.exercises?.length !== 0 && (
                             <div className="add-exercise-block">
                                 {
                                     values.exercises.map((exercise, index) => (
                                         <Row className={rowStyle.plans} key={index}>
                                             <Col>
                                                 <p>Name:</p>
-                                                <div>{exercise.name}</div>
+                                                <div>{exerciseData.find(item => item['exID'] === parseInt(exercise['exID']))?.title}</div>
                                             </Col>
                                             <Col xs={2}>
                                                 <p>Reps:</p>
                                                 <Form.Group controlId="repsInput">
                                                     <Form.Control
-                                                        name={`exercises[${index}].reps`}
+                                                        name={`exercises[${index}]['Reps']`}
                                                         type="number"
-                                                        value={values.exercises[index].reps}
+                                                        value={values.exercises[index]['Reps']}
                                                         onChange={handleChange}
                                                         isInvalid={!!errors.reps && touched.reps}
                                                     />
@@ -223,9 +227,9 @@ export default function ExercisePlanForm() {
                                                 <p>Sets:</p>
                                                 <Form.Group controlId="setsInput">
                                                     <Form.Control
-                                                        name={`exercises[${index}].sets`}
+                                                        name={`exercises[${index}]['Sets']`}
                                                         type="number"
-                                                        value={values.exercises[index].sets}
+                                                        value={values.exercises[index]['Sets']}
                                                         onChange={handleChange}
                                                         isInvalid={!!errors.sets && touched.sets}
                                                     />
@@ -238,9 +242,9 @@ export default function ExercisePlanForm() {
                                                 <p>Rest:</p>
                                                 <Form.Group controlId="restInput">
                                                     <Form.Control
-                                                        name={`exercises[${index}].rest`}
+                                                        name={`exercises[${index}]['Rest']`}
                                                         type="number"
-                                                        value={values.exercises[index].rest}
+                                                        value={values.exercises[index]['Rest']}
                                                         onChange={handleChange}
                                                         isInvalid={!!errors.rest && touched.rest}
                                                     />
@@ -249,15 +253,24 @@ export default function ExercisePlanForm() {
                                                     </Form.Control.Feedback>
                                                 </Form.Group>
                                             </Col>
-                                            <Col xs={1}>
+                                            <Col>
                                                 <p>Calories:</p>
-                                                <div className="p-2">
-                                                    {exercise.sets * exercise.reps * 0.11}
-                                                </div>
+                                                <Form.Group controlId="caloriesInput">
+                                                    <Form.Control
+                                                        name={`exercises[${index}]['Calories']`}
+                                                        type="number"
+                                                        value={values.exercises[index]['Calories']}
+                                                        onChange={handleChange}
+                                                        isInvalid={!!errors.calories && touched.calories}
+                                                    />
+                                                    <Form.Control.Feedback type="invalid">
+                                                        {errors?.calories}
+                                                    </Form.Control.Feedback>
+                                                </Form.Group>
                                             </Col>
-                                            <Col className="d-flex justify-content-center">
-                                                <Button className={`${buttonStyle.transparent} mb-3`} onClick={() =>
-                                                    setFieldValue("exercises", values.exercises.filter(e => e.name !== exercise.name))
+                                            <Col xs={1} className="d-flex justify-content-center">
+                                                <Button className={`${buttonStyle.transparent} mt-4`} onClick={() =>
+                                                    setFieldValue("exercises", values.exercises?.filter(e => e.name !== exercise.name))
                                                 }>
                                                     <DeleteIcon color="action"/>
                                                 </Button>
