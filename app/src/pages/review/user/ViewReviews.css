@@ -12,15 +12,6 @@
     margin-right:10%;
   }
 
-
-  .delete-review{
-    background-color: rgb(255, 255, 255);
-    
-    border: 1px solid red;
-    border-radius: 12px;
-    align-self: flex-start;
-  }
-
 .individual-review{
     background-color: #F6F6F6;
     border-radius: 12px;
