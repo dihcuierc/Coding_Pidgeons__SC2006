@@ -9,8 +9,6 @@
 
   .profile-review-card{
     display:flex;
-    width:100%;
-    margin-right:10%;
   }
 
 .individual-review{
@@ -35,7 +33,6 @@
 
 .profile-review-title{
     font-size: 2.5rem !important;
-    padding-bottom: rem;
 }
 
 .profile-review-text{
