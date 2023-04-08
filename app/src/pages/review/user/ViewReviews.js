@@ -30,6 +30,7 @@ export default function ViewReviews() {
         toast.success("Review have been successfully deleted!");
     },[])
 
+    const basePath = process.env.PUBLIC_URL;
 
       useEffect(() => {
           const reviewRef = collection(db,"Review");
