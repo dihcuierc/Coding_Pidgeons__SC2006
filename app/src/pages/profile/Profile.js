@@ -28,7 +28,7 @@ export default function Profile() {
             defaultActiveKey="dashboard">
             <Row className="me-0" >
                 <Col className="tabs py-sm-0 p-2">
-                    <Nav variant="pills" className="flex-column" >
+                    <Nav variant="pills" className="flex-column">
                         <Nav.Item>
                             <Nav.Link eventKey="dashboard">
                                 <DashboardIcon/>
