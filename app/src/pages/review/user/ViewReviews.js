@@ -64,7 +64,7 @@ export default function ViewReviews() {
                         }).map(review => (
                             <Card.Body className='user-review'  key={review.id} >
                                 <Stack direction="horizontal" gap={3} style={{width:"100%", padding: '10px'}}>
-                                    <div className='exercise-review-picture'>
+                                    <div style={{display: 'inline-block'}}>
                                         <img className="exercise-video-small" src={review.exercise?.image_ref} alt={review.exercise?.title} style={{display: 'block', margin: 'auto', width: '150px', height: '150px', objectFit:'cover'}}/>
                                     </div>
                                         <div className={reviewStyle.individual_review}>
