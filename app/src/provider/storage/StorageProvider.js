@@ -17,9 +17,7 @@ async function UploadFiles(file,path) {
 
 async function RetrieveFiles(path) {
     try {
-        console.log(path);
         const fileRef = ref(storage,path)
-        console.log(fileRef)
         return await getDownloadURL(fileRef);
 
     } catch (err) {

@@ -4,13 +4,14 @@ import cors from "cors";
 import authRoutes from "./routes/authentication";
 import {collectUserData, collectOneUser, addUserData, deleteUserData, collectRevData, collectOneRev, addRevData, deleteRevData,
     collectGoalData, collectOneGoal, addGoalData, deleteGoalData, collectExData, collectOneEx, collectCH, collectOneCH, addCH, deleteCH, 
-    collectSE, collectOneSE, addSE, deleteSE, collectExGroup, collectOneExGroup, collectPlan, collectOnePlan, addPlan, deletePlan} from "./controller/DBConnection";
+    collectSE, collectOneSE, addSE, deleteSE, collectExGroup, collectOneExGroup, collectPlan, collectOnePlan, addPlan, deletePlan, uploadFile} from "./controller/DBConnection";
 import userRoutes from "./routes/user";
 import {errorHandler} from "./errors/errorHandler";
 import { deleteUser } from "firebase/auth";
+import { uploadBytesResumable, getStorage, ref, getDownloadURL } from "firebase/storage";
 
 const app = express();
-
+const storage = getStorage();
 app.use(cors());
 app.use(express.json());
 app.use("/users",authRoutes);
@@ -19,9 +20,11 @@ app.use(errorHandler);
 
 app.listen(8080, () => {
     console.log(`Server running on localhost:8080`);
+    //uploadFile()
+    getDownloadURL(ref(storage, 'Profile/Ernest.jpg'))
     //collectUserData();
     //collectRevData();
-    collectOneUser("2yJag0rbfr7VyQvkuzZn");
+    //collectOneUser("2yJag0rbfr7VyQvkuzZn");
     //collectOneRev("9hkil8WTIIWf2XJdZxWU");
     //addUserData("123456", "Kai Jie", "Wan", "kjwan", "kjwan@gmail.com", null, "98765432")
     //deleteUserData("fTF3x1lyCfxvQJbepxRi")

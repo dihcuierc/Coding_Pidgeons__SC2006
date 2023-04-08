@@ -9,7 +9,6 @@ import backgroundStyle from "../../../assets/css/Background.module.css";
 
 
 export default function AddGoalWrapper() {
-
     return (
         <div className={`${backgroundStyle.profile} d-grid`}>
             <Container className="d-flex justify-content-center my-auto">

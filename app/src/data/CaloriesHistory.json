@@ -1,0 +1,1262 @@
+[
+  {
+    "userID": 1,
+    "id": 1,
+    "date": "01/04/2023",
+    "calories burnt": 681
+  },
+  {
+    "userID": 1,
+    "id": 2,
+    "date": "02/04/2023",
+    "calories burnt": 555
+  },
+  {
+    "userID": 1,
+    "id": 3,
+    "date": "03/04/2023",
+    "calories burnt": 926
+  },
+  {
+    "userID": 1,
+    "id": 4,
+    "date": "04/04/2023",
+    "calories burnt": 1099
+  },
+  {
+    "userID": 1,
+    "id": 5,
+    "date": "05/04/2023",
+    "calories burnt": 629
+  },
+  {
+    "userID": 1,
+    "id": 6,
+    "date": "06/04/2023",
+    "calories burnt": 964
+  },
+  {
+    "userID": 1,
+    "id": 7,
+    "date": "07/04/2023",
+    "calories burnt": 730
+  },
+  {
+    "userID": 1,
+    "id": 8,
+    "date": "08/04/2023",
+    "calories burnt": 995
+  },
+  {
+    "userID": 1,
+    "id": 9,
+    "date": "09/04/2023",
+    "calories burnt": 795
+  },
+    {
+    "userID": 1,
+    "id": 10,
+    "date": "10/04/2023",
+    "calories burnt": 910
+  },
+    {
+    "userID": 1,
+    "id": 11,
+    "date": "11/04/2023",
+    "calories burnt": 661
+  },
+    {
+    "userID": 1,
+    "id": 12,
+    "date": "12/04/2023",
+    "calories burnt": 777
+  },
+    {
+    "userID": 1,
+    "id": 13,
+    "date": "13/04/2023",
+    "calories burnt": 984
+  },
+    {
+    "userID": 1,
+    "id": 14,
+    "date": "14/04/2023",
+    "calories burnt": 673
+  },
+    {
+    "userID": 1,
+    "id": 15,
+    "date": "15/04/2023",
+    "calories burnt": 536
+  },
+    {
+    "userID": 1,
+    "id": 16,
+    "date": "16/04/2023",
+    "calories burnt": 533
+  },
+    {
+    "userID": 1,
+    "id": 17,
+    "date": "17/04/2023",
+    "calories burnt": 802
+  },
+    {
+    "userID": 1,
+    "id": 18,
+    "date": "18/04/2023",
+    "calories burnt": 537
+  },
+    {
+    "userID": 1,
+    "id": 19,
+    "date": "19/04/2023",
+    "calories burnt": 1199
+  },
+    {
+    "userID": 1,
+    "id": 20,
+    "date": "20/04/2023",
+    "calories burnt": 956
+  },
+    {
+    "userID": 1,
+    "id": 21,
+    "date": "21/04/2023",
+    "calories burnt": 678
+  },
+    {
+    "userID": 1,
+    "id": 22,
+    "date": "22/04/2023",
+    "calories burnt": 1046
+  },
+    {
+    "userID": 1,
+    "id": 23,
+    "date": "23/04/2023",
+    "calories burnt": 1094
+  },
+    {
+    "userID": 1,
+    "id": 24,
+    "date": "24/04/2023",
+    "calories burnt": 772
+  },
+    {
+    "userID": 1,
+    "id": 25,
+    "date": "25/04/2023",
+    "calories burnt": 1143
+  },
+    {
+    "userID": 1,
+    "id": 26,
+    "date": "26/04/2023",
+    "calories burnt": 906
+  },
+    {
+    "userID": 1,
+    "id": 27,
+    "date": "27/04/2023",
+    "calories burnt": 1020
+  },
+    {
+    "userID": 1,
+    "id": 28,
+    "date": "28/04/2023",
+    "calories burnt": 844
+  },
+    {
+    "userID": 1,
+    "id": 29,
+    "date": "29/04/2023",
+    "calories burnt": 719
+  },
+    {
+    "userID": 1,
+    "id": 30,
+    "date": "30/04/2023",
+    "calories burnt": 576
+  },
+    {
+    "userID": 2,
+    "id": 31,
+    "date": "01/04/2023",
+    "calories burnt": 938
+  },
+    {
+    "userID": 2,
+    "id": 32,
+    "date": "02/04/2023",
+    "calories burnt": 503
+  },
+    {
+    "userID": 2,
+    "id": 33,
+    "date": "03/04/2023",
+    "calories burnt": 584
+  },
+    {
+    "userID": 2,
+    "id": 34,
+    "date": "04/04/2023",
+    "calories burnt": 723
+  },
+    {
+    "userID": 2,
+    "id": 35,
+    "date": "05/04/2023",
+    "calories burnt": 904
+  },
+    {
+    "userID": 2,
+    "id": 36,
+    "date": "06/04/2023",
+    "calories burnt": 521
+  },
+    {
+    "userID": 2,
+    "id": 37,
+    "date": "07/04/2023",
+    "calories burnt": 724
+  },
+   {
+    "userID": 2,
+    "id": 38,
+    "date": "08/04/2023",
+    "calories burnt": 1196
+  },
+    {
+    "userID": 2,
+    "id": 39,
+    "date": "09/04/2023",
+    "calories burnt": 578
+  },
+    {
+    "userID": 2,
+    "id": 40,
+    "date": "10/04/2023",
+    "calories burnt": 571
+  },
+    {
+    "userID": 2,
+    "id": 41,
+    "date": "11/04/2023",
+    "calories burnt": 663
+  },
+    {
+    "userID": 2,
+    "id": 42,
+    "date": "12/04/2023",
+    "calories burnt": 1168
+  },
+    {
+    "userID": 2,
+    "id": 43,
+    "date": "13/04/2023",
+    "calories burnt": 549
+  },
+    {
+    "userID": 2,
+    "id": 44,
+    "date": "14/04/2023",
+    "calories burnt": 696
+  },
+    {
+    "userID": 2,
+    "id": 45,
+    "date": "15/04/2023",
+    "calories burnt": 873
+  },
+   {
+    "userID": 2,
+    "id": 46,
+    "date": "16/04/2023",
+    "calories burnt": 625
+     },
+  {
+  "userID": 2,
+  "id": 47,
+  "date": "17/04/2023",
+    "calories burnt": 1123
+  },
+    {
+    "userID": 2,
+    "id": 48,
+    "date": "18/04/2023",
+    "calories burnt": 825
+  },
+    {
+    "userID": 2,
+    "id": 49,
+    "date": "19/04/2023",
+    "calories burnt": 901
+  },
+    {
+    "userID": 2,
+    "id": 50,
+    "date": "20/04/2023",
+    "calories burnt": 1076
+  },
+    {
+    "userID": 2,
+    "id": 51,
+    "date": "21/04/2023",
+    "calories burnt": 1142
+  },
+    {
+    "userID": 2,
+    "id": 52,
+    "date": "22/04/2023",
+    "calories burnt": 641
+  },
+    {
+    "userID": 2,
+    "id": 53,
+    "date": "23/04/2023",
+    "calories burnt": 773
+  },
+    {
+    "userID": 2,
+    "id": 54,
+    "date": "24/04/2023",
+    "calories burnt": 616
+  },
+    {
+    "userID": 2,
+    "id": 55,
+    "date": "25/04/2023",
+    "calories burnt": 1112
+  },
+    {
+    "userID": 2,
+    "id": 56,
+    "date": "26/04/2023",
+    "calories burnt": 1164
+  },
+    {
+    "userID": 2,
+    "id": 57,
+    "date": "27/04/2023",
+    "calories burnt": 1162
+  },
+    {
+    "userID": 2,
+    "id": 58,
+    "date": "28/04/2023",
+    "calories burnt": 579
+  },
+   {
+    "userID": 2,
+    "id": 59,
+    "date": "29/04/2023",
+    "calories burnt": 1062
+  },
+   {
+    "userID": 2,
+    "id": 60,
+    "date": "30/04/2023",
+    "calories burnt": 755
+  },
+   {
+    "userID": 3,
+    "id": 61,
+    "date": "01/04/2023",
+    "calories burnt": 883
+  },
+   {
+    "userID": 3,
+    "id": 62,
+    "date": "02/04/2023",
+    "calories burnt": 1026
+  },
+   {
+    "userID": 3,
+    "id": 63,
+    "date": "03/04/2023",
+    "calories burnt": 887
+  },
+   {
+    "userID": 3,
+    "id": 64,
+    "date": "04/04/2023",
+    "calories burnt": 986
+  },
+   {
+    "userID": 3,
+    "id": 65,
+    "date": "05/04/2023",
+    "calories burnt": 1120
+  },
+   {
+    "userID": 3,
+    "id": 66,
+    "date": "06/04/2023",
+    "calories burnt": 1062
+  },
+   {
+    "userID": 3,
+    "id": 67,
+    "date": "07/04/2023",
+    "calories burnt": 793
+  },
+   {
+    "userID": 3,
+    "id": 68,
+    "date": "08/04/2023",
+    "calories burnt": 1011
+  },
+   {
+    "userID": 3,
+    "id": 69,
+    "date": "09/04/2023",
+    "calories burnt": 1054
+  },
+   {
+    "userID": 3,
+    "id": 70,
+    "date": "10/04/2023",
+    "calories burnt": 920
+  },
+   {
+    "userID": 3,
+    "id": 71,
+    "date": "11/04/2023",
+    "calories burnt": 908
+  },
+   {
+    "userID": 3,
+    "id": 72,
+    "date": "12/04/2023",
+    "calories burnt": 606
+  },
+   {
+    "userID": 3,
+    "id": 73,
+    "date": "13/04/2023",
+    "calories burnt": 953
+  },
+   {
+    "userID": 3,
+    "id": 74,
+    "date": "14/04/2023",
+    "calories burnt": 686
+  },
+   {
+    "userID": 3,
+    "id": 75,
+    "date": "15/04/2023",
+    "calories burnt": 1093
+  },
+   {
+    "userID": 3,
+    "id": 76,
+    "date": "16/04/2023",
+    "calories burnt": 690
+  },
+   {
+    "userID": 3,
+    "id": 77,
+    "date": "17/04/2023",
+    "calories burnt": 769
+  },
+   {
+    "userID": 3,
+    "id": 78,
+    "date": "18/04/2023",
+    "calories burnt": 807
+  },
+   {
+    "userID": 3,
+    "id": 79,
+    "date": "19/04/2023",
+    "calories burnt": 895
+  },
+   {
+    "userID": 3,
+    "id": 80,
+    "date": "20/04/2023",
+    "calories burnt": 717
+  },
+   {
+    "userID": 3,
+    "id": 81,
+    "date": "21/04/2023",
+    "calories burnt": 562
+  },
+   {
+    "userID": 3,
+    "id": 82,
+    "date": "22/04/2023",
+    "calories burnt": 1019
+  },
+  {
+    "userID": 3,
+    "id": 83,
+    "date": "23/04/2023",
+    "calories burnt": 1021
+  },
+   {
+    "userID": 3,
+    "id": 84,
+    "date": "24/04/2023",
+    "calories burnt": 811
+  },
+   {
+    "userID": 3,
+    "id": 85,
+    "date": "25/04/2023",
+    "calories burnt": 917
+  },
+   {
+    "userID": 3,
+    "id": 86,
+    "date": "26/04/2023",
+    "calories burnt": 949
+  },
+   {
+    "userID": 3,
+    "id": 87,
+    "date": "27/04/2023",
+    "calories burnt": 557
+  },
+   {
+    "userID": 3,
+    "id": 88,
+    "date": "28/04/2023",
+    "calories burnt": 990
+  },
+   {
+    "userID": 3,
+    "id": 89,
+    "date": "29/04/2023",
+    "calories burnt": 1096
+  },
+   {
+    "userID": 3,
+    "id": 90,
+    "date": "30/04/2023",
+    "calories burnt": 540
+  },
+   {
+    "userID": 4,
+    "id": 91,
+    "date": "01/04/2023",
+    "calories burnt": 547
+  },
+   {
+    "userID": 4,
+    "id": 92,
+    "date": "02/04/2023",
+    "calories burnt": 1002
+  },
+   {
+    "userID": 4,
+    "id": 93,
+    "date": "03/04/2023",
+    "calories burnt": 810
+  },
+   {
+    "userID": 4,
+    "id": 94,
+    "date": "04/04/2023",
+    "calories burnt": 694
+  },
+   {
+    "userID": 4,
+    "id": 95,
+    "date": "05/04/2023",
+    "calories burnt": 741
+  },
+   {
+    "userID": 4,
+    "id": 96,
+    "date": "06/04/2023",
+    "calories burnt": 561
+  },
+   {
+    "userID": 4,
+    "id": 97,
+    "date": "07/04/2023",
+    "calories burnt": 836
+  },
+   {
+    "userID": 4,
+    "id": 98,
+    "date": "08/04/2023",
+    "calories burnt": 728
+  },
+   {
+    "userID": 4,
+    "id": 99,
+    "date": "09/04/2023",
+    "calories burnt": 694
+  },
+   {
+    "userID": 4,
+    "id": 100,
+    "date": "10/04/2023",
+    "calories burnt": 978
+  },
+   {
+    "userID": 4,
+    "id": 101,
+    "date": "11/04/2023",
+    "calories burnt": 1133
+  },
+   {
+    "userID": 4,
+    "id": 102,
+    "date": "12/04/2023",
+    "calories burnt": 1140
+  },
+   {
+    "userID": 4,
+    "id": 103,
+    "date": "13/04/2023",
+    "calories burnt": 1196
+  },
+   {
+    "userID": 4,
+    "id": 104,
+    "date": "14/04/2023",
+    "calories burnt": 1148
+  },
+   {
+    "userID": 4,
+    "id": 105,
+    "date": "15/04/2023",
+    "calories burnt": 760
+  },
+   {
+    "userID": 4,
+    "id": 106,
+    "date": "16/04/2023",
+    "calories burnt": 844
+  },
+   {
+    "userID": 4,
+    "id": 107,
+    "date": "17/04/2023",
+    "calories burnt": 654
+  },
+   {
+    "userID": 4,
+    "id": 108,
+    "date": "18/04/2023",
+    "calories burnt": 816
+  },
+   {
+    "userID": 4,
+    "id": 109,
+    "date": "19/04/2023",
+    "calories burnt": 599
+  },
+   {
+    "userID": 4,
+    "id": 110,
+    "date": "20/04/2023",
+    "calories burnt": 1008
+  },
+   {
+    "userID": 4,
+    "id": 111,
+    "date": "21/04/2023",
+    "calories burnt": 1156
+  },
+   {
+    "userID": 4,
+    "id": 112,
+    "date": "22/04/2023",
+    "calories burnt": 1170
+  },
+   {
+    "userID": 4,
+    "id": 113,
+    "date": "23/04/2023",
+    "calories burnt": 990
+  },
+   {
+    "userID": 4,
+    "id": 114,
+    "date": "24/04/2023",
+    "calories burnt": 1163
+  },
+   {
+    "userID": 4,
+    "id": 115,
+    "date": "25/04/2023",
+    "calories burnt": 616
+  },
+   {
+    "userID": 4,
+    "id": 116,
+    "date": "26/04/2023",
+    "calories burnt": 751
+  },
+   {
+    "userID": 4,
+    "id": 117,
+    "date": "27/04/2023",
+    "calories burnt": 837
+  },
+   {
+    "userID": 4,
+    "id": 118,
+    "date": "28/04/2023",
+    "calories burnt": 996
+  },
+   {
+    "userID": 4,
+    "id": 119,
+    "date": "29/04/2023",
+    "calories burnt": 685
+  },
+   {
+    "userID": 4,
+    "id": 120,
+    "date": "30/04/2023",
+    "calories burnt": 891
+  },
+   {
+    "userID": 5,
+    "id": 121,
+    "date": "01/04/2023",
+    "calories burnt": 995
+  },
+   {
+    "userID": 5,
+    "id": 122,
+    "date": "02/04/2023",
+    "calories burnt": 932
+  },
+   {
+    "userID": 5,
+    "id": 123,
+    "date": "03/04/2023",
+    "calories burnt": 985
+  },
+   {
+    "userID": 5,
+    "id": 124,
+    "date": "04/04/2023",
+    "calories burnt": 625
+  },
+   {
+    "userID": 5,
+    "id": 125,
+    "date": "05/04/2023",
+    "calories burnt": 630
+  },
+   {
+    "userID": 5,
+    "id": 126,
+    "date": "06/04/2023",
+    "calories burnt": 540
+  },
+   {
+    "userID": 5,
+    "id": 127,
+    "date": "07/04/2023",
+    "calories burnt": 912
+  },
+   {
+    "userID": 5,
+    "id": 128,
+    "date": "08/04/2023",
+    "calories burnt": 1002
+  },
+   {
+    "userID": 5,
+    "id": 129,
+    "date": "09/04/2023",
+    "calories burnt": 519
+  },
+   {
+    "userID": 5,
+    "id": 130,
+    "date": "10/04/2023",
+    "calories burnt": 640
+  },
+   {
+    "userID": 5,
+    "id": 131,
+    "date": "11/04/2023",
+    "calories burnt": 770
+  },
+   {
+    "userID": 5,
+    "id": 132,
+    "date": "12/04/2023",
+    "calories burnt": 761
+  },
+   {
+    "userID": 5,
+    "id": 133,
+    "date": "13/04/2023",
+    "calories burnt": 694
+  },
+   {
+    "userID": 5,
+    "id": 134,
+    "date": "14/04/2023",
+    "calories burnt": 501
+  },
+   {
+    "userID": 5,
+    "id": 135,
+    "date": "15/04/2023",
+    "calories burnt": 780
+  },
+   {
+    "userID": 5,
+    "id": 136,
+    "date": "16/04/2023",
+    "calories burnt": 1007
+  },
+   {
+    "userID": 5,
+    "id": 137,
+    "date": "17/04/2023",
+    "calories burnt": 1129
+  },
+   {
+    "userID": 5,
+    "id": 138,
+    "date": "18/04/2023",
+    "calories burnt": 838
+  },
+   {
+    "userID": 5,
+    "id": 139,
+    "date": "19/04/2023",
+    "calories burnt": 880
+  },
+   {
+    "userID": 5,
+    "id": 140,
+    "date": "20/04/2023",
+    "calories burnt": 552
+  },
+   {
+    "userID": 5,
+    "id": 141,
+    "date": "21/04/2023",
+    "calories burnt": 1161
+  },
+   {
+    "userID": 5,
+    "id": 142,
+    "date": "22/04/2023",
+    "calories burnt": 955
+  },
+   {
+    "userID": 5,
+    "id": 143,
+    "date": "23/04/2023",
+    "calories burnt": 677
+  },
+   {
+    "userID": 5,
+    "id": 144,
+    "date": "24/04/2023",
+    "calories burnt": 1174
+  },
+   {
+    "userID": 5,
+    "id": 145,
+    "date": "25/04/2023",
+    "calories burnt": 809
+  },
+   {
+    "userID": 5,
+    "id": 146,
+    "date": "26/04/2023",
+    "calories burnt": 1140
+  },
+   {
+    "userID": 5,
+    "id": 147,
+    "date": "27/04/2023",
+    "calories burnt": 759
+  },
+   {
+    "userID": 5,
+    "id": 148,
+    "date": "28/04/2023",
+    "calories burnt": 1090
+  },
+   {
+    "userID": 5,
+    "id": 149,
+    "date": "29/04/2023",
+    "calories burnt": 701
+  },
+   {
+    "userID": 5,
+    "id": 150,
+    "date": "30/04/2023",
+    "calories burnt": 949
+  },
+   {
+    "userID": 6,
+    "id": 151,
+    "date": "01/04/2023",
+    "calories burnt": 1112
+  },
+   {
+    "userID": 6,
+    "id": 152,
+    "date": "02/04/2023",
+    "calories burnt": 786
+  },
+   {
+    "userID": 6,
+    "id": 153,
+    "date": "03/04/2023",
+    "calories burnt": 772
+  },
+   {
+    "userID": 6,
+    "id": 154,
+    "date": "04/04/2023",
+    "calories burnt": 1100
+  },
+   {
+    "userID": 6,
+    "id": 155,
+    "date": "05/04/2023",
+    "calories burnt": 737
+  },
+   {
+    "userID": 6,
+    "id": 156,
+    "date": "06/04/2023",
+    "calories burnt": 757
+  },
+   {
+    "userID": 6,
+    "id": 157,
+    "date": "07/04/2023",
+    "calories burnt": 805
+  },
+   {
+    "userID": 6,
+    "id": 158,
+    "date": "08/04/2023",
+    "calories burnt": 968
+  },
+   {
+    "userID": 6,
+    "id": 159,
+    "date": "09/04/2023",
+    "calories burnt": 867
+  },
+   {
+    "userID": 6,
+    "id": 160,
+    "date": "10/04/2023",
+    "calories burnt": 989
+  },
+   {
+    "userID": 6,
+    "id": 161,
+    "date": "11/04/2023",
+    "calories burnt": 1128
+  },
+   {
+    "userID": 6,
+    "id": 162,
+    "date": "12/04/2023",
+    "calories burnt": 636
+  },
+   {
+    "userID": 6,
+    "id": 163,
+    "date": "13/04/2023",
+    "calories burnt": 986
+  },
+   {
+    "userID": 6,
+    "id": 164,
+    "date": "14/04/2023",
+    "calories burnt": 972
+  },
+   {
+    "userID": 6,
+    "id": 165,
+    "date": "15/04/2023",
+    "calories burnt": 705
+  },
+   {
+    "userID": 6,
+    "id": 166,
+    "date": "16/04/2023",
+    "calories burnt": 606
+  },
+   {
+    "userID": 6,
+    "id": 167,
+    "date": "17/04/2023",
+    "calories burnt": 639
+  },
+   {
+    "userID": 6,
+    "id": 168,
+    "date": "18/04/2023",
+    "calories burnt": 1113
+  },
+   {
+    "userID": 6,
+    "id": 169,
+    "date": "19/04/2023",
+    "calories burnt": 752
+  },
+   {
+    "userID": 6,
+    "id": 170,
+    "date": "20/04/2023",
+    "calories burnt": 658
+  },
+   {
+    "userID": 6,
+    "id": 171,
+    "date": "21/04/2023",
+    "calories burnt": 711
+  },
+   {
+    "userID": 6,
+    "id": 172,
+    "date": "22/04/2023",
+    "calories burnt": 860
+  },
+   {
+    "userID": 6,
+    "id": 173,
+    "date": "23/04/2023",
+    "calories burnt": 809
+  },
+   {
+    "userID": 6,
+    "id": 174,
+    "date": "24/04/2023",
+    "calories burnt": 946
+  },
+   {
+    "userID": 6,
+    "id": 175,
+    "date": "25/04/2023",
+    "calories burnt": 842
+  },
+   {
+    "userID": 6,
+    "id": 176,
+    "date": "26/04/2023",
+    "calories burnt": 629
+  },
+   {
+    "userID": 6,
+    "id": 177,
+    "date": "27/04/2023",
+    "calories burnt": 743
+  },
+   {
+    "userID": 6,
+    "id": 178,
+    "date": "28/04/2023",
+    "calories burnt": 500
+  },
+   {
+    "userID": 6,
+    "id": 179,
+    "date": "29/04/2023",
+    "calories burnt": 706
+  },
+   {
+    "userID": 6,
+    "id": 180,
+    "date": "30/04/2023",
+    "calories burnt": 1177
+  },
+   {
+    "userID": 7,
+    "id": 181,
+    "date": "01/04/2023",
+    "calories burnt": 1175
+  },
+   {
+    "userID": 7,
+    "id": 182,
+    "date": "02/04/2023",
+    "calories burnt": 991
+  },
+   {
+    "userID": 7,
+    "id": 183,
+    "date": "03/04/2023",
+    "calories burnt": 635
+  },
+   {
+    "userID": 7,
+    "id": 184,
+    "date": "04/04/2023",
+    "calories burnt": 873
+  },
+   {
+    "userID": 7,
+    "id": 185,
+    "date": "05/04/2023",
+    "calories burnt": 547
+  },
+   {
+    "userID": 7,
+    "id": 186,
+    "date": "06/04/2023",
+    "calories burnt": 891
+  },
+   {
+    "userID": 7,
+    "id": 187,
+    "date": "07/04/2023",
+    "calories burnt": 669
+  },
+   {
+    "userID": 7,
+    "id": 188,
+    "date": "08/04/2023",
+    "calories burnt": 822
+  },
+   {
+    "userID": 7,
+    "id": 189,
+    "date": "09/04/2023",
+    "calories burnt": 650
+  },
+   {
+    "userID": 7,
+    "id": 190,
+    "date": "10/04/2023",
+    "calories burnt": 794
+  },
+   {
+    "userID": 7,
+    "id": 191,
+    "date": "11/04/2023",
+    "calories burnt": 508
+  },
+   {
+    "userID": 7,
+    "id": 192,
+    "date": "12/04/2023",
+    "calories burnt": 826
+  },
+   {
+    "userID": 7,
+    "id": 193,
+    "date": "13/04/2023",
+    "calories burnt": 507
+  },
+   {
+    "userID": 7,
+    "id": 194,
+    "date": "14/04/2023",
+    "calories burnt": 1002
+  },
+   {
+    "userID": 7,
+    "id": 195,
+    "date": "15/04/2023",
+    "calories burnt": 1030
+  },
+   {
+    "userID": 7,
+    "id": 196,
+    "date": "16/04/2023",
+    "calories burnt": 1016
+  },
+   {
+    "userID": 7,
+    "id": 197,
+    "date": "17/04/2023",
+    "calories burnt": 1066
+  },
+   {
+    "userID": 7,
+    "id": 198,
+    "date": "18/04/2023",
+    "calories burnt": 998
+  },
+   {
+    "userID": 7,
+    "id": 199,
+    "date": "19/04/2023",
+    "calories burnt": 1136
+  },
+   {
+    "userID": 7,
+    "id": 200,
+    "date": "20/04/2023",
+    "calories burnt": 1044
+  },
+   {
+    "userID": 7,
+    "id": 201,
+    "date": "21/04/2023",
+    "calories burnt": 957
+  },
+   {
+    "userID": 7,
+    "id": 202,
+    "date": "22/04/2023",
+    "calories burnt": 736
+  },
+   {
+    "userID": 7,
+    "id": 203,
+    "date": "23/04/2023",
+    "calories burnt": 1066
+  },
+   {
+    "userID": 7,
+    "id": 204,
+    "date": "24/04/2023",
+    "calories burnt": 825
+  },
+   {
+    "userID": 7,
+    "id": 205,
+    "date": "25/04/2023",
+    "calories burnt": 722
+  },
+   {
+    "userID": 7,
+    "id": 206,
+    "date": "26/04/2023",
+    "calories burnt": 555
+  },
+   {
+    "userID": 7,
+    "id": 207,
+    "date": "27/04/2023",
+    "calories burnt": 1164
+  },
+   {
+    "userID": 7,
+    "id": 208,
+    "date": "28/04/2023",
+    "calories burnt": 590
+  },
+   {
+    "userID": 7,
+    "id": 209,
+    "date": "29/04/2023",
+    "calories burnt": 757
+  },
+   {
+    "userID": 7,
+    "id": 210,
+    "date": "30/04/2023",
+    "calories burnt": 688
+  }
+]

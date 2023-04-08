@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import toast, {Toaster} from "react-hot-toast";
 
@@ -17,14 +17,17 @@ import rowStyle from "../../../../../assets/css/Row.module.css";
 import iconStyle from "../../../../../assets/css/Icon.module.css"
 import textStyle from "../../../../../assets/css/Text.module.css";
 
-import data from "../../../../../data/fitnessGoals.json";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import {collection, onSnapshot} from "firebase/firestore";
+import {initializeFirebase} from "../../../../../provider/FirebaseConfig";
+import {DeleteDoc, UpdateCollection} from "../../../../../provider/firestore/FirestoreProvider";
+
+const {db} = initializeFirebase();
 export default function GoalCard({add,clickable}) {
-    const [goals, setGoals] = useState(
-        data.sort((a,b) => new Date(b['due-date']) - new Date(a['due-date']))
-    )
+    const [goals, setGoals] = useState([])
     const navigate = useNavigate();
+    const [user, setUser] = useState(1);
 
     const onDelete = useCallback(() => {
         toast.success("Goal have been successfully deleted!");
@@ -36,6 +39,16 @@ export default function GoalCard({add,clickable}) {
         toast.success("Goal Completed! It will be removed on " + sunday.toLocaleString("en-GB"));
     },[])
 
+    useEffect(() => {
+        const goalsRef = collection(db,"Goal");
+        const unsub = onSnapshot(goalsRef, (snapshot) => {
+            const docs = snapshot.docs.map((doc) => {
+                return ({...doc.data(), id: doc.id});
+            });
+            setGoals(docs);
+        })
+        return () => unsub();
+    },[goals])
     return (
         <Card className={cardStyle.goals}>
             <Container className="p-4">
@@ -56,30 +69,29 @@ export default function GoalCard({add,clickable}) {
                     }
                 </div>
                 <Card.Body className="ps-0">
-                        {goals.map((item,index) => (
+                        {goals.filter(item => item.userID === user).map((item,index) => (
                             <div className="d-flex mb-3" key={index}>
                                 <div className={`${rowStyle.goals} d-flex align-items-center`}>
                                         <Col className="p-3">
-                                            <Card.Text className={textStyle.target}>Target: {item['goal-title']}</Card.Text>
+                                            <Card.Text className={textStyle.target}>Target: {item['Title']}</Card.Text>
+                                        </Col>
+                                        <Col xs={2}>
+                                            <Card.Text className={textStyle.target}>Target: {item['Target Value']}</Card.Text>
+                                            <Card.Text className={textStyle.currentValue}>Current: {item['Current Value']}</Card.Text>
                                         </Col>
                                         <Col>
-                                            <Card.Text className={textStyle.target}>Target: {item['target-value']}</Card.Text>
-                                            <Card.Text className={textStyle.currentValue}>Current: {item['current-value']}</Card.Text>
+                                            <Card.Text >Aim: {item['Deadline']}</Card.Text>
                                         </Col>
-                                        <Col>
-                                            <Card.Text >Aim: {item['due-date']}</Card.Text>
-                                        </Col>
-                                        <Col className="d-flex justify-content-end">
+                                        <Col xs={1} className="d-flex justify-content-end">
                                             <Form.Group>
                                                 <Form.Check
                                                     type="checkbox">
                                                     <Form.Check.Input type="checkbox"
                                                                       checked={item.done}
-                                                                      onChange={(e) => {
-                                                                          setGoals(goals.map((goal) =>
-                                                                              goal.id === item.id ? {...goal , done: e.target.checked} :
-                                                                              goal
-                                                                          ))
+                                                                      onChange={ (e) => {
+                                                                          UpdateCollection("Goal",item.id,{
+                                                                              done: e.target.checked
+                                                                          }).catch(err => console.log(err));
                                                                           if (e.target.checked)
                                                                               onComplete();
                                                                       }}
@@ -99,7 +111,7 @@ export default function GoalCard({add,clickable}) {
                                             <EditIcon/>
                                     </Button>
                                     <Button className={buttonStyle.transparent} onClick={() => {
-                                        setGoals(goals.filter(goal => goal.id !== item.id));
+                                        DeleteDoc("Goal", item.id).catch(err => console.log(err));
                                         onDelete();
                                     }}>
                                         <DeleteIcon/>

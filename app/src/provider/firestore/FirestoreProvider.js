@@ -1,10 +1,10 @@
-import {collection, doc, getCountFromServer, getDocs, getDoc, setDoc} from "firebase/firestore";
+import {collection, doc, getCountFromServer, getDocs, getDoc, setDoc, updateDoc, deleteDoc} from "firebase/firestore";
 import {initializeFirebase} from "../FirebaseConfig";
 const {db} = initializeFirebase();
 
 async function AddCollection(path,size, data) {
     try {
-        await setDoc(doc(db, path, size + 1), data);
+        await setDoc(doc(db, path, `${size + 1}`), data);
         return true;
     } catch (err) {
         console.log(err);
@@ -25,9 +25,23 @@ async function GetCollection(path, index) {
     }
 }
 
-async function CreateUser(uuID,{data}) {
+
+async function GetPlan(index) {
+    return !index ?
+        await GetCollection("Plan") :
+        await GetCollection("Plan",index)
+
+}
+
+async function GetExercise(index) {
+    return !index ?
+        await GetCollection("Exercise") :
+        await GetCollection("Exercise");
+}
+
+async function CreateUser(uuID,data) {
     try {
-        await setDoc(doc(db,"User",uuID), data);
+        await setDoc(doc(db,"User",`${uuID}`), data);
         return true;
     } catch(err) {
         throw err;
@@ -44,5 +58,25 @@ async function GetSize(path) {
     }
 }
 
+async function UpdateCollection(path,index,data) {
+    try {
+    const objRef = doc(db,path,index);
+    await updateDoc(objRef,data);
+    return true;
+    } catch(err) {
+        throw err;
+    }
+}
 
-export {AddCollection,GetCollection, CreateUser, GetSize};
+async function DeleteDoc(path,index) {
+    try {
+        const objRef = doc(db,path,index);
+        await deleteDoc(objRef);
+        return true;
+    } catch (err) {
+        throw err;
+    }
+}
+
+
+export {AddCollection,GetCollection, GetExercise, GetPlan, CreateUser, GetSize, UpdateCollection, DeleteDoc};

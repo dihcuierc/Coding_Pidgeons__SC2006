@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 
 import Card from "react-bootstrap/Card";
@@ -15,38 +15,46 @@ import background from "../../../assets/css/Background.module.css";
 import buttonStyle from "../../../assets/css/Button.module.css";
 import cardStyle from "../../../assets/css/Card.module.css";
 import rowStyle from "../../../assets/css/Row.module.css";
+import {collection, onSnapshot} from "firebase/firestore";
+import {initializeFirebase} from "../../../provider/FirebaseConfig";
+import {GetCollection} from "../../../provider/firestore/FirestoreProvider";
 
-//Temp Data
-const data = [
-    {
-        id: 1,
-        name: "Bodyweight Workout",
-        location: "Jurong West Park",
-        date: "08/03/2023",
-        time: "1200 - 1300",
-    },
-    {
-        id: 2,
-        name: "HIIT",
-        location: "MacRitche Reservoir Park",
-        date: "04/03/2023",
-        time: "0900 - 1030",
-    }
-]
-
-
+const {db} = initializeFirebase();
 export default function ViewExercises() {
     const navigate = useNavigate();
+    const [scheduledExercises, setScheduledExercises] = useState([]);
+    const [planTitle, setPlanTitle] = useState([]);
+
+    const getPlans = useCallback(() => {
+        GetCollection("Plan").then(plans => {
+            setPlanTitle(plans.map(plan => plan.title))
+        })
+            .catch(err => console.log(err))
+    },[])
+
+    useEffect(() => {
+        const scheduledRef = collection(db,"ScheduleExercise");
+        if (!planTitle.length)
+            getPlans();
+        const unsub = onSnapshot(scheduledRef, (snapshot) => {
+            const docs = snapshot.docs.map((doc) => {
+                const planID = doc.data().planID;
+                return ({...doc.data(), plan: planTitle[planID-1], id: doc.id});
+            });
+            setScheduledExercises(docs);
+        })
+        return () => unsub();
+    })
 
     return (
         <div className={`${background.default} p-5`}>
             <Card className={`${cardStyle.schedule} mx-lg-auto`}>
                 <Card.Title className="display-6 mx-auto p-0">Scheduled Exercises</Card.Title>
                 <Card.Body>
-                    {data.map((item) => (
+                    {scheduledExercises.map((item) => (
                         <Row className={rowStyle.exercises}>
                             <div className="mb-2 d-flex">
-                                <Card.Text>Exercise Plan 1: {item.name} </Card.Text>
+                                <Card.Text>Exercise Plan: {item.id} </Card.Text>
                                 <Button className={`${buttonStyle.transparent} ms-auto`}
                                         onClick={() => {
                                             navigate(`/workout/schedule/${item.id}`, {
@@ -61,7 +69,7 @@ export default function ViewExercises() {
                             <Col className="p-3">
                                 <div className="d-flex">
                                     <MapIcon color="error"/>
-                                    <Card.Text>{item.location}</Card.Text>
+                                    <Card.Text>{item.plan}</Card.Text>
                                 </div>
                             </Col>
                             <Col>
@@ -71,7 +79,7 @@ export default function ViewExercises() {
                                 </div>
                                 <div className="d-flex">
                                     <TimeIcon className="me-1"/>
-                                    <Card.Text>{item.time}</Card.Text>
+                                    <Card.Text>{item['start time']} - {item['end time']}</Card.Text>
                                 </div>
                             </Col>
                         </Row>

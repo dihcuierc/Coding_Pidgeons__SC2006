@@ -17,10 +17,9 @@ import EditGoals from "../../goals/Edit/editGoals";
 import ExerciseReview from "../../review/ExerciseReview";
 import AddExerciseReview from "../../review/Add/AddExerciseReview"
 import AddExercise from "../../exercise/plans/add/AddExercisePlans";
+import EditExercise from "../../exercise/plans/edit/EditExercisePlan"
 import Setup from "../../authentication/register/Setup";
 import Eateries from "../../facilities/Eateries/Eatries";
-import {GetCollection} from "../../../provider/firestore/FirestoreProvider";
-import {useEffect} from "react";
 
 export const router = createBrowserRouter([
     {
@@ -114,7 +113,16 @@ export const router = createBrowserRouter([
                         children: [
                             {
                                 path: ":id",
-                                element: <ExercisePlan/>
+                                children: [
+                                    {
+                                    index: true,
+                                    element: <ExercisePlan/>
+                                    },
+                                    {
+                                        path: "edit",
+                                        element: <EditExercise/>
+                                    }
+                                ]
                             },
                             {
                                 path: "add",

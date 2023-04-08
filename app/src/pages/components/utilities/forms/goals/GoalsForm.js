@@ -4,9 +4,10 @@ import {Formik} from "formik";
 import Form from "react-bootstrap/Form";
 import formStyle from "../../../../../assets/css/Form.module.css";
 import Button from "react-bootstrap/Button";
-import React from "react";
-
-import data from "../../../../../data/fitnessGoals.json";
+import React, {useCallback, useEffect, useState} from "react";
+import {AddCollection, GetSize, UpdateCollection} from "../../../../../provider/firestore/FirestoreProvider";
+import toast from "react-hot-toast";
+import {wait} from "@testing-library/user-event/dist/utils";
 
 export default function GoalsForm({goals}) {
     const navigate = useNavigate();
@@ -24,26 +25,65 @@ export default function GoalsForm({goals}) {
             .max(new Date(Date.now() + (3.15 * Math.pow(10,12) )), "Your target cannot be more than 100 years")
             .required("You must have a target date!")
     })
+
+    const [user, setUser] = useState(1);
+
+    const success = useCallback(() => {
+       toast.success("Your goal have been created");
+    },[])
+
+    const error = useCallback(() => {
+        toast.error("There was an error creating goal");
+    },[])
+
     return (
         <Formik
             validationSchema={schema}
-            onSubmit={(values) => {
-                const goal = {
-                    "id": data.length + 1,
-                    "goal-title": values.goal,
-                    "due-date": values.date,
-                    "target-value": values.target,
-                    "current-value": values.current,
-                    "done": false,
+            onSubmit={async (values) => {
+                try {
+                    let status = false;
+                    const size = await GetSize("Goal");
+                    const formatDate = new Date(values.date).toLocaleDateString("en-GB");
+                    if (Object.keys(goals).length === 0) {
+                        const data = {
+                            "ID": size + 1,
+                            "Title": values.goal,
+                            "Deadline": formatDate,
+                            "Target Value": values.target,
+                            "Current Value": values.current,
+                            "done": false,
+                            "userID": user,
+                        }
+                        status = await AddCollection("Goal", size, data);
+                    } else {
+                        const data = {
+                            "ID": goals.id,
+                            "Title": values.goal,
+                            "Deadline": formatDate,
+                            "Target Value": values.target,
+                            "Current Value": values.current,
+                            "done": false,
+                            "userID": goals.userID
+                        }
+                        status = await UpdateCollection("Goal",goals.id, data);
+                    }
+                    if (status) {
+                        await wait(500);
+                        success();
+                        navigate("/goals");
+                    } else {
+                        error();
+                    }
+                } catch(err) {
+                    console.log(err);
+                    error();
                 }
-                data.push(goal);
-                navigate("/goals");
             }}
             initialValues={{
-                goal : goals['goal-title'],
-                target: goals['target-value'],
-                current: goals['current-value'],
-                date: new Date(goals['due-date'])
+                goal : goals['Title'],
+                target: goals['Target Value'],
+                current: goals['Current Value'],
+                date: new Date(goals['Deadline'])
         }}>
             {({
                   handleSubmit,

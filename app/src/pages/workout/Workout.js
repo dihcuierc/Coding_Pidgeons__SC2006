@@ -30,29 +30,23 @@ export default function Workout() {
 
     useEffect( () => {
         const planRef = collection(db,"Plan");
-        if (!plans.length) {
-            const unsub = onSnapshot(planRef, (snapshot) => {
-                const docs = snapshot.docs.map((doc) => {
-                    let file = "";
-                    RetrieveFiles(doc.data()['image_ref']).then((image) => {
-                        file = image;
-                    })
-                    return ({...doc.data(), file: file, id: doc.id});
-                });
-                setPlans(docs);
-            });
-            return () =>
-                unsub();
-        }
+        const unsub = onSnapshot(planRef, (snapshot) => {
+            const data = [];
+            snapshot.forEach((doc) => {
+                data.push({...doc.data(), id: doc.id})
+            })
+            setPlans(data);
+        });
         if (!groups.length)
             fetchGroup();
-    },[fetchGroup, groups.length, plans.length]);
+        return () =>
+            unsub();
+    },[fetchGroup, groups.length, plans, plans.length]);
     return (
         <div className={background.default}>
             <div className="workout-greeting">
                 <h1 className='workout-title'>Hello, John</h1>
                 <p className="workout-question">What would you like to do?</p>
-                <SearchBar className="search-bar" placeholder="Search"/>
             </div>
             <div className="carousel-container">
               <div className="header-container">
@@ -64,7 +58,7 @@ export default function Workout() {
               <Carousel responsive={responsive} showDots={true} infinite={true}>
                   <AddCard/>
                 {plans.map((plan) => (
-                  <ExerciseCard link={`plans/${plan.id}`} key={plan.id} title={plan.title} />
+                  <ExerciseCard link={`plans/${plan.id}`} key={plan.id} title={plan.title} imageUrl={plan['image_ref']}/>
                 ))}
               </Carousel>
             </div>
@@ -73,7 +67,7 @@ export default function Workout() {
               <h1>Exercises</h1>
               <Carousel responsive={responsive} showDots={true} infinite={true}>
                   {groups.map((exerciseGroup) => (
-                    <ExerciseCard link={`views/${exerciseGroup["exgrp_ID"]}`} key={exerciseGroup.id} title={exerciseGroup.title} />
+                    <ExerciseCard link={`views/${exerciseGroup.id}`} key={exerciseGroup.id} title={exerciseGroup.title} />
                   ))}
               </Carousel>
             </div>

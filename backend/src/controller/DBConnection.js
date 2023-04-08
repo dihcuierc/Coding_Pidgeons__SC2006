@@ -4,6 +4,7 @@ import {collection, onSnapshot, getFirestore, addDoc, deleteDoc,
     documentId, arrayRemove, arrayUnion
 } from "firebase/firestore";
 
+import { uploadBytesResumable, uploadBytes } from "firebase/storage";
 //init service
 const db = getFirestore()
 
@@ -620,7 +621,99 @@ async function updatePlan(planID, new_UID, new_image, new_planID, new_title, new
       return "Plan has been updated successfully"
 }
 
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
+
+const storage = getStorage();
+function return_URL(){
+    // Create a reference to the file we want to download
+    const imgRef = ref(storage, 'Profile/Ernest.jpg');
+    getDownloadURL(imgRef)
+    .then((url) => {
+        // Insert url into an <img> tag to "download"
+        const img = document.getElementById('myimg');
+        img.setAttribute('src', url);
+        console.log(url)
+    })
+    .catch((error) => {
+        // A full list of error codes is available at
+        // https://firebase.google.com/docs/storage/web/handle-errors
+        switch (error.code) {
+        case 'storage/object-not-found':
+            // File doesn't exist
+            break;
+        case 'storage/unauthorized':
+            // User doesn't have permission to access the object
+            break;
+        case 'storage/canceled':
+            // User canceled the upload
+            break;
+
+        // ...
+
+        case 'storage/unknown':
+            // Unknown error occurred, inspect the server response
+            break;
+        }
+    });
+}
+
+
+
+const fs = require('fs')
+//Uploading files
+function uploadFile(){
+    //This is from my local computer
+    const filePath = 'C:/Users/Kaijie Wan/Pictures/images.png'
+    const metadata = {
+        //Need to change content type to what the file type is
+        contentType: 'image/png'
+    }
+    const fileName = filePath.split('/').pop()
+    const storageRef = ref(storage, 'images/${fileName}')
+    const fileBuffer  = fs.readFileSync(filePath)
+    const uploadTask = uploadBytesResumable(storageRef, fileBuffer, metadata)
+
+    uploadTask.on('state_changed',
+        (snapshot) => {
+        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log('Upload is ' + progress + '% done');
+        switch (snapshot.state) {
+        case 'paused':
+            console.log('Upload is paused');
+            break;
+        case 'running':
+            console.log('Upload is running');
+            break;
+        }
+        }, 
+        (error) => {
+        // A full list of error codes is available at
+        // https://firebase.google.com/docs/storage/web/handle-errors
+            switch (error.code) {
+                case 'storage/unauthorized':
+                // User doesn't have permission to access the object
+                    break;
+                case 'storage/canceled':
+                // User canceled the upload
+                    break;
+
+            // ...
+
+            case 'storage/unknown':
+                // Unknown error occurred, inspect error.serverResponse
+                break;
+            }
+        }, 
+        () => {
+            // Upload completed successfully, now we can get the download URL
+            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            console.log('File available at', downloadURL);
+            });
+        })
+}
+
 export {collectUserData, collectOneUser, addUserData, deleteUserData, collectRevData, collectOneRev, addRevData, deleteRevData,
     collectGoalData, collectOneGoal, addGoalData, deleteGoalData, collectExData, collectOneEx, collectCH, collectOneCH, addCH, deleteCH, 
     collectSE, collectOneSE, addSE, deleteSE, collectExGroup, collectOneExGroup, collectPlan, collectOnePlan, addPlan, deletePlan,
-    updateGoalData, updateRevData, updateSE, updatePlan};
+    updateGoalData, updateRevData, updateSE, updatePlan, return_URL, getDownloadURL, uploadFile};

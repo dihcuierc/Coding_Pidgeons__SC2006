@@ -11,3 +11,8 @@
 .dropdown {
     width: 250px;
 }
+
+.container {
+    max-width: 800px;
+    padding: 2rem;
+}

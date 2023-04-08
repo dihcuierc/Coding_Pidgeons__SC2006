@@ -1,12 +1,15 @@
 import {initializeFirebase} from "../FirebaseConfig";
 import {
     createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    signOut,
-    sendPasswordResetEmail,
-    signInWithPopup,
+    deleteUser,
     GoogleAuthProvider,
+    updatePassword,
+    sendPasswordResetEmail,
+    signInWithEmailAndPassword,
+    signInWithPopup,
+    signOut
 } from "firebase/auth"
+import {DeleteDoc} from "../firestore/FirestoreProvider";
 
 const {auth} = initializeFirebase();
 
@@ -73,4 +76,33 @@ async function ResetPassword(email) {
     }
 }
 
-export {GoogleAuth, SignUp, SignIn, LogOut, ResetPassword}
+async function UpdatePassword(newPassword) {
+    const user = auth.currentUser;
+    try {
+    if (user !== null) {
+        await updatePassword(user,newPassword);
+        return true;
+    } else
+        new Error("You have not login or register yet!");
+    } catch(err) {
+        console.log(err);
+        throw err;
+    }
+}
+
+
+async function DeleteUser() {
+    try {
+        const user = auth.currentUser;
+        if (user !== null) {
+            await deleteUser(user);
+            return await DeleteDoc("User", user.uid);
+        } else
+            new Error("You have not login or register yet!");
+    } catch(err) {
+        console.log(err);
+        throw err;
+    }
+}
+
+export {GoogleAuth, SignUp, SignIn, LogOut, ResetPassword, UpdatePassword,DeleteUser}
