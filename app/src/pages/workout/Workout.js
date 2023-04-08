@@ -57,7 +57,7 @@ export default function Workout() {
                 </Link>
               </div>
               <Carousel responsive={responsive} showDots={true} infinite={true}>
-                  <AddCard/>
+              <AddCard/>
                 {plans.map((plan) => (
                   <ExerciseCard link={`plans/${plan.id}`} key={plan.id} title={plan.title} imageUrl={plan['image_ref']}/>
                 ))}
