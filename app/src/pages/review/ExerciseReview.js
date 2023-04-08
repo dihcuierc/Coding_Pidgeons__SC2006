@@ -1,4 +1,5 @@
-import background from "../../assets/css/Background.module.css"
+import background from "../../assets/css/Background.module.css";
+import reviewStyle from "../../assets/css/Review.module.css";
 import React, {useCallback, useEffect, useState} from 'react';
 import './ExerciseReview.css';
 import {useParams, useNavigate} from 'react-router-dom'
@@ -10,6 +11,7 @@ import Rating from '@mui/material/Rating';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 import { styled } from '@mui/material/styles';
 import {GetCollection} from "../../provider/firestore/FirestoreProvider";
+import Button from "react-bootstrap/esm/Button";
 import {useAuth} from "../../provider/auth/AuthProvider";
 
 
@@ -83,20 +85,21 @@ export default function ExerciseReview() {
     return(
         <div className={background.default}>
             <Container className='all-exercise-review-container'>
-                <Card className='all-exercise-review-card' style={{backgroundColor:"transparent", border:'none'}}>
+                <Card className='all-exercise-review-card' style={{backgroundColor:"#202020", border:'none', borderRadius: '40px'}}>
                     <Stack direction="horizontal" gap={4} >
                         <Card.Title className="all-exercise-title">
-                            <h1>All Reviews For: {exercise.title}</h1>
+                            <h1>Reviews</h1>
+                            <h2>{exercise.title}</h2>
                         </Card.Title>
                         
-                        <button className='all-add-review-button' onClick={addReview}>Add Review</button>
+                        <Button className='all-add-review-button' variant="danger" onClick={addReview}>Add Review</Button>
                     
                     </Stack>
                     <Stack direction="horizontal" gap={5}>
                         <div className='all-exercise-review-details'>
-                            <img className="exercise-video-review" src={exercise['image_ref']} alt={exercise.title} style={{display: 'block', margin: 'auto'}}/>
-                            <h3 style={{ textAlign: 'center', marginTop:"10px" }}>Overall Rating For This Exercise:</h3>
+                            <img className="exercise-video-review" src={exercise['image_ref']} alt={exercise.title}/>
                             <Stack direction="horizontal" gap={2} style={{ display: 'flex', justifyContent: 'center' }}>
+                                <h4 style={{ textAlign: 'center', marginTop:"10px" }}>Overall Rating:</h4>
                                 <Rating 
                                     name="half-rating-read" 
                                     value={averageRating} 
@@ -106,13 +109,12 @@ export default function ExerciseReview() {
                                         '& .MuiRating-iconEmpty': {
                                           color: 'white',
                                         },
-                                        fontSize: "4rem"
+                                        fontSize: "2rem",
+                                        paddingTop: "10px",
                                       }}
                                     readOnly 
                                 />
-                                
-                                
-                                <h3 style={{paddingTop:'10px'}}>{averageRating.toFixed(1)}</h3>
+                                <h5 style={{paddingTop:'10px'}}>{averageRating.toFixed(1)}</h5>
                             </Stack>
                             <br></br>
                             <div className='percentage'>
@@ -132,7 +134,7 @@ export default function ExerciseReview() {
                                 
                                 {reviews.map((review) => (
                                     review.comments &&
-                                    <div key={review.id} className='all-individual-review' >
+                                    <div key={review.id} className={reviewStyle.individual_review} >
                                         <Stack direction="horizontal" gap={3} >
                                             <div className='all-exercise-review-profile'>
                                                 <Stack direction="horizontal" gap={3}>
@@ -144,7 +146,7 @@ export default function ExerciseReview() {
                                                 </Stack>
                                                 <Rating name="half-rating-read" value={review.rating} precision={0.5} size="large" readOnly />
                                             </div>
-                                            <div className='all-exercise-review-text' >
+                                            <div className={reviewStyle.review_text} >
                                                 <p>{review.comments}</p>
                                             </div>
                                             <p></p>

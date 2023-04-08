@@ -1,0 +1,15 @@
+.individual_review {
+  background-color: #505050;
+  border-radius: 12px;
+  padding: 12px 16px;
+  width: 100%;
+  color: white;
+}
+
+.review_text {
+  align-self: flex-start;
+  font-weight: 500;
+  margin-top: 10px;
+  text-align: justify;
+  width: 100%;
+}
