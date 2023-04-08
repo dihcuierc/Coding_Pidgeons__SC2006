@@ -28,7 +28,7 @@ export default function NavigationBar() {
 
     return (
     <>
-        <Navbar collapseOnSelect bg="darkblue" expand="lg" variant="dark">
+        <Navbar collapseOnSelect bg="darkblue" expand="lg" variant="dark" sticky="top">
             <Container fluid className="mx-2 mx-sm-5">
                 <LinkContainer to="/">
                     <Navbar.Brand>
