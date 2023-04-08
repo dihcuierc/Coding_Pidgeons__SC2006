@@ -64,22 +64,13 @@ export default function ViewReviews() {
                             <Card.Body className='user-review'  key={review.id} >
                                 <Stack direction="horizontal" gap={3} style={{width:"100%", padding: '10px'}}>
                                     <div className='exercise-review-picture'>
-                                        <img className="exercise-video-small" src={review.exercise?.image_ref} alt={review.exercise?.title} style={{display: 'block', margin: 'auto', width: '150px', height: '150px', objectFit:'fill'}}/>
+                                        <img className="exercise-video-small" src={review.exercise?.image_ref} alt={review.exercise?.title} style={{display: 'block', margin: 'auto', width: '150px', height: '150px', objectFit:'cover'}}/>
                                     </div>
                                         <div className='individual-review'>
+                                            <h4>{review.exercise?.title}</h4>
+                                            <Rating name="half-rating-read" value={review.rating} precision={0.5} size="large" readOnly sx={{fontSize: '1.25rem'}} />
                                             <Stack direction="horizontal" gap={3}>
-                                                <div className='profile-review-profile'>
-                                                    <Stack direction="horizontal" gap={3}>
-                                                        <p className='profile-review-image'></p>
-                                                        <div>
-                                                            <p className="profile-review-name">Joseph Ma</p>
-                                                            <p className='profile-review-date'>{review.date}</p>
-                                                        </div>
-                                                    </Stack>
-                                                    <Rating name="half-rating-read" value={review.rating} precision={0.5} size="large" readOnly />
-                                                </div>
                                                 <p className='profile-review-text'>{review.comments}</p>
-                                                <p></p>
                                             </Stack> 
                                         </div>
                                     <div>
