@@ -9,6 +9,8 @@
 
   .profile-review-card{
     display:flex;
+    width:100%;
+    margin-right:10%;
   }
 
 .individual-review{
