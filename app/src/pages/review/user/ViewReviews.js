@@ -71,7 +71,16 @@ export default function ViewReviews() {
                                             <h4>{review.exercise?.title}</h4>
                                             <Rating name="half-rating-read" value={review.rating} precision={0.5} size="large" readOnly sx={{fontSize: '1.25rem'}} />
                                             <Stack direction="horizontal" gap={3}>
-                                                <p className={reviewStyle.review_text}>{review.comments}</p>
+                                                <div className='profile-review-profile'>
+                                                    <Stack direction="horizontal" gap={3}>
+                                                        <p className='profile-review-image'></p>
+                                                        <div>
+                                                            <p className="profile-review-name">{user.name}</p>
+                                                            <p className='profile-review-date'>{review.date}</p>
+                                                        </div>
+                                                    </Stack>
+                                                </div>
+                                                <p className='profile-review-text'>{review.comments}</p>
                                             </Stack> 
                                         </div>
                                     <div>
