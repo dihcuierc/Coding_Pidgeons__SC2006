@@ -8,7 +8,6 @@ import ExerciseCard from "../components/utilities/carousel/exercise/ExerciseCard
 import background from "../../assets/css/Background.module.css"
 import './Workout.css';
 
-import AddCard from "../components/utilities/carousel/exercise/addCard";
 import {collection, onSnapshot} from "firebase/firestore";
 import {initializeFirebase} from "../../provider/FirebaseConfig";
 import {GetCollection} from "../../provider/firestore/FirestoreProvider";
@@ -43,21 +42,27 @@ export default function Workout() {
         return () =>
             unsub();
     },[fetchGroup, groups.length, plans, plans.length]);
+
+
     return (
         <div className={background.default}>
             <div className="workout-greeting">
                 <h1 className='workout-title'>Hello, {user?.name}</h1>
                 <p className="workout-question">What would you like to do?</p>
-            </div>
+            </div>  
             <div className="carousel-container">
               <div className="header-container">
-                <h1>Exercise Plan</h1>
-                <Link to="schedule">
+                <div className='exercise-plan'>
+                  <h1>Exercise Plan</h1>
+                  <Link to="plans/add">
+                    <button className="button schedule-exercise-btn">Add Exericse Plan</button>
+                  </Link>
+                </div>
+                <Link to="schedule" style={{paddingRight: '5rem'}}>
                   <button className="button schedule-exercise-btn">Schedule Exercise</button>
                 </Link>
               </div>
               <Carousel responsive={responsive} showDots={true} infinite={true}>
-              <AddCard/>
                 {plans.map((plan) => (
                   <ExerciseCard link={`plans/${plan.id}`} key={plan.id} title={plan.title} imageUrl={plan['image_ref']}/>
                 ))}
