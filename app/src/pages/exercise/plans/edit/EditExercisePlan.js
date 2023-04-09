@@ -173,11 +173,11 @@ export default function EditExercisePlanWrapper() {
                               values.exercises.map((exercise, index) => (
                                   <Row className={rowStyle.plans} key={index}>
                                       <Col>
-                                          <p>Name:</p>
+                                          <strong>Name:</strong>
                                           <div>{exercises.find(item => item['exID'] === exercise['exID'])?.title}</div>
                                       </Col>
                                       <Col xs={2}>
-                                          <p>Reps:</p>
+                                          <strong>Reps:</strong>
                                           <Form.Group controlId="repsInput">
                                               <Form.Control
                                                   name={`exercises[${index}]['Reps']`}
@@ -192,7 +192,7 @@ export default function EditExercisePlanWrapper() {
                                           </Form.Group>
                                       </Col>
                                       <Col xs={2}>
-                                          <p>Sets:</p>
+                                          <strong>Sets:</strong>
                                           <Form.Group controlId="setsInput">
                                               <Form.Control
                                                   name={`exercises[${index}]['Sets']`}
@@ -207,7 +207,7 @@ export default function EditExercisePlanWrapper() {
                                           </Form.Group>
                                       </Col>
                                       <Col xs={2}>
-                                          <p>Rest:</p>
+                                          <strong>Rest:</strong>
                                           <Form.Group controlId="restInput">
                                               <Form.Control
                                                   name={`exercises[${index}]['Rest']`}
@@ -222,8 +222,8 @@ export default function EditExercisePlanWrapper() {
                                           </Form.Group>
                                       </Col>
                                       <Col>
-                                          <p>Calories:</p>
-                                          <p className="mt-4 ms-auto">
+                                          <strong>Calories:</strong>
+                                          <p className="ms-auto">
                                               {exercise['Calories'] = values.exercises[index]['Reps'] * values.exercises[index]['Sets'] * exercises.find(item => item['exID'] === parseInt(exercise['exID']))?.met * exercises.find(item => item['exID'] === parseInt(exercise['exID']))?.time}
                                           </p>
                                       </Col>
