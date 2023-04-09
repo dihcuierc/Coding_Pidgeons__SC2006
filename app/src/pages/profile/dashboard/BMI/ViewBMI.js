@@ -5,6 +5,8 @@ import TextField from '@mui/material/TextField';
 import Slider from '@mui/material/Slider';
 
 import cardStyle from "../../../../assets/css/Card.module.css"
+import textStyle from "../../../../assets/css/Text.module.css"
+
 import './ViewBMI.css';
 import {useAuth} from "../../../../provider/auth/AuthProvider";
 
@@ -66,7 +68,7 @@ export default function BMI() {
       
         <Card className={`${cardStyle.dashboard} bg-dark opacity-75`}>
             <Stack direction="horizontal" gap={4}>
-                <Card.Title className="text-white"> BMI Calculator </Card.Title>
+                <Card.Title className={textStyle.dashboard_title}> BMI Calculator </Card.Title>
             </Stack>   
             <Card.Body>
                 <Stack direction="horizontal" gap={4} className="d-sm-flex flex-sm-wrap flex-md-nowrap">

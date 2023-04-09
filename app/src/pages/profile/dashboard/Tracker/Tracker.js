@@ -3,12 +3,13 @@ import {VictoryLabel, VictoryPie} from "victory";
 import Card from "react-bootstrap/Card";
 
 import cardStyle from "../../../../assets/css/Card.module.css"
+import textStyle from "../../../../assets/css/Text.module.css"
 
 export default function Tracker() {
     return (
         <>
             <Card className={`${cardStyle.dashboard} bg-dark opacity-75`} text='white'>
-                <Card.Title className="mx-auto mt-3 display-6 text-white">Calories Burnt</Card.Title>
+                <Card.Title className={textStyle.dashboard_title}>Calories Burnt</Card.Title>
                 <Card.Body className="d-flex justify-content-center">
                     <svg height={300} width={300} viewBox="50 50 50 50">
                     <VictoryPie

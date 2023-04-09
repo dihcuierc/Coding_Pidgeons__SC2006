@@ -55,7 +55,7 @@ export default function GoalCard({add,clickable}) {
         <Card className={`${cardStyle.goals} bg-dark opacity-75`}>
             <Container className="p-4">
                 <div className="d-flex mb-2">
-                    <h3 className="display-6 text-white">
+                    <h3 className={textStyle.dashboard_title}>
                         Fitness Goals
                     </h3>
 
