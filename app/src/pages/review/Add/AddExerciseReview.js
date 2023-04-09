@@ -3,6 +3,8 @@ import Stack from "react-bootstrap/Stack";
 import React, {useCallback, useEffect} from "react";
 import background from "../../../assets/css/Background.module.css"
 import Container from "react-bootstrap/esm/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import './AddExerciseReview.css';
 import Rating from '@mui/material/Rating';
 import { useState } from "react";
@@ -85,58 +87,62 @@ export default function AddExerciseReview() {
             <div className={background.default}>
                 <Form onSubmit={handleSubmit} className="mx-auto">
                     <Card className="exercise-review-card">
-                            <Card.Body>
-                                <Stack direction="horizontal" gap={3} className="d-flex justify-content-center flex-wrap">
-                                    <div>
-                                        <Card.Text className="d-flex text-white p-3 display-6">
-                                            Add Review for Exercise
-                                        </Card.Text>
-                                        <Card.Text className="exercise-review-type">{exercise['title']}</Card.Text>
-                                        <Image height={300} width={450} src={exercise['image_ref']} alt={exercise['title']}/>
-                                    </div>
-                                    <div className="ms-3">
-                                        <Card.Text className=" h4 mt-5 text-white">
-                                            Your Rating
-                                        </Card.Text>
-                                        <div className="exercise-review-star">
-                                            <Form.Group>
-                                            <Rating
-                                                name="half-rating"
-                                                onChange={(event, newValue) => {
-                                                    setValue(newValue);
-                                                }}
-                                                onChangeActive={(event, newHover) => {
-                                                    setHover(newHover);
-                                                }}
-                                                sx={{
-                                                    '& .MuiRating-iconEmpty': {
-                                                        color: 'white',
-                                                    },
-                                                    fontSize: "4rem"
-                                                }}
-                                            />
-                                            </Form.Group>
+                        <Card.Body>
+                            <Container className="h-100 d-grid align-content-center">
+                                <Row >
+                                    <Row>
+                                        <h1 className="text-white" style={{paddingTop: '5rem'}}>Add Review for Exercise</h1>
+                                    </Row>
+                                    <Col className="d-flex justify-content-center" style={{paddingTop: '5rem'}}>
+                                        <div className="exercise-review-left">
+                                            <Card.Text className="exercise-review-type">{exercise['title']}</Card.Text>
+                                            <Image className="exercise-review-picture" src={exercise['image_ref']} alt={exercise['title']}/>
                                         </div>
-                                        <Form.Group className="mt-2 exercise-review-text">
-                                            <FloatingLabel label="Comments">
-                                                <Form.Control
-                                                    className="comments"
-                                                    name="comments"
-                                                    as="textarea"
-                                                    placeholder="Leave a comment here"
-                                                    value={values.comments}
-                                                    onChange={handleChange}
-                                                    isInvalid={!!errors.comments && touched.comments}
-                                                />
-                                                <Form.Control.Feedback type="invalid" tooltip>
-                                                    {errors?.comments}
-                                                </Form.Control.Feedback>
-                                            </FloatingLabel>
-                                            <Button className="submit-button" type="submit">Submit</Button>
+                                    </Col>
+                                    <Col lg={5}>
+                                    <Card.Text className="h4 mt-5 text-white">
+                                        Your Rating
+                                    </Card.Text>
+                                    <div className="exercise-review-star">
+                                        <Form.Group>
+                                        <Rating
+                                            name="half-rating"
+                                            onChange={(event, newValue) => {
+                                                setValue(newValue);
+                                            }}
+                                            onChangeActive={(event, newHover) => {
+                                                setHover(newHover);
+                                            }}
+                                            sx={{
+                                                '& .MuiRating-iconEmpty': {
+                                                    color: 'white',
+                                                },
+                                                fontSize: "3rem"
+                                            }}
+                                        />
                                         </Form.Group>
                                     </div>
-                                </Stack>
-                            </Card.Body>
+                                    <Form.Group className="mt-2 exercise-review-text">
+                                        <FloatingLabel label="Comments">
+                                            <Form.Control
+                                                className="comments"
+                                                name="comments"
+                                                as="textarea"
+                                                placeholder="Leave a comment here"
+                                                value={values.comments}
+                                                onChange={handleChange}
+                                                isInvalid={!!errors.comments && touched.comments}
+                                            />
+                                            <Form.Control.Feedback type="invalid" tooltip>
+                                                {errors?.comments}
+                                            </Form.Control.Feedback>
+                                        </FloatingLabel>
+                                        <Button className="submit-button" type="submit">Submit</Button>
+                                    </Form.Group>
+                                    </Col>
+                                </Row>
+                            </Container>
+                        </Card.Body>
                     </Card>
                 </Form>
                 <Toaster/>

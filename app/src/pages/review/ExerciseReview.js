@@ -140,7 +140,7 @@ export default function ExerciseReview() {
                                                 <Stack direction="horizontal" gap={3}>
                                                     <Image className="ms-3" roundedCircle width={36} height={36} src={users.find(item => item['userID'] === review['userID'])?.profileImage} alt={users.find(item => item['userID'] === review['userID'])?.name}/>
                                                     <div>
-                                                        <p className="all-exeercise-review-name">{review.name}</p>
+                                                        <p className="all-exeercise-review-name">{users.find(item => item['userID'] === review['userID'])?.name}</p>
                                                         <p className='all-exercise-review-date'>{review.date}</p>
                                                     </div>
                                                 </Stack>

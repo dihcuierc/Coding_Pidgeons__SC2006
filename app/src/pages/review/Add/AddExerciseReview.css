@@ -7,6 +7,15 @@
     align-items: flex-start;
   }
 
+  .exercise-review-left {
+    background-color: #17202D;
+    border-radius: 30px;
+    padding: 30px;
+    display: inline-block;
+    align-self: flex-start;
+    width: fit-content;
+  }
+
   .exercise-review-star{
     background-color: #17202D;
     border-radius: 30px;
@@ -38,10 +47,10 @@
     background-color: #F03F58;
     color:white;
     border-radius: 15px;
-    justify-content: center;
-    display:flex;
-    align-items: center;
-    height:50px;
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 20px;
+    font-weight: 500;
   }
 
   .exercise-review-card{
@@ -53,6 +62,7 @@
   .submit-button{
     background-color:#F03F58 !important;
     color:white !important;
+    border: none;
     border-radius: 15px;
     margin-left: auto !important;
     display: block !important;
@@ -60,11 +70,13 @@
     margin-top: 15px;
   }
 
-  .review-exercise-video{
-    width: 450px;
+  .exercise-review-picture{
+    width: 300px;
+    height: 300px;
     overflow: hidden;
     border-radius: 12px;
-    aspect-ratio: 1.5;
+    display: block;
+    object-fit: cover;
   }
 
   .exercise-review-words{
