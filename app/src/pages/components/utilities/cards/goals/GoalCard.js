@@ -52,7 +52,7 @@ export default function GoalCard({add,clickable}) {
         return () => unsub();
     },[goals])
     return (
-        <Card className={cardStyle.goals}>
+        <Card className={`${cardStyle.goals} bg-dark opacity-75`}>
             <Container className="p-4">
                 <div className="d-flex mb-2">
                     <h3 className="display-6 text-white">
@@ -62,13 +62,13 @@ export default function GoalCard({add,clickable}) {
                         </Link> : <div>Fitness Goals</div>
                             }
                     </h3>
-                    {add &&
-                        <div className="ms-auto">
-                            <Link to="./add">
-                                <AddIcon className={iconStyle.add}/>
-                            </Link>
-                        </div>
-                    }
+
+                    <div className="ms-auto">
+                        <Link to="../goals/add">
+                            <AddIcon className={iconStyle.add} fontSize="large"/>
+                        </Link>
+                    </div>
+                    
                 </div>
                 <Card.Body className="ps-0">
                         {goals.filter(item => item.userID === parseInt(user.userID)).map((item,index) => (
