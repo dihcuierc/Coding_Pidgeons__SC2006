@@ -147,7 +147,7 @@ export default function EditExercisePlanWrapper() {
                                               <div>{exercises.find(item => item['exID'] === selectedExercise)?.title}</div>
                                           </Col>
                                           <Col className="d-flex align-items-center">
-                                              <Button variant="outline-primary"
+                                              <Button className={`${buttonStyle.transparent} mb-0`}
                                                       onClick={() => {
                                                   let item = exercises.find(item => item['exID'] === selectedExercise);
                                                   let tmp = values.exercises;
@@ -161,7 +161,7 @@ export default function EditExercisePlanWrapper() {
                                                   setFieldValue("exercises", tmp);
                                               }}
                                                       disabled={values.exercises.find(item => item['exID'] === selectedExercise)}
-                                              >Add</Button>
+                                              ><AddIcon color="primary" fontSize="large"/></Button>
                                           </Col>
                                       </Row>
                                   </Form.Group>
