@@ -73,7 +73,7 @@ export default function Workout() {
               <h1>Exercises</h1>
               <Carousel responsive={responsive} showDots={true} infinite={true}>
                   {groups.map((exerciseGroup) => (
-                    <ExerciseCard link={`views/${exerciseGroup.id}`} key={exerciseGroup.id} title={exerciseGroup.title} />
+                    <ExerciseCard link={`views/${exerciseGroup.id}`} key={exerciseGroup.id} title={exerciseGroup.title} imageUrl={exerciseGroup['image_ref']}/>
                   ))}
               </Carousel>
             </div>
