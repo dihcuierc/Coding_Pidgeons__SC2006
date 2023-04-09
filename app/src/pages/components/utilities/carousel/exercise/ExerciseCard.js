@@ -23,7 +23,7 @@ export default function ExerciseCard(props) {
 
   return (
     <>
-      <Link to={props.link}>
+      <Link to={props.link} className="text-decoration-none text-white">
         <Card className="exercise-card" sx={{ mt: 3 }}>
           <CardHeader
             title={props.title}
