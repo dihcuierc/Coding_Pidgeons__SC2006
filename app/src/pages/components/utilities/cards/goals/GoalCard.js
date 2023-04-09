@@ -7,7 +7,7 @@ import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
+import Dropdown from "react-bootstrap/Dropdown";
 
 import AddIcon from "@mui/icons-material/AddCircleOutlined";
 
@@ -19,6 +19,7 @@ import textStyle from "../../../../../assets/css/Text.module.css";
 
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 import {collection, onSnapshot} from "firebase/firestore";
 import {initializeFirebase} from "../../../../../provider/FirebaseConfig";
 import {DeleteDoc, UpdateCollection} from "../../../../../provider/firestore/FirestoreProvider";
@@ -74,7 +75,7 @@ export default function GoalCard({add,clickable}) {
                             <div className="d-flex mb-3" key={index}>
                                 <div className={`${rowStyle.goals} d-flex align-items-center`}>
                                         <Col className="p-3">
-                                            <Card.Text className={textStyle.target}>Target: {item['Title']}</Card.Text>
+                                            <Card.Text className={textStyle.goal_title}>{item['Title']}</Card.Text>
                                         </Col>
                                         <Col xs={2}>
                                             <Card.Text className={textStyle.target}>Target: {item['Target Value']}</Card.Text>
@@ -100,24 +101,34 @@ export default function GoalCard({add,clickable}) {
                                                     <Form.Check.Label className="mb-1">Done</Form.Check.Label>
                                                 </Form.Check>
                                             </Form.Group>
+                                            <Dropdown>
+                                                <Dropdown.Toggle as={CustomToggle}>
+                                                </Dropdown.Toggle>
+                                                <Dropdown.Menu size="sm" variant="dark" className="w-100"> 
+                                                <Dropdown.Item>
+                                                    <Button className={buttonStyle.transparent} onClick={() => {
+                                                    navigate(`/goals/${item.id}`, {
+                                                        state: {
+                                                            goals: item,
+                                                        }})
+                                                    }}>
+                                                        <EditIcon sx={{marginRight: '10px'}} />
+                                                        Edit
+                                                    </Button>
+                                                </Dropdown.Item>
+                                                <Dropdown.Item>
+                                                    <Button className={buttonStyle.transparent} onClick={() => {
+                                                        DeleteDoc("Goal", item.id).catch(err => console.log(err));
+                                                        onDelete();
+                                                    }}>
+                                                        <DeleteIcon sx={{marginRight: '10px'}} />
+                                                        Delete
+                                                    </Button>
+                                                </Dropdown.Item>
+                                                </Dropdown.Menu>
+                                            </Dropdown>
                                         </Col>
                                 </div>
-                                <Row xs={1}>
-                                    <Button className={buttonStyle.transparent} onClick={() => {
-                                        navigate(`/goals/${item.id}`, {
-                                            state: {
-                                                goals: item,
-                                            }})
-                                    }}>
-                                            <EditIcon/>
-                                    </Button>
-                                    <Button className={buttonStyle.transparent} onClick={() => {
-                                        DeleteDoc("Goal", item.id).catch(err => console.log(err));
-                                        onDelete();
-                                    }}>
-                                        <DeleteIcon/>
-                                    </Button>
-                                </Row>
                             </div>
                             )
                         )}
@@ -127,3 +138,17 @@ export default function GoalCard({add,clickable}) {
         </Card>
     )
 }
+
+const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
+    <a
+      href=""
+      ref={ref}
+      onClick={e => {
+        e.preventDefault();
+        onClick(e);
+      }}
+    >
+      {<MoreVertIcon  sx={{ color: '#ffffff' }} />}
+      {children}
+    </a>
+  ));

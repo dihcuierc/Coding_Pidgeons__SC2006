@@ -9,12 +9,19 @@
 
 .target {
     color: #56AF55;
+    font-weight: 500;
 }
 
 .currentValue {
     color: #EFAB4A;
+    font-weight: 500;
 }
 
 .targetDate {
     color: white;
+}
+
+.goal_title{
+    font-size: 17px;
+    font-weight: 500;
 }
