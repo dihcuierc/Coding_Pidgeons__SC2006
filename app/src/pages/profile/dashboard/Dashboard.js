@@ -15,7 +15,7 @@ export default function Dashboard() {
     return (
         <>
            <div className={background.default}>
-            <Container className="h-100 d-grid align-content-center">
+            <Container className="h-100 d-grid align-content-center" style={{paddingTop: '50px'}}>
                 <Row className="p-0">
                     <Col>
                         <Tracker/>

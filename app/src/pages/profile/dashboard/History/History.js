@@ -4,6 +4,7 @@ import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container"
 
 import cardStyle from "../../../../assets/css/Card.module.css"
+import textStyle from "../../../../assets/css/Text.module.css"
 
 import historyData from "../../../../data/CaloriesHistory.json";
 import {useCallback, useEffect, useState} from "react";
@@ -28,20 +29,22 @@ export default function History() {
 
     return (
         <>
-            <Card className={`${cardStyle.dashboard}`}>
+            <Card className={`${cardStyle.dashboard} bg-dark opacity-75`}>
                 <Container className="d-flex mt-3">
-                    <Card.Title className="mx-auto ps-5 mt-1"> Daily Calories </Card.Title>
+                    <Card.Title className={textStyle.dashboard_title}> Daily Calories </Card.Title>
                 </Container>
                 <Card.Body className="d-flex justify-content-center">
                     <svg height={300} width={500}>
                         <VictoryChart
                             standalone={false}
+                            theme={{axis: {style: {axis: {stroke: "white"}, tickLabels: {fill: "white"}, grid: { stroke: '#505050' }}}}}
                             height={300}
                             width={500}
                             domainPadding={30}
                             scale={{x: "time", y: "linear"}}
+                            
                         >
-                            <VictoryBar data={axis}
+                            <VictoryBar data={axis} style={{data: { fill: "tomato" }, }}
                                 alignment="start"
                             />
                         </VictoryChart>
