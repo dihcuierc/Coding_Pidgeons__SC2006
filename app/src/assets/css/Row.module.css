@@ -25,19 +25,12 @@
 }
 
 .edit {
-    max-width: 700px;
-    width: 75vw;
+    width: 100%;
     min-width: 400px;
     margin-top: 1.5rem;
 }
 
 .select {
-    max-width: 700px;
-    width: 75vw;
+    width: 100%;
     margin-top: 1.5rem;
-}
-
-.plans_heading {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
 }

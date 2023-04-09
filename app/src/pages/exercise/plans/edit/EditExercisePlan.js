@@ -96,11 +96,13 @@ export default function EditExercisePlanWrapper() {
             setFieldValue,
             }) => (
           <div className={`${background.default} p-4`}>
+                <Toaster/>
               <h1 className={padding.headerTop}>Edit Exercise Plans</h1>
-              <Container className={`${padding.container} bg-black text-white rounded-4`}>
-                  <Form onSubmit={handleSubmit}>
-                      <Form.Group controlId="titleInput" className={rowStyle.plans_heading}>
-                          <Form.Label style={{fontSize: '20px', fontWeight: '500'}}>Exercise Plans</Form.Label>
+              <Form onSubmit={handleSubmit}>
+                <Container className="add-exercise-container flex-wrap">
+                    <div className="add-exercise-block">
+                    <Form.Group controlId="titleInput" className={rowStyle.plans_heading}>
+                          <Form.Label style={{fontSize: '20px', fontWeight: '500' , color: 'white'}}>Exercise Plans</Form.Label>
                           <Form.Control
                               name="title"
                               type="text"
@@ -115,7 +117,7 @@ export default function EditExercisePlanWrapper() {
                           </Form.Control.Feedback>
                       </Form.Group>
                       <Form.Group controlId="imageInput">
-                          <Form.Label style={{fontSize: '20px', fontWeight: '500'}}>Image</Form.Label>
+                          <Form.Label style={{fontSize: '20px', fontWeight: '500', color: 'white'}}>Image</Form.Label>
                           <Form.Control
                               name="image"
                               type="file"
@@ -241,9 +243,10 @@ export default function EditExercisePlanWrapper() {
                       </div>
                           <Button type="submit" className="mx-auto">Submit</Button>
                       </Stack>
-                  </Form>
-              </Container>
-              <Toaster/>
+                    </div>
+                </Container>
+              </Form>
+
           </div>
           )}
       </Formik>
