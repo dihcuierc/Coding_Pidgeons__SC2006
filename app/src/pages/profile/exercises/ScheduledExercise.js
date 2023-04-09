@@ -15,6 +15,8 @@ import background from "../../../assets/css/Background.module.css";
 import buttonStyle from "../../../assets/css/Button.module.css";
 import cardStyle from "../../../assets/css/Card.module.css";
 import rowStyle from "../../../assets/css/Row.module.css";
+import textStyle from "../../../assets/css/Text.module.css";
+
 import {collection, onSnapshot} from "firebase/firestore";
 import {initializeFirebase} from "../../../provider/FirebaseConfig";
 import {DeleteDoc, GetCollection} from "../../../provider/firestore/FirestoreProvider";
@@ -37,22 +39,29 @@ export default function ViewExercises() {
 
     useEffect(() => {
         const scheduledRef = collection(db,"ScheduleExercise");
-        if (!planTitle.length)
-            getPlans();
+        if (!planTitle.length) {
+          getPlans();
+        }
         const unsub = onSnapshot(scheduledRef, (snapshot) => {
-            const docs = snapshot.docs.map((doc) => {
-                const planID = doc.data().planID;
-                return ({...doc.data(), plan: planTitle[planID-1], id: doc.id});
-            });
-            setScheduledExercises(docs);
-        })
+          const docs = snapshot.docs.map((doc) => {
+            const planID = doc.data().planID;
+            return ({...doc.data(), plan: planTitle[planID-1], id: doc.id});
+          });
+          const sortedDocs = docs.sort((a, b) => {
+            if (a.date === b.date) {
+              return a['start time'].localeCompare(b['start time']);
+            }
+            return a.date.localeCompare(b.date);
+          });
+          setScheduledExercises(sortedDocs);
+        });
         return () => unsub();
-    })
+      }, [planTitle.length, getPlans]);
 
     return (
         <div className={`${background.default} p-5`}>
-            <Card className={`${cardStyle.schedule} mx-lg-auto`}>
-                <Card.Title className="display-6 mx-auto p-0">Scheduled Exercises</Card.Title>
+            <Card className={`${cardStyle.schedule} mx-lg-auto `}>
+                <Card.Title className={textStyle.dashboard_title}>Scheduled Exercises</Card.Title>
                 <Card.Body>
                     {scheduledExercises.filter(item => item['userID'] === user.userID).map((item) => (
                         <Row className={rowStyle.exercises}>
