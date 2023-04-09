@@ -75,7 +75,6 @@ export default function ViewReviews() {
                                                     <Stack direction="horizontal" gap={3}>
                                                         <p className='profile-review-image'></p>
                                                         <div>
-                                                            <p className="profile-review-name">{user.name}</p>
                                                             <p className='profile-review-date'>{review.date}</p>
                                                         </div>
                                                     </Stack>

@@ -7,9 +7,9 @@
     flex-direction: horizontal;
   }
 
-  .profile-review-card{
-    display:flex;
-  }
+.profile-review-card{
+display:flex;
+}
 
 .individual-review{
     background-color: #505050;
@@ -33,6 +33,10 @@
 
 .profile-review-title{
     font-size: 2.5rem !important;
+}
+
+.profile-review-text{
+    width: 100%;
 }
 
 .exercise-video-small{
