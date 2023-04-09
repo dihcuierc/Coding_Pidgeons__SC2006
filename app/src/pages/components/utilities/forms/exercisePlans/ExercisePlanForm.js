@@ -262,18 +262,9 @@ export default function ExercisePlanForm() {
                                             </Col>
                                             <Col>
                                                 <p>Calories:</p>
-                                                <Form.Group controlId="caloriesInput">
-                                                    <Form.Control
-                                                        name={`exercises[${index}]['Calories']`}
-                                                        type="number"
-                                                        value={values.exercises[index]['Calories']}
-                                                        onChange={handleChange}
-                                                        isInvalid={!!errors.calories && touched.calories}
-                                                    />
-                                                    <Form.Control.Feedback type="invalid">
-                                                        {errors?.calories}
-                                                    </Form.Control.Feedback>
-                                                </Form.Group>
+                                                <p className="mt-4 ms-auto">
+                                                {exercise['Calories'] = values.exercises[index]['Reps'] * values.exercises[index]['Sets'] * exerciseData.find(item => item['exID'] === parseInt(exercise['exID']))?.met * exerciseData.find(item => item['exID'] === parseInt(exercise['exID']))?.time}
+                                                </p>
                                             </Col>
                                             <Col xs={1} className="d-flex justify-content-center">
                                                 <Button className={`${buttonStyle.transparent} mt-4`} onClick={() =>
