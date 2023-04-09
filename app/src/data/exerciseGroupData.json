@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "title": "Chest"
+    "title": "Arm"
   },
   {
     "id": 2,
@@ -9,18 +9,14 @@
   },
   {
     "id": 3,
-    "title": "Leg"
+    "title": "Cardio"
   },
   {
     "id": 4,
-    "title": "Arm"
+    "title": "Core"
   },
   {
     "id": 5,
-    "title": "Shoulder"
-  },
-  {
-    "id": 6,
-    "title": "Abs"
+    "title": "Legs"
   }
 ]
