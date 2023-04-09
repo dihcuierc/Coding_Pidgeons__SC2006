@@ -37,7 +37,7 @@ export default function History() {
                     <svg height={300} width={500}>
                         <VictoryChart
                             standalone={false}
-                            theme={{axis: {style: {axis: {stroke: "white"}, tickLabels: {fill: "white"}, grid: { stroke: '#505050' }}}}}
+                            theme={{axis: {style: {axis: {stroke: "white"}, tickLabels: {fill: "white"}, grid: { stroke: '#ffffff820' }}}}}
                             height={300}
                             width={500}
                             domainPadding={30}
