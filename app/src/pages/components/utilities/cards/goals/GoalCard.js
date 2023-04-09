@@ -56,11 +56,7 @@ export default function GoalCard({add,clickable}) {
             <Container className="p-4">
                 <div className="d-flex mb-2">
                     <h3 className="display-6 text-white">
-                        {clickable ?
-                        <Link to="/goals" className="text-decoration-none text-white">
-                            Fitness Goals
-                        </Link> : <div>Fitness Goals</div>
-                            }
+                        Fitness Goals
                     </h3>
 
                     <div className="ms-auto">
@@ -134,7 +130,6 @@ export default function GoalCard({add,clickable}) {
                         )}
                 </Card.Body>
             </Container>
-            <Toaster/>
         </Card>
     )
 }

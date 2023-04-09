@@ -71,7 +71,7 @@ export default function GoalsForm({goals}) {
                     if (status) {
                         await wait(500);
                         success();
-                        navigate("/goals");
+                        navigate("/profile");
                     } else {
                         error();
                     }

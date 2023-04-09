@@ -7,8 +7,8 @@ import cardStyle from "../../../../assets/css/Card.module.css"
 export default function Tracker() {
     return (
         <>
-            <Card className={cardStyle.dashboard}>
-                <Card.Title className="mx-auto mt-3">Calories Burnt</Card.Title>
+            <Card className={`${cardStyle.dashboard} bg-dark opacity-75`} text='white'>
+                <Card.Title className="mx-auto mt-3 display-6 text-white">Calories Burnt</Card.Title>
                 <Card.Body className="d-flex justify-content-center">
                     <svg height={300} width={300} viewBox="50 50 50 50">
                     <VictoryPie
@@ -24,7 +24,7 @@ export default function Tracker() {
                     <VictoryLabel
                         textAnchor="middle"
                         text="800/1200 kcal"
-                        style={{fontSize: 7}}
+                        style={{fontSize: 6, fill: "white"}}
                         x={75}
                         y={75}
                         />
