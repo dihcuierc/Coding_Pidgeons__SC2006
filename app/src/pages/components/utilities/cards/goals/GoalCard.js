@@ -70,7 +70,7 @@ export default function GoalCard({add,clickable}) {
                     }
                 </div>
                 <Card.Body className="ps-0">
-                        {goals.filter(item => item.userID === user.userID).map((item,index) => (
+                        {goals.filter(item => item.userID === parseInt(user.userID)).map((item,index) => (
                             <div className="d-flex mb-3" key={index}>
                                 <div className={`${rowStyle.goals} d-flex align-items-center`}>
                                         <Col className="p-3">

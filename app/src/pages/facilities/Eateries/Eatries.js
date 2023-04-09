@@ -35,13 +35,35 @@ export default function Eateries() {
         menuCategory: [ "Lower in sugar", "Higher in wholegrains", "Lower in calories", "No added sugar", "Source of dietary fibre", "Eat 2+2 servings of fruits", "Vegetables daily" ]
 
     }), []);
-
+    const [regions, setRegions] = useState([]);
+    const [diningConcept, setDiningConcept] = useState([]);
+    const [fnbSettings, setFNBSettings] = useState([]);
+    const [type, setType] = useState([]);
+    const [menu, setMenu] = useState([]);
     const [filteredList, setFilteredList] = useState(eateriesData);
     const [selectedList, setSelectedList] = useState(null);
 
+
     const onFilter = useCallback(() => {
-        setFilteredList(filteredList.filter((data) => ["Non-Halal"].includes(data.dining_concept)))
-    },[filteredList]);
+        setFilteredList(filteredList.filter((data) => {
+            let typeStatus = true;
+            let regionStatus = true;
+            let fnbStatus = true;
+            let diningStatus = true;
+            let menuStatus = true;
+            if (type.length)
+                typeStatus = type.includes(data.category)
+            if (regions.length)
+                regionStatus = regions.includes(data.regions);
+            if (fnbSettings.length)
+                fnbStatus = fnbSettings.includes(data['fnb_settings']);
+            if (diningConcept.length)
+                diningStatus = diningConcept.includes(data['dining_concept']);
+            if (menu.length)
+                menuStatus = data['menu_item_endorsement'].map(item => menu.includes(item)).reduce((acc, curr) => acc && curr);
+            return (typeStatus && regionStatus && fnbStatus && diningStatus && menuStatus)
+        }))
+    },[filteredList, regions]);
 
     return (
         <div className={`${backgroundStyle.default} d-grid`}>
@@ -53,16 +75,23 @@ export default function Eateries() {
                                 Filter
                             </Card.Title>
                             <div className="d-flex flex-wrap justify-content-center">
-                                <FilterDropdown name={"Health Category"} list={filterCategories.menuCategory}/>
-                                <FilterDropdown name={"Food Type"} list={filterCategories.typeCategory}/>
-                                <FilterDropdown name={"Dining Guideline"} list={filterCategories.diningConcept}/>
-                                <FilterDropdown name={"Venue"} list={filterCategories.fnbSettings}/>
-                                <FilterDropdown name={"Regions"} list={filterCategories.regions}/>
+                                <FilterDropdown name={"Health Category"} selected={menu} list={filterCategories.menuCategory}/>
+                                <FilterDropdown name={"Food Type"} selected={type} list={filterCategories.typeCategory}/>
+                                <FilterDropdown name={"Dining Guideline"} selected={diningConcept} list={filterCategories.diningConcept}/>
+                                <FilterDropdown name={"Venue"} selected={fnbSettings} list={filterCategories.fnbSettings}/>
+                                <FilterDropdown name={"Regions"} selected={regions} list={filterCategories.regions}/>
                             </div>
                             <div>
                                 <Stack direction="horizontal" gap={3} className="justify-content-center">
                                     <Button variant="outline-primary" onClick={onFilter}>Apply</Button>
-                                    <Button variant="outline-danger">Reset</Button>
+                                    <Button variant="outline-danger" onClick={() => {
+                                        setMenu([])
+                                        setType([])
+                                        setDiningConcept([]);
+                                        setFNBSettings([]);
+                                        setRegions([])
+                                        setFilteredList(eateriesData)
+                                    }}>Reset</Button>
                                 </Stack>
 
                             </div>

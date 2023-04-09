@@ -8,6 +8,7 @@ import React, {useCallback, useEffect, useState} from "react";
 import {AddCollection, GetSize, UpdateCollection} from "../../../../../provider/firestore/FirestoreProvider";
 import toast from "react-hot-toast";
 import {wait} from "@testing-library/user-event/dist/utils";
+import {useAuth} from "../../../../../provider/auth/AuthProvider";
 
 export default function GoalsForm({goals}) {
     const navigate = useNavigate();
@@ -26,7 +27,7 @@ export default function GoalsForm({goals}) {
             .required("You must have a target date!")
     })
 
-    const [user, setUser] = useState(1);
+    const {user} = useAuth();
 
     const success = useCallback(() => {
        toast.success("Your goal have been created");
@@ -52,7 +53,7 @@ export default function GoalsForm({goals}) {
                             "Target Value": values.target,
                             "Current Value": values.current,
                             "done": false,
-                            "userID": user,
+                            "userID": user.userID,
                         }
                         status = await AddCollection("Goal", size, data);
                     } else {
