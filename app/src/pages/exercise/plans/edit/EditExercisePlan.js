@@ -24,6 +24,8 @@ import setFilePath from "../../../../misc/filePath";
 import toast, {Toaster} from "react-hot-toast";
 import {wait} from "@testing-library/user-event/dist/utils";
 import {useAuth} from "../../../../provider/auth/AuthProvider";
+
+
 export default function EditExercisePlanWrapper() {
     const {state} = useLocation();
     const { id } = useParams();
@@ -32,6 +34,11 @@ export default function EditExercisePlanWrapper() {
     const [exercises, setExercises] = useState([]);
     const [selectedExercise, setSelectedExercise] = useState(-1);
     const {user} = useAuth();
+
+    const cancel = useCallback(() => {
+        toast.error("You have cancelled updating exercise plan!")
+        navigate(-1);
+    },[])
 
     const success = useCallback(() => {
         toast.success("You have successfully updated exercise plan!");
@@ -241,7 +248,10 @@ export default function EditExercisePlanWrapper() {
                               ))
                           }
                       </div>
-                          <Button type="submit" className="mx-auto">Submit</Button>
+                      <div className="add-exercise-buttons">
+                        <Button type="submit" className="me-3">Submit</Button>
+                          <Button className="cancel-button" type="reset" onClick={cancel}>Cancel</Button>
+                      </div>
                       </Stack>
                     </div>
                 </Container>

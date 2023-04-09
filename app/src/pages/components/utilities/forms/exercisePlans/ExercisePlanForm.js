@@ -12,7 +12,6 @@ import Col from "react-bootstrap/Col";
 
 import buttonStyle from "../../../../../assets/css/Button.module.css"
 import rowStyle from "../../../../../assets/css/Row.module.css";
-
 import AddIcon from "@mui/icons-material/AddCircleOutlined";
 
 import "./ExercisePlanForm.css";
@@ -53,6 +52,10 @@ export default function ExercisePlanForm() {
     const [exerciseData, setExerciseData] = useState([]);
     const {user} = useAuth();
     const navigate = useNavigate();
+
+    const cancel = useCallback(() => {
+        navigate(-1);
+    },[])
 
     const success = useCallback(() =>
         toast.success("You have successfully created a new Exercise Plan!"),[])
@@ -129,6 +132,7 @@ export default function ExercisePlanForm() {
 
               }) => (
                 <Form onSubmit={handleSubmit} onReset={() => resetForm} className="add-exercise-form">
+                    <Toaster/>
                     <Container className="add-exercise-container flex-wrap">
                         <div className="add-exercise-block">
                             <Form.Group  controlId="titleInput">
@@ -203,7 +207,7 @@ export default function ExercisePlanForm() {
                             </Form.Group>
                             <div className="add-exercise-buttons">
                                 <Button className= "me-3" type="submit">Save</Button>
-                                <Button className="cancel-button" type="reset">Cancel</Button>
+                                <Button className="cancel-button" type="reset" onClick={cancel}>Cancel</Button>
                             </div>
                         </div>
                         {values.exercises?.length !== 0 && (
@@ -278,7 +282,6 @@ export default function ExercisePlanForm() {
                                 }
                             </div>
                         )}
-                        <Toaster/>
                     </Container>
                 </Form>
             )}
