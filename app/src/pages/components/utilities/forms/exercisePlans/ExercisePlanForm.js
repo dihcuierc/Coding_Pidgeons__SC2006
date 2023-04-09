@@ -202,7 +202,7 @@ export default function ExercisePlanForm() {
                                 />
                             </Form.Group>
                             <div className="add-exercise-buttons">
-                                <Button type="submit">Save</Button>
+                                <Button className= "me-3" type="submit">Save</Button>
                                 <Button className="cancel-button" type="reset">Cancel</Button>
                             </div>
                         </div>

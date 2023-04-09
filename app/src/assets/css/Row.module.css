@@ -36,3 +36,8 @@
     width: 75vw;
     margin-top: 1.5rem;
 }
+
+.plans_heading {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}

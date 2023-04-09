@@ -2,6 +2,7 @@ import React, {useCallback, useEffect, useState} from "react";
 
 import background from "../../../../assets/css/Background.module.css";
 import padding from "../../../../assets/css/Padding.module.css";
+import "../../../components/utilities/forms/exercisePlans/ExercisePlanForm.css";
 
 import {useLocation, useNavigate, useParams} from "react-router-dom";
 import {Formik} from "formik";
@@ -98,8 +99,8 @@ export default function EditExercisePlanWrapper() {
               <h1 className={padding.headerTop}>Edit Exercise Plans</h1>
               <Container className={`${padding.container} bg-black text-white rounded-4`}>
                   <Form onSubmit={handleSubmit}>
-                      <Form.Group controlId="titleInput">
-                          <Form.Label>Exercise Plans</Form.Label>
+                      <Form.Group controlId="titleInput" className={rowStyle.plans_heading}>
+                          <Form.Label style={{fontSize: '20px', fontWeight: '500'}}>Exercise Plans</Form.Label>
                           <Form.Control
                               name="title"
                               type="text"
@@ -114,7 +115,7 @@ export default function EditExercisePlanWrapper() {
                           </Form.Control.Feedback>
                       </Form.Group>
                       <Form.Group controlId="imageInput">
-                          <Form.Label>Image</Form.Label>
+                          <Form.Label style={{fontSize: '20px', fontWeight: '500'}}>Image</Form.Label>
                           <Form.Control
                               name="image"
                               type="file"
