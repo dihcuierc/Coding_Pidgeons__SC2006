@@ -2,12 +2,14 @@ import {initializeFirebase} from "../FirebaseConfig";
 import {
     createUserWithEmailAndPassword,
     deleteUser,
+    EmailAuthProvider,
     GoogleAuthProvider,
-    updatePassword,
+    reauthenticateWithCredential,
     sendPasswordResetEmail,
     signInWithEmailAndPassword,
     signInWithPopup,
     signOut,
+    updatePassword
 } from "firebase/auth"
 import {DeleteDoc} from "../firestore/FirestoreProvider";
 
@@ -77,6 +79,24 @@ async function ResetPassword(email) {
     }
 }
 
+async function checkPassword(email, password) {
+    const user = auth.currentUser;
+    try {
+        if (user !== null) {
+            const credentials = EmailAuthProvider.credential(email,password);
+            await reauthenticateWithCredential(user, credentials);
+        }
+        return new Error("User must be logged in or registered!");
+    } catch (err) {
+        switch (err.code) {
+            case "auth/wrong-password":
+                throw new Error("Your current password does not match! Please try again")
+            default:
+                throw err;
+        }
+    }
+}
+
 async function UpdatePassword(newPassword) {
     const user = auth.currentUser;
     try {
@@ -108,4 +128,4 @@ async function DeleteUser() {
     }
 }
 
-export {GoogleAuth, SignUp, SignIn, LogOut, ResetPassword, UpdatePassword,DeleteUser}
+export {GoogleAuth, SignUp, SignIn, LogOut, ResetPassword, checkPassword, UpdatePassword,DeleteUser}

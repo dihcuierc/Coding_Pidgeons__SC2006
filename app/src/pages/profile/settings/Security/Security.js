@@ -7,17 +7,18 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 import formStyle from "../../../../assets/css/Form.module.css";
-import {UpdatePassword, useAuth} from "../../../../provider/auth/AuthProvider";
-import {DeleteUser} from "../../../../provider/auth/auth";
+import {useAuth} from "../../../../provider/auth/AuthProvider";
+import {UpdatePassword,checkPassword, DeleteUser} from "../../../../provider/auth/auth";
 import {useCallback, useState} from "react";
 import {useNavigate} from "react-router-dom";
+import toast, {Toaster} from "react-hot-toast";
 
 export default function Security() {
     return (
-                <div className={formStyle.register}>
-                    <RegisterForm></RegisterForm>
-                </div>
-            
+            <div className={formStyle.register}>
+                <RegisterForm></RegisterForm>
+                <Toaster/>
+            </div>
     )
 }
 
@@ -26,6 +27,10 @@ function RegisterForm() {
     const handleClose = useCallback(() => 
         setShow(false),[]);
     const handleShow = useCallback(() => setShow(true),[])
+    const {user} = useAuth();
+
+    const success = useCallback(() => toast.success("You have successfully updated your password"),[]);
+    const updateFail = useCallback(() => toast.error("Password unable to update"),[]);
 
     const schema = Yup.object().shape({
         currentPassword: Yup.string()
@@ -33,14 +38,27 @@ function RegisterForm() {
         password: Yup.string().required("No password provided")
             .min(8, "Password is too short - a minimum of 8 characters.")
             .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-                "Password must contain at least one Uppercase, Lowercase, one number and special character"),
+                "Password must contain at least one Uppercase, Lowercase, one number and special character")
+            .notOneOf([Yup.ref('currentPassword'),null], "Password cannot match current password!")
+        ,
         confirmPassword: Yup.string().oneOf([Yup.ref('password'),null],"Passwords must match")
             .required("No password provided")
     })
     return (
         <Formik
             validationSchema={schema}
-            onSubmit={values => {console.log(values)}}
+            onSubmit={async (values) => {
+                try {
+                    await checkPassword(user.email, values.currentPassword);
+                    const status = await UpdatePassword(values.password);
+                    status ?
+                        success() :
+                    updateFail();
+                } catch (err) {
+                    const error = () => toast.error(err.message);
+                    error();
+                }
+            }}
             initialValues={{
                 currentPassword: "",
                 password: "",
