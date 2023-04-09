@@ -62,7 +62,7 @@ export default function ViewReviews() {
                             const dateB = convertStringToDate(b.date);
                             return dateB - dateA;
                         }).map(review => (
-                            <Card.Body className='user-review'  key={review.id} >
+                            <Card.Body className='user-review bg-dark'  key={review.id} >
                                 <Stack direction="horizontal" gap={3} style={{width:"100%", padding: '10px'}}>
                                     <div style={{display: 'inline-block'}}>
                                         <img className="exercise-video-small" src={review.exercise?.image_ref} alt={review.exercise?.title} style={{display: 'block', margin: 'auto', width: '150px', height: '150px', objectFit:'cover'}}/>

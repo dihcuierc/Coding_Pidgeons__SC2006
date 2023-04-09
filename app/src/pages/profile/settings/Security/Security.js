@@ -135,8 +135,8 @@ function RegisterForm() {
                         </FloatingLabel>
                     </Form.Group>
                     <div className="text-light d-flex justify-content-center m-3">
-                        <Button variant="outline-light" type="submit" className="p-2 text-primary">Done</Button>
-                        <Button variant="outline-light" className="p-2 text-danger" onClick={() => {
+                        <Button type="submit" className="p-2 ms-3">Done</Button>
+                        <Button variant="danger" className="p-2 ms-3" onClick={() => {
                             handleShow();
                         }}>Delete Account</Button>
                     </div>

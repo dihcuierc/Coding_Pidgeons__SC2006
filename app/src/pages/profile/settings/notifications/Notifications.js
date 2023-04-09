@@ -7,7 +7,7 @@ import ToggleSwitch from "./ToggleSwitch";
 
 function AutoLayoutExample() {
   return (
-    <Container>
+    <Container style={{color: 'white'}}>
       <Row>
         <Col>Message</Col>
         <Col><ToggleSwitch label = "Message" /></Col>

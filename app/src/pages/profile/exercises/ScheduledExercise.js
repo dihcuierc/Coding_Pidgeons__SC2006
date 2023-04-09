@@ -5,11 +5,14 @@ import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
+import Dropdown from "react-bootstrap/Dropdown";
 
 import EditIcon from "@mui/icons-material/Edit";
 import MapIcon from "@mui/icons-material/LocationOn";
 import DateIcon from "@mui/icons-material/CalendarToday"
 import TimeIcon from "@mui/icons-material/AccessTime";
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+
 
 import background from "../../../assets/css/Background.module.css";
 import buttonStyle from "../../../assets/css/Button.module.css";
@@ -60,47 +63,56 @@ export default function ViewExercises() {
 
     return (
         <div className={`${background.default} p-5`}>
-            <Card className={`${cardStyle.schedule} mx-lg-auto `}>
+            <Card className={`${cardStyle.schedule} mx-lg-auto bg-dark opacity-75`}>
                 <Card.Title className={textStyle.dashboard_title}>Scheduled Exercises</Card.Title>
-                <Card.Body>
+                <Card.Body style={{color: 'white'}}>
                     {scheduledExercises.filter(item => item['userID'] === user.userID).map((item) => (
                         <Row className={rowStyle.exercises}>
-                            <div className="mb-2 d-flex">
-                                <Card.Text>Exercise Plan: {item.id} </Card.Text>
-                                <Button className={`${buttonStyle.transparent} ms-auto`}
-                                        onClick={() => {
-                                            navigate(`/workout/schedule/${item.id}`, {
-                                                state: {
-                                                    exercise: item
-                                                }
-                                            })
-                                }}>
-                                    <EditIcon color="action"/>
-                                </Button>
-                            </div>
                             <Col className="p-3">
                                 <div className="d-flex">
-                                    <MapIcon color="error"/>
-                                    <Card.Text>{item.plan}</Card.Text>
+                                    <MapIcon color="error" fontSize="large" />
+                                    <Card.Text style={{fontSize: '20px'}} >{item.plan}</Card.Text>
                                 </div>
                             </Col>
                             <Col>
                                 <div className="d-flex mb-3">
-                                    <DateIcon className="me-1"/>
+                                    <DateIcon className="me-2"/>
                                     <Card.Text>{item.date}</Card.Text>
                                 </div>
                                 <div className="d-flex">
-                                    <TimeIcon className="me-1"/>
+                                    <TimeIcon className="me-2"/>
                                     <Card.Text>{item['start time']} - {item['end time']}</Card.Text>
                                 </div>
                             </Col>
-                            <Col xs={1} className="mt-auto">
-                                <Button className={`${buttonStyle.transparent} ms-auto`}
-                                        onClick={() => {
-                                            DeleteDoc("ScheduleExercise",item.id).catch(err => console.log(err));
-                                        }}>
-                                    <DeleteIcon color="action"/>
-                                </Button>
+                            <Col xs={1} className="mt-auto d-flex justify-content-end">
+                                <Dropdown>
+                                    <Dropdown.Toggle as={CustomToggle}>
+                                    </Dropdown.Toggle>
+                                    <Dropdown.Menu size="sm" variant="dark" className="w-100"> 
+                                    <Dropdown.Item>
+                                        <Button className={`${buttonStyle.transparent} ms-auto`}
+                                            onClick={() => {
+                                                navigate(`/workout/schedule/${item.id}`, {
+                                                    state: {
+                                                        exercise: item
+                                                    }
+                                                })
+                                            }}>
+                                        <EditIcon sx={{marginRight: '10px'}}/>
+                                        Edit
+                                     </Button>
+                                    </Dropdown.Item>
+                                    <Dropdown.Item>
+                                        <Button className={`${buttonStyle.transparent} ms-auto`}
+                                            onClick={() => {
+                                                DeleteDoc("ScheduleExercise",item.id).catch(err => console.log(err));
+                                            }}>
+                                            <DeleteIcon sx={{marginRight: '10px'}}/>
+                                            Delete
+                                        </Button>
+                                    </Dropdown.Item>
+                                    </Dropdown.Menu>
+                                </Dropdown>
                             </Col>
                         </Row>
                     ))}
@@ -109,3 +121,18 @@ export default function ViewExercises() {
         </div>
     )
 }
+
+
+const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
+    <a
+      href=""
+      ref={ref}
+      onClick={e => {
+        e.preventDefault();
+        onClick(e);
+      }}
+    >
+      {<MoreVertIcon  sx={{ color: '#ffffff' }} />}
+      {children}
+    </a>
+  ));

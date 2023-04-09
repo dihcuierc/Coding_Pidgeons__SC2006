@@ -96,10 +96,10 @@ function ProfileToggle({user}) {
                 <Nav.Link active={false}>
                     <div className="d-flex">
                         {user?.profileImage === "" ? <AccountCircleRounded className={iconStyle.navbar}/> :
-                            <Image roundedCircle width={30} height={30} src={user?.profileImage} alt={user?.name}/>
+                            <Image roundedCircle width={35} height={35} src={user?.profileImage} alt={user?.name}/>
                         }
 
-                        <div className="m-1 px-1 small">{user.username}</div>
+                        <div className="m-1 px-1 medium" style={{fontWeight: '500'}}>{user.username}</div>
                     </div>
                 </Nav.Link>
             </LinkContainer>

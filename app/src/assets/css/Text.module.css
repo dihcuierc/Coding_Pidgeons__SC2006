@@ -27,7 +27,8 @@
 }
 
 .dashboard_title{
-    font-weight: 500;
-    font-size: 35px;
+    font-weight: 500 !important;
+    font-size: 2rem !important;
     color: white;
+
 }

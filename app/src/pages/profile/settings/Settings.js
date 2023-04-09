@@ -12,7 +12,7 @@ import background from "../../../assets/css/Background.module.css";
 function LeftTabsExample() {
   return (
     <div className={`${background.default} p-5`}>
-    <Card className="card mx-auto col d-flex flex-wrap justify-content-center align-content-center" style = {{paddingTop : "25px" , width : "50%", display : "flex" }}> 
+    <Card className="card mx-auto col d-flex flex-wrap justify-content-center align-content-center bg-dark" style = {{paddingTop : "25px", width : "50%", borderRadius: '20px'}}> 
     <Card.Body className="col d-flex flex-wrap justify-content-center align-content-center" style={{border:'none'}}>
     <Tab.Container className="h-100" class = "ul.nav.nav-tabs" id="left-tabs-example" defaultActiveKey="first">
       <Row>

@@ -124,8 +124,8 @@ function RegisterForm() {
                         </FloatingLabel>
                     </Form.Group>
                     <div className="text-light d-flex justify-content-center m-3">
-                        <Button type="submit" variant="outline-light" className="p-2 text-primary">Done</Button>
-                        <Button type="reset" variant="outline-light" className="p-2 text-danger ms-3">Cancel</Button>
+                        <Button type="submit" className="p-2 ms-3">Done</Button>
+                        <Button type="reset" variant="danger" className="p-2 ms-3">Cancel</Button>
                     </div>
                     <Toaster/>
                 </Form>
