@@ -13,6 +13,9 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import buttonStyle from "../../../../assets/css/Button.module.css";
 import DeleteIcon from "@mui/icons-material/Delete";
+import AddIcon from "@mui/icons-material/AddCircleOutlined";
+
+
 import Stack from "react-bootstrap/Stack";
 import {GetExercise, GetSize, UpdateCollection} from "../../../../provider/firestore/FirestoreProvider";
 import Image from "react-bootstrap/Image";
@@ -137,7 +140,7 @@ export default function EditExercisePlanWrapper() {
                                   <Form.Group>
                                       <Row className={rowStyle.plans}>
                                           <Col>
-                                              <Image height={100} width={150} src={exercises.find(item => item['exID'] === selectedExercise)?.image_ref}
+                                              <Image height={100} width={150} src={exercises.find(item => item['exID'] === selectedExercise)?.image_ref} style={{display: 'block', margin: 'auto', width: '150px', height: '150px', objectFit:'cover', borderRadius: '20px'}}
                                                      alt={exercises.find(item => item['exID'] === selectedExercise)?.title}/>
                                           </Col>
                                           <Col className="d-flex justify-content-center align-items-center text-black">

@@ -166,14 +166,14 @@ export default function ExercisePlanForm() {
                                         .map((item, index) =>
                                     (
                                         <Row className={rowStyle.plans} key={index}>
-                                            <Col xs={2}>
-                                                <Image fluid src={item['image_ref']} alt={item.title}/>
+                                            <Col>
+                                                <Image fluid src={item['image_ref']} alt={item.title} style={{display: 'block', margin: 'auto', width: '150px', height: '150px', objectFit:'cover', borderRadius: '20px'}}/>
                                             </Col>
                                             <Col className="d-flex justify-content-center align-items-center">
                                                 <div>{item.title}</div>
                                             </Col>
                                             <Col xs={2} className="d-flex align-items-center">
-                                                <Button className={`${buttonStyle.transparent} mb-0`}                                                       onClick={() => {
+                                                <Button className={`${buttonStyle.transparent} mb-0`} onClick={() => {
                                                     let tmp = values.exercises;
                                                     tmp.push({
                                                         exID: item.exID,
@@ -184,7 +184,7 @@ export default function ExercisePlanForm() {
                                                     })
                                                     setFieldValue("exercises", tmp);
                                                 }} disabled={values.exercises?.find(obj => obj.name === item.title)}>
-                                                    <AddIcon color="primary"/>
+                                                    <AddIcon color="primary" fontSize="large"/>
                                                 </Button>
                                             </Col>
                                         </Row>
