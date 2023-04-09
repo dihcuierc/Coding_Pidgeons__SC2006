@@ -115,11 +115,8 @@ function Setup() {
       }}
       initialValues={{
         age: new Date(),
-        height: 100,
-        weight: 30.5,
         gender: "Male",
         image: "",
-          mobile: "91248592"
       }}
     >
       {({
@@ -148,11 +145,12 @@ function Setup() {
             </FloatingLabel>
           </Form.Group>
             <Form.Group className="mb-3" controlId="mobileInput">
-                <FloatingLabel className="text-dark" label="Phone Number">
+                <FloatingLabel className="text-dark" label="Phone Number" placeholder="91248592">
                     <Form.Control
                         type="text"
                         name="mobile"
                         value={values.mobile}
+                        placeholder="91248592"
                         onChange={handleChange}
                         isInvalid={!!errors.mobile && touched.mobile}
                     />
@@ -163,7 +161,7 @@ function Setup() {
             </Form.Group>
           <Row>
             <Form.Group as={Col} className="mb-3" controlId="heightInput">
-              <FloatingLabel className="text-dark" label="Height (cm)">
+              <FloatingLabel className="text-dark" label="Height (cm)" placeholder="100">
                 <Form.Control
                   name="height"
                   type="number"
@@ -178,7 +176,7 @@ function Setup() {
               </FloatingLabel>
             </Form.Group>
             <Form.Group as={Col} className="mb-3" controlId="weightInput">
-              <FloatingLabel className="text-dark" label="Weight (kg)">
+              <FloatingLabel className="text-dark" label="Weight (kg)" placeholder="30.5">
                 <Form.Control
                   name="weight"
                   type="number"

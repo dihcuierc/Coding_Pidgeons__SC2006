@@ -21,6 +21,7 @@ import Button from "react-bootstrap/Button";
 import {calculateDate, convertStringToDate, convertTimeToTimeStamp} from "../../../misc/dateConverter";
 import toast, {Toaster} from "react-hot-toast";
 import {wait} from "@testing-library/user-event/dist/utils";
+import {useAuth} from "../../../provider/auth/AuthProvider";
 
 export default function ScheduleExercise() {
   const {state} = useLocation();
@@ -29,7 +30,7 @@ export default function ScheduleExercise() {
   const [endTime, setEndTime] = useState(date.getTime() + 3600000);
   const [plans, setPlans] = useState([]);
   const [exercisePlan, setExercisePlan] = useState("");
-  const [user, setUser] = useState(1);
+  const { user } = useAuth();
   const navigate = useNavigate();
 
   const getPlans = useCallback(() => {
@@ -49,7 +50,6 @@ export default function ScheduleExercise() {
     if (state !== null) {
       const exercise = state.exercise;
       setExercisePlan(exercise.planID);
-      setUser(exercise.userID);
     }
     getPlans();
   },[state, date, startTime, endTime, exercisePlan, getPlans])
@@ -68,7 +68,7 @@ export default function ScheduleExercise() {
                   "end time": end,
                   planID: values.plan,
                   "start time": start,
-                  userID: user,
+                  userID: user.userID,
                 }
                 state === null ?
                   status = await AddCollection("ScheduleExercise", size, data) :
