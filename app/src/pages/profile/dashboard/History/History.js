@@ -16,7 +16,7 @@ export default function History() {
     const {user} = useAuth();
     
     const setData = useCallback(() => {
-        setAxis(historyData.filter(item => item['userID'] === user.userID).map(item => {
+        setAxis(historyData.filter(item => item['userID'] === parseInt(user.userID)).map(item => {
             const x = convertStringToDate(item.date);
             const y = item['calories burnt'];
             return {x,y};
