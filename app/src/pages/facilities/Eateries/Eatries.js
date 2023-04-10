@@ -60,7 +60,7 @@ export default function Eateries() {
             if (diningConcept.length)
                 diningStatus = diningConcept.includes(data['dining_concept']);
             if (menu.length)
-                menuStatus = data['menu_item_endorsement'].map(item => menu.includes(item)).reduce((acc, curr) => acc && curr);
+                menuStatus = data['menu_item_endorsement'].map(item => menu.includes(item)).reduce((acc, curr) => acc || curr);
             return (typeStatus && regionStatus && fnbStatus && diningStatus && menuStatus)
         }))
     },[filteredList, regions]);

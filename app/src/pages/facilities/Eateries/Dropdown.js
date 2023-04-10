@@ -16,6 +16,7 @@ export default function FilterDropdown({name,list, selected}) {
                         <div className={paddingStyle.dropdown} key={index}>
                             <Col className="mb-2 ms-2">
                                 <Form.Check.Input type="checkbox" onChange={(e) => {
+                                    console.log(item)
                                     e.target.checked ?
                                         selected.push(item) :
                                         selected.splice(index, index+1)
