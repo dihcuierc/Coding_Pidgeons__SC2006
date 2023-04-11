@@ -44,6 +44,7 @@ function Setup() {
 
   const schema = Yup.object().shape({
     age: Yup.date()
+      .nullable()
       .min(new Date(1900, 0, 1), "You cannot choose a date before this!")
       .max(
         new Date(new Date().getFullYear() - 10, 1),
@@ -115,7 +116,7 @@ function Setup() {
           }
       }}
       initialValues={{
-        age: new Date(),
+        age: null,
         gender: "Male",
         image: "",
         height: "",
