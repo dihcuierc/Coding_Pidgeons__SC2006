@@ -58,9 +58,10 @@ function Setup() {
       .min(20, "Must be at least 20 kg")
       .max(400, "Cannot be more than 400 kg")
       .required("Please enter your weight in kg"),
-      mobile: Yup
-          .string()
-          .matches(/(6|8|9)\d{7}/, "Phone number is not valid"),
+    mobile: Yup
+        .string()
+        .matches(/(6|8|9)\d{7}/, "Phone number is not valid")
+        .required("Please enter your mobile number"),
     gender: Yup.string().required("Required"),
     image: Yup.string().nullable(),
   });
@@ -117,6 +118,9 @@ function Setup() {
         age: new Date(),
         gender: "Male",
         image: "",
+        height: "",
+        weight: "",
+        mobile: ""
       }}
     >
       {({
