@@ -49,7 +49,7 @@ function Setup() {
         new Date(new Date().getFullYear() - 10, 1),
         "You cannot be younger than 10 years old!"
       )
-      .required("Required"),
+      .required("Please enter your date of birth"),
     height: Yup.number()
       .min(90, "Must be at least 90 cm")
       .max(220, "Cannot be more than 220 cm")
