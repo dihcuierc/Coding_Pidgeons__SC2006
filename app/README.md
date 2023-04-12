@@ -1,4 +1,4 @@
-# React App README
+# TrainTogether README
 
 This is a README file for Coding Pigeons's react app project, TrainTogether. The app is a web-based application that allows users to search for nearby fitness corners and customise an exercise plan based on its location and facilities. Users can also create an account and log in to the app to interact with various features and functionalities. The app is built using React, a JavaScript library for creating user interfaces.
 
